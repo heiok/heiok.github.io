@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"heiok.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="收视设备信息 光猫型号: HG6142A 盒子型号: TR100 IPTV-G9 连接方式: LAN2  单播组播：单播 &amp; 组播 认证时效: 7天(省内跨市联通网络可看) 连接模式：桥接  VLAN ID:  45  获取IPTV频道123456789101112131415161718192021222324252627282930313233343536373839404142434">
+<meta property="og:type" content="article">
+<meta property="og:title" content="获取珠海联通IPTV频道">
+<meta property="og:url" content="http://heiok.com/Get-Zhuhai-Unicom-IPTV-channels.html">
+<meta property="og:site_name" content="网络蝙蝠侠部落">
+<meta property="og:description" content="收视设备信息 光猫型号: HG6142A 盒子型号: TR100 IPTV-G9 连接方式: LAN2  单播组播：单播 &amp; 组播 认证时效: 7天(省内跨市联通网络可看) 连接模式：桥接  VLAN ID:  45  获取IPTV频道123456789101112131415161718192021222324252627282930313233343536373839404142434">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-24T07:42:24.000Z">
+<meta property="article:modified_time" content="2024-12-27T08:36:59.357Z">
+<meta property="article:author" content="heiok.com">
+<meta property="article:tag" content="IPTV">
+<meta property="article:tag" content="珠海联通IPTV">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://heiok.com/Get-Zhuhai-Unicom-IPTV-channels.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>获取珠海联通IPTV频道 | 网络蝙蝠侠部落</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">网络蝙蝠侠部落</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://heiok.com/Get-Zhuhai-Unicom-IPTV-channels.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          获取珠海联通IPTV频道
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-12-24 15:42:24" itemprop="dateCreated datePublished" datetime="2024-12-24T15:42:24+08:00">2024-12-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-12-27 16:36:59" itemprop="dateModified" datetime="2024-12-27T16:36:59+08:00">2024-12-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IPTV/" itemprop="url" rel="index"><span itemprop="name">IPTV</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="收视设备信息"><a href="#收视设备信息" class="headerlink" title="收视设备信息"></a>收视设备信息</h2><ul>
+<li>光猫型号: HG6142A</li>
+<li>盒子型号: TR100 IPTV-G9</li>
+<li>连接方式: LAN2 </li>
+<li>单播组播：单播 &amp; 组播</li>
+<li>认证时效: 7天(省内跨市联通网络可看)</li>
+<li>连接模式：桥接 </li>
+<li>VLAN ID:  45</li>
+</ul>
+<h2 id="获取IPTV频道"><a href="#获取IPTV频道" class="headerlink" title="获取IPTV频道"></a>获取IPTV频道</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import json</span><br><span class="line">import os</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line"># 设置工作目录为脚本所在目录</span><br><span class="line">os.chdir(os.path.dirname(os.path.abspath(__file__)))</span><br><span class="line"></span><br><span class="line">s = requests.Session()</span><br><span class="line">s.headers[&#x27;User-Agent&#x27;] = &#x27;okhttp/3.10.0&#x27;</span><br><span class="line"></span><br><span class="line"># 获取所有频道信息</span><br><span class="line">all_channels_response = s.get(&quot;http://120.87.12.38:8083/epg/api/custom/getAllChannel.json&quot;)</span><br><span class="line">all_channels_data = all_channels_response.json()</span><br><span class="line"></span><br><span class="line">if all_channels_data[&#x27;status&#x27;] != &#x27;200&#x27; or &#x27;channels&#x27; not in all_channels_data:</span><br><span class="line">    print(&quot;错误：无法获取频道列表或频道列表格式错误。&quot;)</span><br><span class="line">    sys.exit(1)</span><br><span class="line"></span><br><span class="line"># 提取频道代码</span><br><span class="line">channel_codes = [channel[&#x27;params&#x27;][&#x27;hwcode&#x27;] for channel in all_channels_data[&#x27;channels&#x27;] if &#x27;params&#x27; in channel and &#x27;hwcode&#x27; in channel[&#x27;params&#x27;]]</span><br><span class="line">channel_codes_str = &#x27;,&#x27;.join(channel_codes)</span><br><span class="line"></span><br><span class="line"># 获取访问令牌</span><br><span class="line">token_response = s.get(&quot;http://120.87.11.11:33200/EPG/oauth/v2/token?grant_type=EncryToken&amp;client_id=shuma2&amp;authinfo=52A57E9F6583C26C2F2E0C6E3FC7452F164A4C84BDEE623FF387E69D25C4C1A57031D44BBAA6DEF42155B7524C4DED856EE61F320E7CFEDEA491B8AFDF90FF4B4830CEE38BAAEC1E88165B70BC52666557400555BED665177880021B8C65ECBF&amp;UserID=0175205891367&amp;DeviceType=TR100-G9&amp;DeviceVersion=219.470.107&amp;userdomain=1&amp;datadomain=1&amp;accountType=1&quot;)</span><br><span class="line">access_token = token_response.json().get(&#x27;access_token&#x27;)</span><br><span class="line"></span><br><span class="line">if not access_token:</span><br><span class="line">    print(&quot;错误：未能获取有效的 access token。&quot;)</span><br><span class="line">    sys.exit(1)</span><br><span class="line"></span><br><span class="line"># 使用访问令牌请求数据</span><br><span class="line">headers = &#123;</span><br><span class="line">    &#x27;Authorization&#x27;: access_token,</span><br><span class="line">    &#x27;User-Agent&#x27;: &#x27;okhttp/3.10.0&#x27;,</span><br><span class="line">    &#x27;Connection&#x27;: &#x27;Keep-Alive&#x27;,</span><br><span class="line">    &#x27;Content-Type&#x27;: &#x27;application/json;charset=utf-8&#x27;</span><br><span class="line">&#125;</span><br><span class="line">data = json.dumps(&#123;&quot;channelcodes&quot;: channel_codes_str&#125;)</span><br><span class="line"># 请修改此处IP，确保与鉴权URL的IP一致</span><br><span class="line">response = s.post(&quot;http://120.87.11.11:33200/EPG/interEpg/channellist/batch&quot;, headers=headers, data=data)</span><br><span class="line"></span><br><span class="line">if not response.json():</span><br><span class="line">    print(&quot;错误：返回的数据为空。&quot;)</span><br><span class="line">    sys.exit(1)</span><br><span class="line"></span><br><span class="line"># 保存响应数据到文件</span><br><span class="line">with open(&#x27;iptv.json&#x27;, &#x27;w&#x27;, encoding=&#x27;UTF-8&#x27;) as f:</span><br><span class="line">    json.dump(response.json(), f)</span><br><span class="line"></span><br><span class="line"># 复制 base.txt 到 iptv.txt 和 iptv.m3u8</span><br><span class="line">with open(&#x27;base.txt&#x27;, &#x27;r&#x27;, encoding=&#x27;UTF-8&#x27;) as f_base, open(&#x27;iptv.txt&#x27;, &#x27;w&#x27;, encoding=&#x27;UTF-8&#x27;) as f_iptv, open(&#x27;iptv.m3u8&#x27;, &#x27;w&#x27;, encoding=&#x27;UTF-8&#x27;) as f_m3u8:</span><br><span class="line">    base_content = f_base.read()</span><br><span class="line">    f_iptv.write(base_content)</span><br><span class="line">    f_m3u8.write(&quot;#EXTM3U\n&quot;)</span><br><span class="line"></span><br><span class="line"># 读取 iptv.json 并处理数据</span><br><span class="line">with open(&#x27;iptv.json&#x27;, &#x27;r&#x27;, encoding=&#x27;UTF-8&#x27;) as f:</span><br><span class="line">    data = json.load(f)</span><br><span class="line">    if not data.get(&#x27;channellist&#x27;):</span><br><span class="line">        print(&quot;错误：&#x27;channellist&#x27; 数据为空。&quot;)</span><br><span class="line">        sys.exit(1)</span><br><span class="line"></span><br><span class="line">    channels = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    for item in data[&#x27;channellist&#x27;]:</span><br><span class="line">        hwcode = item[&#x27;channelcode&#x27;]</span><br><span class="line">        channel_info = next((ch for ch in all_channels_data[&#x27;channels&#x27;] if ch[&#x27;params&#x27;].get(&#x27;hwcode&#x27;) == hwcode), None)</span><br><span class="line">        if not channel_info:</span><br><span class="line">            continue </span><br><span class="line"></span><br><span class="line">        channel_name = channel_info[&#x27;title&#x27;]</span><br><span class="line">        timeshift_url = item[&#x27;timeshifturl&#x27;]</span><br><span class="line">        group = &quot;其它&quot;</span><br><span class="line">        if &quot;CCTV&quot; in channel_name or &quot;CGTN&quot; in channel_name:</span><br><span class="line">            group = &quot;央视&quot;</span><br><span class="line">        elif any(x in channel_name for x in [&quot;广东&quot;, &quot;广州&quot;, &quot;大湾区&quot;, &quot;南方&quot;, &quot;岭南&quot;]):</span><br><span class="line">            group = &quot;广东&quot;</span><br><span class="line">        elif &quot;卫视&quot; in channel_name:</span><br><span class="line">            group = &quot;卫视&quot;</span><br><span class="line"></span><br><span class="line">        if group:</span><br><span class="line">            if group not in channels:</span><br><span class="line">                channels[group] = []</span><br><span class="line">            channels[group].append((channel_name, timeshift_url))</span><br><span class="line"></span><br><span class="line">    # 写入处理后的数据到 iptv.txt 和 iptv.m3u8</span><br><span class="line">    with open(&#x27;iptv.txt&#x27;, &#x27;a&#x27;, encoding=&#x27;UTF-8&#x27;) as f_iptv, open(&#x27;iptv.m3u8&#x27;, &#x27;a&#x27;, encoding=&#x27;UTF-8&#x27;) as f_m3u8:</span><br><span class="line">        for group, ch_list in channels.items():</span><br><span class="line">            f_iptv.write(f&quot;&#123;group&#125;,#genre#\n&quot;)</span><br><span class="line">            for channel_name, url in ch_list:</span><br><span class="line">                f_iptv.write(f&quot;&#123;channel_name&#125;,&#123;url&#125;\n&quot;)</span><br><span class="line">                f_m3u8.write(f&quot;#EXTINF:-1,&#123;channel_name&#125;\n&#123;url&#125;\n&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/IPTV/" rel="tag"># IPTV</a>
+              <a href="/tags/Zhuhai-Unicom-IPTV/" rel="tag"># 珠海联通IPTV</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/0x00004005.html" rel="prev" title="操作失败，错误为0x00004005。">
+      <i class="fa fa-chevron-left"></i> 操作失败，错误为0x00004005。
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Generate-a-self-signed-certificate.html" rel="next" title="OpenSSL生成自签名证书">
+      OpenSSL生成自签名证书 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B6%E8%A7%86%E8%AE%BE%E5%A4%87%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">收视设备信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96IPTV%E9%A2%91%E9%81%93"><span class="nav-number">2.</span> <span class="nav-text">获取IPTV频道</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">heiok.com</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

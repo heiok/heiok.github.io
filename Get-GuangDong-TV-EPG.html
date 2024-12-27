@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"heiok.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="获取代码  python3.13 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596">
+<meta property="og:type" content="article">
+<meta property="og:title" content="获取广东电视台节目表">
+<meta property="og:url" content="http://heiok.com/Get-GuangDong-TV-EPG.html">
+<meta property="og:site_name" content="网络蝙蝠侠部落">
+<meta property="og:description" content="获取代码  python3.13 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-17T08:09:05.000Z">
+<meta property="article:modified_time" content="2024-12-27T08:36:59.357Z">
+<meta property="article:author" content="heiok.com">
+<meta property="article:tag" content="IPTV">
+<meta property="article:tag" content="EPG">
+<meta property="article:tag" content="广东电视台节目表">
+<meta property="article:tag" content="GDTV EPG">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://heiok.com/Get-GuangDong-TV-EPG.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>获取广东电视台节目表 | 网络蝙蝠侠部落</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">网络蝙蝠侠部落</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://heiok.com/Get-GuangDong-TV-EPG.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          获取广东电视台节目表
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-12-17 16:09:05" itemprop="dateCreated datePublished" datetime="2024-12-17T16:09:05+08:00">2024-12-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-12-27 16:36:59" itemprop="dateModified" datetime="2024-12-27T16:36:59+08:00">2024-12-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IPTV/" itemprop="url" rel="index"><span itemprop="name">IPTV</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="获取代码"><a href="#获取代码" class="headerlink" title="获取代码"></a>获取代码</h2><p>  python3.13</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">import os</span><br><span class="line">import django</span><br><span class="line"></span><br><span class="line"># 添加项目根目录到 sys.path 中</span><br><span class="line">sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), &#x27;../../&#x27;)))</span><br><span class="line"></span><br><span class="line"># 设置 Django 环境变量</span><br><span class="line">os.environ.setdefault(&quot;DJANGO_SETTINGS_MODULE&quot;, &quot;epg_scraper.settings&quot;)  # 替换为你的 Django 项目名</span><br><span class="line">django.setup()</span><br><span class="line"></span><br><span class="line">import datetime</span><br><span class="line">import requests</span><br><span class="line">import warnings</span><br><span class="line">from bs4 import BeautifulSoup as bs</span><br><span class="line">from epg.models import Channel, EPG</span><br><span class="line">from django.db import IntegrityError</span><br><span class="line"></span><br><span class="line"># 定义请求头，模拟浏览器访问</span><br><span class="line">headers = &#123;</span><br><span class="line">    &#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 忽略 XMLParsedAsHTMLWarning</span><br><span class="line">warnings.filterwarnings(&#x27;ignore&#x27;)</span><br><span class="line"></span><br><span class="line"># 获取广东电视台频道列表</span><br><span class="line">def get_channels_gdtv():</span><br><span class="line">    url = &#x27;http://epg.gdtv.cn/f/1.xml&#x27;  # 获取广东电视台频道列表的XML文件</span><br><span class="line">    res = requests.get(url, headers=headers)</span><br><span class="line">    res.encoding = &#x27;utf-8&#x27;</span><br><span class="line">    soup = bs(res.text, &#x27;lxml&#x27;)</span><br><span class="line">    contents = soup.select(&#x27;channel&#x27;)</span><br><span class="line">    channels = []</span><br><span class="line"></span><br><span class="line">    # 遍历频道内容并检查是否存在</span><br><span class="line">    for content in contents:</span><br><span class="line">        channel_id = content.attrs[&#x27;id&#x27;]</span><br><span class="line">        name = content.ctitle.text.strip()  # 使用 strip() 清理可能的空格和换行</span><br><span class="line"></span><br><span class="line">        # 确保频道唯一，避免重复添加</span><br><span class="line">        existing_channels = Channel.objects.filter(channel_id=channel_id)</span><br><span class="line">        if existing_channels.exists():</span><br><span class="line">            print(f&quot;频道 &#123;name&#125; 已存在于数据库。&quot;)</span><br><span class="line">        else:</span><br><span class="line">            Channel.objects.create(name=name, channel_id=channel_id)</span><br><span class="line">            print(f&quot;频道 &#123;name&#125; 已添加到数据库。&quot;)</span><br><span class="line"></span><br><span class="line">        channels.append(existing_channels.first() if existing_channels.exists() else Channel.objects.get(channel_id=channel_id))</span><br><span class="line"></span><br><span class="line">    return channels</span><br><span class="line"></span><br><span class="line"># 处理节目标题中的 HTML 实体和标签</span><br><span class="line">def clean_html(text):</span><br><span class="line">    # 将 HTML 实体转换为普通字符（例如 &amp;amp; -&gt; &amp;）</span><br><span class="line">    text = bs(text, &quot;html.parser&quot;).get_text()</span><br><span class="line"></span><br><span class="line">    # 替换 &lt;br /&gt; 标签为换行符</span><br><span class="line">    text = text.replace(&#x27;&lt;br /&gt;&#x27;, &#x27;\n&#x27;).replace(&#x27;&lt;br&gt;&#x27;, &#x27;\n&#x27;)</span><br><span class="line">    </span><br><span class="line">    return text.strip()</span><br><span class="line"></span><br><span class="line"># 获取指定日期范围内的节目表</span><br><span class="line">def get_epgs_gdtv(channel, start_date, end_date):</span><br><span class="line">    epgs = []</span><br><span class="line">    success = 1</span><br><span class="line">    try:</span><br><span class="line">        # 循环抓取指定日期范围内的节目</span><br><span class="line">        current_date = start_date</span><br><span class="line">        while current_date &lt;= end_date:</span><br><span class="line">            url = f&#x27;http://epg.gdtv.cn/f/&#123;channel.channel_id&#125;/&#123;current_date.strftime(&quot;%Y-%m-%d&quot;)&#125;.xml&#x27;</span><br><span class="line">            res = requests.get(url, headers=headers, timeout=8)</span><br><span class="line">            res.encoding = &#x27;utf-8&#x27;</span><br><span class="line">            soup = bs(res.text, &#x27;lxml-xml&#x27;)</span><br><span class="line">            epgs_contents = soup.select(&#x27;content&#x27;)</span><br><span class="line"></span><br><span class="line">            # 解析并保存节目数据</span><br><span class="line">            for epga in epgs_contents:</span><br><span class="line">                starttime = datetime.datetime.fromtimestamp(int(epga.attrs[&#x27;time1&#x27;]))</span><br><span class="line">                endtime = datetime.datetime.fromtimestamp(int(epga.attrs[&#x27;time2&#x27;]))</span><br><span class="line">                title = clean_html(epga.get_text())  # 使用清理函数</span><br><span class="line"></span><br><span class="line">                # 检查数据库中是否已经存在相同的节目</span><br><span class="line">                if not EPG.objects.filter(channel=channel, starttime=starttime, title=title).exists():</span><br><span class="line">                    try:</span><br><span class="line">                        # 如果不存在，则创建新的节目记录</span><br><span class="line">                        EPG.objects.create(</span><br><span class="line">                            channel=channel,</span><br><span class="line">                            title=title,</span><br><span class="line">                            starttime=starttime,</span><br><span class="line">                            endtime=endtime,</span><br><span class="line">                            program_date=current_date</span><br><span class="line">                        )</span><br><span class="line">                        print(f&quot;新增节目: &#123;title&#125; (&#123;starttime&#125; - &#123;endtime&#125;)&quot;)</span><br><span class="line">                    except IntegrityError:</span><br><span class="line">                        print(f&quot;插入节目时发生错误: &#123;title&#125;&quot;)</span><br><span class="line"></span><br><span class="line">            current_date += datetime.timedelta(days=1)  # 增加一天</span><br><span class="line"></span><br><span class="line">        print(f&quot;成功抓取 &#123;channel.name&#125; 的节目表。&quot;)</span><br><span class="line">    except Exception as e:</span><br><span class="line">        print(f&quot;抓取 &#123;channel.name&#125; 的节目表失败: &#123;e&#125;&quot;)</span><br><span class="line">        success = 0</span><br><span class="line"></span><br><span class="line">    return success, epgs</span><br><span class="line"></span><br><span class="line"># 获取前七天到后两天的节目表</span><br><span class="line">def fetch_all_channels_and_epgs():</span><br><span class="line">    today = datetime.datetime.now().date()</span><br><span class="line">    start_date = today - datetime.timedelta(days=7)  # 七天前</span><br><span class="line">    end_date = today + datetime.timedelta(days=2)  # 两天后</span><br><span class="line"></span><br><span class="line">    channels = get_channels_gdtv()  # 获取并确保频道存在</span><br><span class="line">    for channel in channels:</span><br><span class="line">        get_epgs_gdtv(channel, start_date, end_date)  # 抓取并保存节目信息</span><br><span class="line"></span><br><span class="line"># 执行抓取</span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    fetch_all_channels_and_epgs()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="定时配置"><a href="#定时配置" class="headerlink" title="定时配置"></a>定时配置</h2><p>  项目settings.py添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Celery Beat Scheduler 设置</span><br><span class="line">CELERY_BEAT_SCHEDULER = &#x27;django_celery_beat.schedulers:DatabaseScheduler&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/IPTV/" rel="tag"># IPTV</a>
+              <a href="/tags/EPG/" rel="tag"># EPG</a>
+              <a href="/tags/Guangdong-TV-program-schedule/" rel="tag"># 广东电视台节目表</a>
+              <a href="/tags/GDTV-EPG/" rel="tag"># GDTV EPG</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/iPhone-configuration-socks-proxy.html" rel="prev" title="iPhone配置socks代理">
+      <i class="fa fa-chevron-left"></i> iPhone配置socks代理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/iPhone-Shortcuts-auto-download-files.html" rel="next" title="iPhone快捷指令自动下载文件">
+      iPhone快捷指令自动下载文件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E4%BB%A3%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">获取代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">定时配置</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">heiok.com</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
