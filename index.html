@@ -184,7 +184,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/hexo-blog-repo-change-and-backup.html" class="post-title-link" itemprop="url">hexo博客更名备份记录</a>
+            <a href="/hexo-blog-repo-change-and-backup.html" class="post-title-link" itemprop="url">hexo博客仓库更名备份记录</a>
         </h2>
 
         <div class="post-meta">
@@ -195,7 +195,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-12-31 18:11:03 / 修改时间：18:12:04" itemprop="dateCreated datePublished" datetime="2024-12-31T18:11:03+08:00">2024-12-31</time>
+              <time title="创建时间：2024-12-31 18:11:03 / 修改时间：18:23:53" itemprop="dateCreated datePublished" datetime="2024-12-31T18:11:03+08:00">2024-12-31</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -218,19 +218,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>​	<a href="https://heiok.com/oldsite">旧站点</a> 数年前部署在github上，hexo发布后的是编译过的html文件，源文件.md和配置文件等并不上传到github。年代久远，之前电脑及文件均已无法找到，无法再更新，重新部署记录。</p>
+          <p>​	<a href="https://heiok.com/oldsite">旧站点</a> 数年前部署在github上，hexo发布后是编译过的html文件，源文件.md和配置文件等并不上传到github。年代久远，之前电脑及文件均已无法找到，无法再更新，重新部署记录。</p>
 <h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><ul>
 <li>github新建一个私有仓库，备份源文件等；</li>
 <li>github新建一个公有仓库，发布博客文件。</li>
 </ul>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
-<li><p>密钥ssh-keygen -t rsa -b 4096 -C “<a href="mailto:&#121;&#111;&#x75;&#114;&#x5f;&#x65;&#109;&#97;&#x69;&#x6c;&#x40;&#x65;&#120;&#97;&#109;&#112;&#108;&#101;&#x2e;&#x63;&#111;&#109;">&#121;&#111;&#x75;&#114;&#x5f;&#x65;&#109;&#97;&#x69;&#x6c;&#x40;&#x65;&#120;&#97;&#109;&#112;&#108;&#101;&#x2e;&#x63;&#111;&#109;</a>“</p>
+<li><p>密钥ssh-keygen -t rsa -b 4096 -C “<a href="mailto:&#121;&#111;&#x75;&#114;&#95;&#101;&#109;&#97;&#x69;&#x6c;&#64;&#x65;&#120;&#97;&#x6d;&#112;&#108;&#101;&#46;&#x63;&#x6f;&#109;">&#121;&#111;&#x75;&#114;&#95;&#101;&#109;&#97;&#x69;&#x6c;&#64;&#x65;&#120;&#97;&#x6d;&#112;&#108;&#101;&#46;&#x63;&#x6f;&#109;</a>“</p>
 </li>
 <li><p>登录github，Repositories，heiok.github.io改名为oldsite，Settings，Pages，Custom domain，删除域名绑定；</p>
 </li>
 <li><p>新建私有仓库hexo，新建公开仓库heiok.github.io（域名绑定）；</p>
 </li>
-<li><p>测试ssh -T <a href="mailto:&#x67;&#105;&#x74;&#64;&#103;&#105;&#x74;&#104;&#117;&#98;&#x2e;&#99;&#x6f;&#109;">&#x67;&#105;&#x74;&#64;&#103;&#105;&#x74;&#104;&#117;&#98;&#x2e;&#99;&#x6f;&#109;</a></p>
+<li><p>测试ssh -T <a href="mailto:&#103;&#x69;&#116;&#x40;&#103;&#105;&#116;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#109;">&#103;&#x69;&#116;&#x40;&#103;&#105;&#116;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#109;</a></p>
 <h2 id="博客发布"><a href="#博客发布" class="headerlink" title="博客发布"></a>博客发布</h2></li>
 <li><p>安装 npm install -g cnpm –registry&#x3D;<a target="_blank" rel="noopener" href="https://registry.npmmirror.com/">https://registry.npmmirror.com</a></p>
 </li>
