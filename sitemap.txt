@@ -1,3 +1,4 @@
+http://heiok.com/Install-Python-on-OpenWRT.html
 http://heiok.com/hexo-blog-repo-change-and-backup.html
 http://heiok.com/Get-GuangDong-TV-EPG.html
 http://heiok.com/Get-Guangdong-TV-EPG-python-version.html
@@ -15,7 +16,6 @@ http://heiok.com/Generate-a-self-signed-certificate.html
 http://heiok.com/Get-Guangzhou-Telecom-IPTV-channels.html
 http://heiok.com/Get-Zhuhai-Unicom-IPTV-channels.html
 http://heiok.com/How-to-determine-IP-is-BGP-route.html
-http://heiok.com/Install-Python-on-OpenWRT.html
 http://heiok.com/OpenWRT-adds-external-storage-expansion.html
 http://heiok.com/Xiaomi-TV-API.html
 http://heiok.com/
