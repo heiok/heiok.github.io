@@ -2,9 +2,9 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 7.3.0">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
@@ -13,45 +13,34 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"heiok.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-  <meta property="og:type" content="website">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"heiok.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta property="og:type" content="website">
 <meta property="og:title" content="网络蝙蝠侠部落">
-<meta property="og:url" content="http://heiok.com/index.html">
+<meta property="og:url" content="https://heiok.com/index.html">
 <meta property="og:site_name" content="网络蝙蝠侠部落">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="heiok.com">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://heiok.com/">
+
+<link rel="canonical" href="https://heiok.com/">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
 
-  <title>网络蝙蝠侠部落</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>网络蝙蝠侠部落</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-90W6VHZRMP"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-90W6VHZRMP');
-      }
-    </script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-90W6VHZRMP","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
 
 
 
@@ -59,155 +48,160 @@
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">网络蝙蝠侠部落</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
     </div>
   </div>
 </div>
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
   </ul>
 </nav>
 
 
 
 
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
 </div>
-    </header>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
+  </aside>
 
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
+    </div>
 
-          <div class="content index posts-expand">
-            
-      
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://heiok.com/OpenWRT-grabs-EPG-and-submits-records-to-the-code-repository.html">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/hexo-theme-next-upgrade.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="heiok.com">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/OpenWRT-grabs-EPG-and-submits-records-to-the-code-repository.html" class="post-title-link" itemprop="url">OpenWRT抓取EPG并提交记录到代码仓库</a>
+          <a href="/hexo-theme-next-upgrade.html" class="post-title-link" itemprop="url">Next主题升级记录</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
 
-              <time title="创建时间：2025-01-02 18:15:40 / 修改时间：18:17:06" itemprop="dateCreated datePublished" datetime="2025-01-02T18:15:40+08:00">2025-01-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IPTV/" itemprop="url" rel="index"><span itemprop="name">IPTV</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2025-01-15 16:47:18 / 修改时间：16:58:44" itemprop="dateCreated datePublished" datetime="2025-01-15T16:47:18+08:00">2025-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Software/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -216,8 +210,258 @@
     
     
     <div class="post-body" itemprop="articleBody">
+          <h2 id="hexo版本"><a href="#hexo版本" class="headerlink" title="hexo版本"></a>hexo版本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost hexo]# pwd</span><br><span class="line">/root/hexo</span><br><span class="line"></span><br><span class="line">[root@localhost hexo]# hexo version</span><br><span class="line">INFO  Validating config</span><br><span class="line">hexo: 7.3.0</span><br><span class="line">hexo-cli: 4.3.2</span><br><span class="line">os: linux 5.14.0-427.42.1.el9_4.x86_64 Rocky Linux 9.4 (Blue Onyx)</span><br><span class="line">node: 18.20.4</span><br><span class="line">acorn: 8.11.3</span><br><span class="line">ada: 2.7.8</span><br><span class="line">ares: 1.28.1</span><br><span class="line">base64: 0.5.2</span><br><span class="line">brotli: 1.0.9</span><br><span class="line">cjs_module_lexer: 1.2.2</span><br><span class="line">cldr: 44.1</span><br><span class="line">icu: 74.2</span><br><span class="line">llhttp: 6.1.1</span><br><span class="line">modules: 108</span><br><span class="line">napi: 9</span><br><span class="line">nghttp2: 1.61.0</span><br><span class="line">nghttp3: 0.7.0</span><br><span class="line">ngtcp2: 1.3.0</span><br><span class="line">openssl: 3.0.13+quic</span><br><span class="line">simdutf: 5.2.4</span><br><span class="line">tz: 2024a</span><br><span class="line">undici: 5.28.4</span><br><span class="line">unicode: 15.1</span><br><span class="line">uv: 1.44.2</span><br><span class="line">uvwasi: 0.0.19</span><br><span class="line">v8: 10.2.154.26-node.37</span><br><span class="line">zlib: 1.3.0.1-motley</span><br><span class="line">[root@localhost hexo]#</span><br></pre></td></tr></table></figure>
+
+<h2 id="next版本"><a href="#next版本" class="headerlink" title="next版本"></a>next版本</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost next]# pwd</span><br><span class="line">/root/hexo/themes/next</span><br><span class="line"></span><br><span class="line">[root@localhost next]# cat package.json</span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;hexo-theme-next&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;7.8.0&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;Elegant and powerful theme for Hexo.&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;gulpfile.js&quot;,</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;test&quot;: &quot;gulp&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;repository&quot;: &#123;</span><br><span class="line">    &quot;type&quot;: &quot;git&quot;,</span><br><span class="line">    &quot;url&quot;: &quot;git+https://github.com/theme-next/hexo-theme-next.git&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;keywords&quot;: [</span><br><span class="line">    &quot;hexo&quot;,</span><br><span class="line">    &quot;theme&quot;,</span><br><span class="line">    &quot;next&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;author&quot;: &quot;NexT &lt;support@theme-next.org&gt; (https://theme-next.org)&quot;,</span><br><span class="line">  &quot;license&quot;: &quot;AGPL-3.0-or-later&quot;,</span><br><span class="line">  &quot;bugs&quot;: &#123;</span><br><span class="line">    &quot;url&quot;: &quot;https://github.com/theme-next/hexo-theme-next/issues&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;homepage&quot;: &quot;https://theme-next.org&quot;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;eslint&quot;: &quot;^6.8.0&quot;,</span><br><span class="line">    &quot;eslint-config-theme-next&quot;: &quot;^1.1.4&quot;,</span><br><span class="line">    &quot;gulp&quot;: &quot;^4.0.2&quot;,</span><br><span class="line">    &quot;gulp-eslint&quot;: &quot;^6.0.0&quot;,</span><br><span class="line">    &quot;gulp-shell&quot;: &quot;^0.8.0&quot;,</span><br><span class="line">    &quot;js-yaml&quot;: &quot;^3.13.1&quot;,</span><br><span class="line">    &quot;stylint&quot;: &quot;^2.0.0&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;engines&quot;: &#123;</span><br><span class="line">    &quot;node&quot;: &quot;&gt;=10.9.0&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">[root@localhost next]#</span><br></pre></td></tr></table></figure>
+
+<h2 id="主题更新"><a href="#主题更新" class="headerlink" title="主题更新"></a>主题更新</h2><p>旧版更名 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost hexo]# pwd</span><br><span class="line">/root/hexo</span><br><span class="line"></span><br><span class="line">[root@localhost hexo]# mv themes/next themes/next-v7</span><br></pre></td></tr></table></figure>
+
+
+
+<p>更新新版</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost next]# pwd</span><br><span class="line">/root/hexo/themes/next</span><br><span class="line"></span><br><span class="line">[root@localhost next]# ll</span><br><span class="line">total 80</span><br><span class="line">-rw-r--r--. 1 root root 29634 Jan 15 15:48 _config.yml</span><br><span class="line">-rw-r--r--. 1 root root   232 Jan 15 15:27 crowdin.yml</span><br><span class="line">drwxr-xr-x. 4 root root    82 Jan 15 15:27 docs</span><br><span class="line">-rw-r--r--. 1 root root    79 Jan 15 15:27 eslint.config.js</span><br><span class="line">drwxr-xr-x. 2 root root  4096 Jan 15 15:27 languages</span><br><span class="line">drwxr-xr-x. 6 root root  4096 Jan 15 15:27 layout</span><br><span class="line">-rw-r--r--. 1 root root  2955 Jan 15 15:27 LICENSE.md</span><br><span class="line">-rw-r--r--. 1 root root  1148 Jan 15 15:27 package.json</span><br><span class="line">-rw-r--r--. 1 root root  9484 Jan 15 15:27 README.md</span><br><span class="line">-rw-r--r--. 1 root root    41 Jan 15 15:27 renovate.json</span><br><span class="line">drwxr-xr-x. 6 root root    62 Jan 15 15:27 scripts</span><br><span class="line">drwxr-xr-x. 5 root root    41 Jan 15 15:27 source</span><br><span class="line">drwxr-xr-x. 5 root root    65 Jan 15 15:27 test</span><br><span class="line">-rw-r--r--. 1 root root  4836 Jan 15 15:27 _vendors.yml</span><br><span class="line">[root@localhost next]# cat package.json</span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;hexo-theme-next&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;8.22.0&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;Elegant and powerful theme for Hexo.&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;package.json&quot;,</span><br><span class="line">  &quot;files&quot;: [</span><br><span class="line">    &quot;docs&quot;,</span><br><span class="line">    &quot;languages&quot;,</span><br><span class="line">    &quot;layout&quot;,</span><br><span class="line">    &quot;scripts&quot;,</span><br><span class="line">    &quot;source&quot;,</span><br><span class="line">    &quot;_config.yml&quot;,</span><br><span class="line">    &quot;_vendors.yml&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;eslint&quot;: &quot;eslint scripts/ source/js test/&quot;,</span><br><span class="line">    &quot;prepare&quot;: &quot;node .githooks/install.js&quot;,</span><br><span class="line">    &quot;stylint&quot;: &quot;stylelint source/css/ --ip source/css/_common/scaffolding/highlight/index.styl&quot;,</span><br><span class="line">    &quot;test&quot;: &quot;mocha test/index.js&quot;,</span><br><span class="line">    &quot;test-cov&quot;: &quot;c8 npm test&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;repository&quot;: &quot;next-theme/hexo-theme-next&quot;,</span><br><span class="line">  &quot;keywords&quot;: [</span><br><span class="line">    &quot;hexo&quot;,</span><br><span class="line">    &quot;theme&quot;,</span><br><span class="line">    &quot;next&quot;</span><br><span class="line">  ],</span><br><span class="line">  &quot;author&quot;: &quot;NexT (https://theme-next.js.org)&quot;,</span><br><span class="line">  &quot;license&quot;: &quot;AGPL-3.0-only&quot;,</span><br><span class="line">  &quot;bugs&quot;: &#123;</span><br><span class="line">    &quot;url&quot;: &quot;https://github.com/next-theme/hexo-theme-next/issues&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;homepage&quot;: &quot;https://theme-next.js.org&quot;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;@next-theme/eslint-config&quot;: &quot;0.0.4&quot;,</span><br><span class="line">    &quot;c8&quot;: &quot;10.1.3&quot;,</span><br><span class="line">    &quot;chai&quot;: &quot;4.5.0&quot;,</span><br><span class="line">    &quot;eslint&quot;: &quot;9.17.0&quot;,</span><br><span class="line">    &quot;hexo&quot;: &quot;7.3.0&quot;,</span><br><span class="line">    &quot;hexo-renderer-marked&quot;: &quot;6.3.0&quot;,</span><br><span class="line">    &quot;js-yaml&quot;: &quot;4.1.0&quot;,</span><br><span class="line">    &quot;mocha&quot;: &quot;11.0.1&quot;,</span><br><span class="line">    &quot;stylelint&quot;: &quot;16.12.0&quot;,</span><br><span class="line">    &quot;stylelint-stylus&quot;: &quot;1.0.0&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">[root@localhost next]#</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置修改"><a href="#配置修改" class="headerlink" title="配置修改"></a>配置修改</h2><p>主题配置修改 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi themes/next-v7/_config.yml (vi多视窗对照编辑  ：sp themes/next/_config.yml)</span><br></pre></td></tr></table></figure>
+
+<p>开启mermaid </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">(站点配置文件_config.yml添加 - mermaid）</span><br><span class="line"></span><br><span class="line">[root@localhost hexo]# pwd</span><br><span class="line">/root/hexo</span><br><span class="line"></span><br><span class="line">[root@localhost hexo]# vi _config.yml</span><br><span class="line">highlight:</span><br><span class="line">  line_number: true</span><br><span class="line">  auto_detect: false</span><br><span class="line">  tab_replace: &#x27;&#x27;</span><br><span class="line">  wrap: true</span><br><span class="line">  hljs: false</span><br><span class="line">  exclude_languages:</span><br><span class="line">    - mermaid</span><br><span class="line"></span><br><span class="line">(主题配置文件_config.yml开启mermaid)</span><br><span class="line"></span><br><span class="line">[root@localhost next]# pwd</span><br><span class="line">/root/hexo/themes/next</span><br><span class="line"></span><br><span class="line">[root@localhost next]# vi _config.yml</span><br><span class="line"></span><br><span class="line">mermaid:</span><br><span class="line">  enable: true</span><br></pre></td></tr></table></figure>
+
+<h2 id="最后测试"><a href="#最后测试" class="headerlink" title="最后测试"></a>最后测试</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost hexo]# hexo clean</span><br><span class="line">INFO  Validating config</span><br><span class="line">INFO  Deleted database.</span><br><span class="line">[root@localhost hexo]# hexo s</span><br><span class="line">INFO  Validating config</span><br><span class="line">INFO  ==================================</span><br><span class="line">  ███╗   ██╗███████╗██╗  ██╗████████╗</span><br><span class="line">  ████╗  ██║██╔════╝╚██╗██╔╝╚══██╔══╝</span><br><span class="line">  ██╔██╗ ██║█████╗   ╚███╔╝    ██║</span><br><span class="line">  ██║╚██╗██║██╔══╝   ██╔██╗    ██║</span><br><span class="line">  ██║ ╚████║███████╗██╔╝ ██╗   ██║</span><br><span class="line"></span><br><span class="line">  ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝   ╚═╝</span><br><span class="line">========================================</span><br><span class="line"></span><br><span class="line">NexT version 8.22.0</span><br><span class="line"></span><br><span class="line">Documentation: https://theme-next.js.org</span><br><span class="line">========================================</span><br><span class="line"></span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000/ . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+
+<p><a href="mermaid-flowchart-in-hexo">点击查看Mermaid效果</a></p>
 
       
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/mermaid-flowchart-in-hexo.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mermaid-flowchart-in-hexo.html" class="post-title-link" itemprop="url">hexo开启mermaid流程图效果</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-01-15 16:04:18 / 修改时间：17:05:14" itemprop="dateCreated datePublished" datetime="2025-01-15T16:04:18+08:00">2025-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Software/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>hexo: 7.3.0  </p>
+<p>hexo-theme-next 8.22.0  </p>
+<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">graph TD;</span><br><span class="line"></span><br><span class="line">    A--&gt;B;</span><br><span class="line"></span><br><span class="line">    A--&gt;C;</span><br><span class="line"></span><br><span class="line">    B--&gt;D;</span><br><span class="line"></span><br><span class="line">    C--&gt;D;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<pre><code class="highlight mermaid">graph TD;
+
+    A--&gt;B;
+
+    A--&gt;C;
+
+    B--&gt;D;
+
+    C--&gt;D;
+</code></pre>
+
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph TD </span><br><span class="line">	A[Christmas] --&gt;|Get money| B(Go shopping) </span><br><span class="line">	B --&gt; C&#123;Let me think&#125; </span><br><span class="line">	C --&gt;|One| D[Laptop] </span><br><span class="line">	C --&gt;|Two| E[iPhone] </span><br><span class="line">	C --&gt;|Three| F[fa:fa-car Car]</span><br></pre></td></tr></table></figure>
+
+
+
+<pre><code class="highlight mermaid">graph TD 
+	A[Christmas] --&gt;|Get money| B(Go shopping) 
+	B --&gt; C&#123;Let me think&#125; 
+	C --&gt;|One| D[Laptop] 
+	C --&gt;|Two| E[iPhone] 
+	C --&gt;|Three| F[fa:fa-car Car]</code></pre>
+
+
+
+<h2 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h2>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line"></span><br><span class="line">	participant Alice</span><br><span class="line"></span><br><span class="line">	participant Bob</span><br><span class="line"></span><br><span class="line">	Alice-&gt;&gt;John: Hello John, how are you?</span><br><span class="line"></span><br><span class="line">	loop Healthcheck</span><br><span class="line"></span><br><span class="line">    	John-&gt;&gt;John: Fight against hypochondria</span><br><span class="line"></span><br><span class="line">	end</span><br><span class="line"></span><br><span class="line">	Note right of John: Rational thoughts &lt;br/&gt;prevail!</span><br><span class="line"></span><br><span class="line">	John--&gt;&gt;Alice: Great!</span><br><span class="line"></span><br><span class="line">	John-&gt;&gt;Bob: How about you?</span><br><span class="line"></span><br><span class="line">	Bob--&gt;&gt;John: Jolly good!</span><br></pre></td></tr></table></figure>
+
+
+
+<pre><code class="highlight mermaid">sequenceDiagram
+
+	participant Alice
+
+	participant Bob
+
+	Alice-&gt;&gt;John: Hello John, how are you?
+
+	loop Healthcheck
+
+    	John-&gt;&gt;John: Fight against hypochondria
+
+	end
+
+	Note right of John: Rational thoughts &lt;br/&gt;prevail!
+
+	John--&gt;&gt;Alice: Great!
+
+	John-&gt;&gt;Bob: How about you?
+
+	Bob--&gt;&gt;John: Jolly good!</code></pre>
+
+<h2 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h2>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">gantt</span><br><span class="line">dateFormat  YYYY-MM-DD</span><br><span class="line">title Adding GANTT diagram to mermaid</span><br><span class="line">excludes weekdays 2025-01-10</span><br><span class="line"></span><br><span class="line">section A section</span><br><span class="line">Completed task            :done,    des1, 2025-01-06,2025-01-08</span><br><span class="line">Active task               :active,  des2, 2025-01-09, 3d</span><br><span class="line">Future task               :         des3, after des2, 5d</span><br><span class="line">Future task2               :         des4, after des3, 5d</span><br></pre></td></tr></table></figure>
+
+
+
+<pre><code class="highlight mermaid">gantt
+dateFormat  YYYY-MM-DD
+title Adding GANTT diagram to mermaid
+excludes weekdays 2025-01-10
+
+section A section
+Completed task            :done,    des1, 2025-01-06,2025-01-08
+Active task               :active,  des2, 2025-01-09, 3d
+Future task               :         des3, after des2, 5d
+Future task2               :         des4, after des3, 5d</code></pre>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/OpenWRT-grabs-EPG-and-submits-records-to-the-code-repository.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/OpenWRT-grabs-EPG-and-submits-records-to-the-code-repository.html" class="post-title-link" itemprop="url">OpenWRT抓取EPG并提交记录到代码仓库</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-01-02 18:15:40 / 修改时间：18:17:06" itemprop="dateCreated datePublished" datetime="2025-01-02T18:15:40+08:00">2025-01-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/IPTV/" itemprop="url" rel="index"><span itemprop="name">IPTV</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
           <h2 id="文件说明"><a href="#文件说明" class="headerlink" title="文件说明"></a>文件说明</h2><ul>
 <li>gdtv_to_epg.log  日志文件</li>
 <li>epg.xml                XMLTV格式文件</li>
@@ -256,56 +500,69 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://heiok.com/hexo-blog-repo-change-and-backup.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/hexo-blog-repo-change-and-backup.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="heiok.com">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/hexo-blog-repo-change-and-backup.html" class="post-title-link" itemprop="url">hexo博客仓库更名备份记录</a>
+          <a href="/hexo-blog-repo-change-and-backup.html" class="post-title-link" itemprop="url">hexo博客仓库更名备份记录</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
 
-              <time title="创建时间：2024-12-31 18:11:03 / 修改时间：22:25:46" itemprop="dateCreated datePublished" datetime="2024-12-31T18:11:03+08:00">2024-12-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2024-12-31 18:11:03 / 修改时间：22:25:46" itemprop="dateCreated datePublished" datetime="2024-12-31T18:11:03+08:00">2024-12-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -314,18 +571,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><a href="https://heiok.com/oldsite">旧站点</a> 数年前部署在github上，hexo发布后是编译过的html文件，源文件.md和配置文件等并不上传到github。年代久远，之前电脑及文件均已无法找到，无法再更新，重新部署记录。</p>
 <h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><ul>
 <li>github新建一个私有仓库，备份源文件等；</li>
 <li>github新建一个公开仓库，发布博客文件。</li>
 </ul>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
-<li>密钥ssh-keygen -t rsa -b 4096 -C “<a href="mailto:&#x79;&#x6f;&#117;&#114;&#95;&#101;&#x6d;&#x61;&#105;&#x6c;&#x40;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#101;&#46;&#x63;&#x6f;&#109;">&#x79;&#x6f;&#117;&#114;&#95;&#101;&#x6d;&#x61;&#105;&#x6c;&#x40;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#101;&#46;&#x63;&#x6f;&#109;</a>“</li>
+<li>密钥ssh-keygen -t rsa -b 4096 -C “<a href="mailto:&#x79;&#x6f;&#x75;&#x72;&#x5f;&#101;&#109;&#97;&#105;&#108;&#64;&#x65;&#x78;&#97;&#x6d;&#112;&#108;&#101;&#46;&#99;&#111;&#109;">&#x79;&#x6f;&#x75;&#x72;&#x5f;&#101;&#109;&#97;&#105;&#108;&#64;&#x65;&#x78;&#97;&#x6d;&#112;&#108;&#101;&#46;&#99;&#111;&#109;</a>“</li>
 <li>登录github，Repositories，heiok.github.io改名为oldsite，Settings，Pages，Custom domain，删除域名绑定；</li>
 <li>新建私有仓库hexo，新建公开仓库heiok.github.io（域名绑定）；</li>
-<li>测试ssh -T <a href="mailto:&#103;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#109;">&#103;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#109;</a></li>
+<li>测试ssh -T <a href="mailto:&#x67;&#105;&#x74;&#x40;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#109;">&#x67;&#105;&#x74;&#x40;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#109;</a></li>
 </ul>
 <h2 id="博客发布"><a href="#博客发布" class="headerlink" title="博客发布"></a>博客发布</h2><ul>
 <li><p>安装 npm install -g cnpm –registry&#x3D;<a target="_blank" rel="noopener" href="https://registry.npmmirror.com/">https://registry.npmmirror.com</a></p>
@@ -352,62 +607,75 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://heiok.com/Get-Guangdong-TV-EPG-python-version.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Get-Guangdong-TV-EPG-python-version.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="heiok.com">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Get-Guangdong-TV-EPG-python-version.html" class="post-title-link" itemprop="url">获取广东电视台节目表python版</a>
+          <a href="/Get-Guangdong-TV-EPG-python-version.html" class="post-title-link" itemprop="url">获取广东电视台节目表python版</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2024-12-30 16:27:37" itemprop="dateCreated datePublished" datetime="2024-12-30T16:27:37+08:00">2024-12-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-31 22:54:59" itemprop="dateModified" datetime="2024-12-31T22:54:59+08:00">2024-12-31</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IPTV/" itemprop="url" rel="index"><span itemprop="name">IPTV</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2024-12-30 16:27:37" itemprop="dateCreated datePublished" datetime="2024-12-30T16:27:37+08:00">2024-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-31 22:54:59" itemprop="dateModified" datetime="2024-12-31T22:54:59+08:00">2024-12-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/IPTV/" itemprop="url" rel="index"><span itemprop="name">IPTV</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -416,8 +684,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><a href="Get-GuangDong-TV-EPG">获取广东电视台节目表</a> 环境依赖Python3 + Django4 + Nginx + uWSGI，用于部署WEB项目站点展示节目列表、节目列表下载预览或提供节目列表API接口使用，过于繁杂，以下代码基于Python3抓取官方节目表后直接生成需要的epg.xml，方便部署在OpenWRT路由器上使用。</p>
 <h2 id="获取代码"><a href="#获取代码" class="headerlink" title="获取代码"></a>获取代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">import datetime</span><br><span class="line">import requests</span><br><span class="line">import warnings</span><br><span class="line">from bs4 import BeautifulSoup as bs</span><br><span class="line">from xml.etree.ElementTree import Element, SubElement, ElementTree</span><br><span class="line"></span><br><span class="line"># 定义请求头，模拟浏览器访问</span><br><span class="line">headers = &#123;</span><br><span class="line">    &#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 忽略 XMLParsedAsHTMLWarning</span><br><span class="line">warnings.filterwarnings(&#x27;ignore&#x27;)</span><br><span class="line"></span><br><span class="line"># 获取广东电视台频道列表</span><br><span class="line">def get_channels_gdtv():</span><br><span class="line">    url = &#x27;http://epg.gdtv.cn/f/1.xml&#x27;  # 获取广东电视台频道列表的XML文件</span><br><span class="line">    res = requests.get(url, headers=headers)</span><br><span class="line">    res.encoding = &#x27;utf-8&#x27;</span><br><span class="line">    soup = bs(res.text, &#x27;html.parser&#x27;)</span><br><span class="line">    contents = soup.select(&#x27;channel&#x27;)</span><br><span class="line">    channels = []</span><br><span class="line"></span><br><span class="line">    for content in contents:</span><br><span class="line">        channel_id = content.attrs[&#x27;id&#x27;]</span><br><span class="line">        name = content.ctitle.text.strip()  # 使用 strip() 清理可能的空格和换行</span><br><span class="line">        channels.append(&#123;&#x27;id&#x27;: channel_id, &#x27;name&#x27;: name&#125;)</span><br><span class="line">    return channels</span><br><span class="line"></span><br><span class="line"># 处理节目标题中的 HTML 实体和标签</span><br><span class="line">def clean_html(text):</span><br><span class="line">    # 将 HTML 实体转换为普通字符（例如 &amp;amp; -&gt; &amp;）</span><br><span class="line">    text = bs(text, &quot;html.parser&quot;).get_text()</span><br><span class="line">    return text.replace(&#x27;&lt;br /&gt;&#x27;, &#x27;\n&#x27;).replace(&#x27;&lt;br&gt;&#x27;, &#x27;\n&#x27;).strip()</span><br><span class="line"></span><br><span class="line"># 获取指定日期范围内的节目表</span><br><span class="line">def get_epgs_gdtv(channel_id, start_date, end_date):</span><br><span class="line">    epgs = []</span><br><span class="line">    current_date = start_date</span><br><span class="line">    while current_date &lt;= end_date:</span><br><span class="line">        url = f&#x27;http://epg.gdtv.cn/f/&#123;channel_id&#125;/&#123;current_date.strftime(&quot;%Y-%m-%d&quot;)&#125;.xml&#x27;</span><br><span class="line">        res = requests.get(url, headers=headers, timeout=8)</span><br><span class="line">        res.encoding = &#x27;utf-8&#x27;</span><br><span class="line">        soup = bs(res.text, &#x27;html.parser&#x27;)</span><br><span class="line">        epgs_contents = soup.select(&#x27;content&#x27;)</span><br><span class="line"></span><br><span class="line">        for epga in epgs_contents:</span><br><span class="line">            starttime = datetime.datetime.fromtimestamp(int(epga.attrs[&#x27;time1&#x27;]))</span><br><span class="line">            endtime = datetime.datetime.fromtimestamp(int(epga.attrs[&#x27;time2&#x27;]))</span><br><span class="line">            title = clean_html(epga.get_text())</span><br><span class="line">            epgs.append(&#123;</span><br><span class="line">                &#x27;title&#x27;: title,</span><br><span class="line">                &#x27;start&#x27;: starttime,</span><br><span class="line">                &#x27;end&#x27;: endtime</span><br><span class="line">            &#125;)</span><br><span class="line">        current_date += datetime.timedelta(days=1)</span><br><span class="line">    return epgs</span><br><span class="line"></span><br><span class="line"># 创建 XMLTV 文件</span><br><span class="line">def create_epg_xml(channels, epg_data, output_file):</span><br><span class="line">    tv = Element(&#x27;tv&#x27;)</span><br><span class="line"></span><br><span class="line">    # 添加频道信息</span><br><span class="line">    for channel in channels:</span><br><span class="line">        channel_element = SubElement(tv, &#x27;channel&#x27;, id=channel[&#x27;id&#x27;])</span><br><span class="line">        display_name = SubElement(channel_element, &#x27;display-name&#x27;)</span><br><span class="line">        display_name.text = channel[&#x27;name&#x27;]</span><br><span class="line"></span><br><span class="line">    # 添加节目表</span><br><span class="line">    for channel_id, programs in epg_data.items():</span><br><span class="line">        for program in programs:</span><br><span class="line">            programme = SubElement(tv, &#x27;programme&#x27;, start=program[&#x27;start&#x27;].strftime(&#x27;%Y%m%d%H%M%S +0800&#x27;),</span><br><span class="line">                                   stop=program[&#x27;end&#x27;].strftime(&#x27;%Y%m%d%H%M%S +0800&#x27;),</span><br><span class="line">                                   channel=channel_id)</span><br><span class="line">            title = SubElement(programme, &#x27;title&#x27;)</span><br><span class="line">            title.text = program[&#x27;title&#x27;]</span><br><span class="line"></span><br><span class="line">    # 保存为文件</span><br><span class="line">    tree = ElementTree(tv)</span><br><span class="line">    tree.write(output_file, encoding=&#x27;utf-8&#x27;, xml_declaration=True)</span><br><span class="line"></span><br><span class="line"># 主函数</span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    today = datetime.datetime.now().date()</span><br><span class="line">    start_date = today - datetime.timedelta(days=6)  # 六天前</span><br><span class="line">    end_date = today + datetime.timedelta(days=2)  # 两天后</span><br><span class="line"></span><br><span class="line">    print(&quot;获取频道列表...&quot;)</span><br><span class="line">    channels = get_channels_gdtv()</span><br><span class="line"></span><br><span class="line">    epg_data = &#123;&#125;</span><br><span class="line">    print(&quot;抓取节目表...&quot;)</span><br><span class="line">    for channel in channels:</span><br><span class="line">        channel_id = channel[&#x27;id&#x27;]</span><br><span class="line">        epg_data[channel_id] = get_epgs_gdtv(channel_id, start_date, end_date)</span><br><span class="line"></span><br><span class="line">    print(&quot;生成 XMLTV 文件...&quot;)</span><br><span class="line">    output_file = &quot;epg.xml&quot;</span><br><span class="line">    create_epg_xml(channels, epg_data, output_file)</span><br><span class="line">    print(f&quot;完成！EPG 文件已保存为 &#123;output_file&#125;&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -431,55 +697,68 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://heiok.com/hello-world.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/hello-world.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="heiok.com">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/hello-world.html" class="post-title-link" itemprop="url">Hello World</a>
+          <a href="/hello-world.html" class="post-title-link" itemprop="url">Hello World</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2024-12-27 16:36:59" itemprop="dateCreated datePublished" datetime="2024-12-27T16:36:59+08:00">2024-12-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2024-12-27 16:36:59" itemprop="dateCreated datePublished" datetime="2024-12-27T16:36:59+08:00">2024-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -488,8 +767,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
@@ -510,56 +787,69 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://heiok.com/Zhuhai-Unicom-IPTV-channels.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Zhuhai-Unicom-IPTV-channels.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="heiok.com">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Zhuhai-Unicom-IPTV-channels.html" class="post-title-link" itemprop="url">珠海联通IPTV频道列表</a>
+          <a href="/Zhuhai-Unicom-IPTV-channels.html" class="post-title-link" itemprop="url">珠海联通IPTV频道列表</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
 
-              <time title="创建时间：2024-12-27 09:58:39 / 修改时间：16:36:59" itemprop="dateCreated datePublished" datetime="2024-12-27T09:58:39+08:00">2024-12-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IPTV/" itemprop="url" rel="index"><span itemprop="name">IPTV</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2024-12-27 09:58:39 / 修改时间：16:36:59" itemprop="dateCreated datePublished" datetime="2024-12-27T09:58:39+08:00">2024-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/IPTV/" itemprop="url" rel="index"><span itemprop="name">IPTV</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -568,8 +858,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <ol>
 <li>CCTV-1综合</li>
 <li>CCTV-2财经</li>
@@ -722,62 +1010,75 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://heiok.com/Generate-a-self-signed-certificate.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Generate-a-self-signed-certificate.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="heiok.com">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Generate-a-self-signed-certificate.html" class="post-title-link" itemprop="url">OpenSSL生成自签名证书</a>
+          <a href="/Generate-a-self-signed-certificate.html" class="post-title-link" itemprop="url">OpenSSL生成自签名证书</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2024-12-24 17:26:07" itemprop="dateCreated datePublished" datetime="2024-12-24T17:26:07+08:00">2024-12-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-27 16:36:59" itemprop="dateModified" datetime="2024-12-27T16:36:59+08:00">2024-12-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2024-12-24 17:26:07" itemprop="dateCreated datePublished" datetime="2024-12-24T17:26:07+08:00">2024-12-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-27 16:36:59" itemprop="dateModified" datetime="2024-12-27T16:36:59+08:00">2024-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -786,8 +1087,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h2 id="前期准备工作"><a href="#前期准备工作" class="headerlink" title="前期准备工作"></a>前期准备工作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/redhat-release</span><br><span class="line">Rocky Linux release 9.4 (Blue Onyx)</span><br><span class="line"></span><br><span class="line">[root@localhost demoCA]# openssl version</span><br><span class="line">OpenSSL 3.0.7 1 Nov 2022 (Library: OpenSSL 3.0.7 1 Nov 2022)</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# pwd</span><br><span class="line">/root</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# mkdir -p demoCA</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# cp /etc/pki/tls/openssl.cnf .</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# vi openssl.cnf</span><br><span class="line"></span><br><span class="line">[ CA_default ]</span><br><span class="line"></span><br><span class="line">dir             = /root/demoCA          # Where everything is kept</span><br><span class="line">certs           = $dir/certs            # Where the issued certs are kept</span><br><span class="line">crl_dir         = $dir/crl              # Where the issued crl are kept</span><br><span class="line">database        = $dir/index.txt        # database index file.</span><br><span class="line">#unique_subject = no                    # Set to &#x27;no&#x27; to allow creation of</span><br><span class="line">                                        # several certs with same subject.</span><br><span class="line">new_certs_dir   = $dir/newcerts         # default place for new certs.</span><br><span class="line"></span><br><span class="line">certificate     = $dir/cacert.pem       # The CA certificate</span><br><span class="line">serial          = $dir/serial           # The current serial number</span><br><span class="line">crlnumber       = $dir/crlnumber        # the current crl number</span><br><span class="line">                                        # must be commented out to leave a V1 CRL</span><br><span class="line">crl             = $dir/crl.pem          # The current CRL</span><br><span class="line">private_key     = $dir/private/cakey.pem# The private key</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[ policy_match ]</span><br><span class="line">countryName             = optional</span><br><span class="line">stateOrProvinceName     = optional</span><br><span class="line">organizationName        = optional</span><br><span class="line">organizationalUnitName  = optional</span><br><span class="line">commonName              = supplied</span><br><span class="line">emailAddress            = optional</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost ~]# cd demoCA/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#root@localhost demoCA]# mkdir newcerts private</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost demoCA]# chmod 700 private</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost demoCA]# touch index.txt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost demoCA]# echo 01 &gt; serial</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost demoCA]# tree -L 1</span><br><span class="line">.</span><br><span class="line">├── index.txt</span><br><span class="line">├── newcerts</span><br><span class="line">├── private</span><br><span class="line">└── serial</span><br><span class="line"></span><br><span class="line">2 directories, 2 files</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">newcerts：存放 CA 已签署颁发过的数字证书</span><br><span class="line"></span><br><span class="line">private：存放 CA 的私钥</span><br><span class="line"></span><br><span class="line">serial：存放证书序列号，可自定义第一张证书的序号（e.g. 0001），之后每新建一张证书，序列号会自动加1</span><br><span class="line"></span><br><span class="line">index.txt：存放证书信息</span><br></pre></td></tr></table></figure>
 
 <h2 id="生成CA证书RSA私钥"><a href="#生成CA证书RSA私钥" class="headerlink" title="生成CA证书RSA私钥"></a>生成CA证书RSA私钥</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost demoCA]# openssl genrsa -passout pass:google -des3 -out ~/demoCA/private/cakey.pem 2048</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@localhost demoCA]# tree -L 2</span><br><span class="line">.</span><br><span class="line">├── index.txt</span><br><span class="line">├── newcerts</span><br><span class="line">├── private</span><br><span class="line">│   └── cakey.pem</span><br><span class="line">└── serial</span><br><span class="line"></span><br><span class="line">2 directories, 3 files</span><br></pre></td></tr></table></figure>
@@ -821,62 +1120,75 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://heiok.com/Get-Zhuhai-Unicom-IPTV-channels.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Get-Zhuhai-Unicom-IPTV-channels.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="heiok.com">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Get-Zhuhai-Unicom-IPTV-channels.html" class="post-title-link" itemprop="url">获取珠海联通IPTV频道</a>
+          <a href="/Get-Zhuhai-Unicom-IPTV-channels.html" class="post-title-link" itemprop="url">获取珠海联通IPTV频道</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2024-12-24 15:42:24" itemprop="dateCreated datePublished" datetime="2024-12-24T15:42:24+08:00">2024-12-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-27 16:36:59" itemprop="dateModified" datetime="2024-12-27T16:36:59+08:00">2024-12-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IPTV/" itemprop="url" rel="index"><span itemprop="name">IPTV</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2024-12-24 15:42:24" itemprop="dateCreated datePublished" datetime="2024-12-24T15:42:24+08:00">2024-12-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-27 16:36:59" itemprop="dateModified" datetime="2024-12-27T16:36:59+08:00">2024-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/IPTV/" itemprop="url" rel="index"><span itemprop="name">IPTV</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -885,8 +1197,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h2 id="收视设备信息"><a href="#收视设备信息" class="headerlink" title="收视设备信息"></a>收视设备信息</h2><ul>
 <li>光猫型号: HG6142A</li>
 <li>盒子型号: TR100 IPTV-G9</li>
@@ -906,62 +1216,75 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://heiok.com/0x00004005.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/0x00004005.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="heiok.com">
-      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/0x00004005.html" class="post-title-link" itemprop="url">操作失败，错误为0x00004005。</a>
+          <a href="/0x00004005.html" class="post-title-link" itemprop="url">操作失败，错误为0x00004005。</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2024-12-19 16:49:18" itemprop="dateCreated datePublished" datetime="2024-12-19T16:49:18+08:00">2024-12-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-27 16:36:59" itemprop="dateModified" datetime="2024-12-27T16:36:59+08:00">2024-12-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Software/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2024-12-19 16:49:18" itemprop="dateCreated datePublished" datetime="2024-12-19T16:49:18+08:00">2024-12-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-27 16:36:59" itemprop="dateModified" datetime="2024-12-27T16:36:59+08:00">2024-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Software/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -970,8 +1293,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h2 id="事以至此"><a href="#事以至此" class="headerlink" title="事以至此"></a>事以至此</h2><p>  想必以下方法你们都搞过啦</p>
 <ul>
 <li>修改注册表；</li>
@@ -993,359 +1314,76 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
       
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://heiok.com/Install-Python-on-OpenWRT.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/Install-Python-on-OpenWRT.html" class="post-title-link" itemprop="url">OpenWRT安装Python</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-12-19 14:39:10" itemprop="dateCreated datePublished" datetime="2024-12-19T14:39:10+08:00">2024-12-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-31 22:25:07" itemprop="dateModified" datetime="2024-12-31T22:25:07+08:00">2024-12-31</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Software/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="设备信息"><a href="#设备信息" class="headerlink" title="设备信息"></a>设备信息</h2><ul>
-<li>ASUS RT-AC 1200GU （F&#x2F;W Ver:V3.0.0.4.380_10732 H&#x2F;W Ver:A)</li>
-<li>openwrt-23.05.4-ramips-mt7621-asus_rt-ac57u-v1-initramfs-kernel.bin</li>
-<li>openwrt-23.05.4-ramips-mt7621-asus_rt-ac57u-v1-squashfs-sysupgrade.bin</li>
-</ul>
-<h2 id="改国内源"><a href="#改国内源" class="headerlink" title="改国内源"></a>改国内源</h2><p>vi &#x2F;etc&#x2F;opkg&#x2F;distfeeds.conf</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">src/gz openwrt_core https://mirrors.aliyun.com/openwrt/releases/23.05.4/targets/x86/64/packages</span><br><span class="line">src/gz openwrt_base https://mirrors.aliyun.com/openwrt/releases/23.05.4/packages/x86_64/base</span><br><span class="line">src/gz openwrt_luci https://mirrors.aliyun.com/openwrt/releases/23.05.4/packages/x86_64/luci</span><br><span class="line">src/gz openwrt_packages https://mirrors.aliyun.com/openwrt/releases/23.05.4/packages/x86_64/packages</span><br><span class="line">src/gz openwrt_routing https://mirrors.aliyun.com/openwrt/releases/23.05.4/packages/x86_64/routing</span><br><span class="line">src/gz openwrt_telephony https://mirrors.aliyun.com/openwrt/releases/23.05.4/packages/x86_64/telephony</span><br></pre></td></tr></table></figure>
-
-<h2 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@Openwrt:# opkg install python3-base</span><br><span class="line"></span><br><span class="line">root@Openwrt:~# opkg install python3-pip</span><br><span class="line"></span><br><span class="line">root@Openwrt:~# /usr/bin/python3 -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple  --upgrade pip </span><br><span class="line"></span><br><span class="line">root@Openwrt:~# opkg install requests</span><br><span class="line"></span><br><span class="line">root@Openwrt:~# opkg install bs4</span><br></pre></td></tr></table></figure>
-
-<h2 id="pip清华源"><a href="#pip清华源" class="headerlink" title="pip清华源"></a>pip清华源</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pip install pip -U</span><br><span class="line"></span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"></span><br><span class="line">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U</span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://heiok.com/OpenWRT-adds-external-storage-expansion.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/OpenWRT-adds-external-storage-expansion.html" class="post-title-link" itemprop="url">OpenWRT添加外储扩容</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-12-19 11:38:08" itemprop="dateCreated datePublished" datetime="2024-12-19T11:38:08+08:00">2024-12-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-27 16:36:59" itemprop="dateModified" datetime="2024-12-27T16:36:59+08:00">2024-12-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Software/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="设备信息"><a href="#设备信息" class="headerlink" title="设备信息"></a>设备信息</h2><ul>
-<li>ASUS RT-AC 1200GU （F&#x2F;W Ver:V3.0.0.4.380_10732 H&#x2F;W Ver:A)</li>
-<li>openwrt-23.05.4-ramips-mt7621-asus_rt-ac57u-v1-initramfs-kernel.bin</li>
-<li>openwrt-23.05.4-ramips-mt7621-asus_rt-ac57u-v1-squashfs-sysupgrade.bin</li>
-</ul>
-<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line"></span><br><span class="line">opkg install fdisk swap-utils kmod-usb-storage kmod-fs-ext4 e2fsprogs kmod-usb-ohci kmod-usb-uhci  block-mount</span><br></pre></td></tr></table></figure>
-
-<h2 id="磁盘分区"><a href="#磁盘分区" class="headerlink" title="磁盘分区"></a>磁盘分区</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l (查看辨别U盘外设磁盘名称，如/dev/sda。)</span><br><span class="line"></span><br><span class="line">fdisk /dev/sda (U盘分区)</span><br><span class="line"></span><br><span class="line">	p (查看U盘分区)</span><br><span class="line">	d (删除U盘分区)</span><br><span class="line">	n (新增U盘分区)</span><br><span class="line">	p (选主分区类型)</span><br><span class="line">	1 (分区数量选壹)</span><br><span class="line">	Enter(按回车键)</span><br><span class="line">	Enter(按回车键)</span><br><span class="line">	w (保存分区配置)</span><br><span class="line">	reboot(重启启动)</span><br></pre></td></tr></table></figure>
-
-<h2 id="格式分区"><a href="#格式分区" class="headerlink" title="格式分区"></a>格式分区</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l (查看分区名称，如/dev/sda1。)</span><br><span class="line"></span><br><span class="line">mkfs.ext4 /dev/sda (格式化分区为ext4)</span><br></pre></td></tr></table></figure>
-
-<h2 id="挂载分区"><a href="#挂载分区" class="headerlink" title="挂载分区"></a>挂载分区</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir /mnt/sda1</span><br><span class="line"></span><br><span class="line">mount /dev/sda1 /mnt/sda1</span><br></pre></td></tr></table></figure>
-
-<h2 id="数据迁移"><a href="#数据迁移" class="headerlink" title="数据迁移"></a>数据迁移</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp -r /overlay/* /mnt/sda1</span><br><span class="line"></span><br><span class="line">block info (查看U盘的UUID)</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置挂载"><a href="#配置挂载" class="headerlink" title="配置挂载"></a>配置挂载</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">登录路由器管理界面 - 系统 - 挂载点 - 添加 - UUID、挂载点（作为外部overlay使用） - 保存应用</span><br></pre></td></tr></table></figure>
-
-<p>完成</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">heiok.com</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">18</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">36</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2025</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">heiok.com</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
     </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">heiok.com</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+    </div>
+  </footer>
 
   
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
 
 </body>
 </html>
