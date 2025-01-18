@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://heiok.com/404.html</loc>
+    
+    <lastmod>2025-01-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://heiok.com/Conan-version.html</loc>
     
     <lastmod>2025-01-17</lastmod>
@@ -229,7 +238,7 @@
 
   <url>
     <loc>https://heiok.com/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -237,294 +246,294 @@
   
   <url>
     <loc>https://heiok.com/tags/Printer-Share/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/Pull-up-resistor/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/Conan/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/CA/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/SSL/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/OpenSSL/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/IPTV/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/EPG/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/Guangdong-TV-program-schedule/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/GDTV-EPG/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/Guangzhou-Telecom-IPTV/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/IPTV-packet-capture/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/Zhuhai-Unicom-IPTV/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/BGP/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/BGP-Peer/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/BGP-Transit/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/ASN/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/AS/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/OpenWRT/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/Python/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/pip/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/OpenWRT-expansion/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/Overlay/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/Overlay-expansion/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/git/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/mkvmerge/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/mkvtoolnix/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/Cantonese/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/Xiaomi-TV/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/Xiaomi-TV-API/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/port-6095/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/Xiaomi-TV-installation-APP/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/ADB-Install-APP/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/hexo/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/next/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/iPhone-Automation/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/Shortcuts/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/m3u/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/m3u8/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/socks/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/iPhone-configuration-proxy/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/tags/mermaid/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -533,35 +542,35 @@
   
   <url>
     <loc>https://heiok.com/categories/Software/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/categories/Hardware/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/categories/%E6%97%A0%E7%B1%BB/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/categories/Network/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://heiok.com/categories/IPTV/</loc>
-    <lastmod>2025-01-17</lastmod>
+    <lastmod>2025-01-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
