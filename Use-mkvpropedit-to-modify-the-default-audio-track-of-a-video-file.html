@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"heiok.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="文件信息视频文件里的粤语音轨有些在轨道 ID 3: audio (AAC)，有些在轨道 ID 2: audio (AAC)。 1234567891011121314151617181920212223242526272829303132G:\&gt;D:\software\mkvtoolnix\mkvmerge -i 灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.001.mkv文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 mkvpropedit 工具直接修改视频文件的默认音轨">
+<meta property="og:url" content="https://heiok.com/Use-mkvpropedit-to-modify-the-default-audio-track-of-a-video-file.html">
+<meta property="og:site_name" content="网络蝙蝠侠部落">
+<meta property="og:description" content="文件信息视频文件里的粤语音轨有些在轨道 ID 3: audio (AAC)，有些在轨道 ID 2: audio (AAC)。 1234567891011121314151617181920212223242526272829303132G:\&gt;D:\software\mkvtoolnix\mkvmerge -i 灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.001.mkv文">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-02-08T03:17:17.000Z">
+<meta property="article:modified_time" content="2025-02-08T03:19:34.068Z">
+<meta property="article:author" content="heiok.com">
+<meta property="article:tag" content="mkvtoolnix">
+<meta property="article:tag" content="Cantonese">
+<meta property="article:tag" content="mkvpropedit">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://heiok.com/Use-mkvpropedit-to-modify-the-default-audio-track-of-a-video-file.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://heiok.com/Use-mkvpropedit-to-modify-the-default-audio-track-of-a-video-file.html","path":"Use-mkvpropedit-to-modify-the-default-audio-track-of-a-video-file.html","title":"使用 mkvpropedit 工具直接修改视频文件的默认音轨"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用 mkvpropedit 工具直接修改视频文件的默认音轨 | 网络蝙蝠侠部落</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-90W6VHZRMP"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-90W6VHZRMP","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">网络蝙蝠侠部落</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">文件信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E4%BB%B6%E5%A4%84%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">单件处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">批量处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E5%91%BD%E5%90%8D"><span class="nav-number">4.</span> <span class="nav-text">重新命名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E7%BB%93%E6%9E%9C"><span class="nav-number">5.</span> <span class="nav-text">处理结果</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Use-mkvpropedit-to-modify-the-default-audio-track-of-a-video-file.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用 mkvpropedit 工具直接修改视频文件的默认音轨 | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用 mkvpropedit 工具直接修改视频文件的默认音轨
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-02-08 11:17:17 / 修改时间：11:19:34" itemprop="dateCreated datePublished" datetime="2025-02-08T11:17:17+08:00">2025-02-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%97%A0%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">无类</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="文件信息"><a href="#文件信息" class="headerlink" title="文件信息"></a>文件信息</h2><p>视频文件里的粤语音轨有些在轨道 ID 3: audio (AAC)，有些在轨道 ID 2: audio (AAC)。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">G:\&gt;D:\software\mkvtoolnix\mkvmerge -i 灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.001.mkv</span><br><span class="line">文件 ｢灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.001.mkv｣: 容器: Matroska</span><br><span class="line">轨道 ID 0: video (AVC/H.264/MPEG-4p10)</span><br><span class="line">轨道 ID 1: audio (AAC)</span><br><span class="line">轨道 ID 2: audio (FLAC)</span><br><span class="line">轨道 ID 3: audio (AAC)</span><br><span class="line">轨道 ID 4: subtitles (SubStationAlpha)</span><br><span class="line"></span><br><span class="line">G:\&gt;D:\software\mkvtoolnix\mkvmerge -i 灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.002.mkv</span><br><span class="line">文件 ｢灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.002.mkv｣: 容器: Matroska</span><br><span class="line">轨道 ID 0: video (AVC/H.264/MPEG-4p10)</span><br><span class="line">轨道 ID 1: audio (AAC)</span><br><span class="line">轨道 ID 2: audio (FLAC)</span><br><span class="line">轨道 ID 3: audio (AAC)</span><br><span class="line">轨道 ID 4: subtitles (SubStationAlpha)</span><br><span class="line"></span><br><span class="line">G:\&gt;D:\software\mkvtoolnix\mkvmerge -i 灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.003.mkv</span><br><span class="line">文件 ｢灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.003.mkv｣: 容器: Matroska</span><br><span class="line">轨道 ID 0: video (AVC/H.264/MPEG-4p10)</span><br><span class="line">轨道 ID 1: audio (AAC)</span><br><span class="line">轨道 ID 2: audio (AAC)</span><br><span class="line">轨道 ID 3: audio (FLAC)</span><br><span class="line">轨道 ID 4: subtitles (SubStationAlpha)</span><br><span class="line">轨道 ID 5: subtitles (SubStationAlpha)</span><br><span class="line"></span><br><span class="line">G:\&gt;D:\software\mkvtoolnix\mkvmerge -i 灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.004.mkv</span><br><span class="line">文件 ｢灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.004.mkv｣: 容器: Matroska</span><br><span class="line">轨道 ID 0: video (AVC/H.264/MPEG-4p10)</span><br><span class="line">轨道 ID 1: audio (AAC)</span><br><span class="line">轨道 ID 2: audio (AAC)</span><br><span class="line">轨道 ID 3: audio (FLAC)</span><br><span class="line">轨道 ID 4: subtitles (SubStationAlpha)</span><br></pre></td></tr></table></figure>
+
+<h2 id="单件处理"><a href="#单件处理" class="headerlink" title="单件处理"></a>单件处理</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\software\mkvtoolnix\mkvpropedit.exe &quot;灌篮高手.1080P.国粤日三语.软字幕.AVC.默认国语音频.001.mkv&quot; --edit track:a1 --set flag-default=0 --set flag-forced=0 --edit track:a2 --set flag-default=0 --set flag-forced=0 --edit track:a3 --set flag-default=1 --set flag-forced=1</span><br></pre></td></tr></table></figure>
+
+<h2 id="批量处理"><a href="#批量处理" class="headerlink" title="批量处理"></a>批量处理</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">setlocal enabledelayedexpansion</span><br><span class="line"></span><br><span class="line">:: 设置输入文件夹</span><br><span class="line">set &quot;input_folder=G:\&quot;</span><br><span class="line"></span><br><span class="line">:: 遍历输入文件夹中的所有 MKV 文件</span><br><span class="line">for %%f in (&quot;%input_folder%\*.mkv&quot;) do (</span><br><span class="line">    echo Processing file: %%f</span><br><span class="line"></span><br><span class="line">    :: 获取音轨信息并存储到临时文件</span><br><span class="line">    D:\software\mkvtoolnix\mkvmerge.exe -i &quot;%%f&quot; &gt; temp_tracks.txt</span><br><span class="line"></span><br><span class="line">    :: 初始化变量</span><br><span class="line">    set &quot;hasAAC2=0&quot;</span><br><span class="line">    set &quot;hasAAC3=0&quot;</span><br><span class="line">    set &quot;hasFLAC=0&quot;</span><br><span class="line"></span><br><span class="line">    :: 检查音轨信息</span><br><span class="line">    for /f &quot;tokens=*&quot; %%a in (temp_tracks.txt) do (</span><br><span class="line">        echo Debug: %%a</span><br><span class="line">        if &quot;%%a&quot;==&quot;轨道 ID 2: audio (AAC)&quot; (</span><br><span class="line">            set &quot;hasAAC2=1&quot;</span><br><span class="line">        ) else if &quot;%%a&quot;==&quot;轨道 ID 3: audio (AAC)&quot; (</span><br><span class="line">            set &quot;hasAAC3=1&quot;</span><br><span class="line">        ) else if &quot;%%a&quot;==&quot;轨道 ID 3: audio (FLAC)&quot; (</span><br><span class="line">            set &quot;hasFLAC=1&quot;</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    :: 根据条件修改默认音轨</span><br><span class="line">    if &quot;!hasAAC2!&quot;==&quot;1&quot; (</span><br><span class="line">        echo Setting AAC track ID 2 as default for file: %%f</span><br><span class="line">        D:\software\mkvtoolnix\mkvpropedit.exe &quot;%%f&quot; --edit track:a1 --set flag-default=0 --set flag-forced=0 --edit track:a2 --set flag-default=1 --set flag-forced=1 --edit track:a3 --set flag-default=0 --set flag-forced=0</span><br><span class="line">    ) else if &quot;!hasAAC3!&quot;==&quot;1&quot; (</span><br><span class="line">        echo Setting AAC track ID 3 as default for file: %%f</span><br><span class="line">        D:\software\mkvtoolnix\mkvpropedit.exe &quot;%%f&quot; --edit track:a1 --set flag-default=0 --set flag-forced=0 --edit track:a2 --set flag-default=0 --set flag-forced=0 --edit track:a3 --set flag-default=1 --set flag-forced=1</span><br><span class="line">    ) else (</span><br><span class="line">        echo No valid AAC track found for file: %%f</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    :: 删除临时文件</span><br><span class="line">    del temp_tracks.txt</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">echo All files processed.</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h2 id="重新命名"><a href="#重新命名" class="headerlink" title="重新命名"></a>重新命名</h2><p>保存rename.py，执行python rename.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义文件夹路径</span></span><br><span class="line">folder_path = <span class="string">r&quot;G:\&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 遍历文件夹中的所有文件</span></span><br><span class="line"><span class="string">for filename in os.listdir(folder_path):</span></span><br><span class="line"><span class="string">    # 检查文件扩展名是否为.mkv</span></span><br><span class="line"><span class="string">    if filename.endswith(&quot;</span>.mkv<span class="string">&quot;):</span></span><br><span class="line"><span class="string">        # 检查文件名是否符合特定模式</span></span><br><span class="line"><span class="string">        if &quot;</span>国语音频<span class="string">&quot; in filename:</span></span><br><span class="line"><span class="string">            # 替换最后一个“国”字为“粤”字</span></span><br><span class="line"><span class="string">            new_name = filename.rsplit(&quot;</span>国<span class="string">&quot;, 1)[0] + &quot;</span>粤<span class="string">&quot; + filename.rsplit(&quot;</span>国<span class="string">&quot;, 1)[1]</span></span><br><span class="line"><span class="string">            # 构造完整的文件路径</span></span><br><span class="line"><span class="string">            old_file_path = os.path.join(folder_path, filename)</span></span><br><span class="line"><span class="string">            new_file_path = os.path.join(folder_path, new_name)</span></span><br><span class="line"><span class="string">            # 重命名文件</span></span><br><span class="line"><span class="string">            os.rename(old_file_path, new_file_path)</span></span><br><span class="line"><span class="string">            print(f&quot;</span>重命名：&#123;filename&#125; -&gt; &#123;new_name&#125;<span class="string">&quot;)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">print(&quot;</span>所有符合条件的文件已重命名完成。<span class="string">&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="处理结果"><a href="#处理结果" class="headerlink" title="处理结果"></a>处理结果</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">G:\&gt;D:\software\mkvtoolnix\mkvinfo.exe 灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.001.mkv</span><br><span class="line">+ EBML 头</span><br><span class="line">|+ EBML 版本: 1</span><br><span class="line">|+ EBML 读取版本: 1</span><br><span class="line">|+ EBML ID 最大长度: 4</span><br><span class="line">|+ EBML 大小最大长度: 8</span><br><span class="line">|+ 文档类型: matroska</span><br><span class="line">|+ 文档类型版本: 4</span><br><span class="line">|+ 文档类型读取版本: 2</span><br><span class="line">+ 剪辑: 大小 1397911679</span><br><span class="line">|+ 定位头 (子条目将被跳过)</span><br><span class="line">|+ 轨道</span><br><span class="line">| + 轨道</span><br><span class="line">|  + 轨道编号: 1 (mkvmerge &amp; mkvextract 的轨道 ID: 0)</span><br><span class="line">|  + 轨道 UID: 1</span><br><span class="line">|  + 轨道类型: 视频</span><br><span class="line">|  + ｢紧缩｣ 标记: 0</span><br><span class="line">|  + 编码格式 ID: V_MPEG4/ISO/AVC</span><br><span class="line">|  + 编解码器私有数据: 大小 45 (H.264 档次: High 10 @L5.1)</span><br><span class="line">|  + 默认帧时长: 00:00:00.041708333 (对应视频轨的 23.976 帧/场每秒)</span><br><span class="line">|  + 语言: jpn</span><br><span class="line">|  + 名称: [Kagura] Slam Dunk - 001 [BDRip 1440x1080 x264 Hi10P FLAC]</span><br><span class="line">|  + 视频轨道</span><br><span class="line">|   + 像素宽度: 1440</span><br><span class="line">|   + 像素高度: 1080</span><br><span class="line">|   + 显示宽度: 1440</span><br><span class="line">|   + 显示高度: 1080</span><br><span class="line">| + 轨道</span><br><span class="line">|  + 轨道编号: 2 (mkvmerge &amp; mkvextract 的轨道 ID: 1)</span><br><span class="line">|  + 轨道 UID: 4259734031005461432</span><br><span class="line">|  + 轨道类型: 音频</span><br><span class="line">|  + ｢强制显示｣ 标记: 0</span><br><span class="line">|  + 编码格式 ID: A_AAC</span><br><span class="line">|  + 编解码器私有数据: 大小 5</span><br><span class="line">|  + 默认帧时长: 00:00:00.021333333 (对应视频轨的 46.875 帧/场每秒)</span><br><span class="line">|  + 语言: chi</span><br><span class="line">|  + 名称: 国语Mandarin</span><br><span class="line">|  + 音频轨</span><br><span class="line">|   + 采样率: 48000</span><br><span class="line">|   + 声道数: 2</span><br><span class="line">|  + ｢默认轨｣ 标记: 0</span><br><span class="line">| + 轨道</span><br><span class="line">|  + 轨道编号: 3 (mkvmerge &amp; mkvextract 的轨道 ID: 2)</span><br><span class="line">|  + 轨道 UID: 17988462785428992699</span><br><span class="line">|  + 轨道类型: 音频</span><br><span class="line">|  + ｢默认轨｣ 标记: 0</span><br><span class="line">|  + ｢强制显示｣ 标记: 0</span><br><span class="line">|  + 编码格式 ID: A_FLAC</span><br><span class="line">|  + 编解码器私有数据: 大小 113</span><br><span class="line">|  + 默认帧时长: 00:00:00.085333333 (对应视频轨的 11.719 帧/场每秒)</span><br><span class="line">|  + 语言: jpn</span><br><span class="line">|  + 音频轨</span><br><span class="line">|   + 采样率: 48000</span><br><span class="line">|   + 声道数: 2</span><br><span class="line">|   + 位深: 16</span><br><span class="line">| + 轨道</span><br><span class="line">|  + 轨道编号: 4 (mkvmerge &amp; mkvextract 的轨道 ID: 3)</span><br><span class="line">|  + 轨道 UID: 4385456018886019507</span><br><span class="line">|  + 轨道类型: 音频</span><br><span class="line">|  + ｢默认轨｣ 标记: 1</span><br><span class="line">|  + 编码格式 ID: A_AAC</span><br><span class="line">|  + 编解码器私有数据: 大小 5</span><br><span class="line">|  + 默认帧时长: 00:00:00.046439909 (对应视频轨的 21.533 帧/场每秒)</span><br><span class="line">|  + 语言: chi</span><br><span class="line">|  + 名称: 粤语Cantonese</span><br><span class="line">|  + 音频轨</span><br><span class="line">|   + 采样率: 22050</span><br><span class="line">|   + 输出采样频率: 44100</span><br><span class="line">|  + ｢强制显示｣ 标记: 1</span><br><span class="line">| + 轨道</span><br><span class="line">|  + 轨道编号: 5 (mkvmerge &amp; mkvextract 的轨道 ID: 4)</span><br><span class="line">|  + 轨道 UID: 4592099748104795573</span><br><span class="line">|  + 轨道类型: 字幕</span><br><span class="line">|  + ｢紧缩｣ 标记: 0</span><br><span class="line">|  + 编码格式 ID: S_TEXT/ASS</span><br><span class="line">|  + 编解码器私有数据: 大小 1488</span><br><span class="line">|  + 语言: chi</span><br><span class="line">|  + 名称: 诸神简日双语字幕</span><br><span class="line">|+ EBML void: 大小 1923</span><br><span class="line">|+ 剪辑信息</span><br><span class="line">| + 时间戳缩放: 1000000</span><br><span class="line">| + 混流应用程序: libebml v1.3.6 + libmatroska v1.4.9</span><br><span class="line">| + 写入应用程序: mkvmerge v24.0.0 (&#x27;Beyond The Pale&#x27;) 64-bit</span><br><span class="line">| + 时长: 00:19:39.921000000</span><br><span class="line">| + 日期: 2018-06-13 04:01:56 UTC</span><br><span class="line">| + 剪辑 UID: 0x1c 0xe1 0xb8 0x3d 0x99 0x9b 0x00 0x62 0x4c 0x68 0x7d 0x14 0x12 0xf2 0x71 0xf9</span><br><span class="line">|+ EBML void: 大小 3282</span><br><span class="line">|+ 簇</span><br></pre></td></tr></table></figure>
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/mkvtoolnix/" rel="tag"># mkvtoolnix</a>
+              <a href="/tags/Cantonese/" rel="tag"># Cantonese</a>
+              <a href="/tags/mkvpropedit/" rel="tag"># mkvpropedit</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Chinese-ISPs-to-Japan.html" rel="prev" title="中国三大ISP广州至日本东京方向线路测试">
+                  <i class="fa fa-angle-left"></i> 中国三大ISP广州至日本东京方向线路测试
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">heiok.com</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
