@@ -1,3 +1,5 @@
+https://heiok.com/OpenWRT-adds-external-storage-expansion.html
+https://heiok.com/Remotely-manage-openwrt-routers-via-cloudflare-tunnel.html
 https://heiok.com/sing-box.html
 https://heiok.com/Claw-Cloud-VPS-test.html
 https://heiok.com/Use-mkvpropedit-to-modify-the-default-audio-track-of-a-video-file.html
@@ -26,7 +28,6 @@ https://heiok.com/Generate-a-self-signed-certificate.html
 https://heiok.com/Get-Guangzhou-Telecom-IPTV-channels.html
 https://heiok.com/Get-Zhuhai-Unicom-IPTV-channels.html
 https://heiok.com/How-to-determine-IP-is-BGP-route.html
-https://heiok.com/OpenWRT-adds-external-storage-expansion.html
 https://heiok.com/Xiaomi-TV-API.html
 https://heiok.com/
 https://heiok.com/tags/Printer-Share/
@@ -88,6 +89,8 @@ https://heiok.com/tags/iPhone-configuration-proxy/
 https://heiok.com/tags/mermaid/
 https://heiok.com/tags/sing-box/
 https://heiok.com/tags/GUIforSingBox/
+https://heiok.com/tags/Cloudflare-tunnel/
+https://heiok.com/tags/Cloudflared/
 https://heiok.com/categories/Software/
 https://heiok.com/categories/Network/
 https://heiok.com/categories/Hardware/
