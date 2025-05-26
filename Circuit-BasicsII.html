@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"heiok.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="电容串联 容量变小 （较少采用）  并联 容量变大 （大多采用）  作用 储能 滤波（可尝试采用电击法快速锁定损坏的电容） 耦合  特性 通交流（波动）阻直流（平稳）， 通高频 阻低频； 电容两端的电压不能突变。  测量 二极管档测 电容两脚短接放电； 万用表拨二极管档，红笔接正极，黑笔接负极，读数由小变大至OL，容量大小决定充电过程快慢； 若不能充满至OL，则电容漏电损坏； 若读数一直为零，则电">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电路基础知识II">
+<meta property="og:url" content="https://heiok.com/Circuit-BasicsII.html">
+<meta property="og:site_name" content="网络蝙蝠侠部落">
+<meta property="og:description" content="电容串联 容量变小 （较少采用）  并联 容量变大 （大多采用）  作用 储能 滤波（可尝试采用电击法快速锁定损坏的电容） 耦合  特性 通交流（波动）阻直流（平稳）， 通高频 阻低频； 电容两端的电压不能突变。  测量 二极管档测 电容两脚短接放电； 万用表拨二极管档，红笔接正极，黑笔接负极，读数由小变大至OL，容量大小决定充电过程快慢； 若不能充满至OL，则电容漏电损坏； 若读数一直为零，则电">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-26T09:38:45.000Z">
+<meta property="article:modified_time" content="2025-05-26T09:41:26.501Z">
+<meta property="article:author" content="heiok.com">
+<meta property="article:tag" content="MOS">
+<meta property="article:tag" content="MOSFET">
+<meta property="article:tag" content="PWM">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://heiok.com/Circuit-BasicsII.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://heiok.com/Circuit-BasicsII.html","path":"Circuit-BasicsII.html","title":"电路基础知识II"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>电路基础知识II | 网络蝙蝠侠部落</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-90W6VHZRMP"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-90W6VHZRMP","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">网络蝙蝠侠部落</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%AE%B9"><span class="nav-number">1.</span> <span class="nav-text">电容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%B2%E8%81%94"><span class="nav-number">1.1.</span> <span class="nav-text">串联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B6%E8%81%94"><span class="nav-number">1.2.</span> <span class="nav-text">并联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-number">1.3.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%80%A7"><span class="nav-number">1.4.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E9%87%8F"><span class="nav-number">1.5.</span> <span class="nav-text">测量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E6%84%9F"><span class="nav-number">2.</span> <span class="nav-text">电感</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8-1"><span class="nav-number">2.1.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%80%A7-1"><span class="nav-number">2.2.</span> <span class="nav-text">特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E6%9E%81%E7%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">二极管</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%80%A7-2"><span class="nav-number">3.1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8-2"><span class="nav-number">3.2.</span> <span class="nav-text">作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E6%9E%81%E7%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">三极管</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84"><span class="nav-number">4.1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81"><span class="nav-number">4.2.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E7%94%A8"><span class="nav-number">4.3.</span> <span class="nav-text">运用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MOS%E7%AE%A1"><span class="nav-number">5.</span> <span class="nav-text">MOS管</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84-1"><span class="nav-number">5.1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E9%87%8F-1"><span class="nav-number">5.2.</span> <span class="nav-text">测量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81-1"><span class="nav-number">5.3.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">5.4.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%B3%E5%8E%8B%E7%AE%A1"><span class="nav-number">6.</span> <span class="nav-text">稳压管</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8-3"><span class="nav-number">6.1.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">6.2.</span> <span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E6%94%BE%E5%A4%A7%E5%99%A8"><span class="nav-number">7.</span> <span class="nav-text">比较运算放大器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81-2"><span class="nav-number">7.1.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">7.2.</span> <span class="nav-text">原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PWM%E4%BE%9B%E7%94%B5%E7%94%B5%E8%B7%AF"><span class="nav-number">8.</span> <span class="nav-text">PWM供电电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84-2"><span class="nav-number">8.1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">8.2.</span> <span class="nav-text">工作流程</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Circuit-BasicsII.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="电路基础知识II | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          电路基础知识II
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-05-26 17:38:45 / 修改时间：17:41:26" itemprop="dateCreated datePublished" datetime="2025-05-26T17:38:45+08:00">2025-05-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="电容"><a href="#电容" class="headerlink" title="电容"></a>电容</h2><h3 id="串联"><a href="#串联" class="headerlink" title="串联"></a>串联</h3><ul>
+<li>容量变小 （较少采用）</li>
+</ul>
+<h3 id="并联"><a href="#并联" class="headerlink" title="并联"></a>并联</h3><ul>
+<li>容量变大 （大多采用）</li>
+</ul>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ul>
+<li>储能</li>
+<li>滤波（可尝试采用电击法快速锁定损坏的电容）</li>
+<li>耦合</li>
+</ul>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
+<li>通交流（波动）阻直流（平稳）， 通高频 阻低频；</li>
+<li>电容两端的电压不能突变。</li>
+</ul>
+<h3 id="测量"><a href="#测量" class="headerlink" title="测量"></a>测量</h3><ol>
+<li>二极管档测<ul>
+<li>电容两脚短接放电；</li>
+<li>万用表拨二极管档，红笔接正极，黑笔接负极，读数由小变大至OL，容量大小决定充电过程快慢；</li>
+<li>若不能充满至OL，则电容漏电损坏；</li>
+<li>若读数一直为零，则电容短路损坏；</li>
+</ul>
+</li>
+<li>电容档测量<ul>
+<li>万用表打到容量档；</li>
+<li>红表笔接到电容正极，黑表笔接到电容负极，测得容量与标识容量值误差在20%以内。</li>
+</ul>
+</li>
+</ol>
+<h2 id="电感"><a href="#电感" class="headerlink" title="电感"></a>电感</h2><h3 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h3><ul>
+<li>储能（电能&lt;—&gt;磁能），电感一般会用在电压的输入与输出端。</li>
+</ul>
+<h3 id="特性-1"><a href="#特性-1" class="headerlink" title="特性"></a>特性</h3><ul>
+<li>通直流（平稳），阻交流（波动），通直阻交；</li>
+<li>电感两端的电流不能突变。</li>
+</ul>
+<h2 id="二极管"><a href="#二极管" class="headerlink" title="二极管"></a>二极管</h2><h3 id="特性-2"><a href="#特性-2" class="headerlink" title="特性"></a>特性</h3><ul>
+<li>单向导电性</li>
+<li>硅：P≥N+0.7 V    锗：P≥N+0.3 V</li>
+</ul>
+<h3 id="作用-2"><a href="#作用-2" class="headerlink" title="作用"></a>作用</h3><ul>
+<li>实现升降压</li>
+<li>实现逻辑“或” （CMOS电路）</li>
+<li>实现逻辑“与”</li>
+</ul>
+<h2 id="三极管"><a href="#三极管" class="headerlink" title="三极管"></a>三极管</h2><p>三极管由两个 PN 结组成，是一种电流控制元器件。</p>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><ul>
+<li>基极（Base）、  集电极（Collector）、  发射极（Emitter）</li>
+<li>三个极，两个结，三个区</li>
+</ul>
+<h3 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h3><ul>
+<li>导通：发射结正偏，C、E极之间导通</li>
+<li>截止：发射结反偏，C、E极之间断开</li>
+</ul>
+<h3 id="运用"><a href="#运用" class="headerlink" title="运用"></a>运用</h3><ul>
+<li>NPN三极管（当E极接地）B极与C极电压相反，非门；</li>
+<li>PNP三极管（当B极接地）E极与C极电压相同， 同门。</li>
+</ul>
+<h2 id="MOS管"><a href="#MOS管" class="headerlink" title="MOS管"></a>MOS管</h2><p>MOSFET，金属氧化物半导体场效应晶体管，一种电压控制元器件，可以不需要电流，是最容易坏的元器件之一。</p>
+<h3 id="结构-1"><a href="#结构-1" class="headerlink" title="结构"></a>结构</h3><ul>
+<li>G: 栅极（控制极） D: 漏极（输入极） S: 源极（输出极）</li>
+</ul>
+<h3 id="测量-1"><a href="#测量-1" class="headerlink" title="测量"></a>测量</h3><ul>
+<li>万用表打到二极管档；（N沟道MOS管为例）</li>
+<li>红表笔接 S 极，黑表笔接 D 极，测得值在450—750 左右，其余均为无穷大</li>
+<li>导通功能测试：红表笔接 G 极，黑表笔分别测 D 极和 S 极，再快速测 D 极和 S 极之间的阻值应为 0</li>
+<li>测得值有一次值基本为 0（先放电），如果还是为0则 MOS 管击穿，都为无穷大，则 MOS 管开路。</li>
+</ul>
+<h3 id="状态-1"><a href="#状态-1" class="headerlink" title="状态"></a>状态</h3><ul>
+<li>N 沟道 MOS 管导通条件：VG&gt;VS（G极电压越高越导通）9V或以上</li>
+<li>P 沟道 MOS 管导通条件：VG&lt;VS（G极电压越低越导通）</li>
+<li>实际电路中大多数用7002代替NPN型三极管使用。</li>
+</ul>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><ul>
+<li>NPN型三极管不能在B极直接加电压，7002N沟道MOS管则可以在G极直接加电压。</li>
+</ul>
+<h2 id="稳压管"><a href="#稳压管" class="headerlink" title="稳压管"></a>稳压管</h2><p>稳压管又叫线性稳压集成 IC，是一种电压控制元器件。</p>
+<h3 id="作用-3"><a href="#作用-3" class="headerlink" title="作用"></a>作用</h3><ul>
+<li>当输入电压有变化时输出电压不变化</li>
+</ul>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+<li>三端不可调稳压器，78M05 、78D05、 78L05、 431 、1085 、 1117</li>
+<li>三端可调稳压器，1084 、1085 、1086、 1087 、1117 、3117</li>
+</ul>
+<h2 id="比较运算放大器"><a href="#比较运算放大器" class="headerlink" title="比较运算放大器"></a>比较运算放大器</h2><h3 id="状态-2"><a href="#状态-2" class="headerlink" title="状态"></a>状态</h3><ul>
+<li>当V+ &gt; V-则VOUT输出为高电平，当V+≤V-则VOUT输出为低电平</li>
+</ul>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ul>
+<li>比较器属于漏极开路输出，所以输在出端上一定要有上拉电阻（条件满足时开关断开，条件不满足时开关闭合）。</li>
+</ul>
+<h2 id="PWM供电电路"><a href="#PWM供电电路" class="headerlink" title="PWM供电电路"></a>PWM供电电路</h2><p>脉宽调制电路</p>
+<h3 id="结构-2"><a href="#结构-2" class="headerlink" title="结构"></a>结构</h3><ul>
+<li>输入电感+输入滤波电容+上管、下管+输出电感+输出滤波电容+PWM电源芯片</li>
+</ul>
+<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><ol>
+<li>VIN是PWM上管输入电压，VCC是PWM电路芯片的供电。</li>
+<li>COMP&#x2F;ON 是PWM电源芯片的开启信号（正常为高电平）。</li>
+<li>BOOT&#x2F;BST 自举升压。</li>
+<li>UGATE 上管驱动信号。</li>
+<li>LGATE 下管驱动信号。</li>
+<li>PHASE 相位输出。</li>
+<li>FB 反馈。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MOS/" rel="tag"># MOS</a>
+              <a href="/tags/MOSFET/" rel="tag"># MOSFET</a>
+              <a href="/tags/PWM/" rel="tag"># PWM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Remotely-manage-openwrt-routers-via-cloudflare-tunnel.html" rel="prev" title="通过Cloudflare tunnel远程管理openwrt路由器">
+                  <i class="fa fa-angle-left"></i> 通过Cloudflare tunnel远程管理openwrt路由器
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">heiok.com</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,3 +1,4 @@
+https://heiok.com/Circuit-BasicsII.html
 https://heiok.com/OpenWRT-adds-external-storage-expansion.html
 https://heiok.com/Remotely-manage-openwrt-routers-via-cloudflare-tunnel.html
 https://heiok.com/sing-box.html
@@ -91,6 +92,9 @@ https://heiok.com/tags/sing-box/
 https://heiok.com/tags/GUIforSingBox/
 https://heiok.com/tags/Cloudflare-tunnel/
 https://heiok.com/tags/Cloudflared/
+https://heiok.com/tags/MOS/
+https://heiok.com/tags/MOSFET/
+https://heiok.com/tags/PWM/
 https://heiok.com/categories/Software/
 https://heiok.com/categories/Network/
 https://heiok.com/categories/Hardware/

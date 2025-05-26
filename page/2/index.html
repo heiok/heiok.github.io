@@ -121,7 +121,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -132,7 +132,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">64</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -149,6 +149,115 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/OpenWRT-grabs-EPG-and-submits-records-to-the-code-repository.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/OpenWRT-grabs-EPG-and-submits-records-to-the-code-repository.html" class="post-title-link" itemprop="url">OpenWRT抓取EPG并提交记录到代码仓库</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-01-02 18:15:40 / 修改时间：18:17:06" itemprop="dateCreated datePublished" datetime="2025-01-02T18:15:40+08:00">2025-01-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/IPTV/" itemprop="url" rel="index"><span itemprop="name">IPTV</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="文件说明"><a href="#文件说明" class="headerlink" title="文件说明"></a>文件说明</h2><ul>
+<li>gdtv_to_epg.log  日志文件</li>
+<li>epg.xml                XMLTV格式文件</li>
+<li>gdtv_to_epg.py    电子节目表抓取</li>
+<li>git_commit.sh      日志提交脚本文件</li>
+<li>&#x2F;etc&#x2F;init.d&#x2F;gdtv_to_epg   开机执行脚本</li>
+<li>&#x2F;etc&#x2F;rc.local     开机执行脚本</li>
+</ul>
+<h2 id="改清华源"><a href="#改清华源" class="headerlink" title="改清华源"></a>改清华源</h2><p>  vi &#x2F;etc&#x2F;opkg&#x2F;distfeeds.conf</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">src/gz openwrt_core http://mirrors.tuna.tsinghua.edu.cn/lede/releases/23.05.4/targets/ramips/mt7620/packages</span><br><span class="line">src/gz openwrt_base http://mirrors.tuna.tsinghua.edu.cn/lede/releases/23.05.4/packages/mipsel_24kc/base</span><br><span class="line">src/gz openwrt_luci http://mirrors.tuna.tsinghua.edu.cn/lede/releases/23.05.4/packages/mipsel_24kc/luci</span><br><span class="line">src/gz openwrt_packages http://mirrors.tuna.tsinghua.edu.cn/lede/releases/23.05.4/packages/mipsel_24kc/packages</span><br><span class="line">src/gz openwrt_routing http://mirrors.tuna.tsinghua.edu.cn/lede/releases/23.05.4/packages/mipsel_24kc/routing</span><br><span class="line">src/gz openwrt_telephony http://mirrors.tuna.tsinghua.edu.cn/lede/releases/23.05.4/packages/mipsel_24kc/telephony</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装配置git"><a href="#安装配置git" class="headerlink" title="安装配置git"></a>安装配置git</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line">opkg install git</span><br><span class="line">opkg install openssh-keygen</span><br><span class="line">opkg install openssh-client</span><br><span class="line">cd /www</span><br><span class="line">git init</span><br><span class="line">ssh-keygen</span><br><span class="line">ssh -T git@gitee.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="抓取源码"><a href="#抓取源码" class="headerlink" title="抓取源码"></a>抓取源码</h2><p>  &#x2F;www&#x2F;gdtv_to_epg.py</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line">import datetime</span><br><span class="line">import requests</span><br><span class="line">import warnings</span><br><span class="line">import logging</span><br><span class="line">from bs4 import BeautifulSoup as bs</span><br><span class="line">from xml.etree.ElementTree import Element, SubElement, ElementTree</span><br><span class="line"></span><br><span class="line"># 日志配置</span><br><span class="line">logging.basicConfig(</span><br><span class="line">    filename=&quot;/www/gdtv_to_epg.log&quot;,  # 日志文件路径</span><br><span class="line">    level=logging.INFO,               # 日志级别</span><br><span class="line">    format=&quot;%(asctime)s - %(levelname)s - %(message)s&quot;,</span><br><span class="line">    filemode=&quot;w&quot;                      # 每次运行脚本时覆盖日志</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"># 定义请求头，模拟浏览器访问</span><br><span class="line">headers = &#123;</span><br><span class="line">    &#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 忽略 XMLParsedAsHTMLWarning</span><br><span class="line">warnings.filterwarnings(&#x27;ignore&#x27;)</span><br><span class="line"></span><br><span class="line"># 获取广东电视台频道列表</span><br><span class="line">def get_channels_gdtv():</span><br><span class="line">    logging.info(&quot;开始获取频道列表...&quot;)</span><br><span class="line">    url = &#x27;http://epg.gdtv.cn/f/1.xml&#x27;</span><br><span class="line">    try:</span><br><span class="line">        res = requests.get(url, headers=headers, timeout=8)</span><br><span class="line">        res.encoding = &#x27;utf-8&#x27;</span><br><span class="line">        soup = bs(res.text, &#x27;html.parser&#x27;)</span><br><span class="line">        contents = soup.select(&#x27;channel&#x27;)</span><br><span class="line">        channels = []</span><br><span class="line">        for content in contents:</span><br><span class="line">            channel_id = content.attrs[&#x27;id&#x27;]</span><br><span class="line">            name = content.ctitle.text.strip()</span><br><span class="line">            channels.append(&#123;&#x27;id&#x27;: channel_id, &#x27;name&#x27;: name&#125;)</span><br><span class="line">        logging.info(f&quot;获取到 &#123;len(channels)&#125; 个频道&quot;)</span><br><span class="line">        return channels</span><br><span class="line">    except requests.exceptions.RequestException as e:</span><br><span class="line">        logging.error(f&quot;获取频道列表失败: &#123;e&#125;&quot;)</span><br><span class="line">        return []</span><br><span class="line"></span><br><span class="line"># 处理节目标题中的 HTML 实体和标签</span><br><span class="line">def clean_html(text):</span><br><span class="line">    text = bs(text, &quot;html.parser&quot;).get_text()</span><br><span class="line">    return text.replace(&#x27;&lt;br /&gt;&#x27;, &#x27;\n&#x27;).replace(&#x27;&lt;br&gt;&#x27;, &#x27;\n&#x27;).strip()</span><br><span class="line"></span><br><span class="line"># 获取指定日期范围内的节目表</span><br><span class="line">def get_epgs_gdtv(channel_id, start_date, end_date):</span><br><span class="line">    logging.info(f&quot;开始抓取频道 &#123;channel_id&#125; 的节目表...&quot;)</span><br><span class="line">    epgs = []</span><br><span class="line">    current_date = start_date</span><br><span class="line">    while current_date &lt;= end_date:</span><br><span class="line">        url = f&#x27;http://epg.gdtv.cn/f/&#123;channel_id&#125;/&#123;current_date.strftime(&quot;%Y-%m-%d&quot;)&#125;.xml&#x27;</span><br><span class="line">        try:</span><br><span class="line">            res = requests.get(url, headers=headers, timeout=8)</span><br><span class="line">            res.encoding = &#x27;utf-8&#x27;</span><br><span class="line">            soup = bs(res.text, &#x27;html.parser&#x27;)</span><br><span class="line">            epgs_contents = soup.select(&#x27;content&#x27;)</span><br><span class="line"></span><br><span class="line">            for epga in epgs_contents:</span><br><span class="line">                starttime = datetime.datetime.fromtimestamp(int(epga.attrs[&#x27;time1&#x27;]))</span><br><span class="line">                endtime = datetime.datetime.fromtimestamp(int(epga.attrs[&#x27;time2&#x27;]))</span><br><span class="line">                title = clean_html(epga.get_text())</span><br><span class="line">                epgs.append(&#123;</span><br><span class="line">                    &#x27;title&#x27;: title,</span><br><span class="line">                    &#x27;start&#x27;: starttime,</span><br><span class="line">                    &#x27;end&#x27;: endtime</span><br><span class="line">                &#125;)</span><br><span class="line">            logging.info(f&quot;完成抓取频道 &#123;channel_id&#125; &#123;current_date&#125; 的节目表，共 &#123;len(epgs)&#125; 条节目&quot;)</span><br><span class="line">        except requests.exceptions.RequestException as e:</span><br><span class="line">            logging.error(f&quot;抓取频道 &#123;channel_id&#125; &#123;current_date&#125; 的节目表失败: &#123;e&#125;&quot;)</span><br><span class="line">        current_date += datetime.timedelta(days=1)</span><br><span class="line">    return epgs</span><br><span class="line"></span><br><span class="line"># 创建 XMLTV 文件</span><br><span class="line">def create_epg_xml(channels, epg_data, output_file):</span><br><span class="line">    logging.info(&quot;开始生成 XMLTV 文件...&quot;)</span><br><span class="line">    tv = Element(&#x27;tv&#x27;)</span><br><span class="line"></span><br><span class="line">    for channel in channels:</span><br><span class="line">        channel_element = SubElement(tv, &#x27;channel&#x27;, id=channel[&#x27;id&#x27;])</span><br><span class="line">        display_name = SubElement(channel_element, &#x27;display-name&#x27;)</span><br><span class="line">        display_name.text = channel[&#x27;name&#x27;]</span><br><span class="line"></span><br><span class="line">    for channel_id, programs in epg_data.items():</span><br><span class="line">        for program in programs:</span><br><span class="line">            programme = SubElement(tv, &#x27;programme&#x27;, start=program[&#x27;start&#x27;].strftime(&#x27;%Y%m%d%H%M%S +0800&#x27;),</span><br><span class="line">                                   stop=program[&#x27;end&#x27;].strftime(&#x27;%Y%m%d%H%M%S +0800&#x27;),</span><br><span class="line">                                   channel=channel_id)</span><br><span class="line">            title = SubElement(programme, &#x27;title&#x27;)</span><br><span class="line">            title.text = program[&#x27;title&#x27;]</span><br><span class="line"></span><br><span class="line">    tree = ElementTree(tv)</span><br><span class="line">    tree.write(output_file, encoding=&#x27;utf-8&#x27;, xml_declaration=True)</span><br><span class="line">    logging.info(f&quot;XMLTV 文件生成完成: &#123;output_file&#125;&quot;)</span><br><span class="line"></span><br><span class="line"># 主函数</span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    today = datetime.datetime.now().date()</span><br><span class="line">    start_date = today - datetime.timedelta(days=6)</span><br><span class="line">    end_date = today + datetime.timedelta(days=2)</span><br><span class="line"></span><br><span class="line">    try:</span><br><span class="line">        logging.info(&quot;脚本开始执行&quot;)</span><br><span class="line">        </span><br><span class="line">        channels = get_channels_gdtv()</span><br><span class="line">        if not channels:</span><br><span class="line">            logging.error(&quot;没有获取到频道列表，脚本将结束执行。&quot;)</span><br><span class="line">            exit(1)  # 如果未获取到频道列表，则退出</span><br><span class="line"></span><br><span class="line">        epg_data = &#123;&#125;</span><br><span class="line">        for channel in channels:</span><br><span class="line">            channel_id = channel[&#x27;id&#x27;]</span><br><span class="line">            epg_data[channel_id] = get_epgs_gdtv(channel_id, start_date, end_date)</span><br><span class="line"></span><br><span class="line">        output_file = &quot;/www/epg.xml&quot;</span><br><span class="line">        create_epg_xml(channels, epg_data, output_file)</span><br><span class="line"></span><br><span class="line">        logging.info(f&quot;完成！EPG 文件已保存为 &#123;output_file&#125;&quot;)</span><br><span class="line">    except Exception as e:</span><br><span class="line">        logging.error(f&quot;脚本执行过程中发生错误: &#123;e&#125;&quot;)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="开机脚本"><a href="#开机脚本" class="headerlink" title="开机脚本"></a>开机脚本</h2><p>  &#x2F;etc&#x2F;rc.local</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Put your custom commands here that should be executed once</span><br><span class="line"># the system init finished. By default this file does nothing.</span><br><span class="line"></span><br><span class="line">ntpd -q -p pool.ntp.org</span><br><span class="line"></span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;etc&#x2F;init.d&#x2F;gdtv_to_epg</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh /etc/rc.common</span><br><span class="line"># OpenWrt init script for gdtv_to_epg</span><br><span class="line"></span><br><span class="line">START=99</span><br><span class="line">USE_PROCD=1</span><br><span class="line"></span><br><span class="line">start_service() &#123;</span><br><span class="line">    # 第一个任务，延迟 180 秒执行</span><br><span class="line">    procd_open_instance</span><br><span class="line">    procd_set_param command /bin/sh -c &quot;sleep 180 &amp;&amp; /usr/bin/python /www/gdtv_to_epg.py&quot;</span><br><span class="line">    procd_set_param network 1</span><br><span class="line">    procd_close_instance</span><br><span class="line"></span><br><span class="line">    # 第二个任务，延迟 480 秒执行</span><br><span class="line">    procd_open_instance</span><br><span class="line">    procd_set_param command /bin/sh -c &quot;sleep 480 &amp;&amp; /bin/sh /www/git_commit.sh&quot;</span><br><span class="line">    procd_set_param network 1</span><br><span class="line">    procd_close_instance</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="提交脚本"><a href="#提交脚本" class="headerlink" title="提交脚本"></a>提交脚本</h2><p>  &#x2F;www&#x2F;git_commit.sh</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin</span><br><span class="line">cd /www || exit 1  # 进入 Git 仓库的工作目录</span><br><span class="line">git add .           # 添加所有修改</span><br><span class="line">git commit -m &quot;更新日志&quot;   # 提交修改</span><br><span class="line">git push origin master   # 推送到远程仓库</span><br></pre></td></tr></table></figure>
+
+<h2 id="日志文件"><a href="#日志文件" class="headerlink" title="日志文件"></a>日志文件</h2><p>&#x2F;www&#x2F;gdtv_to_epg.log</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br></pre></td><td class="code"><pre><span class="line">2025-01-02 18:02:36,843 - INFO - 脚本开始执行</span><br><span class="line">2025-01-02 18:02:36,846 - INFO - 开始获取频道列表...</span><br><span class="line">2025-01-02 18:02:37,149 - INFO - 获取到 15 个频道</span><br><span class="line">2025-01-02 18:02:37,154 - INFO - 开始抓取频道 1 的节目表...</span><br><span class="line">2025-01-02 18:02:37,423 - INFO - 完成抓取频道 1 2024-12-27 的节目表，共 28 条节目</span><br><span class="line">2025-01-02 18:02:37,686 - INFO - 完成抓取频道 1 2024-12-28 的节目表，共 58 条节目</span><br><span class="line">2025-01-02 18:02:37,948 - INFO - 完成抓取频道 1 2024-12-29 的节目表，共 88 条节目</span><br><span class="line">2025-01-02 18:02:38,193 - INFO - 完成抓取频道 1 2024-12-30 的节目表，共 117 条节目</span><br><span class="line">2025-01-02 18:02:38,451 - INFO - 完成抓取频道 1 2024-12-31 的节目表，共 146 条节目</span><br><span class="line">2025-01-02 18:02:38,688 - INFO - 完成抓取频道 1 2025-01-01 的节目表，共 173 条节目</span><br><span class="line">2025-01-02 18:02:38,909 - INFO - 完成抓取频道 1 2025-01-02 的节目表，共 202 条节目</span><br><span class="line">2025-01-02 18:02:39,124 - INFO - 完成抓取频道 1 2025-01-03 的节目表，共 230 条节目</span><br><span class="line">2025-01-02 18:02:39,383 - INFO - 完成抓取频道 1 2025-01-04 的节目表，共 261 条节目</span><br><span class="line">2025-01-02 18:02:39,387 - INFO - 开始抓取频道 2 的节目表...</span><br><span class="line">2025-01-02 18:02:39,559 - INFO - 完成抓取频道 2 2024-12-27 的节目表，共 14 条节目</span><br><span class="line">2025-01-02 18:02:39,701 - INFO - 完成抓取频道 2 2024-12-28 的节目表，共 24 条节目</span><br><span class="line">2025-01-02 18:02:39,856 - INFO - 完成抓取频道 2 2024-12-29 的节目表，共 35 条节目</span><br><span class="line">2025-01-02 18:02:40,033 - INFO - 完成抓取频道 2 2024-12-30 的节目表，共 50 条节目</span><br><span class="line">2025-01-02 18:02:40,201 - INFO - 完成抓取频道 2 2024-12-31 的节目表，共 63 条节目</span><br><span class="line">2025-01-02 18:02:40,358 - INFO - 完成抓取频道 2 2025-01-01 的节目表，共 74 条节目</span><br><span class="line">2025-01-02 18:02:40,538 - INFO - 完成抓取频道 2 2025-01-02 的节目表，共 88 条节目</span><br><span class="line">2025-01-02 18:02:40,716 - INFO - 完成抓取频道 2 2025-01-03 的节目表，共 102 条节目</span><br><span class="line">2025-01-02 18:02:40,902 - INFO - 完成抓取频道 2 2025-01-04 的节目表，共 113 条节目</span><br><span class="line">2025-01-02 18:02:40,905 - INFO - 开始抓取频道 6 的节目表...</span><br><span class="line">2025-01-02 18:02:41,234 - INFO - 完成抓取频道 6 2024-12-27 的节目表，共 44 条节目</span><br><span class="line">2025-01-02 18:02:41,558 - INFO - 完成抓取频道 6 2024-12-28 的节目表，共 88 条节目</span><br><span class="line">2025-01-02 18:02:41,888 - INFO - 完成抓取频道 6 2024-12-29 的节目表，共 133 条节目</span><br><span class="line">2025-01-02 18:02:42,221 - INFO - 完成抓取频道 6 2024-12-30 的节目表，共 177 条节目</span><br><span class="line">2025-01-02 18:02:42,532 - INFO - 完成抓取频道 6 2024-12-31 的节目表，共 221 条节目</span><br><span class="line">2025-01-02 18:02:42,873 - INFO - 完成抓取频道 6 2025-01-01 的节目表，共 266 条节目</span><br><span class="line">2025-01-02 18:02:43,201 - INFO - 完成抓取频道 6 2025-01-02 的节目表，共 310 条节目</span><br><span class="line">2025-01-02 18:02:43,537 - INFO - 完成抓取频道 6 2025-01-03 的节目表，共 355 条节目</span><br><span class="line">2025-01-02 18:02:44,060 - INFO - 完成抓取频道 6 2025-01-04 的节目表，共 399 条节目</span><br><span class="line">2025-01-02 18:02:44,064 - INFO - 开始抓取频道 4 的节目表...</span><br><span class="line">2025-01-02 18:02:44,279 - INFO - 完成抓取频道 4 2024-12-27 的节目表，共 20 条节目</span><br><span class="line">2025-01-02 18:02:44,487 - INFO - 完成抓取频道 4 2024-12-28 的节目表，共 40 条节目</span><br><span class="line">2025-01-02 18:02:44,694 - INFO - 完成抓取频道 4 2024-12-29 的节目表，共 62 条节目</span><br><span class="line">2025-01-02 18:02:44,915 - INFO - 完成抓取频道 4 2024-12-30 的节目表，共 84 条节目</span><br><span class="line">2025-01-02 18:02:45,122 - INFO - 完成抓取频道 4 2024-12-31 的节目表，共 104 条节目</span><br><span class="line">2025-01-02 18:02:45,580 - INFO - 完成抓取频道 4 2025-01-01 的节目表，共 122 条节目</span><br><span class="line">2025-01-02 18:02:45,796 - INFO - 完成抓取频道 4 2025-01-02 的节目表，共 137 条节目</span><br><span class="line">2025-01-02 18:02:45,983 - INFO - 完成抓取频道 4 2025-01-03 的节目表，共 151 条节目</span><br><span class="line">2025-01-02 18:02:46,180 - INFO - 完成抓取频道 4 2025-01-04 的节目表，共 166 条节目</span><br><span class="line">2025-01-02 18:02:46,183 - INFO - 开始抓取频道 3 的节目表...</span><br><span class="line">2025-01-02 18:02:46,442 - INFO - 完成抓取频道 3 2024-12-27 的节目表，共 24 条节目</span><br><span class="line">2025-01-02 18:02:46,742 - INFO - 完成抓取频道 3 2024-12-28 的节目表，共 56 条节目</span><br><span class="line">2025-01-02 18:02:47,028 - INFO - 完成抓取频道 3 2024-12-29 的节目表，共 86 条节目</span><br><span class="line">2025-01-02 18:02:47,346 - INFO - 完成抓取频道 3 2024-12-30 的节目表，共 118 条节目</span><br><span class="line">2025-01-02 18:02:47,665 - INFO - 完成抓取频道 3 2024-12-31 的节目表，共 152 条节目</span><br><span class="line">2025-01-02 18:02:47,990 - INFO - 完成抓取频道 3 2025-01-01 的节目表，共 181 条节目</span><br><span class="line">2025-01-02 18:02:48,302 - INFO - 完成抓取频道 3 2025-01-02 的节目表，共 212 条节目</span><br><span class="line">2025-01-02 18:02:48,540 - INFO - 完成抓取频道 3 2025-01-03 的节目表，共 236 条节目</span><br><span class="line">2025-01-02 18:02:48,781 - INFO - 完成抓取频道 3 2025-01-04 的节目表，共 269 条节目</span><br><span class="line">2025-01-02 18:02:48,785 - INFO - 开始抓取频道 14 的节目表...</span><br><span class="line">2025-01-02 18:02:48,940 - INFO - 完成抓取频道 14 2024-12-27 的节目表，共 18 条节目</span><br><span class="line">2025-01-02 18:02:49,153 - INFO - 完成抓取频道 14 2024-12-28 的节目表，共 41 条节目</span><br><span class="line">2025-01-02 18:02:49,379 - INFO - 完成抓取频道 14 2024-12-29 的节目表，共 66 条节目</span><br><span class="line">2025-01-02 18:02:49,566 - INFO - 完成抓取频道 14 2024-12-30 的节目表，共 84 条节目</span><br><span class="line">2025-01-02 18:02:49,744 - INFO - 完成抓取频道 14 2024-12-31 的节目表，共 101 条节目</span><br><span class="line">2025-01-02 18:02:49,931 - INFO - 完成抓取频道 14 2025-01-01 的节目表，共 119 条节目</span><br><span class="line">2025-01-02 18:02:50,117 - INFO - 完成抓取频道 14 2025-01-02 的节目表，共 136 条节目</span><br><span class="line">2025-01-02 18:02:50,326 - INFO - 完成抓取频道 14 2025-01-03 的节目表，共 154 条节目</span><br><span class="line">2025-01-02 18:02:50,546 - INFO - 完成抓取频道 14 2025-01-04 的节目表，共 177 条节目</span><br><span class="line">2025-01-02 18:02:50,550 - INFO - 开始抓取频道 8 的节目表...</span><br><span class="line">2025-01-02 18:02:50,736 - INFO - 完成抓取频道 8 2024-12-27 的节目表，共 18 条节目</span><br><span class="line">2025-01-02 18:02:50,936 - INFO - 完成抓取频道 8 2024-12-28 的节目表，共 38 条节目</span><br><span class="line">2025-01-02 18:02:51,162 - INFO - 完成抓取频道 8 2024-12-29 的节目表，共 60 条节目</span><br><span class="line">2025-01-02 18:02:51,470 - INFO - 完成抓取频道 8 2024-12-30 的节目表，共 79 条节目</span><br><span class="line">2025-01-02 18:02:51,697 - INFO - 完成抓取频道 8 2024-12-31 的节目表，共 98 条节目</span><br><span class="line">2025-01-02 18:02:51,900 - INFO - 完成抓取频道 8 2025-01-01 的节目表，共 117 条节目</span><br><span class="line">2025-01-02 18:02:52,087 - INFO - 完成抓取频道 8 2025-01-02 的节目表，共 136 条节目</span><br><span class="line">2025-01-02 18:02:52,293 - INFO - 完成抓取频道 8 2025-01-03 的节目表，共 156 条节目</span><br><span class="line">2025-01-02 18:02:52,397 - INFO - 完成抓取频道 8 2025-01-04 的节目表，共 156 条节目</span><br><span class="line">2025-01-02 18:02:52,401 - INFO - 开始抓取频道 13 的节目表...</span><br><span class="line">2025-01-02 18:02:52,679 - INFO - 完成抓取频道 13 2024-12-27 的节目表，共 34 条节目</span><br><span class="line">2025-01-02 18:02:52,966 - INFO - 完成抓取频道 13 2024-12-28 的节目表，共 70 条节目</span><br><span class="line">2025-01-02 18:02:53,260 - INFO - 完成抓取频道 13 2024-12-29 的节目表，共 105 条节目</span><br><span class="line">2025-01-02 18:02:53,368 - INFO - 完成抓取频道 13 2024-12-30 的节目表，共 105 条节目</span><br><span class="line">2025-01-02 18:02:53,482 - INFO - 完成抓取频道 13 2024-12-31 的节目表，共 105 条节目</span><br><span class="line">2025-01-02 18:02:53,592 - INFO - 完成抓取频道 13 2025-01-01 的节目表，共 105 条节目</span><br><span class="line">2025-01-02 18:02:53,707 - INFO - 完成抓取频道 13 2025-01-02 的节目表，共 105 条节目</span><br><span class="line">2025-01-02 18:02:53,821 - INFO - 完成抓取频道 13 2025-01-03 的节目表，共 105 条节目</span><br><span class="line">2025-01-02 18:02:53,923 - INFO - 完成抓取频道 13 2025-01-04 的节目表，共 105 条节目</span><br><span class="line">2025-01-02 18:02:53,927 - INFO - 开始抓取频道 17 的节目表...</span><br><span class="line">2025-01-02 18:02:54,080 - INFO - 完成抓取频道 17 2024-12-27 的节目表，共 10 条节目</span><br><span class="line">2025-01-02 18:02:54,230 - INFO - 完成抓取频道 17 2024-12-28 的节目表，共 19 条节目</span><br><span class="line">2025-01-02 18:02:54,385 - INFO - 完成抓取频道 17 2024-12-29 的节目表，共 28 条节目</span><br><span class="line">2025-01-02 18:02:54,549 - INFO - 完成抓取频道 17 2024-12-30 的节目表，共 39 条节目</span><br><span class="line">2025-01-02 18:02:54,712 - INFO - 完成抓取频道 17 2024-12-31 的节目表，共 50 条节目</span><br><span class="line">2025-01-02 18:02:54,881 - INFO - 完成抓取频道 17 2025-01-01 的节目表，共 61 条节目</span><br><span class="line">2025-01-02 18:02:55,054 - INFO - 完成抓取频道 17 2025-01-02 的节目表，共 72 条节目</span><br><span class="line">2025-01-02 18:02:55,216 - INFO - 完成抓取频道 17 2025-01-03 的节目表，共 82 条节目</span><br><span class="line">2025-01-02 18:02:55,653 - INFO - 完成抓取频道 17 2025-01-04 的节目表，共 90 条节目</span><br><span class="line">2025-01-02 18:02:55,657 - INFO - 开始抓取频道 16 的节目表...</span><br><span class="line">2025-01-02 18:02:55,832 - INFO - 完成抓取频道 16 2024-12-27 的节目表，共 19 条节目</span><br><span class="line">2025-01-02 18:02:56,003 - INFO - 完成抓取频道 16 2024-12-28 的节目表，共 39 条节目</span><br><span class="line">2025-01-02 18:02:56,222 - INFO - 完成抓取频道 16 2024-12-29 的节目表，共 60 条节目</span><br><span class="line">2025-01-02 18:02:56,411 - INFO - 完成抓取频道 16 2024-12-30 的节目表，共 79 条节目</span><br><span class="line">2025-01-02 18:02:56,721 - INFO - 完成抓取频道 16 2024-12-31 的节目表，共 97 条节目</span><br><span class="line">2025-01-02 18:02:56,931 - INFO - 完成抓取频道 16 2025-01-01 的节目表，共 113 条节目</span><br><span class="line">2025-01-02 18:02:57,164 - INFO - 完成抓取频道 16 2025-01-02 的节目表，共 129 条节目</span><br><span class="line">2025-01-02 18:02:57,337 - INFO - 完成抓取频道 16 2025-01-03 的节目表，共 144 条节目</span><br><span class="line">2025-01-02 18:02:57,503 - INFO - 完成抓取频道 16 2025-01-04 的节目表，共 157 条节目</span><br><span class="line">2025-01-02 18:02:57,506 - INFO - 开始抓取频道 18 的节目表...</span><br><span class="line">2025-01-02 18:02:57,657 - INFO - 完成抓取频道 18 2024-12-27 的节目表，共 9 条节目</span><br><span class="line">2025-01-02 18:02:57,809 - INFO - 完成抓取频道 18 2024-12-28 的节目表，共 17 条节目</span><br><span class="line">2025-01-02 18:02:57,944 - INFO - 完成抓取频道 18 2024-12-29 的节目表，共 25 条节目</span><br><span class="line">2025-01-02 18:02:58,106 - INFO - 完成抓取频道 18 2024-12-30 的节目表，共 36 条节目</span><br><span class="line">2025-01-02 18:02:58,258 - INFO - 完成抓取频道 18 2024-12-31 的节目表，共 46 条节目</span><br><span class="line">2025-01-02 18:02:58,409 - INFO - 完成抓取频道 18 2025-01-01 的节目表，共 56 条节目</span><br><span class="line">2025-01-02 18:02:58,559 - INFO - 完成抓取频道 18 2025-01-02 的节目表，共 66 条节目</span><br><span class="line">2025-01-02 18:02:58,709 - INFO - 完成抓取频道 18 2025-01-03 的节目表，共 76 条节目</span><br><span class="line">2025-01-02 18:02:58,858 - INFO - 完成抓取频道 18 2025-01-04 的节目表，共 84 条节目</span><br><span class="line">2025-01-02 18:02:58,861 - INFO - 开始抓取频道 7 的节目表...</span><br><span class="line">2025-01-02 18:02:59,074 - INFO - 完成抓取频道 7 2024-12-27 的节目表，共 21 条节目</span><br><span class="line">2025-01-02 18:02:59,295 - INFO - 完成抓取频道 7 2024-12-28 的节目表，共 42 条节目</span><br><span class="line">2025-01-02 18:02:59,487 - INFO - 完成抓取频道 7 2024-12-29 的节目表，共 60 条节目</span><br><span class="line">2025-01-02 18:02:59,711 - INFO - 完成抓取频道 7 2024-12-30 的节目表，共 82 条节目</span><br><span class="line">2025-01-02 18:02:59,927 - INFO - 完成抓取频道 7 2024-12-31 的节目表，共 105 条节目</span><br><span class="line">2025-01-02 18:03:00,098 - INFO - 完成抓取频道 7 2025-01-01 的节目表，共 125 条节目</span><br><span class="line">2025-01-02 18:03:00,264 - INFO - 完成抓取频道 7 2025-01-02 的节目表，共 143 条节目</span><br><span class="line">2025-01-02 18:03:00,345 - INFO - 完成抓取频道 7 2025-01-03 的节目表，共 143 条节目</span><br><span class="line">2025-01-02 18:03:00,413 - INFO - 完成抓取频道 7 2025-01-04 的节目表，共 143 条节目</span><br><span class="line">2025-01-02 18:03:00,417 - INFO - 开始抓取频道 33 的节目表...</span><br><span class="line">2025-01-02 18:03:00,659 - INFO - 完成抓取频道 33 2024-12-27 的节目表，共 32 条节目</span><br><span class="line">2025-01-02 18:03:00,901 - INFO - 完成抓取频道 33 2024-12-28 的节目表，共 61 条节目</span><br><span class="line">2025-01-02 18:03:01,111 - INFO - 完成抓取频道 33 2024-12-29 的节目表，共 88 条节目</span><br><span class="line">2025-01-02 18:03:01,359 - INFO - 完成抓取频道 33 2024-12-30 的节目表，共 122 条节目</span><br><span class="line">2025-01-02 18:03:01,599 - INFO - 完成抓取频道 33 2024-12-31 的节目表，共 155 条节目</span><br><span class="line">2025-01-02 18:03:01,883 - INFO - 完成抓取频道 33 2025-01-01 的节目表，共 187 条节目</span><br><span class="line">2025-01-02 18:03:02,150 - INFO - 完成抓取频道 33 2025-01-02 的节目表，共 224 条节目</span><br><span class="line">2025-01-02 18:03:02,384 - INFO - 完成抓取频道 33 2025-01-03 的节目表，共 256 条节目</span><br><span class="line">2025-01-02 18:03:02,461 - INFO - 完成抓取频道 33 2025-01-04 的节目表，共 256 条节目</span><br><span class="line">2025-01-02 18:03:02,465 - INFO - 开始抓取频道 31 的节目表...</span><br><span class="line">2025-01-02 18:03:02,541 - INFO - 完成抓取频道 31 2024-12-27 的节目表，共 3 条节目</span><br><span class="line">2025-01-02 18:03:02,657 - INFO - 完成抓取频道 31 2024-12-28 的节目表，共 12 条节目</span><br><span class="line">2025-01-02 18:03:02,746 - INFO - 完成抓取频道 31 2024-12-29 的节目表，共 15 条节目</span><br><span class="line">2025-01-02 18:03:02,833 - INFO - 完成抓取频道 31 2024-12-30 的节目表，共 18 条节目</span><br><span class="line">2025-01-02 18:03:02,923 - INFO - 完成抓取频道 31 2024-12-31 的节目表，共 21 条节目</span><br><span class="line">2025-01-02 18:03:03,015 - INFO - 完成抓取频道 31 2025-01-01 的节目表，共 24 条节目</span><br><span class="line">2025-01-02 18:03:03,098 - INFO - 完成抓取频道 31 2025-01-02 的节目表，共 27 条节目</span><br><span class="line">2025-01-02 18:03:03,195 - INFO - 完成抓取频道 31 2025-01-03 的节目表，共 30 条节目</span><br><span class="line">2025-01-02 18:03:03,280 - INFO - 完成抓取频道 31 2025-01-04 的节目表，共 33 条节目</span><br><span class="line">2025-01-02 18:03:03,284 - INFO - 开始抓取频道 32 的节目表...</span><br><span class="line">2025-01-02 18:03:03,697 - INFO - 完成抓取频道 32 2024-12-27 的节目表，共 66 条节目</span><br><span class="line">2025-01-02 18:03:04,106 - INFO - 完成抓取频道 32 2024-12-28 的节目表，共 127 条节目</span><br><span class="line">2025-01-02 18:03:04,523 - INFO - 完成抓取频道 32 2024-12-29 的节目表，共 193 条节目</span><br><span class="line">2025-01-02 18:03:04,884 - INFO - 完成抓取频道 32 2024-12-30 的节目表，共 248 条节目</span><br><span class="line">2025-01-02 18:03:05,241 - INFO - 完成抓取频道 32 2024-12-31 的节目表，共 303 条节目</span><br><span class="line">2025-01-02 18:03:05,587 - INFO - 完成抓取频道 32 2025-01-01 的节目表，共 355 条节目</span><br><span class="line">2025-01-02 18:03:05,926 - INFO - 完成抓取频道 32 2025-01-02 的节目表，共 408 条节目</span><br><span class="line">2025-01-02 18:03:06,290 - INFO - 完成抓取频道 32 2025-01-03 的节目表，共 465 条节目</span><br><span class="line">2025-01-02 18:03:06,734 - INFO - 完成抓取频道 32 2025-01-04 的节目表，共 516 条节目</span><br><span class="line">2025-01-02 18:03:06,738 - INFO - 开始生成 XMLTV 文件...</span><br><span class="line">2025-01-02 18:03:09,085 - INFO - XMLTV 文件生成完成: /www/epg.xml</span><br><span class="line">2025-01-02 18:03:09,114 - INFO - 完成！EPG 文件已保存为 /www/epg.xml</span><br></pre></td></tr></table></figure>
+
+<h2 id="终端访问"><a href="#终端访问" class="headerlink" title="终端访问"></a>终端访问</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.1/epg.xml</span><br></pre></td></tr></table></figure>
+
+<p>重启直至日志提交完成，全程约需10分钟。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1145,135 +1254,6 @@
 <h2 id="配置挂载"><a href="#配置挂载" class="headerlink" title="配置挂载"></a>配置挂载</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">登录路由器管理界面 - 系统 - 挂载点 - 添加 - UUID、挂载点（作为外部overlay使用） - 保存应用</span><br></pre></td></tr></table></figure>
 
 <p>完成</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/How-to-determine-IP-is-BGP-route.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/How-to-determine-IP-is-BGP-route.html" class="post-title-link" itemprop="url">如何判断IP是否BGP路由</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-12-18 17:11:36" itemprop="dateCreated datePublished" datetime="2024-12-18T17:11:36+08:00">2024-12-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-12-27 16:36:59" itemprop="dateModified" datetime="2024-12-27T16:36:59+08:00">2024-12-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="ASN-和-BGP-的关系"><a href="#ASN-和-BGP-的关系" class="headerlink" title="ASN 和 BGP 的关系"></a><strong>ASN 和 BGP 的关系</strong></h3><ul>
-<li><strong>ASN（自治系统号）</strong>：是用于标识一个自治系统（AS）的唯一编号。一个 AS 是由一个或多个网络组成的，它们在技术和管理上由同一个实体控制。</li>
-<li><strong>BGP（边界网关协议）</strong>：是用来交换自治系统之间路由信息的协议。如果一个 ASN 和其他 ASN 之间存在对等关系（PEER），它通常是通过 BGP 来实现的。</li>
-</ul>
-<p>当一个 IP 地址与某个 ASN 关联时，这意味着这个 ASN 宣告了该 IP 地址的路由信息。如果该 ASN 与多个其他 ASN 存在对等互联关系（PEER 或 TRANSIT），就表明这个 IP 地址可能是 BGP 路由的一部分。</p>
-<hr>
-<h3 id="判断是否-BGP-路由"><a href="#判断是否-BGP-路由" class="headerlink" title="判断是否 BGP 路由"></a><strong>判断是否 BGP 路由</strong></h3><p>如果工具（如 HE.NET 的 BGP 查询工具）显示：</p>
-<ul>
-<li>该 IP 对应某个 ASN；</li>
-<li>该 ASN 和其他多个 ASN（如 B 和 C）有 PEER 或 TRANSIT 关系；</li>
-<li>这些对等关系是 BGP 特有的连接类型，</li>
-</ul>
-<p><strong>那么可以判断这个 IP 是通过 BGP 宣告的线路。</strong></p>
-<p>以下是关键术语的意义：</p>
-<ul>
-<li><strong>PEER（对等关系）</strong>：两个 ASN 之间互相交换路由信息，但通常只交换彼此的客户流量，而不会传递第三方流量。</li>
-<li><strong>TRANSIT（中继关系）</strong>：一个 ASN 向另一个 ASN 提供更广泛的互联网接入（包括其所有的下游路由）。</li>
-<li><strong>UPSTREAM（上游关系）</strong>：你的 ASN 通过其他 ASN 接入互联网。</li>
-</ul>
-<hr>
-<h3 id="判断依据"><a href="#判断依据" class="headerlink" title="判断依据"></a><strong>判断依据</strong></h3><p>假设在查询中，得到了以下信息：</p>
-<ul>
-<li>IP 地址属于 ASN 65001（运营商 A）。</li>
-<li>ASN 65001 和以下 ASN 存在 PEER 关系：<ul>
-<li>ASN 65002（运营商 B）</li>
-<li>ASN 65003（运营商 C）</li>
-</ul>
-</li>
-</ul>
-<h4 id="可以推断："><a href="#可以推断：" class="headerlink" title="可以推断："></a>可以推断：</h4><ol>
-<li>ASN 65001 宣告了该 IP 地址的路由信息。</li>
-<li>PEER 关系意味着 ASN 65001 和其他 ASN（如 65002、65003）通过 BGP 互通。</li>
-<li>因此，这个 IP 地址是通过 BGP 路由的线路。</li>
-</ol>
-<hr>
-<h3 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a><strong>补充说明</strong></h3><p>如果需要更精确的判断，可以进一步验证：</p>
-<ol>
-<li><strong>检查路由表或 Traceroute</strong>： 使用 Traceroute 查看数据包是否经过多个 ASN 的边界跳跃。例如，Traceroute 输出中会显示 ASN 的 IP 段变化，通常表示 BGP 路由在工作。</li>
-<li><strong>ASN 的大小和互联关系</strong>： 如果一个 ASN 具有多个 PEER 或 TRANSIT 关系，且它是全球或区域范围的大型运营商（如中国电信、联通、移动等），它很可能是通过 BGP 提供服务。</li>
-<li><strong>询问运营商</strong>： 联系运营商，确认他们是否提供 BGP 服务，以及是否支持多运营商互联。</li>
-</ol>
-<hr>
-<h3 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a><strong>特殊情况</strong></h3><p>如果一个 ASN 仅与一个上游 ASN 互联，并且没有其他对等关系，那么它可能只是一个单运营商的专有线路，不能算作典型的 BGP 多线。</p>
-<hr>
-<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a><strong>结论</strong></h3><p><strong>如果 IP 对应的 ASN 与多个其他 ASN 存在 PEER 或 TRANSIT 关系，可以判断该线路是 BGP 的线路。</strong></p>
 
       
     </div>
