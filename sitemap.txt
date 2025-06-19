@@ -1,3 +1,4 @@
+https://heiok.com/Intel-H6X-7X-chipset-key-signals.html
 https://heiok.com/Circuit-BasicsII.html
 https://heiok.com/OpenWRT-adds-external-storage-expansion.html
 https://heiok.com/Remotely-manage-openwrt-routers-via-cloudflare-tunnel.html
@@ -69,6 +70,11 @@ https://heiok.com/tags/AS/
 https://heiok.com/tags/OpenWRT/
 https://heiok.com/tags/Python/
 https://heiok.com/tags/pip/
+https://heiok.com/tags/Intel/
+https://heiok.com/tags/Desktop-Chipsets/
+https://heiok.com/tags/Intel-60-Series-Desktop-Chipsets/
+https://heiok.com/tags/LGA1155/
+https://heiok.com/tags/Mainboard/
 https://heiok.com/tags/OpenWRT-expansion/
 https://heiok.com/tags/Overlay/
 https://heiok.com/tags/Overlay-expansion/
