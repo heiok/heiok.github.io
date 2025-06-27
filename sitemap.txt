@@ -1,4 +1,5 @@
 https://heiok.com/Intel-H6X-7X-chipset-key-signals.html
+https://heiok.com/Desktop-computer-host-ATX-power.html
 https://heiok.com/Circuit-BasicsII.html
 https://heiok.com/OpenWRT-adds-external-storage-expansion.html
 https://heiok.com/Remotely-manage-openwrt-routers-via-cloudflare-tunnel.html
@@ -101,6 +102,10 @@ https://heiok.com/tags/iPhone-configuration-proxy/
 https://heiok.com/tags/mermaid/
 https://heiok.com/tags/sing-box/
 https://heiok.com/tags/GUIforSingBox/
+https://heiok.com/tags/ATX/
+https://heiok.com/tags/PS-ON/
+https://heiok.com/tags/5VSB/
+https://heiok.com/tags/Power-on-sequence/
 https://heiok.com/categories/Software/
 https://heiok.com/categories/Network/
 https://heiok.com/categories/Hardware/
