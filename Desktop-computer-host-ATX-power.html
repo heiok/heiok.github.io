@@ -30,7 +30,7 @@
 <meta property="og:description" content="ATX电源引脚定义   3.3V橙 3.3V橙 GND黑 5V红 GND黑 5V红 GND黑 PWR_OK灰 5VSB紫 12V黄 12V黄 3.3V橙    3.3V橙 -12V蓝 GND黑 PS_ON绿 GND黑 GND黑 GND黑 NC 5V红 5V红 5V红 GND黑   ATX电源辅助供电CPU ATX电源引脚靠近卡口端为供电，另一端为GND接地，GPU ATX电源与之相反，小心不能接错">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-27T07:43:42.000Z">
-<meta property="article:modified_time" content="2025-06-27T07:45:43.566Z">
+<meta property="article:modified_time" content="2025-06-27T07:53:53.519Z">
 <meta property="article:author" content="heiok.com">
 <meta property="article:tag" content="ATX">
 <meta property="article:tag" content="PS_ON">
@@ -200,7 +200,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-06-27 15:43:42 / 修改时间：15:45:43" itemprop="dateCreated datePublished" datetime="2025-06-27T15:43:42+08:00">2025-06-27</time>
+      <time title="创建时间：2025-06-27 15:43:42 / 修改时间：15:53:53" itemprop="dateCreated datePublished" datetime="2025-06-27T15:43:42+08:00">2025-06-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -257,7 +257,7 @@
 <h2 id="ATX电源工作原理"><a href="#ATX电源工作原理" class="headerlink" title="ATX电源工作原理"></a>ATX电源工作原理</h2><p>当 ATX 电源接入 220V 市电，ATX 电源第 9 引脚紫色输出 5VSB（待机&#x2F;待命）电压给主板触发电路提供工作条件。此时绿线 PS‐ON（电源开启）信号为高电平。当按下触发开关，触发电路会将绿线 PS‐ON 信号拉为低电平，电源开始全面启动，输出3.3V、5V、12V、‐12V、‐5V 的电压，给主板的设备和芯片提供供电。当电源侦测到输出电压无过压、过流、欠压等现象，ATX 电源第 8 引脚灰色延时 50‐500ms 输出 PG 信号，电源开始正常工作。</p>
 <h2 id="ATX电源两个版本"><a href="#ATX电源两个版本" class="headerlink" title="ATX电源两个版本"></a>ATX电源两个版本</h2><p>ATX电源主要有两个版本，ATX1.01版与ATX2.01版。2.01版与1.01版的ATX电源除散热风扇的位置不一样外，它们的激活电流也不同。1.01版只有100mA，2.01版则有500mA～720mA。这意味着2.01版的ATX电源不会像1.01版那样“过敏”，1.01版经常会受外界电压波动的影响而自行启动计算机。</p>
 <h2 id="ATX电源市电输入"><a href="#ATX电源市电输入" class="headerlink" title="ATX电源市电输入"></a>ATX电源市电输入</h2><p>必须使用有良好接地装置的220V市电插座，变化范围应该在10%之内。如果市电的变化范围太大时，我们最好使用100-260V之间宽范围的开关电源，或者使用在线式的UPS电源。</p>
-<h2 id="ATX电源对地阻值"><a href="#ATX电源对地阻值" class="headerlink" title="ATX电源对地阻值"></a>ATX电源对地阻值</h2><p>对地阻值 正式名称 应为<strong>对地压降（Voltage Drop to Ground）</strong>，单位是 **伏特 (V)**，而不是阻值（欧姆）。</p>
+<h2 id="ATX电源对地阻值"><a href="#ATX电源对地阻值" class="headerlink" title="ATX电源对地阻值"></a>ATX电源对地阻值</h2><p>对地阻值 正式名称 应为<strong>对地压降（Voltage Drop to Ground）</strong>，单位是 伏特 (V)，而不是阻值（欧姆）。</p>
 <table>
 <thead>
 <tr>
