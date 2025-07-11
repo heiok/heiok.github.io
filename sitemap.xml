@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://heiok.com/Intel-H8X-9X-chipset-key-signals.html</loc>
+    
+    <lastmod>2025-07-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://heiok.com/404.html</loc>
     
     <lastmod>2025-07-11</lastmod>
@@ -822,6 +831,13 @@
   
   <url>
     <loc>https://heiok.com/tags/Power-on-sequence/</loc>
+    <lastmod>2025-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://heiok.com/tags/LGA1150/</loc>
     <lastmod>2025-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
