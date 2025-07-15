@@ -1,3 +1,4 @@
+https://heiok.com/Intel-600s-700s-chipset-key-signals.html
 https://heiok.com/Intel-500s-chipset-key-signals.html
 https://heiok.com/Intel-400s-chipset-key-signals.html
 https://heiok.com/Intel-H6X-7X-chipset-key-signals.html
@@ -82,6 +83,7 @@ https://heiok.com/tags/LGA1151/
 https://heiok.com/tags/Power-on-sequence/
 https://heiok.com/tags/Mainboard/
 https://heiok.com/tags/LGA1200/
+https://heiok.com/tags/LGA1700/
 https://heiok.com/tags/Intel/
 https://heiok.com/tags/Desktop-Chipsets/
 https://heiok.com/tags/Intel-60-Series-Desktop-Chipsets/
