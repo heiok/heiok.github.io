@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-count">81</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -152,6 +152,359 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/How-to-determine-IP-is-BGP-route.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/How-to-determine-IP-is-BGP-route.html" class="post-title-link" itemprop="url">如何判断IP是否BGP路由</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-18 17:11:36" itemprop="dateCreated datePublished" datetime="2024-12-18T17:11:36+08:00">2024-12-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-27 16:36:59" itemprop="dateModified" datetime="2024-12-27T16:36:59+08:00">2024-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="ASN-和-BGP-的关系"><a href="#ASN-和-BGP-的关系" class="headerlink" title="ASN 和 BGP 的关系"></a><strong>ASN 和 BGP 的关系</strong></h3><ul>
+<li><strong>ASN（自治系统号）</strong>：是用于标识一个自治系统（AS）的唯一编号。一个 AS 是由一个或多个网络组成的，它们在技术和管理上由同一个实体控制。</li>
+<li><strong>BGP（边界网关协议）</strong>：是用来交换自治系统之间路由信息的协议。如果一个 ASN 和其他 ASN 之间存在对等关系（PEER），它通常是通过 BGP 来实现的。</li>
+</ul>
+<p>当一个 IP 地址与某个 ASN 关联时，这意味着这个 ASN 宣告了该 IP 地址的路由信息。如果该 ASN 与多个其他 ASN 存在对等互联关系（PEER 或 TRANSIT），就表明这个 IP 地址可能是 BGP 路由的一部分。</p>
+<hr>
+<h3 id="判断是否-BGP-路由"><a href="#判断是否-BGP-路由" class="headerlink" title="判断是否 BGP 路由"></a><strong>判断是否 BGP 路由</strong></h3><p>如果工具（如 HE.NET 的 BGP 查询工具）显示：</p>
+<ul>
+<li>该 IP 对应某个 ASN；</li>
+<li>该 ASN 和其他多个 ASN（如 B 和 C）有 PEER 或 TRANSIT 关系；</li>
+<li>这些对等关系是 BGP 特有的连接类型，</li>
+</ul>
+<p><strong>那么可以判断这个 IP 是通过 BGP 宣告的线路。</strong></p>
+<p>以下是关键术语的意义：</p>
+<ul>
+<li><strong>PEER（对等关系）</strong>：两个 ASN 之间互相交换路由信息，但通常只交换彼此的客户流量，而不会传递第三方流量。</li>
+<li><strong>TRANSIT（中继关系）</strong>：一个 ASN 向另一个 ASN 提供更广泛的互联网接入（包括其所有的下游路由）。</li>
+<li><strong>UPSTREAM（上游关系）</strong>：你的 ASN 通过其他 ASN 接入互联网。</li>
+</ul>
+<hr>
+<h3 id="判断依据"><a href="#判断依据" class="headerlink" title="判断依据"></a><strong>判断依据</strong></h3><p>假设在查询中，得到了以下信息：</p>
+<ul>
+<li>IP 地址属于 ASN 65001（运营商 A）。</li>
+<li>ASN 65001 和以下 ASN 存在 PEER 关系：<ul>
+<li>ASN 65002（运营商 B）</li>
+<li>ASN 65003（运营商 C）</li>
+</ul>
+</li>
+</ul>
+<h4 id="可以推断："><a href="#可以推断：" class="headerlink" title="可以推断："></a>可以推断：</h4><ol>
+<li>ASN 65001 宣告了该 IP 地址的路由信息。</li>
+<li>PEER 关系意味着 ASN 65001 和其他 ASN（如 65002、65003）通过 BGP 互通。</li>
+<li>因此，这个 IP 地址是通过 BGP 路由的线路。</li>
+</ol>
+<hr>
+<h3 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a><strong>补充说明</strong></h3><p>如果需要更精确的判断，可以进一步验证：</p>
+<ol>
+<li><strong>检查路由表或 Traceroute</strong>： 使用 Traceroute 查看数据包是否经过多个 ASN 的边界跳跃。例如，Traceroute 输出中会显示 ASN 的 IP 段变化，通常表示 BGP 路由在工作。</li>
+<li><strong>ASN 的大小和互联关系</strong>： 如果一个 ASN 具有多个 PEER 或 TRANSIT 关系，且它是全球或区域范围的大型运营商（如中国电信、联通、移动等），它很可能是通过 BGP 提供服务。</li>
+<li><strong>询问运营商</strong>： 联系运营商，确认他们是否提供 BGP 服务，以及是否支持多运营商互联。</li>
+</ol>
+<hr>
+<h3 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a><strong>特殊情况</strong></h3><p>如果一个 ASN 仅与一个上游 ASN 互联，并且没有其他对等关系，那么它可能只是一个单运营商的专有线路，不能算作典型的 BGP 多线。</p>
+<hr>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a><strong>结论</strong></h3><p><strong>如果 IP 对应的 ASN 与多个其他 ASN 存在 PEER 或 TRANSIT 关系，可以判断该线路是 BGP 的线路。</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Get-Guangzhou-Telecom-IPTV-channels.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Get-Guangzhou-Telecom-IPTV-channels.html" class="post-title-link" itemprop="url">获取广州电信IPTV频道</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-18 11:20:30" itemprop="dateCreated datePublished" datetime="2024-12-18T11:20:30+08:00">2024-12-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-27 16:36:59" itemprop="dateModified" datetime="2024-12-27T16:36:59+08:00">2024-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/IPTV/" itemprop="url" rel="index"><span itemprop="name">IPTV</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="收视设备信息"><a href="#收视设备信息" class="headerlink" title="收视设备信息"></a>收视设备信息</h2><ul>
+<li>光猫型号: ZN-GE100  </li>
+<li>盒子型号: HG680-KA</li>
+<li>连接方式: LAN or iTV</li>
+<li>单播组播：单播</li>
+<li>认证时效: 一个月</li>
+</ul>
+<h2 id="获取全部频道"><a href="#获取全部频道" class="headerlink" title="获取全部频道"></a>获取全部频道</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line"># 1. 身份验证信息</span><br><span class="line">auth_data = &#123;</span><br><span class="line">    &quot;UserID&quot;: &quot;0209170330290&quot;,</span><br><span class="line">    &quot;Lang&quot;: &quot;&quot;,</span><br><span class="line">    &quot;SupportHD&quot;: &quot;1&quot;,</span><br><span class="line">    &quot;NetUserID&quot;: &quot;0209170330290@iptv.gd&quot;,</span><br><span class="line">    &quot;DHCPUserID&quot;: &quot;0209170330290@iptv.gd&quot;,</span><br><span class="line">    &quot;Authenticator&quot;: &quot;7D21702B6FA45DC20A4352BD1OOF9B694FBEFAAADD34B25FC818723AE666F7D0E6EE9B75AE7692A063041A58AC50DE673F03E178A576C195890F73D4F3C39A302FD7184CBDC91C0A0CE2AD077DA48E7A48BEC5F0BE97A15CDCAB45FF8725983F1F746501AF777AE74CB87D905E7E9E910C1A1E12FB1316689E5DD49D871EF76F&quot;,</span><br><span class="line">    &quot;STBType&quot;: &quot;FIBERHOME_HG680KA&quot;,</span><br><span class="line">    &quot;STBVersion&quot;: &quot;1.150150.13.2022v1&quot;,</span><br><span class="line">    &quot;conntype&quot;: &quot;2&quot;,</span><br><span class="line">    &quot;STBID&quot;: &quot;001005990016208092E98820115D2042&quot;,</span><br><span class="line">    &quot;templateName&quot;: &quot;iptvsnmv3&quot;,</span><br><span class="line">    &quot;areaId&quot;: &quot;86020&quot;,</span><br><span class="line">    &quot;userToken&quot;: &quot;32F1583A459D7E48A6310D54FBC1CCCA&quot;,</span><br><span class="line">    &quot;userGroupId&quot;: &quot;&quot;,</span><br><span class="line">    &quot;productPackageId&quot;: &quot;&quot;,</span><br><span class="line">    &quot;mac&quot;: &quot;58:19:2D:24:28:02&quot;,</span><br><span class="line">    &quot;UserField&quot;: &quot;&quot;,</span><br><span class="line">    &quot;SoftwareVersion&quot;: &quot;1.150150.13.2022v1&quot;,</span><br><span class="line">    &quot;IsSmartStb&quot;: &quot;1&quot;,</span><br><span class="line">    &quot;desktopId&quot;: &quot;&quot;,</span><br><span class="line">    &quot;stbmaker&quot;: &quot;&quot;,</span><br><span class="line">    &quot;VIP&quot;: &quot;&quot;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 2. 用于身份验证的URL</span><br><span class="line">auth_url = &quot;http://183.59.156.43:8082/EPG/jsp/ValidAuthenticationHWCTC.jsp&quot;</span><br><span class="line">channel_list_url = &quot;http://183.59.156.43:8082/EPG/jsp/getchannellistHWCTC.jsp&quot;</span><br><span class="line"></span><br><span class="line"># 3. 创建会话</span><br><span class="line">session = requests.Session()</span><br><span class="line"></span><br><span class="line"># 4. 发起身份验证请求，获取Cookie</span><br><span class="line">response = session.post(auth_url, data=auth_data)</span><br><span class="line">if response.status_code == 200:</span><br><span class="line">    print(&quot;身份验证成功&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;身份验证失败&quot;)</span><br><span class="line">    exit(1)</span><br><span class="line"></span><br><span class="line"># 5. 获取频道列表页面</span><br><span class="line">response = session.get(channel_list_url)</span><br><span class="line">if response.status_code == 200:</span><br><span class="line">    print(&quot;成功获取频道列表页面&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;获取频道列表页面失败&quot;)</span><br><span class="line">    exit(1)</span><br><span class="line"></span><br><span class="line"># 6. 解析HTML并提取频道信息</span><br><span class="line">html_content = response.text</span><br><span class="line">soup = BeautifulSoup(html_content, &quot;html.parser&quot;)</span><br><span class="line">scripts = soup.find_all(&quot;script&quot;)</span><br><span class="line"></span><br><span class="line"># 查找所有包含频道信息的脚本</span><br><span class="line">m3u8_channels = &quot;&quot;</span><br><span class="line">regex = re.compile(r&#x27;,?(.+?)=&quot;(.*?)&quot;&#x27;)</span><br><span class="line"></span><br><span class="line">for script in scripts:</span><br><span class="line">    if &quot;CTCSetConfig&quot; in script.string:</span><br><span class="line">        matches = regex.finditer(script.string)</span><br><span class="line">        info = &#123;&#125;</span><br><span class="line">        for match in matches:</span><br><span class="line">            key, value = match.groups()</span><br><span class="line">            if key == &quot;ChannelName&quot;:</span><br><span class="line">                m3u8_channels += f&#x27;#EXTINF:-1 tvg-name=&quot;&#123;value&#125;&quot;,&#123;value&#125;\n&#x27;</span><br><span class="line">            if key == &quot;ChannelSDP&quot;:</span><br><span class="line">                m3u8_channels += f&quot;&#123;value&#125;\n&quot;</span><br><span class="line"></span><br><span class="line"># 7. 保存m3u8文件</span><br><span class="line">with open(&quot;IPTV.m3u8&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;) as m3u8_file:</span><br><span class="line">    m3u8_file.write(m3u8_channels)</span><br><span class="line"></span><br><span class="line">print(&quot;IPTV.m3u8 文件已生成&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="导出珠江频道"><a href="#导出珠江频道" class="headerlink" title="导出珠江频道"></a>导出珠江频道</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line"># 1. 身份验证信息</span><br><span class="line">auth_data = &#123;</span><br><span class="line">    &quot;UserID&quot;: &quot;0209170330290&quot;,</span><br><span class="line">    &quot;Lang&quot;: &quot;&quot;,</span><br><span class="line">    &quot;SupportHD&quot;: &quot;1&quot;,</span><br><span class="line">    &quot;NetUserID&quot;: &quot;0209170330290@iptv.gd&quot;,</span><br><span class="line">    &quot;DHCPUserID&quot;: &quot;0209170330290@iptv.gd&quot;,</span><br><span class="line">    &quot;Authenticator&quot;: &quot;7D21702B6FA45DC20A4352BD1OOF9B694FBEFAAADD34B25FC818723AE666F7D0E6EE9B75AE7692A063041A58AC50DE673F03E178A576C195890F73D4F3C39A302FD7184CBDC91C0A0CE2AD077DA48E7A48BEC5F0BE97A15CDCAB45FF8725983F1F746501AF777AE74CB87D905E7E9E910C1A1E12FB1316689E5DD49D871EF76F&quot;,</span><br><span class="line">    &quot;STBType&quot;: &quot;FIBERHOME_HG680KA&quot;,</span><br><span class="line">    &quot;STBVersion&quot;: &quot;1.150150.13.2022v1&quot;,</span><br><span class="line">    &quot;conntype&quot;: &quot;2&quot;,</span><br><span class="line">    &quot;STBID&quot;: &quot;001005990016208092E98820115D2042&quot;,</span><br><span class="line">    &quot;templateName&quot;: &quot;iptvsnmv3&quot;,</span><br><span class="line">    &quot;areaId&quot;: &quot;86020&quot;,</span><br><span class="line">    &quot;userToken&quot;: &quot;32F1583A459D7E48A6310D54FBC1CCCA&quot;,</span><br><span class="line">    &quot;userGroupId&quot;: &quot;&quot;,</span><br><span class="line">    &quot;productPackageId&quot;: &quot;&quot;,</span><br><span class="line">    &quot;mac&quot;: &quot;58:19:2D:24:28:02&quot;,</span><br><span class="line">    &quot;UserField&quot;: &quot;&quot;,</span><br><span class="line">    &quot;SoftwareVersion&quot;: &quot;1.150150.13.2022v1&quot;,</span><br><span class="line">    &quot;IsSmartStb&quot;: &quot;1&quot;,</span><br><span class="line">    &quot;desktopId&quot;: &quot;&quot;,</span><br><span class="line">    &quot;stbmaker&quot;: &quot;&quot;,</span><br><span class="line">    &quot;VIP&quot;: &quot;&quot;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 2. 用于身份验证的URL</span><br><span class="line">auth_url = &quot;http://183.59.156.43:8082/EPG/jsp/ValidAuthenticationHWCTC.jsp&quot;</span><br><span class="line">channel_list_url = &quot;http://183.59.156.43:8082/EPG/jsp/getchannellistHWCTC.jsp&quot;</span><br><span class="line"></span><br><span class="line"># 3. 创建会话</span><br><span class="line">session = requests.Session()</span><br><span class="line"></span><br><span class="line"># 4. 发起身份验证请求，获取Cookie</span><br><span class="line">response = session.post(auth_url, data=auth_data)</span><br><span class="line">if response.status_code == 200:</span><br><span class="line">    print(&quot;身份验证成功&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;身份验证失败&quot;)</span><br><span class="line">    exit(1)</span><br><span class="line"></span><br><span class="line"># 5. 获取频道列表页面</span><br><span class="line">response = session.get(channel_list_url)</span><br><span class="line">if response.status_code == 200:</span><br><span class="line">    print(&quot;成功获取频道列表页面&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;获取频道列表页面失败&quot;)</span><br><span class="line">    exit(1)</span><br><span class="line"></span><br><span class="line"># 6. 解析HTML并提取频道信息</span><br><span class="line">html_content = response.text</span><br><span class="line">soup = BeautifulSoup(html_content, &quot;html.parser&quot;)</span><br><span class="line">scripts = soup.find_all(&quot;script&quot;)</span><br><span class="line"></span><br><span class="line"># 查找所有包含频道信息的脚本</span><br><span class="line">m3u8_channels = &quot;&quot;</span><br><span class="line">regex = re.compile(r&#x27;,?(.+?)=&quot;(.*?)&quot;&#x27;)</span><br><span class="line">zhujiang_channel = &quot;&quot;</span><br><span class="line"></span><br><span class="line">for script in scripts:</span><br><span class="line">    if &quot;CTCSetConfig&quot; in script.string:</span><br><span class="line">        matches = regex.finditer(script.string)</span><br><span class="line">        info = &#123;&#125;</span><br><span class="line">        channel_name = &quot;&quot;</span><br><span class="line">        channel_sdp = &quot;&quot;</span><br><span class="line">        for match in matches:</span><br><span class="line">            key, value = match.groups()</span><br><span class="line">            if key == &quot;ChannelName&quot;:</span><br><span class="line">                channel_name = value</span><br><span class="line">            if key == &quot;ChannelSDP&quot;:</span><br><span class="line">                channel_sdp = value</span><br><span class="line"></span><br><span class="line">        if channel_name:</span><br><span class="line">            m3u8_channels += f&#x27;#EXTINF:-1 tvg-name=&quot;&#123;channel_name&#125;&quot;,&#123;channel_name&#125;\n&#x27;</span><br><span class="line">            m3u8_channels += f&quot;&#123;channel_sdp&#125;\n&quot;</span><br><span class="line"></span><br><span class="line">            # 筛选出“广东珠江”频道</span><br><span class="line">            if channel_name == &quot;广东珠江&quot;:</span><br><span class="line">                zhujiang_channel = f&#x27;#EXTINF:-1 tvg-name=&quot;&#123;channel_name&#125;&quot;,&#123;channel_name&#125;\n&#123;channel_sdp&#125;\n&#x27;</span><br><span class="line"></span><br><span class="line"># 7. 保存 IPTV.m3u8 文件</span><br><span class="line">with open(&quot;IPTV.m3u8&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;) as m3u8_file:</span><br><span class="line">    m3u8_file.write(m3u8_channels)</span><br><span class="line">print(&quot;IPTV.m3u8 文件已生成&quot;)</span><br><span class="line"></span><br><span class="line"># 8. 保存 zhujiang.m3u8 文件</span><br><span class="line">if zhujiang_channel:</span><br><span class="line">    with open(&quot;zhujiang.m3u8&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;) as zhujiang_file:</span><br><span class="line">        zhujiang_file.write(zhujiang_channel)</span><br><span class="line">    print(&quot;zhujiang.m3u8 文件已生成&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;未找到“广东珠江”频道信息&quot;)</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Circuit-Basics.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Circuit-Basics.html" class="post-title-link" itemprop="url">电路基础知识</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-17 18:03:23" itemprop="dateCreated datePublished" datetime="2024-12-17T18:03:23+08:00">2024-12-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-27 16:36:59" itemprop="dateModified" datetime="2024-12-27T16:36:59+08:00">2024-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="电压"><a href="#电压" class="headerlink" title="电压"></a>电压</h2><ul>
+<li>设备电压工作原则：给多少用多少。</li>
+</ul>
+<h2 id="电流"><a href="#电流" class="headerlink" title="电流"></a>电流</h2><ul>
+<li>设备电压工作原则：用多少拿多少。</li>
+</ul>
+<h2 id="电平"><a href="#电平" class="headerlink" title="电平"></a>电平</h2><ul>
+<li><p>指两功率或电压之比的对数，有时也可用来表示两电流之比的对数。常用的电平有功率电平和电压电平两类，它们各自又可分为绝对电平和相对电平两种。</p>
+</li>
+<li><p>电平主要用于驱动信号传输，它的电流非常小，我们把高于0.7V的叫高电平，低于0.7V的叫低电平。</p>
+</li>
+<li><p>标准低平为:0V。标准高电平为:3.3V或1.8V</p>
+</li>
+</ul>
+<h2 id="电阻"><a href="#电阻" class="headerlink" title="电阻"></a>电阻</h2><h3 id="串联"><a href="#串联" class="headerlink" title="串联"></a>串联</h3><ul>
+<li>通过同一电流；</li>
+<li>接地形成分压；</li>
+<li>串联阻值变大。</li>
+</ul>
+<h3 id="并联"><a href="#并联" class="headerlink" title="并联"></a>并联</h3><ul>
+<li>承受同一电压；</li>
+<li>并联形成分流；</li>
+<li>并联阻值变小。</li>
+</ul>
+<h3 id="上拉电阻"><a href="#上拉电阻" class="headerlink" title="上拉电阻"></a>上拉电阻</h3><ul>
+<li>在电路中一端接电压另一端接信号的电阻叫上拉电阻。（阻值较大）</li>
+<li>作用：上拉电阻可以提高电路的驱动能力，在默认状态下，将不确定的信号钳位在高电平。当输入为低时，上拉电阻又可以将信号钳位在低电平，它可以让信号在高低电平之间转换。</li>
+</ul>
+<h3 id="下拉电阻"><a href="#下拉电阻" class="headerlink" title="下拉电阻"></a>下拉电阻</h3><ul>
+<li>在电路中一端接地另一端接入芯片的电阻叫下拉电阻。</li>
+<li>作用：在默认状态，下拉电阻可以将不确定的信号钳位在低电平，当输入为高时，下拉电阻以可以将信号钳位在高电平，它可以让信号在高低电平之间转换。</li>
+</ul>
+<h3 id="藕合电阻"><a href="#藕合电阻" class="headerlink" title="藕合电阻"></a>藕合电阻</h3><ul>
+<li>在电路中芯片与芯片或芯片与接口之间传递信号经过的电阻叫耦合电阻。</li>
+<li>作用：信号匹配或缓冲。</li>
+<li>阻值一般在100欧以内（常用33Ω、47Ω、15Ω）</li>
+</ul>
+<h3 id="保险电阻"><a href="#保险电阻" class="headerlink" title="保险电阻"></a>保险电阻</h3><ul>
+<li>在电路中两端都接电压并且阻值较小（10欧以内）的电阻叫保险电阻。</li>
+<li>作用：当输入电压过高或电流过大时，电阻熔断从而保护芯片。</li>
+</ul>
+<h3 id="检流电阻"><a href="#检流电阻" class="headerlink" title="检流电阻"></a>检流电阻</h3><ul>
+<li>串联在电压输出端，检测电压输出端的电流。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

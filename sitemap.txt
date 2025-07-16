@@ -1,3 +1,6 @@
+https://heiok.com/AMD-AM5-X670-chipset-key-signals.html
+https://heiok.com/AMD-AM4-X570-chipset-key-signals.html
+https://heiok.com/AMD-AM4-A320-chipset-key-signals.html
 https://heiok.com/Intel-600s-700s-chipset-key-signals.html
 https://heiok.com/Intel-500s-chipset-key-signals.html
 https://heiok.com/Intel-400s-chipset-key-signals.html
@@ -39,6 +42,12 @@ https://heiok.com/How-to-determine-IP-is-BGP-route.html
 https://heiok.com/Xiaomi-TV-API.html
 https://heiok.com/
 https://heiok.com/tags/Printer-Share/
+https://heiok.com/tags/AMD/
+https://heiok.com/tags/AM4-A320/
+https://heiok.com/tags/Power-on-sequence/
+https://heiok.com/tags/Mainboard/
+https://heiok.com/tags/AM4-X570/
+https://heiok.com/tags/AM5-X670/
 https://heiok.com/tags/BGP/
 https://heiok.com/tags/ISP/
 https://heiok.com/tags/AS58453/
@@ -80,8 +89,6 @@ https://heiok.com/tags/OpenWRT/
 https://heiok.com/tags/Python/
 https://heiok.com/tags/pip/
 https://heiok.com/tags/LGA1151/
-https://heiok.com/tags/Power-on-sequence/
-https://heiok.com/tags/Mainboard/
 https://heiok.com/tags/LGA1200/
 https://heiok.com/tags/LGA1700/
 https://heiok.com/tags/Intel/
@@ -116,7 +123,7 @@ https://heiok.com/tags/mermaid/
 https://heiok.com/tags/sing-box/
 https://heiok.com/tags/GUIforSingBox/
 https://heiok.com/categories/Software/
-https://heiok.com/categories/Network/
 https://heiok.com/categories/Hardware/
+https://heiok.com/categories/Network/
 https://heiok.com/categories/%E6%97%A0%E7%B1%BB/
 https://heiok.com/categories/IPTV/

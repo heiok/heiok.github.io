@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"heiok.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4157401344064000" crossorigin="anonymous"></script>
+
+    <meta name="description" content="AMD AM4 A320上电时序汇总及关键信号                                      工作状态              电压或信号标准名称       正常对地值参考       正常工作电压       故障现象及说明                                     G3状态（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AMD AM4 A320上电时序汇总及关键信号">
+<meta property="og:url" content="https://heiok.com/AMD-AM4-A320-chipset-key-signals.html">
+<meta property="og:site_name" content="网络蝙蝠侠部落">
+<meta property="og:description" content="AMD AM4 A320上电时序汇总及关键信号                                      工作状态              电压或信号标准名称       正常对地值参考       正常工作电压       故障现象及说明                                     G3状态（">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-07-16T02:45:55.000Z">
+<meta property="article:modified_time" content="2025-07-16T02:48:55.545Z">
+<meta property="article:author" content="heiok.com">
+<meta property="article:tag" content="AMD">
+<meta property="article:tag" content="AM4 A320">
+<meta property="article:tag" content="Power-on sequence">
+<meta property="article:tag" content="Mainboard">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://heiok.com/AMD-AM4-A320-chipset-key-signals.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://heiok.com/AMD-AM4-A320-chipset-key-signals.html","path":"AMD-AM4-A320-chipset-key-signals.html","title":"AMD AM4 A320上电时序汇总及关键信号"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>AMD AM4 A320上电时序汇总及关键信号 | 网络蝙蝠侠部落</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-90W6VHZRMP"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-90W6VHZRMP","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">网络蝙蝠侠部落</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/AMD-AM4-A320-chipset-key-signals.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="AMD AM4 A320上电时序汇总及关键信号 | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AMD AM4 A320上电时序汇总及关键信号
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-07-16 10:45:55 / 修改时间：10:48:55" itemprop="dateCreated datePublished" datetime="2025-07-16T10:45:55+08:00">2025-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><table cellspacing="0" cellpadding="8" style="border-collapse: separate; border-spacing: 0; width: 100%;">
+  <thead>
+    <!-- 整个表格大标题 -->
+    <tr>
+      <th colspan="5" style="background-color: #cce5ff; font-size: 18px; text-align: center; padding: 10px;
+        border: 1px solid #999;">
+        AMD AM4 A320上电时序汇总及关键信号
+      </th>
+    </tr>
+    <!-- 表头 -->
+    <tr>
+      <th style="width: 200px; background-color: #d0eaff; border: 1px solid #999; text-align: center; vertical-align: middle;">
+        工作状态
+      </th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">电压或信号标准名称</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">正常对地值参考</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">正常工作电压</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">故障现象及说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- 10行，每行一个左侧大单元格，右侧4个小单元格 -->
+    <tr>
+      <td rowspan="6" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+        <b>G3状态（CPU+U124）</b>
+      </td>
+      <td style="border: 1px solid #999; text-align: center;">VBAT/VCCRTC</td>
+      <td style="border: 1px solid #999; text-align: center;">~530</td>
+      <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+      <td rowspan="6" style="border: 1px solid #999; text-align: center; vertical-align: middle;">不会引起不触发</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">RTC_CLK</td>
+      <td style="border: 1px solid #999; text-align: center;">~690</td>
+      <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">RTC_DATA</td>
+      <td style="border: 1px solid #999; text-align: center;">~690</td>
+      <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">OSC1/OSC2 (32.768KHZ)</td>
+      <td style="border: 1px solid #999; text-align: center;">~720</td>
+      <td style="border: 1px solid #999; text-align: center;">0.4V-0.8V</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">VDDBT_RTC_G ->CPU：AL15</td>
+      <td style="border: 1px solid #999; text-align: center;">~560</td>
+      <td style="border: 1px solid #999; text-align: center;">1.5V</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">X32K_X1/X32K_X2 ->CPU：AW5/AW6</td>
+      <td style="border: 1px solid #999; text-align: center;">上CPU后~740</td>
+      <td style="border: 1px solid #999; text-align: center;">0.4V-0.8V</td>
+    </tr>
+      <tr>
+  <td rowspan="9" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>不上CPU触发电路 (I/O+U123->SLG4R41187)</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">I/O供电：SIO_3VA</td>
+  <td style="border: 1px solid #999; text-align: center;">~400</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+  <td rowspan="9" style="border: 1px solid #999; text-align: center; vertical-align: middle;">会引起不触发</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VSUS33/3VSB PCIE_SLOT:->B10</td>
+  <td style="border: 1px solid #999; text-align: center;">~370</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SKTOCC</td>
+  <td style="border: 1px solid #999; text-align: center;">~440</td>
+  <td style="border: 1px solid #999; text-align: center;">0V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWRBTN(PSIN)</td>
+  <td style="border: 1px solid #999; text-align: center;">~690</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">PWRBTN#(PSOUT)</td>
+  <td style="border: 1px solid #999; text-align: center;">~530</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_S5</td>
+  <td style="border: 1px solid #999; text-align: center;">~510</td>
+  <td style="border: 1px solid #999; text-align: center;">0-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_S3</td>
+  <td style="border: 1px solid #999; text-align: center;">~490</td>
+  <td style="border: 1px solid #999; text-align: center;">0-3.3V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">PWR_FAULT#</td>
+  <td style="border: 1px solid #999; text-align: center;">~590</td>
+  <td style="border: 1px solid #999; text-align: center;">5V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">PSON#</td>
+  <td style="border: 1px solid #999; text-align: center;">~540</td>
+  <td style="border: 1px solid #999; text-align: center;">5V-0V</td>
+</tr>
+<tr>
+  <td rowspan="9" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>S5状态（PCH）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">VSUS33/3VSB PCIE_SLOT:->B10</td>
+  <td style="border: 1px solid #999; text-align: center;">~370</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+  <td rowspan="9" style="border: 1px solid #999; text-align: center; vertical-align: middle;">上CPU后不触发</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VSUS105 ->FCH：V7</td>
+  <td style="border: 1px solid #999; text-align: center;">~280</td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDD_18_S5 ->CPU：AK15</td>
+  <td style="border: 1px solid #999; text-align: center;">~480</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDCR_SOC_S5 ->CPU：AK18</td>
+  <td style="border: 1px solid #999; text-align: center;">~400</td>
+  <td style="border: 1px solid #999; text-align: center;">0.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDP_S5 ->CPU：AJ16 (可选）</td>
+  <td style="border: 1px solid #999; text-align: center;">~260</td>
+  <td style="border: 1px solid #999; text-align: center;">0.9V/1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDIO_AUDIO ->CPU：AM15</td>
+  <td style="border: 1px solid #999; text-align: center;">~500</td>
+  <td style="border: 1px solid #999; text-align: center;">1.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">X32K_X1/X32K_X2 ->CPU：AW5/AW6</td>
+  <td style="border: 1px solid #999; text-align: center;">上CPU后~740</td>
+  <td style="border: 1px solid #999; text-align: center;">0.4V-0.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">RTCCLK->CPU：AP8</td>
+  <td style="border: 1px solid #999; text-align: center;">上CPU后~400</td>
+  <td style="border: 1px solid #999; text-align: center;">0.7V-1.7V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">RSMRST_L->CPU：AP5</td>
+  <td style="border: 1px solid #999; text-align: center;">~550</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+<td rowspan="3" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+        <b>SLP_S5状态 开启内存供电</b>
+      </td>
+      <td style="border: 1px solid #999; text-align: center;">DDR4</td>
+      <td style="border: 1px solid #999; text-align: center;">~300</td>
+      <td style="border: 1px solid #999; text-align: center;">2.5V</td>
+    <td rowspan="33" style="border: 1px solid #999; text-align: center; vertical-align: middle;">掉电、缺电压、缺时钟、缺复位</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VPP_2.5V->288Pin</td>
+  <td style="border: 1px solid #999; text-align: center;">~300</td>
+  <td style="border: 1px solid #999; text-align: center;">2.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDQ/VCC_DDR->220Pin</td>
+  <td style="border: 1px solid #999; text-align: center;">~270</td>
+  <td style="border: 1px solid #999; text-align: center;">1.2V</td>
+</tr>
+<tr>
+    <td rowspan="5" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>SLP_S3状态 开启FCH+CPU供电</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">VDD105 ->FCH: T1</td>
+  <td style="border: 1px solid #999; text-align: center;">~20</td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCC25 ->FCH: C1</td>
+  <td style="border: 1px solid #999; text-align: center;">~480</td>
+  <td style="border: 1px solid #999; text-align: center;">2.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWR_GD ->FCH: C25</td>
+  <td style="border: 1px solid #999; text-align: center;">~500</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDP ->CPU: AM18</td>
+  <td style="border: 1px solid #999; text-align: center;">~480</td>
+  <td style="border: 1px solid #999; text-align: center;">0.9V/1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDD_18 ->CPU: AK20</td>
+  <td style="border: 1px solid #999; text-align: center;">~440</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+<td rowspan="8" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>CPU核心供电（VRM+VBOOT） VBOOT电压可设置</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">PVCC/VCC/VDDIO</td>
+  <td style="border: 1px solid #999; text-align: center;">~500/~340/~500</td>
+  <td style="border: 1px solid #999; text-align: center;">12V/5V/1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VRM_EN</td>
+  <td style="border: 1px solid #999; text-align: center;">~500</td>
+  <td style="border: 1px solid #999; text-align: center;">3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWROK->CPU:E16</td>
+  <td style="border: 1px solid #999; text-align: center;">~520</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SVC/ SVD /SVT  (设置VBOOT)</td>
+  <td style="border: 1px solid #999; text-align: center;">~540</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V/0V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDCR_CPU<VCORE>->CPU:Y2</td>
+  <td style="border: 1px solid #999; text-align: center;">~430</td>
+  <td style="border: 1px solid #999; text-align: center;">0.9V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDCR_SOC<VDDNB>->CPU:B5</td>
+  <td style="border: 1px solid #999; text-align: center;">~450</td>
+  <td style="border: 1px solid #999; text-align: center;">0.9V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VRM_VRDY</td>
+  <td style="border: 1px solid #999; text-align: center;">~550</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWROK/APU_PWROK->CPU:E16</td>
+  <td style="border: 1px solid #999; text-align: center;">~260</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+<td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>CLOCK时钟电路(CPU+FCH)</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">PWR_GOOD ->CPU:AM3</td>
+  <td style="border: 1px solid #999; text-align: center;">~680</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">X48M_X1/X48M_X2->CPU:AJ1 AH1</td>
+  <td style="border: 1px solid #999; text-align: center;">上CPU后~700/~400</td>
+  <td style="border: 1px solid #999; text-align: center;">0.8V/0.9V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">GFX_CLKP/GFX_CLKN->PCI_E_SLOT：A13/A14</td>
+  <td style="border: 1px solid #999; text-align: center;">上CPU后~200</td>
+  <td style="border: 1px solid #999; text-align: center;">0.45V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">GPP_CLK2P/GPP_CLK2N->CPU:AH7 AH8</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">XI/XO 25M （FCH）</td>
+  <td style="border: 1px solid #999; text-align: center;">~650</td>
+  <td style="border: 1px solid #999; text-align: center;">0.48V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">GPP_CLKREQ</td>
+  <td style="border: 1px solid #999; text-align: center;">~400</td>
+  <td style="border: 1px solid #999; text-align: center;">0V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PE_LAN_CLKP/PE_LAN_CLKN</td>
+  <td style="border: 1px solid #999; text-align: center;">~240</td>
+  <td style="border: 1px solid #999; text-align: center;">0.5V</td>
+</tr>
+<tr>
+<td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>RESET复位电路（CPU+FCH）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">PWR_GOOD->CPU:AM3</td>
+  <td style="border: 1px solid #999; text-align: center;">~680</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCIE_RST_L->PCI_E_SLOT:A11</td>
+  <td style="border: 1px solid #999; text-align: center;">~400</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">LPC_RST_L->CPU:AU22</td>
+  <td style="border: 1px solid #999; text-align: center;">上CPU后~320</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PERSTN->FCH:V6</td>
+  <td style="border: 1px solid #999; text-align: center;">~400</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">GPP_RSTN->FCH:AC10</td>
+  <td style="border: 1px solid #999; text-align: center;">~500</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PLTRST_BU1#_LAN</td>
+  <td style="border: 1px solid #999; text-align: center;">~560</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">ESPI_RESET_L->CPU:AN24</td>
+  <td style="border: 1px solid #999; text-align: center;">~320</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+<td rowspan="3" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>CPU核心供电（VRM+SVI2）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">SVC/SVD/SVT（动态调节）</td>
+  <td style="border: 1px solid #999; text-align: center;">上CPU后~330</td>
+  <td style="border: 1px solid #999; text-align: center;">波形</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDCR_CPU<VCORE>->CPU:Y2</td>
+  <td style="border: 1px solid #999; text-align: center;">0</td>
+  <td style="border: 1px solid #999; text-align: center;">0.9V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDCR_SOC<VDDNB>->CPU:B5</td>
+  <td style="border: 1px solid #999; text-align: center;">0-1</td>
+  <td style="border: 1px solid #999; text-align: center;">0.9V</td>
+</tr>
+  </tbody>
+</table>
+
+
+
+
+<ul>
+<li><strong>数据来源：MSI MS-7B38</strong></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AMD/" rel="tag"># AMD</a>
+              <a href="/tags/AM4-A320/" rel="tag"># AM4 A320</a>
+              <a href="/tags/Power-on-sequence/" rel="tag"># Power-on sequence</a>
+              <a href="/tags/Mainboard/" rel="tag"># Mainboard</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Intel-600s-700s-chipset-key-signals.html" rel="prev" title="Intel 600系-700系芯片组上电时序汇总及关键信号">
+                  <i class="fa fa-angle-left"></i> Intel 600系-700系芯片组上电时序汇总及关键信号
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/AMD-AM4-X570-chipset-key-signals.html" rel="next" title="AMD AM4 ASUS STRIX X570-E GAMING上电时序汇总与及关键信号">
+                  AMD AM4 ASUS STRIX X570-E GAMING上电时序汇总与及关键信号 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">heiok.com</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
