@@ -1,3 +1,4 @@
+https://heiok.com/Intel-CPU-is-matched-with-the-chipset.html
 https://heiok.com/AMD-AM5-X670-chipset-key-signals.html
 https://heiok.com/AMD-AM4-X570-chipset-key-signals.html
 https://heiok.com/AMD-AM4-A320-chipset-key-signals.html
@@ -91,6 +92,8 @@ https://heiok.com/tags/pip/
 https://heiok.com/tags/LGA1151/
 https://heiok.com/tags/LGA1200/
 https://heiok.com/tags/LGA1700/
+https://heiok.com/tags/Intel-chipset/
+https://heiok.com/tags/LGA1851/
 https://heiok.com/tags/Intel/
 https://heiok.com/tags/Desktop-Chipsets/
 https://heiok.com/tags/Intel-60-Series-Desktop-Chipsets/
