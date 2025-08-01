@@ -1,3 +1,7 @@
+https://heiok.com/How-to-make-chrome-auto-start-the-web-page-and-open-in-full-screen-mode.html
+https://heiok.com/Conan-version.html
+https://heiok.com/Use-mkvtoolnix-to-keep-the-Cantonese-audio-track.html
+https://heiok.com/Use-mkvpropedit-to-modify-the-default-audio-track-of-a-video-file.html
 https://heiok.com/Claw-migrated-to-singapore.html
 https://heiok.com/Intel-CPU-is-matched-with-the-chipset.html
 https://heiok.com/AMD-AM5-X670-chipset-key-signals.html
@@ -16,10 +20,7 @@ https://heiok.com/OpenWRT-adds-external-storage-expansion.html
 https://heiok.com/Remotely-manage-openwrt-routers-via-cloudflare-tunnel.html
 https://heiok.com/sing-box.html
 https://heiok.com/Claw-Cloud-VPS-test.html
-https://heiok.com/Use-mkvpropedit-to-modify-the-default-audio-track-of-a-video-file.html
 https://heiok.com/Chinese-ISPs-to-Japan.html
-https://heiok.com/Conan-version.html
-https://heiok.com/Use-mkvtoolnix-to-keep-the-Cantonese-audio-track.html
 https://heiok.com/mermaid-flowchart-in-hexo.html
 https://heiok.com/hexo-theme-next-upgrade.html
 https://heiok.com/OpenWRT-grabs-EPG-and-submits-records-to-the-code-repository.html
@@ -126,8 +127,10 @@ https://heiok.com/tags/iPhone-configuration-proxy/
 https://heiok.com/tags/mermaid/
 https://heiok.com/tags/sing-box/
 https://heiok.com/tags/GUIforSingBox/
+https://heiok.com/tags/Chrome/
+https://heiok.com/tags/IrfanView/
 https://heiok.com/categories/Software/
 https://heiok.com/categories/Hardware/
 https://heiok.com/categories/Network/
-https://heiok.com/categories/%E6%97%A0%E7%B1%BB/
 https://heiok.com/categories/IPTV/
+https://heiok.com/categories/Q-A/
