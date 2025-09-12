@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">87</span>
+        <span class="site-state-item-count">89</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -152,6 +152,431 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Intel-400s-chipset-key-signals.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Intel-400s-chipset-key-signals.html" class="post-title-link" itemprop="url">Intel 400系芯片组上电时序汇总及关键信号</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-07-15 11:05:24 / 修改时间：11:07:54" itemprop="dateCreated datePublished" datetime="2025-07-15T11:05:24+08:00">2025-07-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <table cellspacing="0" cellpadding="8" style="border-collapse: separate; border-spacing: 0; width: 100%;">
+  <thead>
+    <!-- 整个表格大标题 -->
+    <tr>
+      <th colspan="5" style="background-color: #cce5ff; font-size: 18px; text-align: center; padding: 10px;
+        border: 1px solid #999;">
+        Intel 400系芯片组上电时序汇总及关键信号
+      </th>
+    </tr>
+    <!-- 表头 -->
+    <tr>
+      <th style="width: 200px; background-color: #d0eaff; border: 1px solid #999; text-align: center; vertical-align: middle;">
+        工作状态
+      </th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">电压或信号标准名称</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">正常对地值参考</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">正常工作电压</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">故障现象</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- 10行，每行一个左侧大单元格，右侧4个小单元格 -->
+    <tr>
+      <td rowspan="4" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+        <b>G3状态（PCH）</b>
+      </td>
+      <td style="border: 1px solid #999; text-align: center;">VCCRTC</td>
+      <td style="border: 1px solid #999; text-align: center;">~500</td>
+      <td style="border: 1px solid #999; text-align: center;">2.8V-3.3V</td>
+      <td rowspan="24" style="border: 1px solid #999; text-align: center; vertical-align: middle;">不触发</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">RTCRST</td>
+      <td style="border: 1px solid #999; text-align: center;">~780</td>
+      <td style="border: 1px solid #999; text-align: center;">2.8V-3.3V</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">SRTCRST</td>
+      <td style="border: 1px solid #999; text-align: center;">~780</td>
+      <td style="border: 1px solid #999; text-align: center;">2.8V-3.3V</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">RTCX1/RTCX2</td>
+      <td style="border: 1px solid #999; text-align: center;">~790</td>
+      <td style="border: 1px solid #999; text-align: center;">0.15V-1.7V</td>
+    </tr>
+      <tr>
+  <td rowspan="6" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>DEEP状态（PCH）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">VCCDSW_3P3/VCCPDSW_3P3</td>
+  <td style="border: 1px solid #999; text-align: center;">~340</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">DCPDSW_1P0或VCCDSW_1P05（VOUT)</td>
+  <td style="border: 1px solid #999; text-align: center;">~120</td>
+  <td style="border: 1px solid #999; text-align: center;">1V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">DSW_PWROK</td>
+  <td style="border: 1px solid #999; text-align: center;">~550</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SUSWARN#</td>
+  <td style="border: 1px solid #999; text-align: center;">~500</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SUSACK#</td>
+  <td style="border: 1px solid #999; text-align: center;">~500</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_SUS</td>
+  <td style="border: 1px solid #999; text-align: center;">~550</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>S5状态（PCH）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">VCCPRIM_3P3->PCIE_SLOT：B10</td>
+  <td style="border: 1px solid #999; text-align: center;">~300</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCCPRIM_1P0</td>
+  <td style="border: 1px solid #999; text-align: center;">~11</td>
+  <td style="border: 1px solid #999; text-align: center;">1V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">DCPRTC(VOUT)</td>
+  <td style="border: 1px solid #999; text-align: center;">~580</td>
+  <td style="border: 1px solid #999; text-align: center;">1.5V-1.6V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">RSMRST</td>
+  <td style="border: 1px solid #999; text-align: center;">~560</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">BATLOW</td>
+  <td style="border: 1px solid #999; text-align: center;">~750</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SUSCLK</td>
+  <td style="border: 1px solid #999; text-align: center;">~550</td>
+  <td style="border: 1px solid #999; text-align: center;">0.15V-1.7V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_S5</td>
+  <td style="border: 1px solid #999; text-align: center;">~550</td>
+  <td style="border: 1px solid #999; text-align: center;">待机0V/触发后3.3V</td>
+</tr>
+<td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>触发信号 （I/O+PCH）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">I/O供电：3VSB或5VSB</td>
+  <td style="border: 1px solid #999; text-align: center;">~340</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V or 5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SKTOCC</td>
+  <td style="border: 1px solid #999; text-align: center;">~0</td>
+  <td style="border: 1px solid #999; text-align: center;">装上CPU后0V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWRBTN_IN</td>
+  <td style="border: 1px solid #999; text-align: center;">~530</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWRBTN#</td>
+  <td style="border: 1px solid #999; text-align: center;">~550</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_S4</td>
+  <td style="border: 1px solid #999; text-align: center;">~490</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_S3</td>
+  <td style="border: 1px solid #999; text-align: center;">~490</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PS_ON#</td>
+  <td style="border: 1px solid #999; text-align: center;">~530</td>
+  <td style="border: 1px solid #999; text-align: center;">待机5V/开机0V</td>
+</tr>
+<tr>
+<td rowspan="3" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+        <b>SLP_S4状态 开启内存供电</b>
+      </td>
+      <td style="border: 1px solid #999; text-align: center;">DDR4</td>
+      <td style="border: 1px solid #999; text-align: center;">~390</td>
+      <td style="border: 1px solid #999; text-align: center;">2.5V</td>
+    <td rowspan="33" style="border: 1px solid #999; text-align: center; vertical-align: middle;">掉电、缺电压、缺时钟、缺复位</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VPP_2.5V->288Pin</td>
+  <td style="border: 1px solid #999; text-align: center;">~390</td>
+  <td style="border: 1px solid #999; text-align: center;">2.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDQ/VCC_DDR->220Pin</td>
+  <td style="border: 1px solid #999; text-align: center;">~410</td>
+  <td style="border: 1px solid #999; text-align: center;">1.2V</td>
+</tr>
+<tr>
+    <td rowspan="4" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>SLP_S3状态 开启CPU辅助供电</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">VCCST->CPU V1</td>
+  <td style="border: 1px solid #999; text-align: center;">~490</td>
+  <td style="border: 1px solid #999; text-align: center;">1V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCCSTG->CPU R2</td>
+  <td style="border: 1px solid #999; text-align: center;">~420</td>
+  <td style="border: 1px solid #999; text-align: center;">1V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCCIO->CPU W1</td>
+  <td style="border: 1px solid #999; text-align: center;">~400</td>
+  <td style="border: 1px solid #999; text-align: center;">0.95V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCCSA->CPU B3</td>
+  <td style="border: 1px solid #999; text-align: center;">~400</td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+<tr>
+<td rowspan="6" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>CLOCK时钟电路（PCH）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">PCH_PWROK</td>
+  <td style="border: 1px solid #999; text-align: center;">~720</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">XCLK_BIASREF</td>
+  <td style="border: 1px solid #999; text-align: center;">~660</td>
+  <td style="border: 1px solid #999; text-align: center;">1V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">XTAL24_IN/XTAL24_OUT</td>
+  <td style="border: 1px solid #999; text-align: center;">~770</td>
+  <td style="border: 1px solid #999; text-align: center;">0.15V-1.7V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCH读取BIOS</td>
+  <td style="border: 1px solid #999; text-align: center;">1/2/5/6/Pin  ~550</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">CLOCK_OUT</td>
+  <td style="border: 1px solid #999; text-align: center;">~350</td>
+  <td style="border: 1px solid #999; text-align: center;">0.3V-0.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCIE_SLOT:->A13/A14</td>
+  <td style="border: 1px solid #999; text-align: center;">~350</td>
+  <td style="border: 1px solid #999; text-align: center;">0.3V-0.5V</td>
+</tr>
+<tr>
+<td rowspan="3" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>CPU核心供电（VRM+VBOOT）           
+        VBOOT电压可设置</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">VR_EN</td>
+  <td style="border: 1px solid #999; text-align: center;">~510</td>
+  <td style="border: 1px solid #999; text-align: center;">0.7V以上</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VR_PGOOD</td>
+  <td style="border: 1px solid #999; text-align: center;">~540</td>
+  <td style="border: 1px solid #999; text-align: center;">0.7V or 3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCCCORE (VBOOT)</td>
+  <td style="border: 1px solid #999; text-align: center;">~420</td>
+  <td style="border: 1px solid #999; text-align: center;">~0.8V</td>
+</tr>
+<tr>
+<td rowspan="10" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>RESET复位电路（PCH+CPU）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">SYS_PWROK</td>
+  <td style="border: 1px solid #999; text-align: center;">~580</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PROCPWRGD->CPU D14</td>
+  <td style="border: 1px solid #999; text-align: center;">~430 装CPU后有效</td>
+  <td style="border: 1px solid #999; text-align: center;">1V or 1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCCST_PWRGD->CPU B13</td>
+  <td style="border: 1px solid #999; text-align: center;">~860 装CPU后有效</td>
+  <td style="border: 1px solid #999; text-align: center;">1V or 1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">BCLKP/BCLKN->CPU U1/T1</td>
+  <td style="border: 1px solid #999; text-align: center;">~360 装CPU后有效</td>
+  <td style="border: 1px solid #999; text-align: center;">0.3V-0.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCI_BCLKP/PCI_BCLKN->CPU T3/T4</td>
+  <td style="border: 1px solid #999; text-align: center;">~360 装CPU后有效</td>
+  <td style="border: 1px solid #999; text-align: center;">0.3V-0.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">CLK24P/CLK24N->CPU U7/U8</td>
+  <td style="border: 1px solid #999; text-align: center;">~360 装CPU后有效</td>
+  <td style="border: 1px solid #999; text-align: center;">0.3V-0.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PLTRST</td>
+  <td style="border: 1px solid #999; text-align: center;">~500</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCIE_SLOT:->A11</td>
+  <td style="border: 1px solid #999; text-align: center;">~700</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PLTRST_PROC#:->CPU T7</td>
+  <td style="border: 1px solid #999; text-align: center;">~430</td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SYS_RESET#</td>
+  <td style="border: 1px solid #999; text-align: center;">~430</td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+<tr>
+<td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>CPU核心供电（VRM+SVID）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">PLTRST_CPU#->CPU T7</td>
+  <td style="border: 1px solid #999; text-align: center;">~430</td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">DMI总线（4/8组TX+4/8组RX）</td>
+  <td style="border: 1px solid #999; text-align: center;">~360</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">CPU读取BIOS</td>
+  <td style="border: 1px solid #999; text-align: center;">1/2/5/6/Pin  ~550</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VIDALERT#->CPU A14</td>
+  <td style="border: 1px solid #999; text-align: center;">~520</td>
+  <td style="border: 1px solid #999; text-align: center;">1V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VIDSCK->CPU C14</td>
+  <td style="border: 1px solid #999; text-align: center;">~520</td>
+  <td style="border: 1px solid #999; text-align: center;">1V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VIDSOUT->CPU B14</td>
+  <td style="border: 1px solid #999; text-align: center;">~520</td>
+  <td style="border: 1px solid #999; text-align: center;">1V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCCCORE</td>
+  <td style="border: 1px solid #999; text-align: center;">~520</td>
+  <td style="border: 1px solid #999; text-align: center;">~1.1V-1.2V</td>
+</tr>
+  </tbody>
+</table>
+
+
+
+<ul>
+<li><strong>数据来源：MSI B460 板号 MS-7C88 VER:1.1</strong></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2162,144 +2587,6 @@
 <h2 id="处理结果"><a href="#处理结果" class="headerlink" title="处理结果"></a>处理结果</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">G:\&gt;D:\software\mkvtoolnix\mkvinfo.exe 灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.001.mkv</span><br><span class="line">+ EBML 头</span><br><span class="line">|+ EBML 版本: 1</span><br><span class="line">|+ EBML 读取版本: 1</span><br><span class="line">|+ EBML ID 最大长度: 4</span><br><span class="line">|+ EBML 大小最大长度: 8</span><br><span class="line">|+ 文档类型: matroska</span><br><span class="line">|+ 文档类型版本: 4</span><br><span class="line">|+ 文档类型读取版本: 2</span><br><span class="line">+ 剪辑: 大小 1397911679</span><br><span class="line">|+ 定位头 (子条目将被跳过)</span><br><span class="line">|+ 轨道</span><br><span class="line">| + 轨道</span><br><span class="line">|  + 轨道编号: 1 (mkvmerge &amp; mkvextract 的轨道 ID: 0)</span><br><span class="line">|  + 轨道 UID: 1</span><br><span class="line">|  + 轨道类型: 视频</span><br><span class="line">|  + ｢紧缩｣ 标记: 0</span><br><span class="line">|  + 编码格式 ID: V_MPEG4/ISO/AVC</span><br><span class="line">|  + 编解码器私有数据: 大小 45 (H.264 档次: High 10 @L5.1)</span><br><span class="line">|  + 默认帧时长: 00:00:00.041708333 (对应视频轨的 23.976 帧/场每秒)</span><br><span class="line">|  + 语言: jpn</span><br><span class="line">|  + 名称: [Kagura] Slam Dunk - 001 [BDRip 1440x1080 x264 Hi10P FLAC]</span><br><span class="line">|  + 视频轨道</span><br><span class="line">|   + 像素宽度: 1440</span><br><span class="line">|   + 像素高度: 1080</span><br><span class="line">|   + 显示宽度: 1440</span><br><span class="line">|   + 显示高度: 1080</span><br><span class="line">| + 轨道</span><br><span class="line">|  + 轨道编号: 2 (mkvmerge &amp; mkvextract 的轨道 ID: 1)</span><br><span class="line">|  + 轨道 UID: 4259734031005461432</span><br><span class="line">|  + 轨道类型: 音频</span><br><span class="line">|  + ｢强制显示｣ 标记: 0</span><br><span class="line">|  + 编码格式 ID: A_AAC</span><br><span class="line">|  + 编解码器私有数据: 大小 5</span><br><span class="line">|  + 默认帧时长: 00:00:00.021333333 (对应视频轨的 46.875 帧/场每秒)</span><br><span class="line">|  + 语言: chi</span><br><span class="line">|  + 名称: 国语Mandarin</span><br><span class="line">|  + 音频轨</span><br><span class="line">|   + 采样率: 48000</span><br><span class="line">|   + 声道数: 2</span><br><span class="line">|  + ｢默认轨｣ 标记: 0</span><br><span class="line">| + 轨道</span><br><span class="line">|  + 轨道编号: 3 (mkvmerge &amp; mkvextract 的轨道 ID: 2)</span><br><span class="line">|  + 轨道 UID: 17988462785428992699</span><br><span class="line">|  + 轨道类型: 音频</span><br><span class="line">|  + ｢默认轨｣ 标记: 0</span><br><span class="line">|  + ｢强制显示｣ 标记: 0</span><br><span class="line">|  + 编码格式 ID: A_FLAC</span><br><span class="line">|  + 编解码器私有数据: 大小 113</span><br><span class="line">|  + 默认帧时长: 00:00:00.085333333 (对应视频轨的 11.719 帧/场每秒)</span><br><span class="line">|  + 语言: jpn</span><br><span class="line">|  + 音频轨</span><br><span class="line">|   + 采样率: 48000</span><br><span class="line">|   + 声道数: 2</span><br><span class="line">|   + 位深: 16</span><br><span class="line">| + 轨道</span><br><span class="line">|  + 轨道编号: 4 (mkvmerge &amp; mkvextract 的轨道 ID: 3)</span><br><span class="line">|  + 轨道 UID: 4385456018886019507</span><br><span class="line">|  + 轨道类型: 音频</span><br><span class="line">|  + ｢默认轨｣ 标记: 1</span><br><span class="line">|  + 编码格式 ID: A_AAC</span><br><span class="line">|  + 编解码器私有数据: 大小 5</span><br><span class="line">|  + 默认帧时长: 00:00:00.046439909 (对应视频轨的 21.533 帧/场每秒)</span><br><span class="line">|  + 语言: chi</span><br><span class="line">|  + 名称: 粤语Cantonese</span><br><span class="line">|  + 音频轨</span><br><span class="line">|   + 采样率: 22050</span><br><span class="line">|   + 输出采样频率: 44100</span><br><span class="line">|  + ｢强制显示｣ 标记: 1</span><br><span class="line">| + 轨道</span><br><span class="line">|  + 轨道编号: 5 (mkvmerge &amp; mkvextract 的轨道 ID: 4)</span><br><span class="line">|  + 轨道 UID: 4592099748104795573</span><br><span class="line">|  + 轨道类型: 字幕</span><br><span class="line">|  + ｢紧缩｣ 标记: 0</span><br><span class="line">|  + 编码格式 ID: S_TEXT/ASS</span><br><span class="line">|  + 编解码器私有数据: 大小 1488</span><br><span class="line">|  + 语言: chi</span><br><span class="line">|  + 名称: 诸神简日双语字幕</span><br><span class="line">|+ EBML void: 大小 1923</span><br><span class="line">|+ 剪辑信息</span><br><span class="line">| + 时间戳缩放: 1000000</span><br><span class="line">| + 混流应用程序: libebml v1.3.6 + libmatroska v1.4.9</span><br><span class="line">| + 写入应用程序: mkvmerge v24.0.0 (&#x27;Beyond The Pale&#x27;) 64-bit</span><br><span class="line">| + 时长: 00:19:39.921000000</span><br><span class="line">| + 日期: 2018-06-13 04:01:56 UTC</span><br><span class="line">| + 剪辑 UID: 0x1c 0xe1 0xb8 0x3d 0x99 0x9b 0x00 0x62 0x4c 0x68 0x7d 0x14 0x12 0xf2 0x71 0xf9</span><br><span class="line">|+ EBML void: 大小 3282</span><br><span class="line">|+ 簇</span><br></pre></td></tr></table></figure>
 
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/Chinese-ISPs-to-Japan.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Chinese-ISPs-to-Japan.html" class="post-title-link" itemprop="url">中国三大ISP广州至日本东京方向线路测试</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-24 18:06:58" itemprop="dateCreated datePublished" datetime="2025-01-24T18:06:58+08:00">2025-01-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-25 09:27:54" itemprop="dateModified" datetime="2025-01-25T09:27:54+08:00">2025-01-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="广州电信商宽"><a href="#广州电信商宽" class="headerlink" title="广州电信商宽"></a>广州电信商宽</h2><ul>
-<li>去程 AS4134-AS2914 NTT线路 直连 广州-&gt;日本</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> My traceroute  [v0.94]</span><br><span class="line">localhost.localdomain (192.168.1.25) -&gt; 140.91.206.90                                          2025-01-21T11:42:03+0800</span><br><span class="line">Keys:  Help   Display mode   Restart statistics   Order of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Host                                                                        Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. AS???    _gateway                                                         0.0%  3453    0.5   0.3   0.2  36.2   1.0</span><br><span class="line"> 2. AS???    192.168.1.254                                                    0.0%  3453    0.5   0.3   0.3  22.8   0.7</span><br><span class="line"> 3. AS4134   183.6.107.1                                                      0.0%  3453    3.7   3.4   2.1  25.3   1.7</span><br><span class="line"> 4. AS4134   14.147.9.14                                                     13.7%  3453    5.8   4.6   2.2  33.1   3.8</span><br><span class="line"> 5. AS4134   117.176.37.59.broad.dg.gd.dynamic.163data.com.cn                49.3%  3453    3.7   5.2   2.2  51.9   4.4</span><br><span class="line"> 6. AS4134   61.144.2.17                                                     80.2%  3453    3.1   3.0   2.2  19.1   1.0</span><br><span class="line"> 7. AS4134   202.97.71.250                                                   23.1%  3453    4.1   4.2   2.9 118.3   7.9</span><br><span class="line"> 8. AS4134   202.97.12.1                                                     20.4%  3453    5.2   4.6   3.7  42.7   1.4</span><br><span class="line"> 9. AS???    203.86.97.18                                                     0.0%  3453  166.0 165.6 164.7 216.1   3.5</span><br><span class="line">10. AS2914   ae-3.r33.tokyjp05.jp.bb.gin.ntt.net                             63.0%  3453  157.3 160.9 156.3 250.8   9.6</span><br><span class="line">11. AS2914   ae-5.a01.tokyjp10.jp.bb.gin.ntt.net                              0.0%  3453  165.3 170.0 164.0 221.6   7.0</span><br><span class="line">12. AS2914   ae-0.oracle-oci.tokyjp10.jp.bb.gin.ntt.net                       0.0%  3453  163.3 160.2 155.8 229.5   8.8</span><br><span class="line">13. AS31898  140.91.206.90                                                    0.0%  3453  164.1 164.0 163.2 186.0   0.9</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>回程 AS2914-AS4134 NTT线路 绕美 日本-&gt;美国-&gt;广州</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">My traceroute  [v0.85]</span><br><span class="line">instance-20220225-1301 (0.0.0.0)                                                               Tue Jan 21 03:46:30 2025</span><br><span class="line">Keys:  Help   Display mode   Restart statistics   Order of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Host                                                                        Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. AS31898 140.91.206.100                                                    0.0%   127    0.3   0.2   0.2   0.4   0.0</span><br><span class="line"> 2. AS2914  ae-0.oracle-oci.tokyjp10.jp.bb.gin.ntt.net                        0.0%   127    1.9   3.0   1.0  30.2   4.7</span><br><span class="line"> 3. AS2914  ae-33.a01.tokyjp10.jp.bb.gin.ntt.net                              0.0%   127    3.2   7.2   1.0  29.0   7.0</span><br><span class="line"> 4. AS2914  ae-17.r32.tokyjp05.jp.bb.gin.ntt.net                             73.8%   127    1.7   6.2   1.1  46.0   8.6</span><br><span class="line"> 5. AS2914  ae-4.r27.snjsca04.us.bb.gin.ntt.net                               0.0%   126  103.8 103.8 103.7 104.4   0.0</span><br><span class="line"> 6. AS2914  ae-20.a03.snjsca04.us.bb.gin.ntt.net                              0.0%   126  104.1 105.7 104.0 299.3  17.4</span><br><span class="line"> 7. AS4134  218.30.53.50                                                      0.0%   126  109.3 108.5 104.6 117.1   2.3</span><br><span class="line"> 8. AS4134  202.97.63.29                                                     68.0%   126  167.2 167.4 167.1 169.9   0.4</span><br><span class="line"> 9. AS4134  202.97.94.89                                                      0.0%   126  167.4 169.9 167.2 385.8  19.5</span><br><span class="line">10. AS4134  202.97.82.57                                                     84.0%   126  168.0 179.3 167.9 363.0  43.5</span><br><span class="line">11. AS4134  14.147.8.26                                                      84.1%   126  167.4 169.0 167.2 178.2   3.1</span><br><span class="line">12. ???</span><br><span class="line">13. AS4134  183.6.107.1                                                       0.0%   126  167.1 168.2 167.0 309.2  12.6</span><br></pre></td></tr></table></figure>
-
-<h2 id="广州电信普宽"><a href="#广州电信普宽" class="headerlink" title="广州电信普宽"></a>广州电信普宽</h2><ul>
-<li>去程 AS4134-AS2914 广州-日本 直连 丢包30% 延迟120ms左右 日本NTT线路  </li>
-<li>回程 AS2914-AS4134 日本-广州 直连 丢包30% 延迟120ms左右 日本NTT线路</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">My traceroute  [v0.85]</span><br><span class="line">instance-20220225-1301 (0.0.0.0)                                                               Tue Jan 21 06:00:38 2025</span><br><span class="line">Keys:  Help   Display mode   Restart statistics   Order of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Host                                                                        Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. AS31898 140.91.206.172                                                    0.0%   522    0.3   0.3   0.2   3.9   0.2</span><br><span class="line"> 2. AS2914  ae-0.oracle-oci.tokyjp10.jp.bb.gin.ntt.net                        0.0%   522    1.3   2.4   1.0  41.2   4.7</span><br><span class="line"> 3. AS2914  ae-33.a01.tokyjp10.jp.bb.gin.ntt.net                              0.0%   522    1.3   2.5   1.1  34.7   4.0</span><br><span class="line"> 4. AS2914  ae-17.r32.tokyjp05.jp.bb.gin.ntt.net                             79.2%   521    6.9   3.2   1.4  14.5   2.4</span><br><span class="line"> 5. AS2914  ae-0.a03.tokyjp05.jp.bb.gin.ntt.net                               0.0%   521    4.8   2.4   1.1  31.6   3.7</span><br><span class="line"> 6. AS???   203.86.97.9                                                      29.6%   521   87.8  89.0  86.8 112.6   4.2</span><br><span class="line"> 7. AS4134  202.97.12.189                                                    26.9%   521   80.2  82.9  79.9 312.1  12.2</span><br><span class="line"> 8. AS4134  202.97.57.26                                                     96.0%   521  100.3  91.4  84.0 100.3   5.4</span><br><span class="line"> 9. AS4134  202.97.29.134                                                    97.1%   521  121.1 115.7 107.8 121.1   5.5</span><br><span class="line">10. AS4134  121.8.134.110                                                    26.9%   521  128.4 120.6 108.1 236.4  12.4</span><br><span class="line">11. AS4134  113.98.87.202                                                    29.4%   521  122.1 118.3 109.4 340.5  12.8</span><br></pre></td></tr></table></figure>
-
-<p>总结：中国电信广州163骨干网日本方向，普宽去程回程均直连，延时120ms左右，丢包30%~45%左右；商宽去程直连，回程绕美，延时168ms左右，丢包0%。  </p>
-<h2 id="广州联通商宽"><a href="#广州联通商宽" class="headerlink" title="广州联通商宽"></a>广州联通商宽</h2><ul>
-<li><p>去程 AS4837-AS6453 TaTa线路 广州-北京-美国-日本 经北京出口联接NTT线路美国到达日本</p>
-<p>OR</p>
-</li>
-<li><p>去程 AS4837-AS2914 NTT线路 广州-北京-日本 经北京出口联接NTT线路日本到达日本</p>
-</li>
-<li><p>回程 AS6453-AS4837 TaTa线路 日本-美国洛杉机-北京-广州 绕美回国</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">My traceroute  [v0.85]</span><br><span class="line">instance-20220225-1301 (0.0.0.0)                                                               Tue Jan 21 06:42:21 2025</span><br><span class="line">Resolver: Received error response 2. (server failure)er of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Host                                                                        Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. AS31898 140.91.206.136                                                    0.0%   531    0.3   1.4   0.2 301.5  18.4</span><br><span class="line"> 2. AS6453  180.87.180.138                                                    0.0%   531    9.6   2.8   1.0  75.2   6.1</span><br><span class="line"> 3. AS6453  ix-be-35.ecore1.tv2-tokyo.as6453.net                             42.2%   531    1.6   1.7   1.4  23.0   1.5</span><br><span class="line"> 4. AS6453  209.58.55.69                                                     81.7%   531  110.1 110.5 109.8 117.7   0.8</span><br><span class="line"> 5. AS6453  if-ae-58-2.tcore1.av3-toyohashi.as6453.net                       17.1%   531  113.0 113.3 112.7 132.3   1.6</span><br><span class="line"> 6. AS6453  if-ae-2-2.tcore2.av3-toyohashi.as6453.net                        22.8%   531  112.7 113.1 112.4 145.9   2.6</span><br><span class="line"> 7. AS6453  if-ae-28-2.tcore2.lvw-losangeles.as6453.net                      42.8%   531  114.2 114.3 113.8 146.8   2.5</span><br><span class="line"> 8. AS6453  if-bundle-34-2.qcore2.lvw-losangeles.as6453.net                  71.7%   531  114.2 113.9 113.4 116.9   0.2</span><br><span class="line"> 9. AS6453  if-bundle-2-2.qcore1.lvw-losangeles.as6453.net                   62.1%   531  114.5 115.1 114.4 118.7   0.6</span><br><span class="line">10. AS6453  207.45.219.9                                                      0.2%   531  322.1 188.0 156.8 915.3  84.2</span><br><span class="line">11. AS4837  219.158.17.81                                                     0.0%   530  174.6 191.4 166.5 883.9  80.1</span><br><span class="line">12. AS4837  219.158.9.185                                                    75.0%   530  167.2 198.3 167.1 1027.  92.1</span><br><span class="line">13. AS4837  219.158.9.201                                                    60.4%   529  168.5 189.2 167.8 676.7  75.9</span><br><span class="line">14. AS4837  219.158.7.226                                                    93.6%   529  197.9 203.1 197.4 323.5  22.9</span><br><span class="line">15. AS17816 120.80.0.98                                                      92.4%   529  199.3 226.5 199.3 632.1  75.9</span><br><span class="line">16. AS17622 120.80.123.254                                                    0.2%   528  203.1 220.8 199.7 1015.  80.5</span><br></pre></td></tr></table></figure>
-
-<h2 id="广州联通普宽"><a href="#广州联通普宽" class="headerlink" title="广州联通普宽"></a>广州联通普宽</h2><ul>
-<li>去程 AS4837-AS2914 NTT线路 广州-北京-日本 经北京出口联接NTT线路到达日本</li>
-<li>回程 AS6453-AS4837 TaTa线路 日本-美国洛杉机-北京-广州 绕美回国</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">My traceroute  [v0.85]</span><br><span class="line">instance-20220225-1301 (0.0.0.0)                                                               Tue Jan 21 06:20:08 2025</span><br><span class="line">Resolver: Received error response 2. (server failure)er of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Host                                                                        Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. AS31898 140.91.206.158                                                    0.0%  1003    0.2   0.3   0.2 296.3   9.3</span><br><span class="line"> 2. AS6453  180.87.180.138                                                    0.0%  1002    1.2   2.1   1.0  42.5   3.9</span><br><span class="line"> 3. AS6453  ix-be-35.ecore1.tv2-tokyo.as6453.net                              0.0%  1002    1.6   1.7   1.4  28.4   1.8</span><br><span class="line"> 4. AS6453  209.58.55.69                                                     82.2%  1002  110.8 110.3 109.7 113.5   0.4</span><br><span class="line"> 5. AS6453  if-ae-58-2.tcore1.av3-toyohashi.as6453.net                       16.6%  1002  113.4 113.7 112.7 351.4   8.6</span><br><span class="line"> 6. AS6453  if-ae-2-2.tcore2.av3-toyohashi.as6453.net                        37.4%  1002  112.5 112.8 112.2 298.4   7.4</span><br><span class="line"> 7. AS6453  if-ae-28-2.tcore2.lvw-losangeles.as6453.net                      83.9%  1002  114.1 114.6 113.8 131.7   2.8</span><br><span class="line"> 8. AS6453  if-ae-2-2.tcore1.lvw-losangeles.as6453.net                       15.3%  1002  115.1 114.7 114.5 124.0   0.7</span><br><span class="line"> 9. AS6453  if-bundle-33-2.qcore1.lvw-losangeles.as6453.net                  65.0%  1002  111.1 111.5 111.0 117.6   0.4</span><br><span class="line">10. AS6453  207.45.219.9                                                      0.0%  1002  157.8 208.3 156.8 1456. 146.7</span><br><span class="line">11. AS4837  219.158.4.9                                                       0.0%  1002  166.3 212.2 160.4 1410. 144.2</span><br><span class="line">12. AS4837  219.158.16.81                                                     0.0%  1002  165.5 211.8 160.5 1377. 142.2</span><br><span class="line">13. AS4837  219.158.18.69                                                    94.2%  1002  478.8 232.7 161.4 997.0 156.7</span><br><span class="line">14. AS4837  219.158.8.86                                                     79.1%  1002  196.3 245.0 194.0 1072. 131.2</span><br><span class="line">15. AS17816 112.92.0.62                                                       0.0%  1002  195.2 248.4 193.9 1581. 148.1</span><br><span class="line">16. AS17622 120.80.123.242                                                    0.2%  1002  193.4 241.0 193.0 1864. 145.5</span><br><span class="line">17. AS17622 120.80.123.253                                                    0.0%  1001  194.5 240.6 194.4 1874. 144.1</span><br></pre></td></tr></table></figure>
-
-<p>总结：中国联通广州169骨干网日本方向，普宽商宽去程由北京出口直连日本NTT线路或TaTa线路绕美，回程绕美TaTa线路经北京入口回国，延时250ms左右，丢包0%。    </p>
-<h2 id="广州移动商宽"><a href="#广州移动商宽" class="headerlink" title="广州移动商宽"></a>广州移动商宽</h2><ul>
-<li>去程 AS9808-AS58453-AS6453 TaTa线路 出国绕美 广州-美国-日本 延时220ms左右，丢包0%；</li>
-<li>回程 AS6453-AS58453-AS9808 TaTa线路 日本-广州 直连回国 延时175ms左右，丢包0%。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> My traceroute  [v0.85]</span><br><span class="line">instance-20220225-1301 (0.0.0.0)                                                               Thu Jan 23 09:58:14 2025</span><br><span class="line">Resolver: Received error response 2. (server failure)er of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Host                                                                        Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. AS31898 140.91.206.98                                                     0.0%   103    0.3   0.3   0.2   0.8   0.0</span><br><span class="line"> 2. AS6453  180.87.180.138                                                    0.0%   103    1.1   2.1   1.0  24.5   3.0</span><br><span class="line"> 3. AS6453  ix-be-35.ecore1.tv2-tokyo.as6453.net                             34.0%   103    1.6   1.7   1.5   6.2   0.5</span><br><span class="line"> 4. AS6453  209.58.55.73                                                     72.5%   103    2.4   2.0   1.3   3.5   0.3</span><br><span class="line"> 5. AS6453  209.58.61.43                                                      0.0%   103    2.0   1.8   1.5   3.2   0.1</span><br><span class="line"> 6. AS58453 223.120.2.26                                                      0.0%   103   56.4  56.0  55.3  66.3   1.5</span><br><span class="line"> 7. AS9808  221.183.55.82                                                     0.0%   102   57.2  57.2  57.1  59.2   0.2</span><br><span class="line"> 8. AS9808  221.183.92.21                                                     0.0%   102   62.1  62.4  62.0  70.6   1.2</span><br><span class="line"> 9. AS9808  221.183.89.246                                                   46.1%   102   68.2  68.7  68.2  80.3   1.6</span><br><span class="line">10. AS9808  221.183.39.182                                                   58.4%   102   66.0  67.4  65.4  81.5   3.9</span><br><span class="line">11. AS9808  183.233.59.226                                                    6.9%   102   71.3  71.5  71.2  76.4   0.6</span><br><span class="line">12. AS9808  120.196.91.105                                                    0.0%   102  175.7 176.7 173.4 242.1  10.2</span><br></pre></td></tr></table></figure>
-
-<h2 id="广州移动CMCC"><a href="#广州移动CMCC" class="headerlink" title="广州移动CMCC"></a>广州移动CMCC</h2><ul>
-<li>去程 AS9808-AS58453-AS6453 CMI-TaTa线路 广州-香港-新加坡-日本 经香港出口绕新加坡联接日本TaTa线路到达日本 延时80ms~200ms左右。</li>
-<li>回程 AS6453-AS58453-AS9808 TaTa线路-CMI 日本-广州 直连回国，延时80ms左右，丢包0%。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">My traceroute  [v0.85]</span><br><span class="line">instance-20220225-1301 (0.0.0.0)                                                               Fri Jan 24 09:46:46 2025</span><br><span class="line">Resolver: Received error response 2. (server failure)er of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Host                                                                        Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. AS31898 140.91.206.100                                                    0.0%   938    0.2   0.2   0.2   6.1   0.3</span><br><span class="line"> 2. AS6453  180.87.180.138                                                    0.0%   938    1.1   2.8   1.0  51.1   5.3</span><br><span class="line"> 3. AS6453  ix-be-35.ecore1.tv2-tokyo.as6453.net                              0.0%   938    1.9   1.6   1.4  30.7   1.9</span><br><span class="line"> 4. AS6453  209.58.55.73                                                     64.9%   938    2.1   1.8   1.3   6.5   0.4</span><br><span class="line"> 5. AS6453  209.58.61.43                                                      0.0%   938    1.6   5.6   1.4 552.3  25.7</span><br><span class="line"> 6. AS58453 223.120.2.26                                                      1.7%   938   55.5  59.3  55.3 564.8  22.8</span><br><span class="line"> 7. AS9808  221.183.55.82                                                     5.1%   938   58.1  60.4  57.0 517.2  19.7</span><br><span class="line"> 8. AS9808  221.183.92.17                                                     5.0%   938   63.0  66.7  62.9 679.9  29.3</span><br><span class="line"> 9. AS9808  221.183.89.242                                                   99.4%   938  175.3 175.3 174.2 177.8   1.1</span><br><span class="line">10. AS9808  221.183.39.170                                                   93.1%   938  174.0 179.8 173.9 250.7  14.5</span><br><span class="line">11. AS9808  183.235.226.125                                                   9.2%   938   71.8  77.6  71.3 701.8  33.3</span><br><span class="line">12. AS9808  183.235.226.9                                                    33.6%   938  207.8 181.2 175.5 461.2  17.1</span><br><span class="line">13. AS56040 221.179.3.240                                                     0.0%   937   71.1  75.4  71.0 585.8  27.5</span><br></pre></td></tr></table></figure>
-
-<h2 id="广州移动4G"><a href="#广州移动4G" class="headerlink" title="广州移动4G"></a>广州移动4G</h2><ul>
-<li>去程 AS9808-AS58453-AS6453 CMI-TaTa线路 广州-香港-新加坡-日本 经香港出口绕新加坡联接日本TaTa线路到达日本 延时150ms左右。</li>
-<li>回程 AS6453-AS58453-AS9808 TaTa线路-CMI 日本-广州 直连回国，延时75ms左右，丢包0%。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">My traceroute  [v0.85]</span><br><span class="line">instance-20220225-1301 (0.0.0.0)                                                               Fri Jan 24 09:55:37 2025</span><br><span class="line">Resolver: Received error response 2. (server failure)er of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Host                                                                        Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. AS31898 140.91.206.138                                                    0.0%   224    0.3   0.2   0.2   3.1   0.2</span><br><span class="line"> 2. AS6453  180.87.180.138                                                    0.0%   224    1.1   1.9   1.0  43.3   3.8</span><br><span class="line"> 3. AS6453  ix-be-35.ecore1.tv2-tokyo.as6453.net                             36.2%   224    1.5   1.9   1.4  18.4   1.8</span><br><span class="line"> 4. AS6453  209.58.55.73                                                     69.5%   224    1.3   1.7   1.2   2.5   0.0</span><br><span class="line"> 5. AS6453  209.58.61.43                                                      0.0%   224    1.8   2.6   1.5  73.1   5.3</span><br><span class="line"> 6. AS58453 223.120.2.26                                                      0.0%   224   55.6  56.9  55.3 134.0   6.8</span><br><span class="line"> 7. AS9808  221.183.55.82                                                     0.0%   224   57.2  59.4  57.1 250.1  13.6</span><br><span class="line"> 8. AS9808  221.183.92.21                                                     0.0%   224   62.3  64.3  62.1 224.7  11.5</span><br><span class="line"> 9. AS9808  221.183.89.246                                                   98.2%   224   68.3  68.5  68.3  69.0   0.0</span><br><span class="line">10. AS9808  221.183.142.82                                                   96.0%   224  230.9 181.4 173.4 230.9  19.0</span><br><span class="line">11. AS56040 211.136.208.93                                                   97.3%   224   71.3  72.4  68.4  85.6   6.5</span><br><span class="line">12. AS56040 211.136.208.62                                                   32.1%   224   66.1  73.4  65.7 620.3  45.4</span><br><span class="line">13. AS9808  183.235.230.125                                                   0.0%   223   67.8  68.7  67.2  99.5   3.8</span><br><span class="line">14. AS56040 221.179.54.45                                                     0.0%   223   69.2  70.4  69.0 136.6   5.3</span><br></pre></td></tr></table></figure>
-
-<p>总结：中国移动CMI骨干网日本方向，出国到处绕，回国有直连。</p>
 
       
     </div>
