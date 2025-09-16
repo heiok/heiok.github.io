@@ -1,3 +1,4 @@
+https://heiok.com/Ethernet.html
 https://heiok.com/China-BackBone.html
 https://heiok.com/looking-glass.html
 https://heiok.com/How-to-make-chrome-auto-start-the-web-page-and-open-in-full-screen-mode.html
@@ -135,6 +136,8 @@ https://heiok.com/tags/LG/
 https://heiok.com/tags/mermaid/
 https://heiok.com/tags/sing-box/
 https://heiok.com/tags/GUIforSingBox/
+https://heiok.com/tags/Ethernet/
+https://heiok.com/tags/MTU/
 https://heiok.com/categories/Software/
 https://heiok.com/categories/Hardware/
 https://heiok.com/categories/Network/
