@@ -1,3 +1,4 @@
+https://heiok.com/speedtest.html
 https://heiok.com/Ethernet.html
 https://heiok.com/China-BackBone.html
 https://heiok.com/looking-glass.html
@@ -138,6 +139,8 @@ https://heiok.com/tags/sing-box/
 https://heiok.com/tags/GUIforSingBox/
 https://heiok.com/tags/Ethernet/
 https://heiok.com/tags/MTU/
+https://heiok.com/tags/speedtest/
+https://heiok.com/tags/iperf3/
 https://heiok.com/categories/Software/
 https://heiok.com/categories/Hardware/
 https://heiok.com/categories/Network/
