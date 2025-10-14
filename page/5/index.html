@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,6 +152,134 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Circuit-Basics.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Circuit-Basics.html" class="post-title-link" itemprop="url">电路基础知识</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-17 18:03:23" itemprop="dateCreated datePublished" datetime="2024-12-17T18:03:23+08:00">2024-12-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-27 16:36:59" itemprop="dateModified" datetime="2024-12-27T16:36:59+08:00">2024-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="电压"><a href="#电压" class="headerlink" title="电压"></a>电压</h2><ul>
+<li>设备电压工作原则：给多少用多少。</li>
+</ul>
+<h2 id="电流"><a href="#电流" class="headerlink" title="电流"></a>电流</h2><ul>
+<li>设备电压工作原则：用多少拿多少。</li>
+</ul>
+<h2 id="电平"><a href="#电平" class="headerlink" title="电平"></a>电平</h2><ul>
+<li><p>指两功率或电压之比的对数，有时也可用来表示两电流之比的对数。常用的电平有功率电平和电压电平两类，它们各自又可分为绝对电平和相对电平两种。</p>
+</li>
+<li><p>电平主要用于驱动信号传输，它的电流非常小，我们把高于0.7V的叫高电平，低于0.7V的叫低电平。</p>
+</li>
+<li><p>标准低平为:0V。标准高电平为:3.3V或1.8V</p>
+</li>
+</ul>
+<h2 id="电阻"><a href="#电阻" class="headerlink" title="电阻"></a>电阻</h2><h3 id="串联"><a href="#串联" class="headerlink" title="串联"></a>串联</h3><ul>
+<li>通过同一电流；</li>
+<li>接地形成分压；</li>
+<li>串联阻值变大。</li>
+</ul>
+<h3 id="并联"><a href="#并联" class="headerlink" title="并联"></a>并联</h3><ul>
+<li>承受同一电压；</li>
+<li>并联形成分流；</li>
+<li>并联阻值变小。</li>
+</ul>
+<h3 id="上拉电阻"><a href="#上拉电阻" class="headerlink" title="上拉电阻"></a>上拉电阻</h3><ul>
+<li>在电路中一端接电压另一端接信号的电阻叫上拉电阻。（阻值较大）</li>
+<li>作用：上拉电阻可以提高电路的驱动能力，在默认状态下，将不确定的信号钳位在高电平。当输入为低时，上拉电阻又可以将信号钳位在低电平，它可以让信号在高低电平之间转换。</li>
+</ul>
+<h3 id="下拉电阻"><a href="#下拉电阻" class="headerlink" title="下拉电阻"></a>下拉电阻</h3><ul>
+<li>在电路中一端接地另一端接入芯片的电阻叫下拉电阻。</li>
+<li>作用：在默认状态，下拉电阻可以将不确定的信号钳位在低电平，当输入为高时，下拉电阻以可以将信号钳位在高电平，它可以让信号在高低电平之间转换。</li>
+</ul>
+<h3 id="藕合电阻"><a href="#藕合电阻" class="headerlink" title="藕合电阻"></a>藕合电阻</h3><ul>
+<li>在电路中芯片与芯片或芯片与接口之间传递信号经过的电阻叫耦合电阻。</li>
+<li>作用：信号匹配或缓冲。</li>
+<li>阻值一般在100欧以内（常用33Ω、47Ω、15Ω）</li>
+</ul>
+<h3 id="保险电阻"><a href="#保险电阻" class="headerlink" title="保险电阻"></a>保险电阻</h3><ul>
+<li>在电路中两端都接电压并且阻值较小（10欧以内）的电阻叫保险电阻。</li>
+<li>作用：当输入电压过高或电流过大时，电阻熔断从而保护芯片。</li>
+</ul>
+<h3 id="检流电阻"><a href="#检流电阻" class="headerlink" title="检流电阻"></a>检流电阻</h3><ul>
+<li>串联在电压输出端，检测电压输出端的电流。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

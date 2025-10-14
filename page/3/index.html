@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,6 +152,152 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/sing-box.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/sing-box.html" class="post-title-link" itemprop="url">sing-box越过长城走向世界</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-02-14 17:44:43 / 修改时间：17:46:41" itemprop="dateCreated datePublished" datetime="2025-02-14T17:44:43+08:00">2025-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="不忘初心"><a href="#不忘初心" class="headerlink" title="不忘初心"></a>不忘初心</h2><p>​	1987年，那封email告诉我们，Across the Great Wall we can reach every corner in the world”（“越过长城，走向世界”）。</p>
+<p>​	入手爪云后，勾起越过长城，走向世界的心。在此之前的越法参考<a href="iPhone-configuration-socks-proxy">iPhone配置socks代理</a>，在本地服务器如192.168.1.25通过SSH代理，然后内网客户端浏览器设置特定代理访问，手机WiFi设置http代理访问。这一次，想找一款工具替代SSH、gost或Potatso的方式穿越。</p>
+<h2 id="选定工具"><a href="#选定工具" class="headerlink" title="选定工具"></a>选定工具</h2><p>​	sing-box  </p>
+<p>​        优点：简洁易用（入手后才易），全平台，免费，还可以隐藏VPN图标~~~；</p>
+<p>​	缺点：不易入手，并非不宜入手；LOGO略丑。</p>
+<p>​	官网地址：<a target="_blank" rel="noopener" href="https://sing-box.sagernet.org/">https://sing-box.sagernet.org/</a></p>
+<p>​	项目地址：<a target="_blank" rel="noopener" href="https://github.com/SagerNet/sing-box">https://github.com/SagerNet/sing-box</a></p>
+<p>​	第三方GUI：<a target="_blank" rel="noopener" href="https://github.com/GUI-for-Cores/GUI.for.SingBox">https://github.com/GUI-for-Cores/GUI.for.SingBox</a></p>
+<p>​	sing-box 程序本身不区分客户端与服务端，区别在于JSON配置文件。</p>
+<h2 id="安装管理"><a href="#安装管理" class="headerlink" title="安装管理"></a>安装管理</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -fsSL https://sing-box.app/rpm-install.sh)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">Operation</th>
+<th align="left">Command</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Enable</td>
+<td align="left"><code>sudo systemctl enable sing-box</code></td>
+</tr>
+<tr>
+<td align="left">Disable</td>
+<td align="left"><code>sudo systemctl disable sing-box</code></td>
+</tr>
+<tr>
+<td align="left">Start</td>
+<td align="left"><code>sudo systemctl start sing-box</code></td>
+</tr>
+<tr>
+<td align="left">Stop</td>
+<td align="left"><code>sudo systemctl stop sing-box</code></td>
+</tr>
+<tr>
+<td align="left">Kill</td>
+<td align="left"><code>sudo systemctl kill sing-box</code></td>
+</tr>
+<tr>
+<td align="left">Restart</td>
+<td align="left"><code>sudo systemctl restart sing-box</code></td>
+</tr>
+<tr>
+<td align="left">Logs</td>
+<td align="left"><code>sudo journalctl -u sing-box --output cat -e</code></td>
+</tr>
+<tr>
+<td align="left">New Logs</td>
+<td align="left"><code>sudo journalctl -u sing-box --output cat -f</code></td>
+</tr>
+</tbody></table>
+<h2 id="订阅转换"><a href="#订阅转换" class="headerlink" title="订阅转换"></a>订阅转换</h2><ul>
+<li>在线部署 参考 <a target="_blank" rel="noopener" href="https://github.com/Toperlock/sing-box-subscribe">https://github.com/Toperlock/sing-box-subscribe</a></li>
+<li>离线部署</li>
+</ul>
+<ol>
+<li>下载安装配置好python环境；</li>
+<li>下载<a target="_blank" rel="noopener" href="https://github.com/Toperlock/sing-box-subscribe/releases/download/v2.8.0/sing-box-subscribe-no-flask-2.8.0.zip">sing-box-subscribe-no-flask-2.8.0</a>解压；</li>
+<li>拷贝要转换的如http、ss链接替换文件providers.json里的url；</li>
+<li>CMD或powershell下执行python main.py，选择相应配置文件，最终生成config.json；</li>
+<li>苹果手机安装sing-box后导入config.json。</li>
+</ol>
+<h2 id="一个小坑"><a href="#一个小坑" class="headerlink" title="一个小坑"></a>一个小坑</h2><p>WIN平台用的是第三方GUI，导入订阅链接或设置单个链接后，一直无法启动。提示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fork/exec data/sing-box/sing-box.exe: The system cannot find the file specified.</span><br></pre></td></tr></table></figure>
+
+<p>解决方法是使用前需要先更新一下内核。打开GUI.for.SingBox，设置，点击最右侧更新。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">本地：无核心 远程：1.11.3 更新：1.11.3</span><br><span class="line">local: Core Not Found Remote:1.11.3 Update:1.11.3</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1191,96 +1337,6 @@ Future task2               :         des4, after des3, 5d</code></pre>
 
 <h2 id="旧站处理"><a href="#旧站处理" class="headerlink" title="旧站处理"></a>旧站处理</h2><p>  站点改名为oldsite后，原站点CSS样式需要处理。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:heiok/oldsite.git</span><br><span class="line">find . -name &quot;*.html&quot; -exec sed -i &#x27;s|href=&quot;/css|href=&quot;/oldsite/css|g&#x27; &#123;&#125; \;</span><br><span class="line">find . -name &quot;*.html&quot; -exec sed -i &#x27;s|src=&quot;/js|src=&quot;/oldsite/js|g&#x27; &#123;&#125; \;</span><br><span class="line">find . -name &quot;*.html&quot; -exec sed -i &#x27;s|href=&quot;/\([^o][^/]*\)|href=&quot;/oldsite/\1|g&#x27; &#123;&#125; \;</span><br><span class="line">find . -name &quot;*.html&quot; -exec sed -i &#x27;s|href=&quot;/&quot;|href=&quot;/oldsite&quot;|&#x27; &#123;&#125; \;</span><br><span class="line">find . -name &quot;*.html&quot; -exec sed -i &#x27;s|src=&quot;/images/|src=&quot;/oldsite/images/|g&#x27; &#123;&#125; \;</span><br><span class="line">find . -name &quot;*.html&quot; -exec sed -i &#x27;s|content=&quot;/images/|content=&quot;/oldsite/images/|g&#x27; &#123;&#125; \;</span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/Get-Guangdong-TV-EPG-python-version.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Get-Guangdong-TV-EPG-python-version.html" class="post-title-link" itemprop="url">获取广东电视台节目表python版</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-12-30 16:27:37" itemprop="dateCreated datePublished" datetime="2024-12-30T16:27:37+08:00">2024-12-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-12-31 22:54:59" itemprop="dateModified" datetime="2024-12-31T22:54:59+08:00">2024-12-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/IPTV/" itemprop="url" rel="index"><span itemprop="name">IPTV</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a href="Get-GuangDong-TV-EPG">获取广东电视台节目表</a> 环境依赖Python3 + Django4 + Nginx + uWSGI，用于部署WEB项目站点展示节目列表、节目列表下载预览或提供节目列表API接口使用，过于繁杂，以下代码基于Python3抓取官方节目表后直接生成需要的epg.xml，方便部署在OpenWRT路由器上使用。</p>
-<h2 id="获取代码"><a href="#获取代码" class="headerlink" title="获取代码"></a>获取代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">import datetime</span><br><span class="line">import requests</span><br><span class="line">import warnings</span><br><span class="line">from bs4 import BeautifulSoup as bs</span><br><span class="line">from xml.etree.ElementTree import Element, SubElement, ElementTree</span><br><span class="line"></span><br><span class="line"># 定义请求头，模拟浏览器访问</span><br><span class="line">headers = &#123;</span><br><span class="line">    &#x27;User-Agent&#x27;: &#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 忽略 XMLParsedAsHTMLWarning</span><br><span class="line">warnings.filterwarnings(&#x27;ignore&#x27;)</span><br><span class="line"></span><br><span class="line"># 获取广东电视台频道列表</span><br><span class="line">def get_channels_gdtv():</span><br><span class="line">    url = &#x27;http://epg.gdtv.cn/f/1.xml&#x27;  # 获取广东电视台频道列表的XML文件</span><br><span class="line">    res = requests.get(url, headers=headers)</span><br><span class="line">    res.encoding = &#x27;utf-8&#x27;</span><br><span class="line">    soup = bs(res.text, &#x27;html.parser&#x27;)</span><br><span class="line">    contents = soup.select(&#x27;channel&#x27;)</span><br><span class="line">    channels = []</span><br><span class="line"></span><br><span class="line">    for content in contents:</span><br><span class="line">        channel_id = content.attrs[&#x27;id&#x27;]</span><br><span class="line">        name = content.ctitle.text.strip()  # 使用 strip() 清理可能的空格和换行</span><br><span class="line">        channels.append(&#123;&#x27;id&#x27;: channel_id, &#x27;name&#x27;: name&#125;)</span><br><span class="line">    return channels</span><br><span class="line"></span><br><span class="line"># 处理节目标题中的 HTML 实体和标签</span><br><span class="line">def clean_html(text):</span><br><span class="line">    # 将 HTML 实体转换为普通字符（例如 &amp;amp; -&gt; &amp;）</span><br><span class="line">    text = bs(text, &quot;html.parser&quot;).get_text()</span><br><span class="line">    return text.replace(&#x27;&lt;br /&gt;&#x27;, &#x27;\n&#x27;).replace(&#x27;&lt;br&gt;&#x27;, &#x27;\n&#x27;).strip()</span><br><span class="line"></span><br><span class="line"># 获取指定日期范围内的节目表</span><br><span class="line">def get_epgs_gdtv(channel_id, start_date, end_date):</span><br><span class="line">    epgs = []</span><br><span class="line">    current_date = start_date</span><br><span class="line">    while current_date &lt;= end_date:</span><br><span class="line">        url = f&#x27;http://epg.gdtv.cn/f/&#123;channel_id&#125;/&#123;current_date.strftime(&quot;%Y-%m-%d&quot;)&#125;.xml&#x27;</span><br><span class="line">        res = requests.get(url, headers=headers, timeout=8)</span><br><span class="line">        res.encoding = &#x27;utf-8&#x27;</span><br><span class="line">        soup = bs(res.text, &#x27;html.parser&#x27;)</span><br><span class="line">        epgs_contents = soup.select(&#x27;content&#x27;)</span><br><span class="line"></span><br><span class="line">        for epga in epgs_contents:</span><br><span class="line">            starttime = datetime.datetime.fromtimestamp(int(epga.attrs[&#x27;time1&#x27;]))</span><br><span class="line">            endtime = datetime.datetime.fromtimestamp(int(epga.attrs[&#x27;time2&#x27;]))</span><br><span class="line">            title = clean_html(epga.get_text())</span><br><span class="line">            epgs.append(&#123;</span><br><span class="line">                &#x27;title&#x27;: title,</span><br><span class="line">                &#x27;start&#x27;: starttime,</span><br><span class="line">                &#x27;end&#x27;: endtime</span><br><span class="line">            &#125;)</span><br><span class="line">        current_date += datetime.timedelta(days=1)</span><br><span class="line">    return epgs</span><br><span class="line"></span><br><span class="line"># 创建 XMLTV 文件</span><br><span class="line">def create_epg_xml(channels, epg_data, output_file):</span><br><span class="line">    tv = Element(&#x27;tv&#x27;)</span><br><span class="line"></span><br><span class="line">    # 添加频道信息</span><br><span class="line">    for channel in channels:</span><br><span class="line">        channel_element = SubElement(tv, &#x27;channel&#x27;, id=channel[&#x27;id&#x27;])</span><br><span class="line">        display_name = SubElement(channel_element, &#x27;display-name&#x27;)</span><br><span class="line">        display_name.text = channel[&#x27;name&#x27;]</span><br><span class="line"></span><br><span class="line">    # 添加节目表</span><br><span class="line">    for channel_id, programs in epg_data.items():</span><br><span class="line">        for program in programs:</span><br><span class="line">            programme = SubElement(tv, &#x27;programme&#x27;, start=program[&#x27;start&#x27;].strftime(&#x27;%Y%m%d%H%M%S +0800&#x27;),</span><br><span class="line">                                   stop=program[&#x27;end&#x27;].strftime(&#x27;%Y%m%d%H%M%S +0800&#x27;),</span><br><span class="line">                                   channel=channel_id)</span><br><span class="line">            title = SubElement(programme, &#x27;title&#x27;)</span><br><span class="line">            title.text = program[&#x27;title&#x27;]</span><br><span class="line"></span><br><span class="line">    # 保存为文件</span><br><span class="line">    tree = ElementTree(tv)</span><br><span class="line">    tree.write(output_file, encoding=&#x27;utf-8&#x27;, xml_declaration=True)</span><br><span class="line"></span><br><span class="line"># 主函数</span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    today = datetime.datetime.now().date()</span><br><span class="line">    start_date = today - datetime.timedelta(days=6)  # 六天前</span><br><span class="line">    end_date = today + datetime.timedelta(days=2)  # 两天后</span><br><span class="line"></span><br><span class="line">    print(&quot;获取频道列表...&quot;)</span><br><span class="line">    channels = get_channels_gdtv()</span><br><span class="line"></span><br><span class="line">    epg_data = &#123;&#125;</span><br><span class="line">    print(&quot;抓取节目表...&quot;)</span><br><span class="line">    for channel in channels:</span><br><span class="line">        channel_id = channel[&#x27;id&#x27;]</span><br><span class="line">        epg_data[channel_id] = get_epgs_gdtv(channel_id, start_date, end_date)</span><br><span class="line"></span><br><span class="line">    print(&quot;生成 XMLTV 文件...&quot;)</span><br><span class="line">    output_file = &quot;epg.xml&quot;</span><br><span class="line">    create_epg_xml(channels, epg_data, output_file)</span><br><span class="line">    print(f&quot;完成！EPG 文件已保存为 &#123;output_file&#125;&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="执行代码"><a href="#执行代码" class="headerlink" title="执行代码"></a>执行代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost IPTV]# python gdtv_to_epg.py</span><br><span class="line">获取频道列表...</span><br><span class="line">抓取节目表...</span><br><span class="line">生成 XMLTV 文件...</span><br><span class="line">完成！EPG 文件已保存为 epg.xml</span><br></pre></td></tr></table></figure>
 
 
 

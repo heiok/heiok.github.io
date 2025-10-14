@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,6 +152,95 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Manually-download-Bilibili-videos.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Manually-download-Bilibili-videos.html" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-10-14 15:58:53" itemprop="dateCreated datePublished" datetime="2025-10-14T15:58:53+08:00">2025-10-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <hr>
+<h2 id="title-手动下载Bilibili视频date-2025-10-14-15-54-54categories-IPTVtags-Droopy-Bilibili-download-BBDown"><a href="#title-手动下载Bilibili视频date-2025-10-14-15-54-54categories-IPTVtags-Droopy-Bilibili-download-BBDown" class="headerlink" title="title: 手动下载Bilibili视频date: 2025-10-14 15:54:54categories:    - IPTVtags:    - Droopy    - Bilibili download    - BBDown"></a>title: 手动下载Bilibili视频<br>date: 2025-10-14 15:54:54<br>categories:<br>    - IPTV<br>tags:<br>    - Droopy<br>    - Bilibili download<br>    - BBDown</h2><h2 id="提取BV号"><a href="#提取BV号" class="headerlink" title="提取BV号"></a>提取BV号</h2><ol>
+<li>Edge浏览器打开合集页面<a target="_blank" rel="noopener" href="https://space.bilibili.com/95117517/lists/4372632?type=season">https://space.bilibili.com/95117517/lists/4372632?type=season</a></li>
+<li>按键盘F12打开开发工具，切到<strong>Console（控制台）</strong> 标签页</li>
+<li>输入以下代码提取BV号</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.clear();</span><br><span class="line">const bvs = [...document.querySelectorAll(&#x27;a[href*=&quot;/video/BV&quot;]&#x27;)]</span><br><span class="line">  .map(a =&gt; a.href.match(/BV[0-9A-Za-z]+/)[0])</span><br><span class="line">  .filter((v, i, a) =&gt; a.indexOf(v) === i);</span><br><span class="line"></span><br><span class="line">bvs.forEach(bv =&gt; console.log(bv));</span><br><span class="line">console.log(`\n共提取到 $&#123;bvs.length&#125; 个BV号`);</span><br></pre></td></tr></table></figure>
+
+<h2 id="整理文件"><a href="#整理文件" class="headerlink" title="整理文件"></a>整理文件</h2><p>复制控制台文件并处理，保存为bv_list.txt，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">BV1fr4kzBEY1</span><br><span class="line">BV1e2idY1EsV</span><br><span class="line">BV1wni6YEEnp</span><br><span class="line">BV1RXqpYxEjs</span><br><span class="line">BV1cLqkYWET6</span><br><span class="line">BV1WbqXYsEu4</span><br><span class="line">BV13yBuYEEzC</span><br><span class="line">BV1yJBFYCEs8</span><br><span class="line">BV1dcBwYeE7M</span><br><span class="line">BV1xSknYEEBi</span><br><span class="line">BV1gRk6Y2Efh</span><br><span class="line">BV1jpk8YZE4x</span><br><span class="line">BV1b1CKYUEYq</span><br><span class="line">BV1CZkoYUESn</span><br><span class="line">BV1CWCYYmEmp</span><br><span class="line">BV1rAC8YvELM</span><br><span class="line">BV1AG6bYfEAz</span><br><span class="line">BV1DE68YCESP</span><br><span class="line">BV1kEKNeoEUJ</span><br><span class="line">BV1Hx6ZYkEvG</span><br><span class="line">BV15VrLYyEcU</span><br><span class="line">BV1xZrXYuE42</span><br><span class="line">BV1tcrvYsEim</span><br><span class="line">BV19pcnerEhv</span><br><span class="line">BV1JqccehEWt</span><br></pre></td></tr></table></figure>
+
+<h2 id="批量下载"><a href="#批量下载" class="headerlink" title="批量下载"></a>批量下载</h2><p>在 PowerShell 中直接复制并运行以下完整命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># 进入工作目录</span><br><span class="line">cd &quot;G:\ffmpeg-7.0-essentials_build\bin&quot;</span><br><span class="line"></span><br><span class="line"># 创建 bv_list.txt（就在当前目录）</span><br><span class="line">@&quot;</span><br><span class="line">BV1fr4kzBEY1</span><br><span class="line">BV1e2idY1EsV</span><br><span class="line">BV1wni6YEEnp</span><br><span class="line">BV1RXqpYxEjs</span><br><span class="line">BV1cLqkYWET6</span><br><span class="line">BV1WbqXYsEu4</span><br><span class="line">BV13yBuYEEzC</span><br><span class="line">BV1yJBFYCEs8</span><br><span class="line">BV1dcBwYeE7M</span><br><span class="line">BV1xSknYEEBi</span><br><span class="line">BV1gRk6Y2Efh</span><br><span class="line">BV1jpk8YZE4x</span><br><span class="line">BV1b1CKYUEYq</span><br><span class="line">BV1CZkoYUESn</span><br><span class="line">BV1CWCYYmEmp</span><br><span class="line">BV1rAC8YvELM</span><br><span class="line">BV1AG6bYfEAz</span><br><span class="line">BV1DE68YCESP</span><br><span class="line">BV1kEKNeoEUJ</span><br><span class="line">BV1Hx6ZYkEvG</span><br><span class="line">BV15VrLYyEcU</span><br><span class="line">BV1xZrXYuE42</span><br><span class="line">BV1tcrvYsEim</span><br><span class="line">BV19pcnerEhv</span><br><span class="line">BV1JqccehEWt</span><br><span class="line">&quot;@ | Out-File -Encoding UTF8 &quot;.\bv_list.txt&quot;</span><br><span class="line"></span><br><span class="line"># 逐行读取并下载</span><br><span class="line">Get-Content &quot;.\bv_list.txt&quot; | ForEach-Object &#123;</span><br><span class="line">    Write-Host &quot;正在下载 $_ ...&quot; -ForegroundColor Yellow</span><br><span class="line">    .\BBDown.exe $_ -tv</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Write-Host &quot;`n全部下载完成！&quot; -ForegroundColor Green</span><br></pre></td></tr></table></figure>
+
+<h2 id="处理过程"><a href="#处理过程" class="headerlink" title="处理过程"></a>处理过程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br></pre></td><td class="code"><pre><span class="line">正在下载 BV1xZrXYuE42 ...</span><br><span class="line">BBDown version 1.6.3, Bilibili Downloader.</span><br><span class="line">遇到问题请首先到以下地址查阅有无相关信息：</span><br><span class="line">https://github.com/nilaoda/BBDown/issues</span><br><span class="line"></span><br><span class="line">[2025-10-14 14:51:08.217] - 检测账号登录...</span><br><span class="line">[2025-10-14 14:51:08.307] - 获取aid...</span><br><span class="line">[2025-10-14 14:51:08.705] - 获取aid结束: 113788061748358</span><br><span class="line">[2025-10-14 14:51:08.706] - 获取视频信息...</span><br><span class="line">[2025-10-14 14:51:08.782] - 视频标题: 德鲁比（Droopy）【视频修复+字幕压制】第21集</span><br><span class="line">[2025-10-14 14:51:08.782] - 发布时间: 2025-01-08 00:45:55 +08:00</span><br><span class="line">[2025-10-14 14:51:08.783] - UP主页: https://space.bilibili.com/95117517</span><br><span class="line">[2025-10-14 14:51:08.784] - P1: [28418707036] [德鲁比（Droopy）【视频修复+字幕压制】第21集] [07m51s]</span><br><span class="line">[2025-10-14 14:51:08.784] - 共计 1 个分P, 已选择：ALL</span><br><span class="line">[2025-10-14 14:51:08.785] - 开始解析P1: 113788061748358... (1 of 1)</span><br><span class="line">[2025-10-14 14:51:09.137] - 跳过下载AI字幕</span><br><span class="line">[2025-10-14 14:51:09.292] - 共计4条视频流.</span><br><span class="line">                            0. [720P 高清] [AVC] [589 kbps] [~33.05 MB]</span><br><span class="line">                            1. [720P 高清] [HEVC] [289 kbps] [~16.22 MB]</span><br><span class="line">                            2. [480P 清晰] [AVC] [353 kbps] [~19.81 MB]</span><br><span class="line">                            3. [480P 清晰] [HEVC] [184 kbps] [~10.35 MB]</span><br><span class="line">[2025-10-14 14:51:09.295] - 共计3条音频流.</span><br><span class="line">                            0. [M4A] [72 kbps] [~4.14 MB]</span><br><span class="line">                            1. [M4A] [60 kbps] [~3.45 MB]</span><br><span class="line">                            2. [M4A] [28 kbps] [~1.61 MB]</span><br><span class="line">[2025-10-14 14:51:09.297] - 已选择的流:</span><br><span class="line">                            [视频] [720P 高清] [AVC] [589 kbps] [~33.05 MB]</span><br><span class="line">                            [音频] [M4A] [72 kbps] [~4.14 MB]</span><br><span class="line">[2025-10-14 14:51:09.298] - 尝试将视频流强制替换为upos-sz-mirrorcoso1.bilivideo.com……</span><br><span class="line">[2025-10-14 14:51:09.298] - 尝试将音频流强制替换为upos-sz-mirrorcoso1.bilivideo.com……</span><br><span class="line">[2025-10-14 14:51:09.299] - 开始下载P1视频...</span><br><span class="line">[2025-10-14 14:51:31.830] - 合并视频分片...</span><br><span class="line">[2025-10-14 14:51:31.857] - 清理分片...</span><br><span class="line">[2025-10-14 14:51:31.862] - 开始下载P1音频...</span><br><span class="line">[2025-10-14 14:51:37.793] - 合并音频分片...</span><br><span class="line">[2025-10-14 14:51:37.794] - 清理分片...</span><br><span class="line">[2025-10-14 14:51:37.795] - 下载P1完毕</span><br><span class="line">[2025-10-14 14:51:37.795] - 开始合并音视频...</span><br><span class="line">[2025-10-14 14:51:38.025] - 清理临时文件...</span><br><span class="line">[2025-10-14 14:51:38.231] - 任务完成</span><br><span class="line">正在下载 BV1tcrvYsEim ...</span><br><span class="line">BBDown version 1.6.3, Bilibili Downloader.</span><br><span class="line">遇到问题请首先到以下地址查阅有无相关信息：</span><br><span class="line">https://github.com/nilaoda/BBDown/issues</span><br><span class="line"></span><br><span class="line">[2025-10-14 14:51:38.290] - 检测账号登录...</span><br><span class="line">[2025-10-14 14:51:38.373] - 获取aid...</span><br><span class="line">[2025-10-14 14:51:38.919] - 获取aid结束: 113793464076835</span><br><span class="line">[2025-10-14 14:51:38.920] - 获取视频信息...</span><br><span class="line">[2025-10-14 14:51:38.976] - 视频标题: 德鲁比（Droopy）【视频修复+字幕压制】第22集</span><br><span class="line">[2025-10-14 14:51:38.977] - 发布时间: 2025-01-08 23:37:30 +08:00</span><br><span class="line">[2025-10-14 14:51:38.978] - UP主页: https://space.bilibili.com/95117517</span><br><span class="line">[2025-10-14 14:51:38.978] - P1: [28422442369] [德鲁比（Droopy）【视频修复+字幕压制】第22集] [07m22s]</span><br><span class="line">[2025-10-14 14:51:38.979] - 共计 1 个分P, 已选择：ALL</span><br><span class="line">[2025-10-14 14:51:38.979] - 开始解析P1: 113793464076835... (1 of 1)</span><br><span class="line">[2025-10-14 14:51:39.382] - 跳过下载AI字幕</span><br><span class="line">[2025-10-14 14:51:39.536] - 共计4条视频流.</span><br><span class="line">                            0. [720P 高清] [AVC] [649 kbps] [~34.17 MB]</span><br><span class="line">                            1. [720P 高清] [HEVC] [274 kbps] [~14.44 MB]</span><br><span class="line">                            2. [480P 清晰] [AVC] [358 kbps] [~18.87 MB]</span><br><span class="line">                            3. [480P 清晰] [HEVC] [202 kbps] [~10.66 MB]</span><br><span class="line">[2025-10-14 14:51:39.540] - 共计3条音频流.</span><br><span class="line">                            0. [M4A] [72 kbps] [~3.88 MB]</span><br><span class="line">                            1. [M4A] [60 kbps] [~3.24 MB]</span><br><span class="line">                            2. [M4A] [28 kbps] [~1.51 MB]</span><br><span class="line">[2025-10-14 14:51:39.542] - 已选择的流:</span><br><span class="line">                            [视频] [720P 高清] [AVC] [649 kbps] [~34.17 MB]</span><br><span class="line">                            [音频] [M4A] [72 kbps] [~3.88 MB]</span><br><span class="line">[2025-10-14 14:51:39.543] - 尝试将视频流强制替换为upos-sz-mirrorcoso1.bilivideo.com……</span><br><span class="line">[2025-10-14 14:51:39.543] - 尝试将音频流强制替换为upos-sz-mirrorcoso1.bilivideo.com……</span><br><span class="line">[2025-10-14 14:51:39.543] - 开始下载P1视频...</span><br><span class="line">[2025-10-14 14:52:03.064] - 合并视频分片...</span><br><span class="line">[2025-10-14 14:52:03.092] - 清理分片...</span><br><span class="line">[2025-10-14 14:52:03.098] - 开始下载P1音频...</span><br><span class="line">[2025-10-14 14:52:07.341] - 合并音频分片...</span><br><span class="line">[2025-10-14 14:52:07.342] - 清理分片...</span><br><span class="line">[2025-10-14 14:52:07.343] - 下载P1完毕</span><br><span class="line">[2025-10-14 14:52:07.343] - 开始合并音视频...</span><br><span class="line">[2025-10-14 14:52:07.539] - 清理临时文件...</span><br><span class="line">[2025-10-14 14:52:07.745] - 任务完成</span><br><span class="line">正在下载 BV19pcnerEhv ...</span><br><span class="line">BBDown version 1.6.3, Bilibili Downloader.</span><br><span class="line">遇到问题请首先到以下地址查阅有无相关信息：</span><br><span class="line">https://github.com/nilaoda/BBDown/issues</span><br><span class="line"></span><br><span class="line">[2025-10-14 14:52:07.874] - 检测账号登录...</span><br><span class="line">[2025-10-14 14:52:07.966] - 获取aid...</span><br><span class="line">[2025-10-14 14:52:08.296] - 获取aid结束: 113804620859333</span><br><span class="line">[2025-10-14 14:52:08.297] - 获取视频信息...</span><br><span class="line">[2025-10-14 14:52:08.353] - 视频标题: 德鲁比（Droopy）【视频修复+字幕压制】第23集</span><br><span class="line">[2025-10-14 14:52:08.354] - 发布时间: 2025-01-10 23:48:09 +08:00</span><br><span class="line">[2025-10-14 14:52:08.354] - UP主页: https://space.bilibili.com/95117517</span><br><span class="line">[2025-10-14 14:52:08.355] - P1: [28494070316] [德鲁比（Droopy）【视频修复+字幕压制】第23集] [07m54s]</span><br><span class="line">[2025-10-14 14:52:08.355] - 共计 1 个分P, 已选择：ALL</span><br><span class="line">[2025-10-14 14:52:08.355] - 开始解析P1: 113804620859333... (1 of 1)</span><br><span class="line">[2025-10-14 14:52:08.796] - 跳过下载AI字幕</span><br><span class="line">[2025-10-14 14:52:08.955] - 共计4条视频流.</span><br><span class="line">                            0. [720P 高清] [AVC] [518 kbps] [~29.26 MB]</span><br><span class="line">                            1. [720P 高清] [HEVC] [256 kbps] [~14.48 MB]</span><br><span class="line">                            2. [480P 清晰] [AVC] [357 kbps] [~20.19 MB]</span><br><span class="line">                            3. [480P 清晰] [HEVC] [189 kbps] [~10.72 MB]</span><br><span class="line">[2025-10-14 14:52:08.957] - 共计3条音频流.</span><br><span class="line">                            0. [M4A] [71 kbps] [~4.11 MB]</span><br><span class="line">                            1. [M4A] [59 kbps] [~3.41 MB]</span><br><span class="line">                            2. [M4A] [27 kbps] [~1.56 MB]</span><br><span class="line">[2025-10-14 14:52:08.959] - 已选择的流:</span><br><span class="line">                            [视频] [720P 高清] [AVC] [518 kbps] [~29.26 MB]</span><br><span class="line">                            [音频] [M4A] [71 kbps] [~4.11 MB]</span><br><span class="line">[2025-10-14 14:52:08.960] - 尝试将视频流强制替换为upos-sz-mirrorcoso1.bilivideo.com……</span><br><span class="line">[2025-10-14 14:52:08.961] - 尝试将音频流强制替换为upos-sz-mirrorcoso1.bilivideo.com……</span><br><span class="line">[2025-10-14 14:52:08.961] - 开始下载P1视频...</span><br><span class="line">[2025-10-14 14:52:31.954] - 合并视频分片...</span><br><span class="line">[2025-10-14 14:52:31.979] - 清理分片...</span><br><span class="line">[2025-10-14 14:52:31.984] - 开始下载P1音频...</span><br><span class="line">[2025-10-14 14:52:36.418] - 合并音频分片...</span><br><span class="line">[2025-10-14 14:52:36.420] - 清理分片...</span><br><span class="line">[2025-10-14 14:52:36.420] - 下载P1完毕</span><br><span class="line">[2025-10-14 14:52:36.420] - 开始合并音视频...</span><br><span class="line">[2025-10-14 14:52:36.641] - 清理临时文件...</span><br><span class="line">[2025-10-14 14:52:36.847] - 任务完成</span><br><span class="line">正在下载 BV1JqccehEWt ...</span><br><span class="line">BBDown version 1.6.3, Bilibili Downloader.</span><br><span class="line">遇到问题请首先到以下地址查阅有无相关信息：</span><br><span class="line">https://github.com/nilaoda/BBDown/issues</span><br><span class="line"></span><br><span class="line">[2025-10-14 14:52:36.973] - 检测账号登录...</span><br><span class="line">[2025-10-14 14:52:37.051] - 获取aid...</span><br><span class="line">[2025-10-14 14:52:37.377] - 获取aid结束: 113808412574358</span><br><span class="line">[2025-10-14 14:52:37.377] - 获取视频信息...</span><br><span class="line">[2025-10-14 14:52:37.438] - 视频标题: 德鲁比（Droopy）【视频修复+字幕压制】第24集</span><br><span class="line">[2025-10-14 14:52:37.439] - 发布时间: 2025-01-11 15:03:16 +08:00</span><br><span class="line">[2025-10-14 14:52:37.439] - UP主页: https://space.bilibili.com/95117517</span><br><span class="line">[2025-10-14 14:52:37.440] - P1: [28528807493] [德鲁比（Droopy）【视频修复+字幕压制】第24集] [07m37s]</span><br><span class="line">[2025-10-14 14:52:37.440] - 共计 1 个分P, 已选择：ALL</span><br><span class="line">[2025-10-14 14:52:37.440] - 开始解析P1: 113808412574358... (1 of 1)</span><br><span class="line">[2025-10-14 14:52:37.840] - 跳过下载AI字幕</span><br><span class="line">[2025-10-14 14:52:38.001] - 共计4条视频流.</span><br><span class="line">                            0. [720P 高清] [AVC] [556 kbps] [~30.31 MB]</span><br><span class="line">                            1. [720P 高清] [HEVC] [322 kbps] [~17.58 MB]</span><br><span class="line">                            2. [480P 清晰] [AVC] [389 kbps] [~21.22 MB]</span><br><span class="line">                            3. [480P 清晰] [HEVC] [206 kbps] [~11.25 MB]</span><br><span class="line">[2025-10-14 14:52:38.005] - 共计3条音频流.</span><br><span class="line">                            0. [M4A] [71 kbps] [~3.96 MB]</span><br><span class="line">                            1. [M4A] [59 kbps] [~3.29 MB]</span><br><span class="line">                            2. [M4A] [28 kbps] [~1.56 MB]</span><br><span class="line">[2025-10-14 14:52:38.007] - 已选择的流:</span><br><span class="line">                            [视频] [720P 高清] [AVC] [556 kbps] [~30.31 MB]</span><br><span class="line">                            [音频] [M4A] [71 kbps] [~3.96 MB]</span><br><span class="line">[2025-10-14 14:52:38.008] - 尝试将视频流强制替换为upos-sz-mirrorcoso1.bilivideo.com……</span><br><span class="line">[2025-10-14 14:52:38.009] - 尝试将音频流强制替换为upos-sz-mirrorcoso1.bilivideo.com……</span><br><span class="line">[2025-10-14 14:52:38.012] - 开始下载P1视频...</span><br><span class="line">[2025-10-14 14:53:00.584] - 合并视频分片...</span><br><span class="line">[2025-10-14 14:53:00.619] - 清理分片...</span><br><span class="line">[2025-10-14 14:53:00.624] - 开始下载P1音频...</span><br><span class="line">[2025-10-14 14:53:06.755] - 合并音频分片...</span><br><span class="line">[2025-10-14 14:53:06.757] - 清理分片...</span><br><span class="line">[2025-10-14 14:53:06.757] - 下载P1完毕</span><br><span class="line">[2025-10-14 14:53:06.758] - 开始合并音视频...</span><br><span class="line">[2025-10-14 14:53:06.959] - 清理临时文件...</span><br><span class="line">[2025-10-14 14:53:07.165] - 任务完成</span><br><span class="line">PS G:\ffmpeg-7.0-essentials_build\bin&gt;</span><br><span class="line">PS G:\ffmpeg-7.0-essentials_build\bin&gt; Write-Host &quot;`n全部下载完成！&quot; -ForegroundColor Green</span><br><span class="line"></span><br><span class="line">全部下载完成！</span><br></pre></td></tr></table></figure>
+
+<h2 id="结果分享"><a href="#结果分享" class="headerlink" title="结果分享"></a>结果分享</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">链接: https://pan.baidu.com/s/1KBZz4FXW-sTzmyrko560Fw 提取码: z39z</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2481,431 +2570,6 @@
 
 <ul>
 <li><strong>数据来源：ASUS STRIX X570-E</strong></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/AMD-AM4-A320-chipset-key-signals.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/AMD-AM4-A320-chipset-key-signals.html" class="post-title-link" itemprop="url">AMD AM4 A320上电时序汇总及关键信号</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-07-16 10:45:55 / 修改时间：10:48:55" itemprop="dateCreated datePublished" datetime="2025-07-16T10:45:55+08:00">2025-07-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <table cellspacing="0" cellpadding="8" style="border-collapse: separate; border-spacing: 0; width: 100%;">
-  <thead>
-    <!-- 整个表格大标题 -->
-    <tr>
-      <th colspan="5" style="background-color: #cce5ff; font-size: 18px; text-align: center; padding: 10px;
-        border: 1px solid #999;">
-        AMD AM4 A320上电时序汇总及关键信号
-      </th>
-    </tr>
-    <!-- 表头 -->
-    <tr>
-      <th style="width: 200px; background-color: #d0eaff; border: 1px solid #999; text-align: center; vertical-align: middle;">
-        工作状态
-      </th>
-      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">电压或信号标准名称</th>
-      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">正常对地值参考</th>
-      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">正常工作电压</th>
-      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">故障现象及说明</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- 10行，每行一个左侧大单元格，右侧4个小单元格 -->
-    <tr>
-      <td rowspan="6" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-        <b>G3状态（CPU+U124）</b>
-      </td>
-      <td style="border: 1px solid #999; text-align: center;">VBAT/VCCRTC</td>
-      <td style="border: 1px solid #999; text-align: center;">~530</td>
-      <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-      <td rowspan="6" style="border: 1px solid #999; text-align: center; vertical-align: middle;">不会引起不触发</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #999; text-align: center;">RTC_CLK</td>
-      <td style="border: 1px solid #999; text-align: center;">~690</td>
-      <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #999; text-align: center;">RTC_DATA</td>
-      <td style="border: 1px solid #999; text-align: center;">~690</td>
-      <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #999; text-align: center;">OSC1/OSC2 (32.768KHZ)</td>
-      <td style="border: 1px solid #999; text-align: center;">~720</td>
-      <td style="border: 1px solid #999; text-align: center;">0.4V-0.8V</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #999; text-align: center;">VDDBT_RTC_G ->CPU：AL15</td>
-      <td style="border: 1px solid #999; text-align: center;">~560</td>
-      <td style="border: 1px solid #999; text-align: center;">1.5V</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #999; text-align: center;">X32K_X1/X32K_X2 ->CPU：AW5/AW6</td>
-      <td style="border: 1px solid #999; text-align: center;">上CPU后~740</td>
-      <td style="border: 1px solid #999; text-align: center;">0.4V-0.8V</td>
-    </tr>
-      <tr>
-  <td rowspan="9" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-    <b>不上CPU触发电路 (I/O+U123->SLG4R41187)</b>
-  </td>
-  <td style="border: 1px solid #999; text-align: center;">I/O供电：SIO_3VA</td>
-  <td style="border: 1px solid #999; text-align: center;">~400</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-  <td rowspan="9" style="border: 1px solid #999; text-align: center; vertical-align: middle;">会引起不触发</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VSUS33/3VSB PCIE_SLOT:->B10</td>
-  <td style="border: 1px solid #999; text-align: center;">~370</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">SKTOCC</td>
-  <td style="border: 1px solid #999; text-align: center;">~440</td>
-  <td style="border: 1px solid #999; text-align: center;">0V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PWRBTN(PSIN)</td>
-  <td style="border: 1px solid #999; text-align: center;">~690</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
-</tr>
- <tr>
-  <td style="border: 1px solid #999; text-align: center;">PWRBTN#(PSOUT)</td>
-  <td style="border: 1px solid #999; text-align: center;">~530</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">SLP_S5</td>
-  <td style="border: 1px solid #999; text-align: center;">~510</td>
-  <td style="border: 1px solid #999; text-align: center;">0-3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">SLP_S3</td>
-  <td style="border: 1px solid #999; text-align: center;">~490</td>
-  <td style="border: 1px solid #999; text-align: center;">0-3.3V</td>
-</tr>
- <tr>
-  <td style="border: 1px solid #999; text-align: center;">PWR_FAULT#</td>
-  <td style="border: 1px solid #999; text-align: center;">~590</td>
-  <td style="border: 1px solid #999; text-align: center;">5V</td>
-</tr>
- <tr>
-  <td style="border: 1px solid #999; text-align: center;">PSON#</td>
-  <td style="border: 1px solid #999; text-align: center;">~540</td>
-  <td style="border: 1px solid #999; text-align: center;">5V-0V</td>
-</tr>
-<tr>
-  <td rowspan="9" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-    <b>S5状态（PCH）</b>
-  </td>
-  <td style="border: 1px solid #999; text-align: center;">VSUS33/3VSB PCIE_SLOT:->B10</td>
-  <td style="border: 1px solid #999; text-align: center;">~370</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-  <td rowspan="9" style="border: 1px solid #999; text-align: center; vertical-align: middle;">上CPU后不触发</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VSUS105 ->FCH：V7</td>
-  <td style="border: 1px solid #999; text-align: center;">~280</td>
-  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VDD_18_S5 ->CPU：AK15</td>
-  <td style="border: 1px solid #999; text-align: center;">~480</td>
-  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VDDCR_SOC_S5 ->CPU：AK18</td>
-  <td style="border: 1px solid #999; text-align: center;">~400</td>
-  <td style="border: 1px solid #999; text-align: center;">0.8V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VDDP_S5 ->CPU：AJ16 (可选）</td>
-  <td style="border: 1px solid #999; text-align: center;">~260</td>
-  <td style="border: 1px solid #999; text-align: center;">0.9V/1.05V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VDDIO_AUDIO ->CPU：AM15</td>
-  <td style="border: 1px solid #999; text-align: center;">~500</td>
-  <td style="border: 1px solid #999; text-align: center;">1.5V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">X32K_X1/X32K_X2 ->CPU：AW5/AW6</td>
-  <td style="border: 1px solid #999; text-align: center;">上CPU后~740</td>
-  <td style="border: 1px solid #999; text-align: center;">0.4V-0.8V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">RTCCLK->CPU：AP8</td>
-  <td style="border: 1px solid #999; text-align: center;">上CPU后~400</td>
-  <td style="border: 1px solid #999; text-align: center;">0.7V-1.7V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">RSMRST_L->CPU：AP5</td>
-  <td style="border: 1px solid #999; text-align: center;">~550</td>
-  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
-</tr>
-<tr>
-<td rowspan="3" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-        <b>SLP_S5状态 开启内存供电</b>
-      </td>
-      <td style="border: 1px solid #999; text-align: center;">DDR4</td>
-      <td style="border: 1px solid #999; text-align: center;">~300</td>
-      <td style="border: 1px solid #999; text-align: center;">2.5V</td>
-    <td rowspan="33" style="border: 1px solid #999; text-align: center; vertical-align: middle;">掉电、缺电压、缺时钟、缺复位</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VPP_2.5V->288Pin</td>
-  <td style="border: 1px solid #999; text-align: center;">~300</td>
-  <td style="border: 1px solid #999; text-align: center;">2.5V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VDDQ/VCC_DDR->220Pin</td>
-  <td style="border: 1px solid #999; text-align: center;">~270</td>
-  <td style="border: 1px solid #999; text-align: center;">1.2V</td>
-</tr>
-<tr>
-    <td rowspan="5" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-    <b>SLP_S3状态 开启FCH+CPU供电</b>
-  </td>
-  <td style="border: 1px solid #999; text-align: center;">VDD105 ->FCH: T1</td>
-  <td style="border: 1px solid #999; text-align: center;">~20</td>
-  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VCC25 ->FCH: C1</td>
-  <td style="border: 1px solid #999; text-align: center;">~480</td>
-  <td style="border: 1px solid #999; text-align: center;">2.5V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PWR_GD ->FCH: C25</td>
-  <td style="border: 1px solid #999; text-align: center;">~500</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VDDP ->CPU: AM18</td>
-  <td style="border: 1px solid #999; text-align: center;">~480</td>
-  <td style="border: 1px solid #999; text-align: center;">0.9V/1.05V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VDD_18 ->CPU: AK20</td>
-  <td style="border: 1px solid #999; text-align: center;">~440</td>
-  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
-</tr>
-<tr>
-<td rowspan="8" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-    <b>CPU核心供电（VRM+VBOOT） VBOOT电压可设置</b>
-  </td>
-  <td style="border: 1px solid #999; text-align: center;">PVCC/VCC/VDDIO</td>
-  <td style="border: 1px solid #999; text-align: center;">~500/~340/~500</td>
-  <td style="border: 1px solid #999; text-align: center;">12V/5V/1.8V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VRM_EN</td>
-  <td style="border: 1px solid #999; text-align: center;">~500</td>
-  <td style="border: 1px solid #999; text-align: center;">3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PWROK->CPU:E16</td>
-  <td style="border: 1px solid #999; text-align: center;">~520</td>
-  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">SVC/ SVD /SVT  (设置VBOOT)</td>
-  <td style="border: 1px solid #999; text-align: center;">~540</td>
-  <td style="border: 1px solid #999; text-align: center;">1.8V/0V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VDDCR_CPU<VCORE>->CPU:Y2</td>
-  <td style="border: 1px solid #999; text-align: center;">~430</td>
-  <td style="border: 1px solid #999; text-align: center;">0.9V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VDDCR_SOC<VDDNB>->CPU:B5</td>
-  <td style="border: 1px solid #999; text-align: center;">~450</td>
-  <td style="border: 1px solid #999; text-align: center;">0.9V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VRM_VRDY</td>
-  <td style="border: 1px solid #999; text-align: center;">~550</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PWROK/APU_PWROK->CPU:E16</td>
-  <td style="border: 1px solid #999; text-align: center;">~260</td>
-  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
-</tr>
-<tr>
-<td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-    <b>CLOCK时钟电路(CPU+FCH)</b>
-  </td>
-  <td style="border: 1px solid #999; text-align: center;">PWR_GOOD ->CPU:AM3</td>
-  <td style="border: 1px solid #999; text-align: center;">~680</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">X48M_X1/X48M_X2->CPU:AJ1 AH1</td>
-  <td style="border: 1px solid #999; text-align: center;">上CPU后~700/~400</td>
-  <td style="border: 1px solid #999; text-align: center;">0.8V/0.9V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">GFX_CLKP/GFX_CLKN->PCI_E_SLOT：A13/A14</td>
-  <td style="border: 1px solid #999; text-align: center;">上CPU后~200</td>
-  <td style="border: 1px solid #999; text-align: center;">0.45V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">GPP_CLK2P/GPP_CLK2N->CPU:AH7 AH8</td>
-  <td style="border: 1px solid #999; text-align: center;"></td>
-  <td style="border: 1px solid #999; text-align: center;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">XI/XO 25M （FCH）</td>
-  <td style="border: 1px solid #999; text-align: center;">~650</td>
-  <td style="border: 1px solid #999; text-align: center;">0.48V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">GPP_CLKREQ</td>
-  <td style="border: 1px solid #999; text-align: center;">~400</td>
-  <td style="border: 1px solid #999; text-align: center;">0V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PE_LAN_CLKP/PE_LAN_CLKN</td>
-  <td style="border: 1px solid #999; text-align: center;">~240</td>
-  <td style="border: 1px solid #999; text-align: center;">0.5V</td>
-</tr>
-<tr>
-<td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-    <b>RESET复位电路（CPU+FCH）</b>
-  </td>
-  <td style="border: 1px solid #999; text-align: center;">PWR_GOOD->CPU:AM3</td>
-  <td style="border: 1px solid #999; text-align: center;">~680</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PCIE_RST_L->PCI_E_SLOT:A11</td>
-  <td style="border: 1px solid #999; text-align: center;">~400</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">LPC_RST_L->CPU:AU22</td>
-  <td style="border: 1px solid #999; text-align: center;">上CPU后~320</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PERSTN->FCH:V6</td>
-  <td style="border: 1px solid #999; text-align: center;">~400</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">GPP_RSTN->FCH:AC10</td>
-  <td style="border: 1px solid #999; text-align: center;">~500</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PLTRST_BU1#_LAN</td>
-  <td style="border: 1px solid #999; text-align: center;">~560</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">ESPI_RESET_L->CPU:AN24</td>
-  <td style="border: 1px solid #999; text-align: center;">~320</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-<td rowspan="3" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-    <b>CPU核心供电（VRM+SVI2）</b>
-  </td>
-  <td style="border: 1px solid #999; text-align: center;">SVC/SVD/SVT（动态调节）</td>
-  <td style="border: 1px solid #999; text-align: center;">上CPU后~330</td>
-  <td style="border: 1px solid #999; text-align: center;">波形</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VDDCR_CPU<VCORE>->CPU:Y2</td>
-  <td style="border: 1px solid #999; text-align: center;">0</td>
-  <td style="border: 1px solid #999; text-align: center;">0.9V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VDDCR_SOC<VDDNB>->CPU:B5</td>
-  <td style="border: 1px solid #999; text-align: center;">0-1</td>
-  <td style="border: 1px solid #999; text-align: center;">0.9V</td>
-</tr>
-  </tbody>
-</table>
-
-
-
-
-<ul>
-<li><strong>数据来源：MSI MS-7B38</strong></li>
 </ul>
 
       
