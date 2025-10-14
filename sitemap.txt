@@ -142,6 +142,9 @@ https://heiok.com/tags/Ethernet/
 https://heiok.com/tags/MTU/
 https://heiok.com/tags/speedtest/
 https://heiok.com/tags/iperf3/
+https://heiok.com/tags/Droopy/
+https://heiok.com/tags/Bilibili-download/
+https://heiok.com/tags/BBDown/
 https://heiok.com/categories/Software/
 https://heiok.com/categories/Hardware/
 https://heiok.com/categories/Network/
