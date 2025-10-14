@@ -1,3 +1,4 @@
+https://heiok.com/Huaweicloud.html
 https://heiok.com/Manually-download-Bilibili-videos.html
 https://heiok.com/speedtest.html
 https://heiok.com/Ethernet.html
@@ -145,6 +146,8 @@ https://heiok.com/tags/iperf3/
 https://heiok.com/tags/Droopy/
 https://heiok.com/tags/Bilibili-download/
 https://heiok.com/tags/BBDown/
+https://heiok.com/tags/Huawei-cloud/
+https://heiok.com/tags/Flexus-L/
 https://heiok.com/categories/Software/
 https://heiok.com/categories/Hardware/
 https://heiok.com/categories/Network/

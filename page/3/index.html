@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">96</span>
+        <span class="site-state-item-count">98</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -152,6 +152,122 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Remotely-manage-openwrt-routers-via-cloudflare-tunnel.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Remotely-manage-openwrt-routers-via-cloudflare-tunnel.html" class="post-title-link" itemprop="url">通过Cloudflare tunnel远程管理openwrt路由器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-31 14:36:29 / 修改时间：14:43:39" itemprop="dateCreated datePublished" datetime="2025-03-31T14:36:29+08:00">2025-03-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
+<li><p>cloudflare账号注册（tunnel有Cloudflared与WARP Connector类型，如果只用cloudflared可以不添加支付信息）</p>
+</li>
+<li><p>路由器要保证空间足够，我插了个8GB的U盘扩充空间。可以参考<a href="OpenWRT-adds-external-storage-expansion">路由器扩容</a>！</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@OpenWrt:~# df -h</span><br><span class="line">Filesystem                Size      Used Available Use% Mounted on</span><br><span class="line">/dev/root                 3.8M      3.8M         0 100% /rom</span><br><span class="line">tmpfs                    58.8M     76.0K     58.8M   0% /tmp</span><br><span class="line">/dev/sda1                 7.3G      7.2M      6.9G   0% /overlay</span><br><span class="line">overlayfs:/overlay        7.3G      7.2M      6.9G   0% /</span><br><span class="line">tmpfs                   512.0K         0    512.0K   0% /dev</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="安装客户端"><a href="#安装客户端" class="headerlink" title="安装客户端"></a>安装客户端</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">root@OpenWrt:~# opkg update</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/targets/ramips/mt7621/packages/Packages.gz</span><br><span class="line">Updated list of available packages in /var/opkg-lists/openwrt_core</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/targets/ramips/mt7621/packages/Packages.sig</span><br><span class="line">Signature check passed.</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/base/Packages.gz</span><br><span class="line">Updated list of available packages in /var/opkg-lists/openwrt_base</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/base/Packages.sig</span><br><span class="line">Signature check passed.</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/luci/Packages.gz</span><br><span class="line">Updated list of available packages in /var/opkg-lists/openwrt_luci</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/luci/Packages.sig</span><br><span class="line">Signature check passed.</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/packages/Packages.gz</span><br><span class="line">Updated list of available packages in /var/opkg-lists/openwrt_packages</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/packages/Packages.sig</span><br><span class="line">Signature check passed.</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/routing/Packages.gz</span><br><span class="line">Updated list of available packages in /var/opkg-lists/openwrt_routing</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/routing/Packages.sig</span><br><span class="line">Signature check passed.</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/telephony/Packages.gz</span><br><span class="line">Updated list of available packages in /var/opkg-lists/openwrt_telephony</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/telephony/Packages.sig</span><br><span class="line">Signature check passed.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">root@OpenWrt:~# opkg install cloudflared</span><br><span class="line">Installing cloudflared (2024.4.1-2) to root...</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/packages/cloudflared_2024.4.1-2_mipsel_24kc.ipk</span><br><span class="line">Configuring cloudflared.</span><br></pre></td></tr></table></figure>
+
+<h2 id="路由端登录"><a href="#路由端登录" class="headerlink" title="路由端登录"></a>路由端登录</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">root@OpenWrt:~# cloudflared tunnel login</span><br><span class="line">2025-03-31T03:47:24Z ERR Configuration file /etc/cloudflared/config.yml was empty</span><br><span class="line">Please open the following URL and log in with your Cloudflare account:</span><br><span class="line"></span><br><span class="line">https://dash.cloudflare.com/argotunnel?aud=&amp;callback=https%3A%2F%2Flogin.cloudflareaccess.org%2Fn0wo8UFOsn48iqCvz0brhqK2JznOfF2WC0oDKPSbV2U%3D</span><br><span class="line"></span><br><span class="line">Leave cloudflared running to download the cert automatically.</span><br><span class="line">2025-03-31T03:48:21Z INF Waiting for login...</span><br></pre></td></tr></table></figure>
+
+<h2 id="网页端登录"><a href="#网页端登录" class="headerlink" title="网页端登录"></a>网页端登录</h2><p>登录cloudflare，并复制路由器命令行下那一串链接到浏览器的另一个标签页打开。提示如下：</p>
+<p>Authorize Tunnel for heiok.com</p>
+<p>To finish configuring Tunnel for your zone, click Authorize below.</p>
+<p>点击Authorize</p>
+<p>浏览器界面显示</p>
+<p>Success<br>Cloudflared has installed a certificate allowing your origin to create a Tunnel on this zone.</p>
+<p>You may now close this window and start your Cloudflare Tunnel!</p>
+<p>路由器界面显示</p>
+<p>You have successfully logged in.<br>If you wish to copy your credentials to a server, they have been saved to:<br>&#x2F;root&#x2F;.cloudflared&#x2F;cert.pem<br>root@OpenWrt:~#</p>
+<h2 id="建一条通道"><a href="#建一条通道" class="headerlink" title="建一条通道"></a>建一条通道</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root@OpenWrt:~# cloudflared tunnel create openwrt</span><br><span class="line">2025-03-31T03:52:00Z ERR Configuration file /etc/cloudflared/config.yml was empty</span><br><span class="line">Tunnel credentials written to /root/.cloudflared/a41e4879-e5a8-4efa-9668-d31ed37585a5.json. cloudflared chose this file based on where your origin certificate was found. Keep this file secret. To revoke these credentials, delete the tunnel.</span><br><span class="line"></span><br><span class="line">Created tunnel heiok with id a41e4879-e5a8-4efa-9668-d31ed37585a5</span><br><span class="line">root@OpenWrt:~#</span><br></pre></td></tr></table></figure>
+
+<h2 id="加域名解析"><a href="#加域名解析" class="headerlink" title="加域名解析"></a>加域名解析</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@OpenWrt:~# cloudflared tunnel route dns openwrt openwrt.heiok.com</span><br><span class="line">2025-03-31T03:52:56Z ERR Configuration file /etc/cloudflared/config.yml was empty</span><br><span class="line">2025-03-31T03:53:00Z INF Added CNAME openwrt.heiok.com which will route to this tunnel tunnelID=a41e4879-e5a8-4efa-9668-d31ed37585a5</span><br><span class="line">root@OpenWrt:~#</span><br></pre></td></tr></table></figure>
+
+<h2 id="写配置文件"><a href="#写配置文件" class="headerlink" title="写配置文件"></a>写配置文件</h2><p>root@OpenWrt:~# vi &#x2F;etc&#x2F;cloudflared&#x2F;config.yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#tunnel: &lt;Tunnel-UUID&gt;</span><br><span class="line">#credentials-file: /etc/cloudflared/&lt;Tunnel-UUID&gt;.json</span><br><span class="line">#</span><br><span class="line">#ingress:</span><br><span class="line"></span><br><span class="line">#  - hostname: luci.example.com</span><br><span class="line"></span><br><span class="line">#    service: http://localhost:80</span><br><span class="line"></span><br><span class="line">#  - hostname: ssh.example.com</span><br><span class="line"></span><br><span class="line">#    service: ssh://localhost:22</span><br><span class="line"></span><br><span class="line">#  - service: http_status:404</span><br><span class="line"></span><br><span class="line">url: http://192.168.18.1</span><br><span class="line">tunnel: a41e4879-e5a8-4efa-9668-d31ed37585a5</span><br><span class="line">credentials-file: /root/.cloudflared/a41e4879-e5a8-4efa-9668-d31ed37585a5.json</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试下连接"><a href="#测试下连接" class="headerlink" title="测试下连接"></a>测试下连接</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/cloudflared tunnel --config /etc/cloudflared/config.yml run</span><br></pre></td></tr></table></figure>
+
+<p>网页端Cloudflare–Networks–Tunnels-Your tunnels–Status下显示绿色HEALTHY即表示tunnel建立连接成功。</p>
+<h2 id="自启动脚本"><a href="#自启动脚本" class="headerlink" title="自启动脚本"></a>自启动脚本</h2><p>root@OpenWrt:~#vi &#x2F;etc&#x2F;init.d&#x2F;cf</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh /etc/rc.common</span><br><span class="line"></span><br><span class="line">START=99</span><br><span class="line">USE_PROCD=1</span><br><span class="line"></span><br><span class="line">start_service() &#123;</span><br><span class="line">    echo &quot;Starting cloudflared...&quot;</span><br><span class="line">    procd_open_instance</span><br><span class="line">    procd_set_param command /usr/bin/cloudflared tunnel --config /etc/cloudflared/config.yml run</span><br><span class="line">    procd_set_param respawn</span><br><span class="line">    procd_close_instance</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">stop_service() &#123;</span><br><span class="line">    echo &quot;Stopping cloudflared...&quot;</span><br><span class="line">    procd_open_instance</span><br><span class="line">    procd_close_instance</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@OpenWrt:~#chmod +x /etc/init.d/cf</span><br><span class="line"></span><br><span class="line">root@OpenWrt:~#/etc/init.d/cf enable</span><br><span class="line"></span><br><span class="line">root@OpenWrt:~#/etc/init.d/cf start</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1232,113 +1348,6 @@ Future task2               :         des4, after des3, 5d</code></pre>
 <h2 id="终端访问"><a href="#终端访问" class="headerlink" title="终端访问"></a>终端访问</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.1/epg.xml</span><br></pre></td></tr></table></figure>
 
 <p>重启直至日志提交完成，全程约需10分钟。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/hexo-blog-repo-change-and-backup.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/hexo-blog-repo-change-and-backup.html" class="post-title-link" itemprop="url">hexo博客仓库更名备份记录</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-12-31 18:11:03 / 修改时间：22:25:46" itemprop="dateCreated datePublished" datetime="2024-12-31T18:11:03+08:00">2024-12-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a href="https://heiok.com/oldsite">旧站点</a> 数年前部署在github上，hexo发布后是编译过的html文件，源文件.md和配置文件等并不上传到github。年代久远，之前电脑及文件均已无法找到，无法再更新，重新部署记录。</p>
-<h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><ul>
-<li>github新建一个私有仓库，备份源文件等；</li>
-<li>github新建一个公开仓库，发布博客文件。</li>
-</ul>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
-<li>密钥ssh-keygen -t rsa -b 4096 -C “<a href="mailto:&#x79;&#111;&#x75;&#114;&#x5f;&#101;&#109;&#97;&#x69;&#x6c;&#64;&#x65;&#x78;&#97;&#x6d;&#112;&#108;&#101;&#x2e;&#99;&#111;&#109;">&#x79;&#111;&#x75;&#114;&#x5f;&#101;&#109;&#97;&#x69;&#x6c;&#64;&#x65;&#x78;&#97;&#x6d;&#112;&#108;&#101;&#x2e;&#99;&#111;&#109;</a>“</li>
-<li>登录github，Repositories，heiok.github.io改名为oldsite，Settings，Pages，Custom domain，删除域名绑定；</li>
-<li>新建私有仓库hexo，新建公开仓库heiok.github.io（域名绑定）；</li>
-<li>测试ssh -T <a href="mailto:&#103;&#105;&#116;&#64;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;">&#103;&#105;&#116;&#64;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;</a></li>
-</ul>
-<h2 id="博客发布"><a href="#博客发布" class="headerlink" title="博客发布"></a>博客发布</h2><ul>
-<li><p>安装 npm install -g cnpm –registry&#x3D;<a target="_blank" rel="noopener" href="https://registry.npmmirror.com/">https://registry.npmmirror.com</a></p>
-</li>
-<li><p>插件 cnpm install hexo-deployer-git –save</p>
-</li>
-<li><p>设置 hexo&#x2F;_config.yml </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:heiok/heiok.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>发布</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean   // 清除缓存</span><br><span class="line">hexo g       // 生成静态网页</span><br><span class="line">hexo d       // 开始部署</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="备份推送"><a href="#备份推送" class="headerlink" title="备份推送"></a>备份推送</h2><p>  如果远程仓库已经有内容，先拉取远程内容解决冲突后再推送：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git pull origin main --rebase</span><br><span class="line">git init</span><br><span class="line">git remote add origin git@github.com:heiok/hexo.git</span><br><span class="line">git checkout -b main</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;blog source files backup&quot;</span><br><span class="line">git push origin main</span><br></pre></td></tr></table></figure>
-
-<h2 id="旧站处理"><a href="#旧站处理" class="headerlink" title="旧站处理"></a>旧站处理</h2><p>  站点改名为oldsite后，原站点CSS样式需要处理。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:heiok/oldsite.git</span><br><span class="line">find . -name &quot;*.html&quot; -exec sed -i &#x27;s|href=&quot;/css|href=&quot;/oldsite/css|g&#x27; &#123;&#125; \;</span><br><span class="line">find . -name &quot;*.html&quot; -exec sed -i &#x27;s|src=&quot;/js|src=&quot;/oldsite/js|g&#x27; &#123;&#125; \;</span><br><span class="line">find . -name &quot;*.html&quot; -exec sed -i &#x27;s|href=&quot;/\([^o][^/]*\)|href=&quot;/oldsite/\1|g&#x27; &#123;&#125; \;</span><br><span class="line">find . -name &quot;*.html&quot; -exec sed -i &#x27;s|href=&quot;/&quot;|href=&quot;/oldsite&quot;|&#x27; &#123;&#125; \;</span><br><span class="line">find . -name &quot;*.html&quot; -exec sed -i &#x27;s|src=&quot;/images/|src=&quot;/oldsite/images/|g&#x27; &#123;&#125; \;</span><br><span class="line">find . -name &quot;*.html&quot; -exec sed -i &#x27;s|content=&quot;/images/|content=&quot;/oldsite/images/|g&#x27; &#123;&#125; \;</span><br></pre></td></tr></table></figure>
-
-
 
       
     </div>
