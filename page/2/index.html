@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-count">102</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -152,6 +152,437 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/AMD-AM5-X670-chipset-key-signals.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/AMD-AM5-X670-chipset-key-signals.html" class="post-title-link" itemprop="url">AMD AM5 MSI MEG X670E ACE上电时序汇总及关键信号</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-07-16 10:53:22 / 修改时间：10:55:39" itemprop="dateCreated datePublished" datetime="2025-07-16T10:53:22+08:00">2025-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <table cellspacing="0" cellpadding="8" style="border-collapse: separate; border-spacing: 0; width: 100%;">
+  <thead>
+    <!-- 整个表格大标题 -->
+    <tr>
+      <th colspan="5" style="background-color: #cce5ff; font-size: 18px; text-align: center; padding: 10px;
+        border: 1px solid #999;">
+        AMD AM5 MSI MEG X670E ACE上电时序汇总及关键信号
+      </th>
+    </tr>
+    <!-- 表头 -->
+    <tr>
+      <th style="width: 200px; background-color: #d0eaff; border: 1px solid #999; text-align: center; vertical-align: middle;">
+        工作状态
+      </th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">电压或信号标准名称</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">正常对地值参考</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">正常工作电压</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">故障现象</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- 10行，每行一个左侧大单元格，右侧4个小单元格 -->
+    <tr>
+      <td rowspan="4" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+        <b>G3状态（CPU+I/O）</b>
+      </td>
+      <td style="border: 1px solid #999; text-align: center;">VBAT_3V</td>
+      <td style="border: 1px solid #999; text-align: center;"></td>
+      <td style="border: 1px solid #999; text-align: center;">2.8V-3.3V</td>
+      <td rowspan="25" style="border: 1px solid #999; text-align: center; vertical-align: middle;">不触发</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">SIO_32K_X1/SIO_32K_X2 32.768KHZ(I/O）</td>
+      <td style="border: 1px solid #999; text-align: center;"></td>
+      <td style="border: 1px solid #999; text-align: center;">1.5V-1.8V</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">VDDBT_RTC_G->CPU:BB2</td>
+      <td style="border: 1px solid #999; text-align: center;"></td>
+      <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">X32K_X1->CPU:BA2/X32K_X2->CPU:BB1</td>
+      <td style="border: 1px solid #999; text-align: center;"></td>
+      <td style="border: 1px solid #999; text-align: center;">0.4V-0.7V</td>
+    </tr>
+  <tr>
+  <td rowspan="13" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>S5状态（FCH+CPU）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">3VSB PCIE_SLOT:->B10</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDIO_33_S5->CPU:AP22</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDD_18_S5->CPU:AT20</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDIO_AUDIO->CPU:H4</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDD_MISC_S5->CPU:AT17</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">0.75V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">RSMRST_L->CPU:AU17</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">RTCCLK->CPU:AY2</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWR_BTN_L->CPU:AU10</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_S5_L->CPU:BB8</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_S3_L->CPU:BC8</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">0V-3.3V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">S0A3_GPIO->CPU:BA10</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">0V-3.3V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">VSUS33->FCH:P7</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VSUS105->FCH:U6</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+  <tr>
+  <td rowspan="8" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>触发电路（I/O+CPU）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">SIO_3VA</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">H_SKTOCC#</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">0V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">RSMRST#_R</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWRBTIN</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWRBTN#</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_S5#</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_S3#</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">0V-3.3V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">SIO_PSON#</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">5V-0V</td>
+</tr>
+<tr>
+<td rowspan="5" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+        <b>SLP_S5状态 开启内存供电</b>
+      </td>
+      <td style="border: 1px solid #999; text-align: center;">DDR5</td>
+      <td style="border: 1px solid #999; text-align: center;"></td>
+      <td style="border: 1px solid #999; text-align: center;">1.2V</td>
+    <td rowspan="33" style="border: 1px solid #999; text-align: center; vertical-align: middle;">掉电、缺电压、缺时钟、缺复位</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDD2/VCC_DDR->CPU:L19</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">1.2V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VIN_BULK->1Pin</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWR_EN->151Pin</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWR_GOOD->147Pin</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+    <td rowspan="6" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>SLP_S3状态 开启FCH+CPU供电</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">VDD_18->CPU:AP18</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDD105->FCH:T1</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCC18->FCH:A5</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCC33->FCH:F10</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWR_GD->FCH:U22</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDD_MISC->CPU:AT8</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">0.6V-1.2V</td>
+</tr>
+<tr>
+<td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>CPU核心供电(SVI3）（VRM+VBOOT）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">VDD/VDDIO/VINSEN/IINSEN</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V/1.8V/12V/0.78V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SCL/SDA</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SVT->C5 CPU SVC->B5 CPU SVD->D5 CPU  (SVI3协议）</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V or 0V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">AVREN</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDD12</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">1.2V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCORE/VCCP_NB</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">0.8V-1.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VRM_VRDY</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+<td rowspan="9" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>CLOCK时钟电路(CPU+FCH)</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">ALL_PWR_PWRGD/PWR_GOOD->CPU:AW10</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">X48M_X1->CPU:AV1/X48M_X2->CPU:AW2（48M）</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">~0.9V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">GPP_CLK4P->CPU:BD3/GPP_CLK4N->CPU:BC4</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">~0.45V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCIE_E_SLOT:A13/A14 100M</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">~0.45V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SATA_X1->FCH:T22/SATA_X2->FCH:T23(25M）</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">APU_CLKP->FCH:E23/APU_CLKN->FCH:E22</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">~0.45V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">APU_CLKREQN->FCH:A23</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">LAN_REQ4->FCH:W22</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PM_LAN_CLK4P ->FCH:A18/PM_LAN_CLK4N ->FCH:B18</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">~0.45V</td>
+</tr>
+<tr>
+<td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>RESET复位电路（CPU+FCH）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">APU_PWROK/PWROK->CPU:BB22</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">RESET_L->CPU:AY22</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCIE_RST0_L->CPU:BA8</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">AGPIO5/AUX0_RST_L->CPU:BB9</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCIE_SLOT:A11</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCIERST#_PROM->FCH:AC5</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">GPP_RSTN->FCH:AC7</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+  </tbody>
+</table>
+
+
+
+
+
+<ul>
+<li><strong>数据来源：MSI MEG X670E ACE</strong></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -3681,187 +4112,6 @@
 <ul>
 <li><strong>数据来源  MSI B75-G43&#x2F;板号MS-7758</strong></li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/Circuit-BasicsII.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Circuit-BasicsII.html" class="post-title-link" itemprop="url">电路基础知识II</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-05-26 17:38:45 / 修改时间：17:41:26" itemprop="dateCreated datePublished" datetime="2025-05-26T17:38:45+08:00">2025-05-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="电容"><a href="#电容" class="headerlink" title="电容"></a>电容</h2><h3 id="串联"><a href="#串联" class="headerlink" title="串联"></a>串联</h3><ul>
-<li>容量变小 （较少采用）</li>
-</ul>
-<h3 id="并联"><a href="#并联" class="headerlink" title="并联"></a>并联</h3><ul>
-<li>容量变大 （大多采用）</li>
-</ul>
-<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><ul>
-<li>储能</li>
-<li>滤波（可尝试采用电击法快速锁定损坏的电容）</li>
-<li>耦合</li>
-</ul>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
-<li>通交流（波动）阻直流（平稳）， 通高频 阻低频；</li>
-<li>电容两端的电压不能突变。</li>
-</ul>
-<h3 id="测量"><a href="#测量" class="headerlink" title="测量"></a>测量</h3><ol>
-<li>二极管档测<ul>
-<li>电容两脚短接放电；</li>
-<li>万用表拨二极管档，红笔接正极，黑笔接负极，读数由小变大至OL，容量大小决定充电过程快慢；</li>
-<li>若不能充满至OL，则电容漏电损坏；</li>
-<li>若读数一直为零，则电容短路损坏；</li>
-</ul>
-</li>
-<li>电容档测量<ul>
-<li>万用表打到容量档；</li>
-<li>红表笔接到电容正极，黑表笔接到电容负极，测得容量与标识容量值误差在20%以内。</li>
-</ul>
-</li>
-</ol>
-<h2 id="电感"><a href="#电感" class="headerlink" title="电感"></a>电感</h2><h3 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h3><ul>
-<li>储能（电能&lt;—&gt;磁能），电感一般会用在电压的输入与输出端。</li>
-</ul>
-<h3 id="特性-1"><a href="#特性-1" class="headerlink" title="特性"></a>特性</h3><ul>
-<li>通直流（平稳），阻交流（波动），通直阻交；</li>
-<li>电感两端的电流不能突变。</li>
-</ul>
-<h2 id="二极管"><a href="#二极管" class="headerlink" title="二极管"></a>二极管</h2><h3 id="特性-2"><a href="#特性-2" class="headerlink" title="特性"></a>特性</h3><ul>
-<li>单向导电性</li>
-<li>硅：P≥N+0.7 V    锗：P≥N+0.3 V</li>
-</ul>
-<h3 id="作用-2"><a href="#作用-2" class="headerlink" title="作用"></a>作用</h3><ul>
-<li>实现升降压</li>
-<li>实现逻辑“或” （CMOS电路）</li>
-<li>实现逻辑“与”</li>
-</ul>
-<h2 id="三极管"><a href="#三极管" class="headerlink" title="三极管"></a>三极管</h2><p>三极管由两个 PN 结组成，是一种电流控制元器件。</p>
-<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><ul>
-<li>基极（Base）、  集电极（Collector）、  发射极（Emitter）</li>
-<li>三个极，两个结，三个区</li>
-</ul>
-<h3 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h3><ul>
-<li>导通：发射结正偏，C、E极之间导通</li>
-<li>截止：发射结反偏，C、E极之间断开</li>
-</ul>
-<h3 id="运用"><a href="#运用" class="headerlink" title="运用"></a>运用</h3><ul>
-<li>NPN三极管（当E极接地）B极与C极电压相反，非门；</li>
-<li>PNP三极管（当B极接地）E极与C极电压相同， 同门。</li>
-</ul>
-<h2 id="MOS管"><a href="#MOS管" class="headerlink" title="MOS管"></a>MOS管</h2><p>MOSFET，金属氧化物半导体场效应晶体管，一种电压控制元器件，可以不需要电流，是最容易坏的元器件之一。</p>
-<h3 id="结构-1"><a href="#结构-1" class="headerlink" title="结构"></a>结构</h3><ul>
-<li>G: 栅极（控制极） D: 漏极（输入极） S: 源极（输出极）</li>
-</ul>
-<h3 id="测量-1"><a href="#测量-1" class="headerlink" title="测量"></a>测量</h3><ul>
-<li>万用表打到二极管档；（N沟道MOS管为例）</li>
-<li>红表笔接 S 极，黑表笔接 D 极，测得值在450—750 左右，其余均为无穷大</li>
-<li>导通功能测试：红表笔接 G 极，黑表笔分别测 D 极和 S 极，再快速测 D 极和 S 极之间的阻值应为 0</li>
-<li>测得值有一次值基本为 0（先放电），如果还是为0则 MOS 管击穿，都为无穷大，则 MOS 管开路。</li>
-</ul>
-<h3 id="状态-1"><a href="#状态-1" class="headerlink" title="状态"></a>状态</h3><ul>
-<li>N 沟道 MOS 管导通条件：VG&gt;VS（G极电压越高越导通）9V或以上</li>
-<li>P 沟道 MOS 管导通条件：VG&lt;VS（G极电压越低越导通）</li>
-<li>实际电路中大多数用7002代替NPN型三极管使用。</li>
-</ul>
-<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><ul>
-<li>NPN型三极管不能在B极直接加电压，7002N沟道MOS管则可以在G极直接加电压。</li>
-</ul>
-<h2 id="稳压管"><a href="#稳压管" class="headerlink" title="稳压管"></a>稳压管</h2><p>稳压管又叫线性稳压集成 IC，是一种电压控制元器件。</p>
-<h3 id="作用-3"><a href="#作用-3" class="headerlink" title="作用"></a>作用</h3><ul>
-<li>当输入电压有变化时输出电压不变化</li>
-</ul>
-<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
-<li>三端不可调稳压器，78M05 、78D05、 78L05、 431 、1085 、 1117</li>
-<li>三端可调稳压器，1084 、1085 、1086、 1087 、1117 、3117</li>
-</ul>
-<h2 id="比较运算放大器"><a href="#比较运算放大器" class="headerlink" title="比较运算放大器"></a>比较运算放大器</h2><h3 id="状态-2"><a href="#状态-2" class="headerlink" title="状态"></a>状态</h3><ul>
-<li>当V+ &gt; V-则VOUT输出为高电平，当V+≤V-则VOUT输出为低电平</li>
-</ul>
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ul>
-<li>比较器属于漏极开路输出，所以输在出端上一定要有上拉电阻（条件满足时开关断开，条件不满足时开关闭合）。</li>
-</ul>
-<h2 id="PWM供电电路"><a href="#PWM供电电路" class="headerlink" title="PWM供电电路"></a>PWM供电电路</h2><p>脉宽调制电路</p>
-<h3 id="结构-2"><a href="#结构-2" class="headerlink" title="结构"></a>结构</h3><ul>
-<li>输入电感+输入滤波电容+上管、下管+输出电感+输出滤波电容+PWM电源芯片</li>
-</ul>
-<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><ol>
-<li>VIN是PWM上管输入电压，VCC是PWM电路芯片的供电。</li>
-<li>COMP&#x2F;ON 是PWM电源芯片的开启信号（正常为高电平）。</li>
-<li>BOOT&#x2F;BST 自举升压。</li>
-<li>UGATE 上管驱动信号。</li>
-<li>LGATE 下管驱动信号。</li>
-<li>PHASE 相位输出。</li>
-<li>FB 反馈。</li>
-</ol>
 
       
     </div>
