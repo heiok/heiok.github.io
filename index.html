@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,6 +152,265 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/CMCC-CMI.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/CMCC-CMI.html" class="post-title-link" itemprop="url">为什么移动对于很多 vps 线路体验好</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-11-27 17:15:19 / 修改时间：17:20:29" itemprop="dateCreated datePublished" datetime="2025-11-27T17:15:19+08:00">2025-11-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Q-A/" itemprop="url" rel="index"><span itemprop="name">Q&A</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="一、移动对海外链路的策略与历史原因"><a href="#一、移动对海外链路的策略与历史原因" class="headerlink" title="一、移动对海外链路的策略与历史原因"></a><strong>一、移动对海外链路的策略与历史原因</strong></h1><p>中国移动在建设国际链路方面思路清晰、投入巨大，与电信&#x2F;联通传统依赖 Tier1 的模式不同。移动依靠 <strong>自建国际出口 + 区域直联 + 亚太布局优先</strong> 获得优势。</p>
+<p>移动重点做了三件事：</p>
+<ul>
+<li>在 <strong>香港、新加坡、日本</strong> 大规模建 POP 和传输节点</li>
+<li>与区域运营商（HGC、PCCW、Singtel、HKIX 等）进行 <strong>大带宽直联（peer）</strong></li>
+<li>拥有大量海缆资源（APG、SMW5、AAE-1 等）用于亚太互联</li>
+</ul>
+<p><strong>结果：移动访问亚洲 VPS 时几乎不用绕道美国或欧洲。</strong></p>
+<p>表现就是：</p>
+<ul>
+<li>搬瓦工香港&#x2F;日本、AWS HK、腾讯云 HK、Cloudflare HK&#x2F;SG</li>
+<li>移动宽带都几乎是“秒开”，非常强势。</li>
+</ul>
+<hr>
+<h1 id="二、中国移动的骨干路由策略更简单（省网统一→CMI）"><a href="#二、中国移动的骨干路由策略更简单（省网统一→CMI）" class="headerlink" title="二、中国移动的骨干路由策略更简单（省网统一→CMI）"></a><strong>二、中国移动的骨干路由策略更简单（省网统一→CMI）</strong></h1><p>电信、联通骨干历史太长，架构复杂、政策多：</p>
+<ul>
+<li>电信 163&#x2F;CN2 双系统</li>
+<li>联通 169&#x2F;4837&#x2F;9929 混合体系</li>
+</ul>
+<p>移动因为起步晚（2007 年之后快速建设），反而更现代：</p>
+<ul>
+<li>采用 <strong>扁平化骨干网络</strong></li>
+<li>更少的策略分叉</li>
+<li>大量地区走 <strong>CMNET → CMI（中国移动国际）统一出口</strong></li>
+</ul>
+<p><strong>出口统一 + 路由简单 &#x3D; 更容易实现全球优化。</strong></p>
+<hr>
+<h1 id="三、中国移动国际-CMI-对-VPS-商极度友好"><a href="#三、中国移动国际-CMI-对-VPS-商极度友好" class="headerlink" title="三、中国移动国际 CMI 对 VPS 商极度友好"></a><strong>三、中国移动国际 CMI 对 VPS 商极度友好</strong></h1><p>这是移动在海外体验极好的核心原因之一。</p>
+<p>大量 VPS 商会写：</p>
+<blockquote>
+<p><strong>CMI 优化</strong><br> <strong>移动直连</strong><br> <strong>CMI Premium 路线</strong></p>
+</blockquote>
+<p>移动的策略是：<br> 为了快速扩大国际业务份额，会主动对中小 VPS&#x2F;IDC：</p>
+<ul>
+<li>给便宜的国际带宽</li>
+<li>开放更多互联（peer）</li>
+<li>提供足够大的出口能力</li>
+</ul>
+<p>这与电信“高价 CN2-GIA”路线完全相反。</p>
+<p>结果：</p>
+<p><strong>移动 &#x3D; 国际带宽最充足 + 最容易被 VPS 商优化。</strong></p>
+<hr>
+<h1 id="四、移动用户巨大-→-海外链路必须好"><a href="#四、移动用户巨大-→-海外链路必须好" class="headerlink" title="四、移动用户巨大 → 海外链路必须好"></a><strong>四、移动用户巨大 → 海外链路必须好</strong></h1><p>移动是全球最大运营商，国内用户 10+ 亿，其中：</p>
+<ul>
+<li>海外流量大</li>
+<li>国际漫游多</li>
+<li>YouTube&#x2F;Netflix&#x2F;TikTok&#x2F;Steam 下载需求高</li>
+</ul>
+<p>为了服务庞大用户群，移动必须保持：</p>
+<ul>
+<li>亚太地区低延迟</li>
+<li>全球多地可靠的带宽池</li>
+<li>不出现大规模晚高峰拥塞</li>
+</ul>
+<p>这也自然让 VPS 方向的表现优秀。</p>
+<hr>
+<h1 id="五、移动出口“更干净”、不容易晚高峰爆炸"><a href="#五、移动出口“更干净”、不容易晚高峰爆炸" class="headerlink" title="五、移动出口“更干净”、不容易晚高峰爆炸"></a><strong>五、移动出口“更干净”、不容易晚高峰爆炸</strong></h1><p>对比：</p>
+<table>
+<thead>
+<tr>
+<th>运营商</th>
+<th>出口特点</th>
+<th>晚高峰表现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>电信</strong></td>
+<td>多走 CN2&#x2F;163→欧美</td>
+<td>163 容易拥塞、CN2 贵</td>
+</tr>
+<tr>
+<td><strong>联通</strong></td>
+<td>主要走 4837&#x2F;9929→美西、欧洲</td>
+<td>4837 晚间抖动明显</td>
+</tr>
+<tr>
+<td><strong>移动（CMI）</strong></td>
+<td>多点分布 + 海外 POP 广</td>
+<td>一般不会拥塞</td>
+</tr>
+</tbody></table>
+<p>移动的国际出口：</p>
+<ul>
+<li>新加坡、香港、日本、洛杉矶、法兰克福多点分布</li>
+<li>带宽池巨大</li>
+<li>晚高峰也基本不爆</li>
+</ul>
+<p><strong>“国际比国内稳”在移动身上非常常见。</strong></p>
+<hr>
+<h1 id="六、移动与-Lumen（Level3）是带宽最足的-peer-之一"><a href="#六、移动与-Lumen（Level3）是带宽最足的-peer-之一" class="headerlink" title="六、移动与 Lumen（Level3）是带宽最足的 peer 之一"></a><strong>六、移动与 Lumen（Level3）是带宽最足的 peer 之一</strong></h1><p>这是移动访问 <strong>美国&#x2F;欧洲 VPS 特别稳、延迟低的关键因素</strong>。</p>
+<h2 id="1-Lumen（Level3，AS3356）是全球最大-Tier1-之一"><a href="#1-Lumen（Level3，AS3356）是全球最大-Tier1-之一" class="headerlink" title="1. Lumen（Level3，AS3356）是全球最大 Tier1 之一"></a><strong>1. Lumen（Level3，AS3356）是全球最大 Tier1 之一</strong></h2><ul>
+<li>美国 backbone 覆盖最全</li>
+<li>欧洲流量枢纽</li>
+<li>大量 CDN、Cloud&#x2F;IDC 默认走 Lumen</li>
+<li>是全球最粗的国际流量 artery 之一</li>
+</ul>
+<h2 id="2-移动（CMI）与-Lumen-之间互联带宽特别大"><a href="#2-移动（CMI）与-Lumen-之间互联带宽特别大" class="headerlink" title="2. 移动（CMI）与 Lumen 之间互联带宽特别大"></a><strong>2. 移动（CMI）与 Lumen 之间互联带宽特别大</strong></h2><p>原因：</p>
+<ul>
+<li>CMI 是 Lumen 的“大客户级”伙伴</li>
+<li>两边互补型流量（移动下行大、Lumen内容上行大）</li>
+<li>LAX&#x2F;SJC&#x2F;ORD&#x2F;FRA 等多地都有 CMI ↔ Lumen 对等互联</li>
+<li>移动大量 VPS&#x2F;IDC 优先跑向 Lumen</li>
+</ul>
+<p><strong>这条链路是移动海外最稳的线路之一。</strong></p>
+<h2 id="3-实际体验：移动-→-Lumen-通常优于电信-联通"><a href="#3-实际体验：移动-→-Lumen-通常优于电信-联通" class="headerlink" title="3. 实际体验：移动 → Lumen 通常优于电信&#x2F;联通"></a><strong>3. 实际体验：移动 → Lumen 通常优于电信&#x2F;联通</strong></h2><table>
+<thead>
+<tr>
+<th>方向</th>
+<th>移动</th>
+<th>电信</th>
+<th>联通</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>到 Lumen 美国</td>
+<td>⭐⭐⭐⭐⭐ 极好</td>
+<td>⭐⭐ 易拥塞</td>
+<td>⭐⭐⭐ 中等</td>
+</tr>
+<tr>
+<td>到 Lumen 欧洲</td>
+<td>⭐⭐⭐⭐ 稳定</td>
+<td>⭐⭐ 容易走绕路</td>
+<td>⭐⭐⭐ 一般</td>
+</tr>
+<tr>
+<td>到 cheap VPS（多走 Lumen）</td>
+<td>稳得离谱</td>
+<td>一般</td>
+<td>看机房</td>
+</tr>
+</tbody></table>
+<p>因此：</p>
+<blockquote>
+<p><strong>如果 VPS 位于 Lumen 或依赖 Lumen 回程，移动用户体验通常是三网里最好的。</strong></p>
+</blockquote>
+<hr>
+<h1 id="七、为什么体验尤其明显？"><a href="#七、为什么体验尤其明显？" class="headerlink" title="七、为什么体验尤其明显？"></a><strong>七、为什么体验尤其明显？</strong></h1><table>
+<thead>
+<tr>
+<th>VPS 区域</th>
+<th>移动体验</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>香港</td>
+<td>很快</td>
+<td>CMI + HKIX + 本地直连</td>
+</tr>
+<tr>
+<td>日本</td>
+<td>很快</td>
+<td>CMI 东京&#x2F;大阪多点互联</td>
+</tr>
+<tr>
+<td>新加坡</td>
+<td>很快</td>
+<td>CMI 在 SG 带宽极大</td>
+</tr>
+<tr>
+<td>美西</td>
+<td>稳定</td>
+<td>CMI ↔ Lumen 强互联</td>
+</tr>
+<tr>
+<td>韩国</td>
+<td>快</td>
+<td>多条直连 peer</td>
+</tr>
+<tr>
+<td>台湾</td>
+<td>快</td>
+<td>区域互联密度大</td>
+</tr>
+</tbody></table>
+<p><strong>移动强在：东亚 + 东南亚 + 美国西海岸（Lumen方向）。</strong></p>
+<hr>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a><strong>结论</strong></h1><blockquote>
+<p><strong>中国移动之所以对 VPS 线路“优化极好”，是因为它构建了一套以亚太为中心、出口多点分布、带宽巨大、peer 关系丰富的国际网络；同时 CMI 与 Lumen 等 Tier1 建立了足够大的互联带宽，使得移动用户访问海外 VPS 十分稳定且低延迟。</strong></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1786,99 +2045,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/How-to-make-chrome-auto-start-the-web-page-and-open-in-full-screen-mode.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/How-to-make-chrome-auto-start-the-web-page-and-open-in-full-screen-mode.html" class="post-title-link" itemprop="url">如何让Chrome自动启动网页并以全屏模式打开？</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-08-01 14:21:34 / 修改时间：14:34:28" itemprop="dateCreated datePublished" datetime="2025-08-01T14:21:34+08:00">2025-08-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Q-A/" itemprop="url" rel="index"><span itemprop="name">Q&A</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Q-如何让Chrome自动启动网页并以全屏模式打开？"><a href="#Q-如何让Chrome自动启动网页并以全屏模式打开？" class="headerlink" title="Q: 如何让Chrome自动启动网页并以全屏模式打开？"></a>Q: 如何让Chrome自动启动网页并以全屏模式打开？</h2><p>A: </p>
-<ul>
-<li><p>启动代码startup.bat</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">cd /d C:\AutoStart</span><br><span class="line"></span><br><span class="line">REM 第一步：启动 Chrome 打开网页</span><br><span class="line">start &quot;&quot; &quot;C:\Program Files\Google\Chrome\Application\chrome.exe&quot; --new-window &quot;https://heiok.com/&quot;</span><br><span class="line"></span><br><span class="line">REM 等待 5 秒让网页加载</span><br><span class="line">timeout /t 5 /nobreak &gt; nul</span><br><span class="line"></span><br><span class="line">REM 第二步：打开图片（全屏）</span><br><span class="line">start &quot;&quot; &quot;C:\Program Files\IrfanView\i_view64.exe&quot; &quot;%USERPROFILE%\Desktop\2.png&quot; /fs</span><br><span class="line"></span><br><span class="line">REM 等待 3 秒确保图片已全屏</span><br><span class="line">timeout /t 3 /nobreak &gt; nul</span><br><span class="line"></span><br><span class="line">REM 第三步：再次激活网页窗口 → 刷新 → 全屏</span><br><span class="line">powershell -ExecutionPolicy Bypass -File &quot;send_f11.ps1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>按键代码send_f11.ps1</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Start-Sleep -Seconds 1</span><br><span class="line"></span><br><span class="line">$wshell = New-Object -ComObject wscript.shell</span><br><span class="line"></span><br><span class="line"># 多次尝试激活浏览器窗口</span><br><span class="line">$success = $false</span><br><span class="line">for ($i = 0; $i -lt 5; $i++) &#123;</span><br><span class="line">    if ($wshell.AppActivate(&quot;网络蝙蝠侠&quot;)) &#123;</span><br><span class="line">        $success = $true</span><br><span class="line">        break</span><br><span class="line">    &#125;</span><br><span class="line">    Start-Sleep -Seconds 1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if ($success) &#123;</span><br><span class="line">    Start-Sleep -Milliseconds 500</span><br><span class="line"></span><br><span class="line">    # 连续刷新网页（防止白屏）</span><br><span class="line">    for ($i = 0; $i -lt 2; $i++) &#123;</span><br><span class="line">        $wshell.SendKeys(&quot;&#123;F5&#125;&quot;)</span><br><span class="line">        Start-Sleep -Seconds 2</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # 最终进入全屏</span><br><span class="line">    Start-Sleep -Seconds 1</span><br><span class="line">    $wshell.SendKeys(&quot;&#123;F11&#125;&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>设置，按下 <code>Win + R</code> → 输入：<code>shell:startup</code> → 回车，把 <code>startup.bat</code> 放进打开的启动文件夹。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"heiok.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4157401344064000" crossorigin="anonymous"></script>
+
+    <meta name="description" content="一、移动对海外链路的策略与历史原因中国移动在建设国际链路方面思路清晰、投入巨大，与电信&#x2F;联通传统依赖 Tier1 的模式不同。移动依靠 自建国际出口 + 区域直联 + 亚太布局优先 获得优势。 移动重点做了三件事：  在 香港、新加坡、日本 大规模建 POP 和传输节点 与区域运营商（HGC、PCCW、Singtel、HKIX 等）进行 大带宽直联（peer） 拥有大量海缆资源（APG、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么移动对于很多 vps 线路体验好">
+<meta property="og:url" content="https://heiok.com/CMCC-CMI.html">
+<meta property="og:site_name" content="网络蝙蝠侠部落">
+<meta property="og:description" content="一、移动对海外链路的策略与历史原因中国移动在建设国际链路方面思路清晰、投入巨大，与电信&#x2F;联通传统依赖 Tier1 的模式不同。移动依靠 自建国际出口 + 区域直联 + 亚太布局优先 获得优势。 移动重点做了三件事：  在 香港、新加坡、日本 大规模建 POP 和传输节点 与区域运营商（HGC、PCCW、Singtel、HKIX 等）进行 大带宽直联（peer） 拥有大量海缆资源（APG、">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-27T09:15:19.000Z">
+<meta property="article:modified_time" content="2025-11-27T09:20:29.815Z">
+<meta property="article:author" content="heiok.com">
+<meta property="article:tag" content="AS58453">
+<meta property="article:tag" content="CMI">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://heiok.com/CMCC-CMI.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://heiok.com/CMCC-CMI.html","path":"CMCC-CMI.html","title":"为什么移动对于很多 vps 线路体验好"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>为什么移动对于很多 vps 线路体验好 | 网络蝙蝠侠部落</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-90W6VHZRMP"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-90W6VHZRMP","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">网络蝙蝠侠部落</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%A7%BB%E5%8A%A8%E5%AF%B9%E6%B5%B7%E5%A4%96%E9%93%BE%E8%B7%AF%E7%9A%84%E7%AD%96%E7%95%A5%E4%B8%8E%E5%8E%86%E5%8F%B2%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">一、移动对海外链路的策略与历史原因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8%E7%9A%84%E9%AA%A8%E5%B9%B2%E8%B7%AF%E7%94%B1%E7%AD%96%E7%95%A5%E6%9B%B4%E7%AE%80%E5%8D%95%EF%BC%88%E7%9C%81%E7%BD%91%E7%BB%9F%E4%B8%80%E2%86%92CMI%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">二、中国移动的骨干路由策略更简单（省网统一→CMI）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8%E5%9B%BD%E9%99%85-CMI-%E5%AF%B9-VPS-%E5%95%86%E6%9E%81%E5%BA%A6%E5%8F%8B%E5%A5%BD"><span class="nav-number">3.</span> <span class="nav-text">三、中国移动国际 CMI 对 VPS 商极度友好</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%A7%BB%E5%8A%A8%E7%94%A8%E6%88%B7%E5%B7%A8%E5%A4%A7-%E2%86%92-%E6%B5%B7%E5%A4%96%E9%93%BE%E8%B7%AF%E5%BF%85%E9%A1%BB%E5%A5%BD"><span class="nav-number">4.</span> <span class="nav-text">四、移动用户巨大 → 海外链路必须好</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%A7%BB%E5%8A%A8%E5%87%BA%E5%8F%A3%E2%80%9C%E6%9B%B4%E5%B9%B2%E5%87%80%E2%80%9D%E3%80%81%E4%B8%8D%E5%AE%B9%E6%98%93%E6%99%9A%E9%AB%98%E5%B3%B0%E7%88%86%E7%82%B8"><span class="nav-number">5.</span> <span class="nav-text">五、移动出口“更干净”、不容易晚高峰爆炸</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%A7%BB%E5%8A%A8%E4%B8%8E-Lumen%EF%BC%88Level3%EF%BC%89%E6%98%AF%E5%B8%A6%E5%AE%BD%E6%9C%80%E8%B6%B3%E7%9A%84-peer-%E4%B9%8B%E4%B8%80"><span class="nav-number">6.</span> <span class="nav-text">六、移动与 Lumen（Level3）是带宽最足的 peer 之一</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Lumen%EF%BC%88Level3%EF%BC%8CAS3356%EF%BC%89%E6%98%AF%E5%85%A8%E7%90%83%E6%9C%80%E5%A4%A7-Tier1-%E4%B9%8B%E4%B8%80"><span class="nav-number">6.1.</span> <span class="nav-text">1. Lumen（Level3，AS3356）是全球最大 Tier1 之一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%A7%BB%E5%8A%A8%EF%BC%88CMI%EF%BC%89%E4%B8%8E-Lumen-%E4%B9%8B%E9%97%B4%E4%BA%92%E8%81%94%E5%B8%A6%E5%AE%BD%E7%89%B9%E5%88%AB%E5%A4%A7"><span class="nav-number">6.2.</span> <span class="nav-text">2. 移动（CMI）与 Lumen 之间互联带宽特别大</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%AE%9E%E9%99%85%E4%BD%93%E9%AA%8C%EF%BC%9A%E7%A7%BB%E5%8A%A8-%E2%86%92-Lumen-%E9%80%9A%E5%B8%B8%E4%BC%98%E4%BA%8E%E7%94%B5%E4%BF%A1-%E8%81%94%E9%80%9A"><span class="nav-number">6.3.</span> <span class="nav-text">3. 实际体验：移动 → Lumen 通常优于电信&#x2F;联通</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%93%E9%AA%8C%E5%B0%A4%E5%85%B6%E6%98%8E%E6%98%BE%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">七、为什么体验尤其明显？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">8.</span> <span class="nav-text">结论</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/CMCC-CMI.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="为什么移动对于很多 vps 线路体验好 | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          为什么移动对于很多 vps 线路体验好
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-11-27 17:15:19 / 修改时间：17:20:29" itemprop="dateCreated datePublished" datetime="2025-11-27T17:15:19+08:00">2025-11-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Q-A/" itemprop="url" rel="index"><span itemprop="name">Q&A</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="一、移动对海外链路的策略与历史原因"><a href="#一、移动对海外链路的策略与历史原因" class="headerlink" title="一、移动对海外链路的策略与历史原因"></a><strong>一、移动对海外链路的策略与历史原因</strong></h1><p>中国移动在建设国际链路方面思路清晰、投入巨大，与电信&#x2F;联通传统依赖 Tier1 的模式不同。移动依靠 <strong>自建国际出口 + 区域直联 + 亚太布局优先</strong> 获得优势。</p>
+<p>移动重点做了三件事：</p>
+<ul>
+<li>在 <strong>香港、新加坡、日本</strong> 大规模建 POP 和传输节点</li>
+<li>与区域运营商（HGC、PCCW、Singtel、HKIX 等）进行 <strong>大带宽直联（peer）</strong></li>
+<li>拥有大量海缆资源（APG、SMW5、AAE-1 等）用于亚太互联</li>
+</ul>
+<p><strong>结果：移动访问亚洲 VPS 时几乎不用绕道美国或欧洲。</strong></p>
+<p>表现就是：</p>
+<ul>
+<li>搬瓦工香港&#x2F;日本、AWS HK、腾讯云 HK、Cloudflare HK&#x2F;SG</li>
+<li>移动宽带都几乎是“秒开”，非常强势。</li>
+</ul>
+<hr>
+<h1 id="二、中国移动的骨干路由策略更简单（省网统一→CMI）"><a href="#二、中国移动的骨干路由策略更简单（省网统一→CMI）" class="headerlink" title="二、中国移动的骨干路由策略更简单（省网统一→CMI）"></a><strong>二、中国移动的骨干路由策略更简单（省网统一→CMI）</strong></h1><p>电信、联通骨干历史太长，架构复杂、政策多：</p>
+<ul>
+<li>电信 163&#x2F;CN2 双系统</li>
+<li>联通 169&#x2F;4837&#x2F;9929 混合体系</li>
+</ul>
+<p>移动因为起步晚（2007 年之后快速建设），反而更现代：</p>
+<ul>
+<li>采用 <strong>扁平化骨干网络</strong></li>
+<li>更少的策略分叉</li>
+<li>大量地区走 <strong>CMNET → CMI（中国移动国际）统一出口</strong></li>
+</ul>
+<p><strong>出口统一 + 路由简单 &#x3D; 更容易实现全球优化。</strong></p>
+<hr>
+<h1 id="三、中国移动国际-CMI-对-VPS-商极度友好"><a href="#三、中国移动国际-CMI-对-VPS-商极度友好" class="headerlink" title="三、中国移动国际 CMI 对 VPS 商极度友好"></a><strong>三、中国移动国际 CMI 对 VPS 商极度友好</strong></h1><p>这是移动在海外体验极好的核心原因之一。</p>
+<p>大量 VPS 商会写：</p>
+<blockquote>
+<p><strong>CMI 优化</strong><br> <strong>移动直连</strong><br> <strong>CMI Premium 路线</strong></p>
+</blockquote>
+<p>移动的策略是：<br> 为了快速扩大国际业务份额，会主动对中小 VPS&#x2F;IDC：</p>
+<ul>
+<li>给便宜的国际带宽</li>
+<li>开放更多互联（peer）</li>
+<li>提供足够大的出口能力</li>
+</ul>
+<p>这与电信“高价 CN2-GIA”路线完全相反。</p>
+<p>结果：</p>
+<p><strong>移动 &#x3D; 国际带宽最充足 + 最容易被 VPS 商优化。</strong></p>
+<hr>
+<h1 id="四、移动用户巨大-→-海外链路必须好"><a href="#四、移动用户巨大-→-海外链路必须好" class="headerlink" title="四、移动用户巨大 → 海外链路必须好"></a><strong>四、移动用户巨大 → 海外链路必须好</strong></h1><p>移动是全球最大运营商，国内用户 10+ 亿，其中：</p>
+<ul>
+<li>海外流量大</li>
+<li>国际漫游多</li>
+<li>YouTube&#x2F;Netflix&#x2F;TikTok&#x2F;Steam 下载需求高</li>
+</ul>
+<p>为了服务庞大用户群，移动必须保持：</p>
+<ul>
+<li>亚太地区低延迟</li>
+<li>全球多地可靠的带宽池</li>
+<li>不出现大规模晚高峰拥塞</li>
+</ul>
+<p>这也自然让 VPS 方向的表现优秀。</p>
+<hr>
+<h1 id="五、移动出口“更干净”、不容易晚高峰爆炸"><a href="#五、移动出口“更干净”、不容易晚高峰爆炸" class="headerlink" title="五、移动出口“更干净”、不容易晚高峰爆炸"></a><strong>五、移动出口“更干净”、不容易晚高峰爆炸</strong></h1><p>对比：</p>
+<table>
+<thead>
+<tr>
+<th>运营商</th>
+<th>出口特点</th>
+<th>晚高峰表现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>电信</strong></td>
+<td>多走 CN2&#x2F;163→欧美</td>
+<td>163 容易拥塞、CN2 贵</td>
+</tr>
+<tr>
+<td><strong>联通</strong></td>
+<td>主要走 4837&#x2F;9929→美西、欧洲</td>
+<td>4837 晚间抖动明显</td>
+</tr>
+<tr>
+<td><strong>移动（CMI）</strong></td>
+<td>多点分布 + 海外 POP 广</td>
+<td>一般不会拥塞</td>
+</tr>
+</tbody></table>
+<p>移动的国际出口：</p>
+<ul>
+<li>新加坡、香港、日本、洛杉矶、法兰克福多点分布</li>
+<li>带宽池巨大</li>
+<li>晚高峰也基本不爆</li>
+</ul>
+<p><strong>“国际比国内稳”在移动身上非常常见。</strong></p>
+<hr>
+<h1 id="六、移动与-Lumen（Level3）是带宽最足的-peer-之一"><a href="#六、移动与-Lumen（Level3）是带宽最足的-peer-之一" class="headerlink" title="六、移动与 Lumen（Level3）是带宽最足的 peer 之一"></a><strong>六、移动与 Lumen（Level3）是带宽最足的 peer 之一</strong></h1><p>这是移动访问 <strong>美国&#x2F;欧洲 VPS 特别稳、延迟低的关键因素</strong>。</p>
+<h2 id="1-Lumen（Level3，AS3356）是全球最大-Tier1-之一"><a href="#1-Lumen（Level3，AS3356）是全球最大-Tier1-之一" class="headerlink" title="1. Lumen（Level3，AS3356）是全球最大 Tier1 之一"></a><strong>1. Lumen（Level3，AS3356）是全球最大 Tier1 之一</strong></h2><ul>
+<li>美国 backbone 覆盖最全</li>
+<li>欧洲流量枢纽</li>
+<li>大量 CDN、Cloud&#x2F;IDC 默认走 Lumen</li>
+<li>是全球最粗的国际流量 artery 之一</li>
+</ul>
+<h2 id="2-移动（CMI）与-Lumen-之间互联带宽特别大"><a href="#2-移动（CMI）与-Lumen-之间互联带宽特别大" class="headerlink" title="2. 移动（CMI）与 Lumen 之间互联带宽特别大"></a><strong>2. 移动（CMI）与 Lumen 之间互联带宽特别大</strong></h2><p>原因：</p>
+<ul>
+<li>CMI 是 Lumen 的“大客户级”伙伴</li>
+<li>两边互补型流量（移动下行大、Lumen内容上行大）</li>
+<li>LAX&#x2F;SJC&#x2F;ORD&#x2F;FRA 等多地都有 CMI ↔ Lumen 对等互联</li>
+<li>移动大量 VPS&#x2F;IDC 优先跑向 Lumen</li>
+</ul>
+<p><strong>这条链路是移动海外最稳的线路之一。</strong></p>
+<h2 id="3-实际体验：移动-→-Lumen-通常优于电信-联通"><a href="#3-实际体验：移动-→-Lumen-通常优于电信-联通" class="headerlink" title="3. 实际体验：移动 → Lumen 通常优于电信&#x2F;联通"></a><strong>3. 实际体验：移动 → Lumen 通常优于电信&#x2F;联通</strong></h2><table>
+<thead>
+<tr>
+<th>方向</th>
+<th>移动</th>
+<th>电信</th>
+<th>联通</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>到 Lumen 美国</td>
+<td>⭐⭐⭐⭐⭐ 极好</td>
+<td>⭐⭐ 易拥塞</td>
+<td>⭐⭐⭐ 中等</td>
+</tr>
+<tr>
+<td>到 Lumen 欧洲</td>
+<td>⭐⭐⭐⭐ 稳定</td>
+<td>⭐⭐ 容易走绕路</td>
+<td>⭐⭐⭐ 一般</td>
+</tr>
+<tr>
+<td>到 cheap VPS（多走 Lumen）</td>
+<td>稳得离谱</td>
+<td>一般</td>
+<td>看机房</td>
+</tr>
+</tbody></table>
+<p>因此：</p>
+<blockquote>
+<p><strong>如果 VPS 位于 Lumen 或依赖 Lumen 回程，移动用户体验通常是三网里最好的。</strong></p>
+</blockquote>
+<hr>
+<h1 id="七、为什么体验尤其明显？"><a href="#七、为什么体验尤其明显？" class="headerlink" title="七、为什么体验尤其明显？"></a><strong>七、为什么体验尤其明显？</strong></h1><table>
+<thead>
+<tr>
+<th>VPS 区域</th>
+<th>移动体验</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>香港</td>
+<td>很快</td>
+<td>CMI + HKIX + 本地直连</td>
+</tr>
+<tr>
+<td>日本</td>
+<td>很快</td>
+<td>CMI 东京&#x2F;大阪多点互联</td>
+</tr>
+<tr>
+<td>新加坡</td>
+<td>很快</td>
+<td>CMI 在 SG 带宽极大</td>
+</tr>
+<tr>
+<td>美西</td>
+<td>稳定</td>
+<td>CMI ↔ Lumen 强互联</td>
+</tr>
+<tr>
+<td>韩国</td>
+<td>快</td>
+<td>多条直连 peer</td>
+</tr>
+<tr>
+<td>台湾</td>
+<td>快</td>
+<td>区域互联密度大</td>
+</tr>
+</tbody></table>
+<p><strong>移动强在：东亚 + 东南亚 + 美国西海岸（Lumen方向）。</strong></p>
+<hr>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a><strong>结论</strong></h1><blockquote>
+<p><strong>中国移动之所以对 VPS 线路“优化极好”，是因为它构建了一套以亚太为中心、出口多点分布、带宽巨大、peer 关系丰富的国际网络；同时 CMI 与 Lumen 等 Tier1 建立了足够大的互联带宽，使得移动用户访问海外 VPS 十分稳定且低延迟。</strong></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AS58453/" rel="tag"># AS58453</a>
+              <a href="/tags/CMI/" rel="tag"># CMI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Legendvps-change-IP.html" rel="prev" title="Legendvps变更IP">
+                  <i class="fa fa-angle-left"></i> Legendvps变更IP
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">heiok.com</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
