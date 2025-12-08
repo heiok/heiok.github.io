@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"heiok.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4157401344064000" crossorigin="anonymous"></script>
+
+    <meta name="description" content="最近遇到一个真实案例一位来自武汉的用户，将原先部署在阿里云杭州地域的服务器迁回到武汉节点，希望本地访问延迟更低。按照云厂商的宣传，“地域越近，延迟越低”。 但实际测试却发现：  武汉本地 → 武汉节点：30ms 杭州 → 武汉节点：15ms  反而是距离更远的杭州访问更快？ 最终与阿里云技术确认： 武汉节点的公网出口实际上仍然在杭州。 这到底是什么原理？  一、这属于典型的“云厂商中心化出口（Ce">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么服务器在武汉，访问却还是走杭州出口？一次典型的云厂商“中心化出口”案例解析">
+<meta property="og:url" content="https://heiok.com/Why-Wuhan-Servers-Still-Exit-Through-Hangzhou.html">
+<meta property="og:site_name" content="网络蝙蝠侠部落">
+<meta property="og:description" content="最近遇到一个真实案例一位来自武汉的用户，将原先部署在阿里云杭州地域的服务器迁回到武汉节点，希望本地访问延迟更低。按照云厂商的宣传，“地域越近，延迟越低”。 但实际测试却发现：  武汉本地 → 武汉节点：30ms 杭州 → 武汉节点：15ms  反而是距离更远的杭州访问更快？ 最终与阿里云技术确认： 武汉节点的公网出口实际上仍然在杭州。 这到底是什么原理？  一、这属于典型的“云厂商中心化出口（Ce">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-08T08:23:19.000Z">
+<meta property="article:modified_time" content="2025-12-08T08:27:59.918Z">
+<meta property="article:author" content="heiok.com">
+<meta property="article:tag" content="ECS">
+<meta property="article:tag" content="aliyun">
+<meta property="article:tag" content="Centralized Internet Gateway">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://heiok.com/Why-Wuhan-Servers-Still-Exit-Through-Hangzhou.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://heiok.com/Why-Wuhan-Servers-Still-Exit-Through-Hangzhou.html","path":"Why-Wuhan-Servers-Still-Exit-Through-Hangzhou.html","title":"为什么服务器在武汉，访问却还是走杭州出口？一次典型的云厂商“中心化出口”案例解析"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>为什么服务器在武汉，访问却还是走杭州出口？一次典型的云厂商“中心化出口”案例解析 | 网络蝙蝠侠部落</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-90W6VHZRMP"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-90W6VHZRMP","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">网络蝙蝠侠部落</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E8%BF%91%E9%81%87%E5%88%B0%E4%B8%80%E4%B8%AA%E7%9C%9F%E5%AE%9E%E6%A1%88%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">最近遇到一个真实案例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%BF%99%E5%B1%9E%E4%BA%8E%E5%85%B8%E5%9E%8B%E7%9A%84%E2%80%9C%E4%BA%91%E5%8E%82%E5%95%86%E4%B8%AD%E5%BF%83%E5%8C%96%E5%87%BA%E5%8F%A3%EF%BC%88Centralized-Egress%EF%BC%89%E2%80%9D%E6%9E%B6%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">一、这属于典型的“云厂商中心化出口（Centralized Egress）”架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AD%A6%E6%B1%89%E8%AE%BF%E9%97%AE%E6%AD%A6%E6%B1%89%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E5%8F%8D%E8%80%8C%E7%BB%95%E5%88%B0%E6%9D%AD%E5%B7%9E%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">二、为什么武汉访问武汉服务器，反而绕到杭州？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A6%E6%B1%89%E6%9C%BA%E6%88%BF%E6%B2%A1%E6%9C%89%E8%BF%90%E8%90%A5%E5%95%86%E7%9A%84-BGP-Peering%EF%BC%88%E5%AF%B9%E6%8E%A5%EF%BC%89"><span class="nav-number">3.0.1.</span> <span class="nav-text">武汉机房没有运营商的 BGP Peering（对接）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E9%98%BF%E9%87%8C%E4%BA%91%E6%9D%AD%E5%B7%9E%E5%87%BA%E5%8F%A3%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BF%AB%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">三、阿里云杭州出口为什么快？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BA%91%E5%8E%82%E5%95%86%E4%B8%8D%E5%9C%A8%E6%AD%A6%E6%B1%89%E5%BB%BA%E5%87%BA%E5%8F%A3%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">四、为什么云厂商不在武汉建出口？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%88%90%E6%9C%AC%E6%9E%81%E9%AB%98"><span class="nav-number">5.0.1.</span> <span class="nav-text">1. 成本极高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%B5%84%E6%BA%90%E5%A4%8D%E7%94%A8%EF%BC%88%E6%9B%B4%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%89"><span class="nav-number">5.0.2.</span> <span class="nav-text">2. 资源复用（更常见的原因）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%BA%91%E5%8E%82%E5%95%86%E5%86%85%E9%83%A8%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">五、云厂商内部网络是怎么工作的？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%86%85%E9%83%A8%E9%80%9A%E4%BF%A1%E5%85%A8%E9%83%A8%E8%B5%B0%E4%BA%91%E5%8E%82%E5%95%86%E8%87%AA%E5%B7%B1%E7%9A%84%E9%AA%A8%E5%B9%B2%E7%BD%91"><span class="nav-number">6.0.1.</span> <span class="nav-text">1. 内部通信全部走云厂商自己的骨干网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8F%AA%E6%9C%89%E6%A0%B8%E5%BF%83%E5%9C%B0%E5%9F%9F%E6%89%8D%E6%9C%89%E5%AF%B9%E5%A4%96-BGP-%E5%87%BA%E5%8F%A3"><span class="nav-number">6.0.2.</span> <span class="nav-text">2. 只有核心地域才有对外 BGP 出口</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%80%BB%E7%BB%93%EF%BC%9A%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%A8%E6%AD%A6%E6%B1%89%EF%BC%8C%E5%87%BA%E5%8F%A3%E5%8D%B4%E5%9C%A8%E6%9D%AD%E5%B7%9E%EF%BC%8C%E6%98%AF%E6%AD%A3%E5%B8%B8%E7%8E%B0%E8%B1%A1"><span class="nav-number">7.</span> <span class="nav-text">六、总结：服务器在武汉，出口却在杭州，是正常现象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E5%87%BA%E5%8F%A3%E7%A1%AE%E5%AE%9E%E5%9C%A8%E6%9D%AD%E5%B7%9E%EF%BC%9F"><span class="nav-number">8.</span> <span class="nav-text">七、如何验证出口确实在杭州？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-number">9.</span> <span class="nav-text">八、如何解决延迟问题？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-1%EF%BC%9A%E6%8D%A2%E5%9C%B0%E5%9F%9F%EF%BC%88%E6%9B%B4%E5%85%B3%E9%94%AE%EF%BC%89"><span class="nav-number">9.0.1.</span> <span class="nav-text">方案 1：换地域（更关键）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-2%EF%BC%9A%E6%8D%A2%E4%BA%91%E5%8E%82%E5%95%86%EF%BC%88%E4%B8%8D%E5%90%8C%E5%8E%82%E5%95%86%E5%B8%83%E5%B1%80%E4%B8%8D%E5%90%8C%EF%BC%89"><span class="nav-number">9.0.2.</span> <span class="nav-text">方案 2：换云厂商（不同厂商布局不同）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88-3%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%85%B7%E5%A4%87%E2%80%9C%E6%9C%80%E4%BC%98%E5%85%A5%E5%8F%A3%E4%B8%8E%E5%87%BA%E5%8F%A3%E2%80%9D%E7%9A%84%E4%BA%A7%E5%93%81"><span class="nav-number">9.0.3.</span> <span class="nav-text">方案 3：使用具备“最优入口与出口”的产品</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">106</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Why-Wuhan-Servers-Still-Exit-Through-Hangzhou.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="为什么服务器在武汉，访问却还是走杭州出口？一次典型的云厂商“中心化出口”案例解析 | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          为什么服务器在武汉，访问却还是走杭州出口？一次典型的云厂商“中心化出口”案例解析
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-12-08 16:23:19 / 修改时间：16:27:59" itemprop="dateCreated datePublished" datetime="2025-12-08T16:23:19+08:00">2025-12-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Q-A/" itemprop="url" rel="index"><span itemprop="name">Q&A</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="最近遇到一个真实案例"><a href="#最近遇到一个真实案例" class="headerlink" title="最近遇到一个真实案例"></a><strong>最近遇到一个真实案例</strong></h1><p>一位来自武汉的用户，将原先部署在阿里云杭州地域的服务器迁回到武汉节点，希望本地访问延迟更低。按照云厂商的宣传，“地域越近，延迟越低”。</p>
+<p>但实际测试却发现：</p>
+<ul>
+<li><strong>武汉本地 → 武汉节点：30ms</strong></li>
+<li><strong>杭州 → 武汉节点：15ms</strong></li>
+</ul>
+<p>反而是距离更远的杭州访问更快？</p>
+<p>最终与阿里云技术确认：<br> <strong>武汉节点的公网出口实际上仍然在杭州。</strong></p>
+<p>这到底是什么原理？</p>
+<hr>
+<h1 id="一、这属于典型的“云厂商中心化出口（Centralized-Egress）”架构"><a href="#一、这属于典型的“云厂商中心化出口（Centralized-Egress）”架构" class="headerlink" title="一、这属于典型的“云厂商中心化出口（Centralized Egress）”架构"></a><strong>一、这属于典型的“云厂商中心化出口（Centralized Egress）”架构</strong></h1><p>虽然服务器物理上在武汉机房，但<strong>云厂商不一定在每个地域都部署 BGP 出口（与运营商交换路由的接口）</strong>。</p>
+<p>对云厂商来说：</p>
+<ul>
+<li><strong>机房</strong>：放服务器、存储、交换机</li>
+<li><strong>出口</strong>：与电信&#x2F;联通&#x2F;移动对接的 BGP 点</li>
+</ul>
+<p>为了节省成本、减少维护复杂度，云厂商常采用：</p>
+<blockquote>
+<p><strong>多个机房 → 统一走一个或多个核心地域的 BGP 出口</strong></p>
+</blockquote>
+<p>阿里云内部称为：<br> <strong>中心集群 &#x2F; 跨地域骨干互联（的统一调度出口）</strong></p>
+<hr>
+<h1 id="二、为什么武汉访问武汉服务器，反而绕到杭州？"><a href="#二、为什么武汉访问武汉服务器，反而绕到杭州？" class="headerlink" title="二、为什么武汉访问武汉服务器，反而绕到杭州？"></a><strong>二、为什么武汉访问武汉服务器，反而绕到杭州？</strong></h1><p>访问路径实际上是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">武汉用户 → 武汉本地运营商 →（无本地 BGP）→ 运营商骨干 → 杭州阿里云出口 </span><br><span class="line">→ 阿里云内网 → 返回武汉机房 ECS</span><br></pre></td></tr></table></figure>
+
+<p>而不是你以为的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">武汉用户 → 武汉阿里云机房</span><br></pre></td></tr></table></figure>
+
+<p>原因很简单：</p>
+<h3 id="武汉机房没有运营商的-BGP-Peering（对接）"><a href="#武汉机房没有运营商的-BGP-Peering（对接）" class="headerlink" title="武汉机房没有运营商的 BGP Peering（对接）"></a><strong>武汉机房没有运营商的 BGP Peering（对接）</strong></h3><p>因此：</p>
+<ul>
+<li>运营商<strong>不知道</strong>如何把外网流量直接路由到武汉阿里云机房</li>
+<li>所有流量必须进入阿里云的 <strong>杭州出口节点</strong></li>
+<li>然后再通过阿里云自家的骨干 <strong>回传到武汉机房</strong></li>
+</ul>
+<p>于是形成：<strong>武汉 → 杭州 → 武汉</strong> 的绕路路径。</p>
+<hr>
+<h1 id="三、阿里云杭州出口为什么快？"><a href="#三、阿里云杭州出口为什么快？" class="headerlink" title="三、阿里云杭州出口为什么快？"></a><strong>三、阿里云杭州出口为什么快？</strong></h1><p>杭州是阿里云最成熟的区域之一，具有：</p>
+<ul>
+<li>三大运营商就近有多个 BGP 互联点</li>
+<li>机房规模与容量全国领先</li>
+<li>自有骨干网带宽非常大</li>
+</ul>
+<p>因此：</p>
+<ul>
+<li>武汉访问杭州：大约 15ms</li>
+<li>武汉访问武汉（但出口在杭州）：约 30ms（多绕一圈）</li>
+</ul>
+<p>本质是 <strong>出口位置影响延迟，而不是机房位置</strong>。</p>
+<hr>
+<h1 id="四、为什么云厂商不在武汉建出口？"><a href="#四、为什么云厂商不在武汉建出口？" class="headerlink" title="四、为什么云厂商不在武汉建出口？"></a><strong>四、为什么云厂商不在武汉建出口？</strong></h1><h3 id="1-成本极高"><a href="#1-成本极高" class="headerlink" title="1. 成本极高"></a><strong>1. 成本极高</strong></h3><p>建 BGP 出口需要：</p>
+<ul>
+<li>大量光纤、路由器、交换机</li>
+<li>机房空间与维护团队</li>
+<li>三大运营商的跨省结算与资源协调</li>
+<li>冗余部署等安全要求</li>
+</ul>
+<p>只有 <strong>核心地域</strong>（北京、杭州、深圳）通常才值得投入。</p>
+<p>武汉属于“二级 Region”，成本与流量规模无法匹配。</p>
+<hr>
+<h3 id="2-资源复用（更常见的原因）"><a href="#2-资源复用（更常见的原因）" class="headerlink" title="2. 资源复用（更常见的原因）"></a><strong>2. 资源复用（更常见的原因）</strong></h3><p>云厂商倾向于把出口集中到：</p>
+<ul>
+<li>杭州（华东核心）</li>
+<li>北京（华北核心）</li>
+<li>深圳（华南核心）</li>
+</ul>
+<p>以便：</p>
+<ul>
+<li>集中管理 BGP</li>
+<li>集中安全设备（DDoS、审计等）</li>
+<li>集中运营成本</li>
+</ul>
+<p>这就是为什么：</p>
+<blockquote>
+<p><strong>入口在武汉，但出口在杭州</strong><br> <strong>而 CDN 恰恰相反，出口就在就近节点</strong></p>
+</blockquote>
+<hr>
+<h1 id="五、云厂商内部网络是怎么工作的？"><a href="#五、云厂商内部网络是怎么工作的？" class="headerlink" title="五、云厂商内部网络是怎么工作的？"></a><strong>五、云厂商内部网络是怎么工作的？</strong></h1><p>一个典型拓扑如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">武汉机房（无公网出口）</span><br><span class="line">       ↓</span><br><span class="line">  阿里云骨干网（CEN）</span><br><span class="line">       ↓</span><br><span class="line">杭州核心地域（具有 BGP 出口）</span><br><span class="line">       ↓</span><br><span class="line">  三大运营商公共网络</span><br><span class="line">       ↓</span><br><span class="line">       用户</span><br></pre></td></tr></table></figure>
+
+<p>主要机制：</p>
+<h3 id="1-内部通信全部走云厂商自己的骨干网"><a href="#1-内部通信全部走云厂商自己的骨干网" class="headerlink" title="1. 内部通信全部走云厂商自己的骨干网"></a><strong>1. 内部通信全部走云厂商自己的骨干网</strong></h3><ul>
+<li>速度快、质量可控</li>
+<li>比公网更稳定</li>
+</ul>
+<h3 id="2-只有核心地域才有对外-BGP-出口"><a href="#2-只有核心地域才有对外-BGP-出口" class="headerlink" title="2. 只有核心地域才有对外 BGP 出口"></a><strong>2. 只有核心地域才有对外 BGP 出口</strong></h3><p>从而降低运营成本，并便于调度。</p>
+<hr>
+<h1 id="六、总结：服务器在武汉，出口却在杭州，是正常现象"><a href="#六、总结：服务器在武汉，出口却在杭州，是正常现象" class="headerlink" title="六、总结：服务器在武汉，出口却在杭州，是正常现象"></a><strong>六、总结：服务器在武汉，出口却在杭州，是正常现象</strong></h1><p>你的测试现象完全符合云厂商的“中心化出口”架构：</p>
+<ul>
+<li><strong>服务器位置 &#x3D; 武汉</strong></li>
+<li><strong>IP 归属地 &#x3D; 武汉</strong></li>
+<li><strong>公网出口 &#x3D; 杭州（真实决定访问路径的地方）</strong></li>
+</ul>
+<p>所以远距离反而更快。</p>
+<hr>
+<h1 id="七、如何验证出口确实在杭州？"><a href="#七、如何验证出口确实在杭州？" class="headerlink" title="七、如何验证出口确实在杭州？"></a><strong>七、如何验证出口确实在杭州？</strong></h1><p>在武汉机房 ECS 上执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">traceroute 8.8.8.8</span><br></pre></td></tr></table></figure>
+
+<p>通常你会看到第一跳为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">阿里云骨干网 → 杭州出口 → 三大运营商网</span><br></pre></td></tr></table></figure>
+
+<p>没有任何湖北本地运营商的节点。</p>
+<hr>
+<h1 id="八、如何解决延迟问题？"><a href="#八、如何解决延迟问题？" class="headerlink" title="八、如何解决延迟问题？"></a><strong>八、如何解决延迟问题？</strong></h1><h3 id="方案-1：换地域（更关键）"><a href="#方案-1：换地域（更关键）" class="headerlink" title="方案 1：换地域（更关键）"></a><strong>方案 1：换地域（更关键）</strong></h3><p>选择 <strong>郑州、长沙</strong> 等真正具备本地 BGP 出口的区域。</p>
+<h3 id="方案-2：换云厂商（不同厂商布局不同）"><a href="#方案-2：换云厂商（不同厂商布局不同）" class="headerlink" title="方案 2：换云厂商（不同厂商布局不同）"></a><strong>方案 2：换云厂商（不同厂商布局不同）</strong></h3><p>例如腾讯云在华中部分地区的出口布局更本地化。</p>
+<h3 id="方案-3：使用具备“最优入口与出口”的产品"><a href="#方案-3：使用具备“最优入口与出口”的产品" class="headerlink" title="方案 3：使用具备“最优入口与出口”的产品"></a><strong>方案 3：使用具备“最优入口与出口”的产品</strong></h3><p>如：</p>
+<ul>
+<li>全球加速 GA</li>
+<li>Anycast EIP</li>
+<li>高防 IP（通常分布更多出口）</li>
+</ul>
+<p>这些产品<strong>不依赖地域出口</strong>，能显著改善路径。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ECS/" rel="tag"># ECS</a>
+              <a href="/tags/aliyun/" rel="tag"># aliyun</a>
+              <a href="/tags/Centralized-Internet-Gateway/" rel="tag"># Centralized Internet Gateway</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/CMCC-CMI.html" rel="prev" title="为什么移动对于很多 vps 线路体验好">
+                  <i class="fa fa-angle-left"></i> 为什么移动对于很多 vps 线路体验好
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">heiok.com</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

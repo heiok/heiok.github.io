@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">104</span>
+        <span class="site-state-item-count">106</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -152,6 +152,196 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Why-Wuhan-Servers-Still-Exit-Through-Hangzhou.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Why-Wuhan-Servers-Still-Exit-Through-Hangzhou.html" class="post-title-link" itemprop="url">为什么服务器在武汉，访问却还是走杭州出口？一次典型的云厂商“中心化出口”案例解析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-12-08 16:23:19 / 修改时间：16:27:59" itemprop="dateCreated datePublished" datetime="2025-12-08T16:23:19+08:00">2025-12-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Q-A/" itemprop="url" rel="index"><span itemprop="name">Q&A</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="最近遇到一个真实案例"><a href="#最近遇到一个真实案例" class="headerlink" title="最近遇到一个真实案例"></a><strong>最近遇到一个真实案例</strong></h1><p>一位来自武汉的用户，将原先部署在阿里云杭州地域的服务器迁回到武汉节点，希望本地访问延迟更低。按照云厂商的宣传，“地域越近，延迟越低”。</p>
+<p>但实际测试却发现：</p>
+<ul>
+<li><strong>武汉本地 → 武汉节点：30ms</strong></li>
+<li><strong>杭州 → 武汉节点：15ms</strong></li>
+</ul>
+<p>反而是距离更远的杭州访问更快？</p>
+<p>最终与阿里云技术确认：<br> <strong>武汉节点的公网出口实际上仍然在杭州。</strong></p>
+<p>这到底是什么原理？</p>
+<hr>
+<h1 id="一、这属于典型的“云厂商中心化出口（Centralized-Egress）”架构"><a href="#一、这属于典型的“云厂商中心化出口（Centralized-Egress）”架构" class="headerlink" title="一、这属于典型的“云厂商中心化出口（Centralized Egress）”架构"></a><strong>一、这属于典型的“云厂商中心化出口（Centralized Egress）”架构</strong></h1><p>虽然服务器物理上在武汉机房，但<strong>云厂商不一定在每个地域都部署 BGP 出口（与运营商交换路由的接口）</strong>。</p>
+<p>对云厂商来说：</p>
+<ul>
+<li><strong>机房</strong>：放服务器、存储、交换机</li>
+<li><strong>出口</strong>：与电信&#x2F;联通&#x2F;移动对接的 BGP 点</li>
+</ul>
+<p>为了节省成本、减少维护复杂度，云厂商常采用：</p>
+<blockquote>
+<p><strong>多个机房 → 统一走一个或多个核心地域的 BGP 出口</strong></p>
+</blockquote>
+<p>阿里云内部称为：<br> <strong>中心集群 &#x2F; 跨地域骨干互联（的统一调度出口）</strong></p>
+<hr>
+<h1 id="二、为什么武汉访问武汉服务器，反而绕到杭州？"><a href="#二、为什么武汉访问武汉服务器，反而绕到杭州？" class="headerlink" title="二、为什么武汉访问武汉服务器，反而绕到杭州？"></a><strong>二、为什么武汉访问武汉服务器，反而绕到杭州？</strong></h1><p>访问路径实际上是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">武汉用户 → 武汉本地运营商 →（无本地 BGP）→ 运营商骨干 → 杭州阿里云出口 </span><br><span class="line">→ 阿里云内网 → 返回武汉机房 ECS</span><br></pre></td></tr></table></figure>
+
+<p>而不是你以为的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">武汉用户 → 武汉阿里云机房</span><br></pre></td></tr></table></figure>
+
+<p>原因很简单：</p>
+<h3 id="武汉机房没有运营商的-BGP-Peering（对接）"><a href="#武汉机房没有运营商的-BGP-Peering（对接）" class="headerlink" title="武汉机房没有运营商的 BGP Peering（对接）"></a><strong>武汉机房没有运营商的 BGP Peering（对接）</strong></h3><p>因此：</p>
+<ul>
+<li>运营商<strong>不知道</strong>如何把外网流量直接路由到武汉阿里云机房</li>
+<li>所有流量必须进入阿里云的 <strong>杭州出口节点</strong></li>
+<li>然后再通过阿里云自家的骨干 <strong>回传到武汉机房</strong></li>
+</ul>
+<p>于是形成：<strong>武汉 → 杭州 → 武汉</strong> 的绕路路径。</p>
+<hr>
+<h1 id="三、阿里云杭州出口为什么快？"><a href="#三、阿里云杭州出口为什么快？" class="headerlink" title="三、阿里云杭州出口为什么快？"></a><strong>三、阿里云杭州出口为什么快？</strong></h1><p>杭州是阿里云最成熟的区域之一，具有：</p>
+<ul>
+<li>三大运营商就近有多个 BGP 互联点</li>
+<li>机房规模与容量全国领先</li>
+<li>自有骨干网带宽非常大</li>
+</ul>
+<p>因此：</p>
+<ul>
+<li>武汉访问杭州：大约 15ms</li>
+<li>武汉访问武汉（但出口在杭州）：约 30ms（多绕一圈）</li>
+</ul>
+<p>本质是 <strong>出口位置影响延迟，而不是机房位置</strong>。</p>
+<hr>
+<h1 id="四、为什么云厂商不在武汉建出口？"><a href="#四、为什么云厂商不在武汉建出口？" class="headerlink" title="四、为什么云厂商不在武汉建出口？"></a><strong>四、为什么云厂商不在武汉建出口？</strong></h1><h3 id="1-成本极高"><a href="#1-成本极高" class="headerlink" title="1. 成本极高"></a><strong>1. 成本极高</strong></h3><p>建 BGP 出口需要：</p>
+<ul>
+<li>大量光纤、路由器、交换机</li>
+<li>机房空间与维护团队</li>
+<li>三大运营商的跨省结算与资源协调</li>
+<li>冗余部署等安全要求</li>
+</ul>
+<p>只有 <strong>核心地域</strong>（北京、杭州、深圳）通常才值得投入。</p>
+<p>武汉属于“二级 Region”，成本与流量规模无法匹配。</p>
+<hr>
+<h3 id="2-资源复用（更常见的原因）"><a href="#2-资源复用（更常见的原因）" class="headerlink" title="2. 资源复用（更常见的原因）"></a><strong>2. 资源复用（更常见的原因）</strong></h3><p>云厂商倾向于把出口集中到：</p>
+<ul>
+<li>杭州（华东核心）</li>
+<li>北京（华北核心）</li>
+<li>深圳（华南核心）</li>
+</ul>
+<p>以便：</p>
+<ul>
+<li>集中管理 BGP</li>
+<li>集中安全设备（DDoS、审计等）</li>
+<li>集中运营成本</li>
+</ul>
+<p>这就是为什么：</p>
+<blockquote>
+<p><strong>入口在武汉，但出口在杭州</strong><br> <strong>而 CDN 恰恰相反，出口就在就近节点</strong></p>
+</blockquote>
+<hr>
+<h1 id="五、云厂商内部网络是怎么工作的？"><a href="#五、云厂商内部网络是怎么工作的？" class="headerlink" title="五、云厂商内部网络是怎么工作的？"></a><strong>五、云厂商内部网络是怎么工作的？</strong></h1><p>一个典型拓扑如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">武汉机房（无公网出口）</span><br><span class="line">       ↓</span><br><span class="line">  阿里云骨干网（CEN）</span><br><span class="line">       ↓</span><br><span class="line">杭州核心地域（具有 BGP 出口）</span><br><span class="line">       ↓</span><br><span class="line">  三大运营商公共网络</span><br><span class="line">       ↓</span><br><span class="line">       用户</span><br></pre></td></tr></table></figure>
+
+<p>主要机制：</p>
+<h3 id="1-内部通信全部走云厂商自己的骨干网"><a href="#1-内部通信全部走云厂商自己的骨干网" class="headerlink" title="1. 内部通信全部走云厂商自己的骨干网"></a><strong>1. 内部通信全部走云厂商自己的骨干网</strong></h3><ul>
+<li>速度快、质量可控</li>
+<li>比公网更稳定</li>
+</ul>
+<h3 id="2-只有核心地域才有对外-BGP-出口"><a href="#2-只有核心地域才有对外-BGP-出口" class="headerlink" title="2. 只有核心地域才有对外 BGP 出口"></a><strong>2. 只有核心地域才有对外 BGP 出口</strong></h3><p>从而降低运营成本，并便于调度。</p>
+<hr>
+<h1 id="六、总结：服务器在武汉，出口却在杭州，是正常现象"><a href="#六、总结：服务器在武汉，出口却在杭州，是正常现象" class="headerlink" title="六、总结：服务器在武汉，出口却在杭州，是正常现象"></a><strong>六、总结：服务器在武汉，出口却在杭州，是正常现象</strong></h1><p>你的测试现象完全符合云厂商的“中心化出口”架构：</p>
+<ul>
+<li><strong>服务器位置 &#x3D; 武汉</strong></li>
+<li><strong>IP 归属地 &#x3D; 武汉</strong></li>
+<li><strong>公网出口 &#x3D; 杭州（真实决定访问路径的地方）</strong></li>
+</ul>
+<p>所以远距离反而更快。</p>
+<hr>
+<h1 id="七、如何验证出口确实在杭州？"><a href="#七、如何验证出口确实在杭州？" class="headerlink" title="七、如何验证出口确实在杭州？"></a><strong>七、如何验证出口确实在杭州？</strong></h1><p>在武汉机房 ECS 上执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">traceroute 8.8.8.8</span><br></pre></td></tr></table></figure>
+
+<p>通常你会看到第一跳为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">阿里云骨干网 → 杭州出口 → 三大运营商网</span><br></pre></td></tr></table></figure>
+
+<p>没有任何湖北本地运营商的节点。</p>
+<hr>
+<h1 id="八、如何解决延迟问题？"><a href="#八、如何解决延迟问题？" class="headerlink" title="八、如何解决延迟问题？"></a><strong>八、如何解决延迟问题？</strong></h1><h3 id="方案-1：换地域（更关键）"><a href="#方案-1：换地域（更关键）" class="headerlink" title="方案 1：换地域（更关键）"></a><strong>方案 1：换地域（更关键）</strong></h3><p>选择 <strong>郑州、长沙</strong> 等真正具备本地 BGP 出口的区域。</p>
+<h3 id="方案-2：换云厂商（不同厂商布局不同）"><a href="#方案-2：换云厂商（不同厂商布局不同）" class="headerlink" title="方案 2：换云厂商（不同厂商布局不同）"></a><strong>方案 2：换云厂商（不同厂商布局不同）</strong></h3><p>例如腾讯云在华中部分地区的出口布局更本地化。</p>
+<h3 id="方案-3：使用具备“最优入口与出口”的产品"><a href="#方案-3：使用具备“最优入口与出口”的产品" class="headerlink" title="方案 3：使用具备“最优入口与出口”的产品"></a><strong>方案 3：使用具备“最优入口与出口”的产品</strong></h3><p>如：</p>
+<ul>
+<li>全球加速 GA</li>
+<li>Anycast EIP</li>
+<li>高防 IP（通常分布更多出口）</li>
+</ul>
+<p>这些产品<strong>不依赖地域出口</strong>，能显著改善路径。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1720,311 +1910,6 @@
 <td><strong>AS18118</strong></td>
 <td>不详</td>
 <td>光纤全长3.2万公里，容量3.2Tbps，主要服务政企</td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/looking-glass.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/looking-glass.html" class="post-title-link" itemprop="url">looking glass</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-08-15 14:50:36 / 修改时间：14:52:44" itemprop="dateCreated datePublished" datetime="2025-08-15T14:50:36+08:00">2025-08-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="LG定义"><a href="#LG定义" class="headerlink" title="LG定义"></a>LG定义</h2><p><strong>Looking Glass（简称 LG）</strong> 是<strong>运营商或数据中心提供的“BGP&#x2F;路由诊断平台”</strong>，通过 Web 页面（有时也有 CLI 接口）运行一些网络测试命令，比如：</p>
-<ul>
-<li><code>traceroute</code> &#x2F; <code>mtr</code>（查看到目标 IP 的路由路径）</li>
-<li><code>ping</code>（测试延迟与连通性）</li>
-<li><code>show route</code>（查看 BGP 路由表）</li>
-<li><code>show bgp summary</code>（查看 ASN 邻居关系）</li>
-</ul>
-<h2 id="LG测试"><a href="#LG测试" class="headerlink" title="LG测试"></a>LG测试</h2><table>
-<thead>
-<tr>
-<th>名称 &#x2F; 机构</th>
-<th>AS号</th>
-<th>类型</th>
-<th>Looking Glass 地址</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Airtel</strong></td>
-<td>AS9498</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="https://lg.airtel.in/LookingGlass/">https://lg.airtel.in/LookingGlass/</a></td>
-</tr>
-<tr>
-<td><strong>Australia AAPT Limited</strong></td>
-<td>AS2764</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="http://looking-glass.aapt.com.au/lg">http://looking-glass.aapt.com.au/lg</a></td>
-</tr>
-<tr>
-<td><strong>Canada TekSavvy Solutions</strong></td>
-<td>AS5645</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="https://lg.teksavvy.com/">https://lg.teksavvy.com/</a></td>
-</tr>
-<tr>
-<td><strong>China Mobile International</strong></td>
-<td>AS58453</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="https://www.cmi.chinamobile.com/en/looking-glass">https://www.cmi.chinamobile.com/en/looking-glass</a></td>
-</tr>
-<tr>
-<td><strong>China Telecom Global（中国电信国际）</strong></td>
-<td>AS4809</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="https://ipms.chinatelecomglobal.com/public/lookglass/lookglassDisclaimer.html">https://ipms.chinatelecomglobal.com/public/lookglass/lookglassDisclaimer.html</a></td>
-</tr>
-<tr>
-<td><strong>France Orange S.A.</strong></td>
-<td>AS3215</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="https://looking-glass.opentransit.net/">https://looking-glass.opentransit.net/</a></td>
-</tr>
-<tr>
-<td><strong>GTT Communications</strong></td>
-<td>AS3257</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="http://www.as3257.net/lg/">http://www.as3257.net/lg/</a></td>
-</tr>
-<tr>
-<td><strong>Hinet &#x2F; HiNet (中华电信)</strong></td>
-<td>AS203687</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="https://lg.hinet.pl/">https://lg.hinet.pl/</a></td>
-</tr>
-<tr>
-<td><strong>HE &#x2F; Hurricane Electric</strong></td>
-<td>AS6939</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="http://lg.he.net/">http://lg.he.net/</a></td>
-</tr>
-<tr>
-<td><strong>Japan ARTERIA Networks</strong></td>
-<td>AS17506</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="https://nw-tools.arteria-net.com/">https://nw-tools.arteria-net.com/</a></td>
-</tr>
-<tr>
-<td><strong>Lumen &#x2F; CenturyLink</strong></td>
-<td>AS3356</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="https://lookingglass.centurylink.com/">https://lookingglass.centurylink.com/</a></td>
-</tr>
-<tr>
-<td><strong>Orange Business Services (Russia)</strong></td>
-<td>AS3216</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="http://lg.gin.ru/">http://lg.gin.ru/</a></td>
-</tr>
-<tr>
-<td><strong>Orange S.A. (Opentransit)</strong></td>
-<td>AS5511</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="https://lg.opentransit.net/">https://lg.opentransit.net/</a></td>
-</tr>
-<tr>
-<td><strong>PCCW Global (public mirror)</strong></td>
-<td>AS3491</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="https://bgp.he.net/lg/3491">https://bgp.he.net/lg/3491</a></td>
-</tr>
-<tr>
-<td><strong>RETN Limited (UK)</strong></td>
-<td>AS9002</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="https://lg.retn.net/">https://lg.retn.net/</a></td>
-</tr>
-<tr>
-<td><strong>Telia Carrier &#x2F; Arelion</strong></td>
-<td>AS1299</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="https://lg.telia.net/">https://lg.telia.net/</a></td>
-</tr>
-<tr>
-<td><strong>Tata Communications</strong></td>
-<td>AS6453</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="https://lg.as6453.net/bin/lg.cgi">https://lg.as6453.net/bin/lg.cgi</a></td>
-</tr>
-<tr>
-<td><strong>Verizon Business</strong></td>
-<td>AS701</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="https://www.verizon.com/business/why-verizon/looking-glass/">https://www.verizon.com/business/why-verizon/looking-glass/</a></td>
-</tr>
-<tr>
-<td><strong>Vodafone</strong></td>
-<td>AS1273</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="https://portal.vodafone.com/web/lookingglass">https://portal.vodafone.com/web/lookingglass</a></td>
-</tr>
-<tr>
-<td><strong>Zenlayer</strong></td>
-<td>AS21859</td>
-<td>运营商</td>
-<td><a target="_blank" rel="noopener" href="https://www.zenlayer.cn/global-network/performance/">https://www.zenlayer.cn/global-network/performance/</a></td>
-</tr>
-<tr>
-<td><strong>HKIX (Hong Kong Internet Exchange)</strong></td>
-<td>AS4635</td>
-<td>IXP</td>
-<td><a target="_blank" rel="noopener" href="https://www.hkix.net/hkix/hkixlg.htm">https://www.hkix.net/hkix/hkixlg.htm</a></td>
-</tr>
-<tr>
-<td><strong>Consortium GARR (Italy)</strong></td>
-<td>AS137</td>
-<td>学术 &#x2F; 教育网</td>
-<td><a target="_blank" rel="noopener" href="https://gins.garr.it/LG/">https://gins.garr.it/LG/</a></td>
-</tr>
-<tr>
-<td><strong>TANet (Taiwan Academic Network)</strong></td>
-<td>AS17716</td>
-<td>学术 &#x2F; 教育网</td>
-<td><a target="_blank" rel="noopener" href="https://sp.tanet.edu.tw/">https://sp.tanet.edu.tw/</a></td>
-</tr>
-<tr>
-<td><strong>University of Washington &#x2F; PNWGP</strong></td>
-<td>AS101</td>
-<td>学术 &#x2F; 教育网</td>
-<td><a target="_blank" rel="noopener" href="https://pnwgp.net/network-looking-glass/">https://pnwgp.net/network-looking-glass/</a></td>
-</tr>
-<tr>
-<td><strong>WoodyNet &#x2F; PCH</strong></td>
-<td>AS42</td>
-<td>学术 &#x2F; 教育网</td>
-<td><a target="_blank" rel="noopener" href="https://www.pch.net/tools/looking_glass/">https://www.pch.net/tools/looking_glass/</a></td>
-</tr>
-<tr>
-<td><strong>Claw Networks</strong></td>
-<td>AS45102</td>
-<td>VPS &#x2F; 云商</td>
-<td><a target="_blank" rel="noopener" href="https://clawd.cloud/lg.html">https://clawd.cloud/lg.html</a></td>
-</tr>
-<tr>
-<td><strong>DMIT Cloud Services</strong></td>
-<td>AS54574</td>
-<td>VPS &#x2F; 云商</td>
-<td><a target="_blank" rel="noopener" href="https://lg.dmit.sh/">https://lg.dmit.sh/</a></td>
-</tr>
-<tr>
-<td><strong>Hetzner</strong></td>
-<td>AS24940</td>
-<td>VPS &#x2F; 云商</td>
-<td><a target="_blank" rel="noopener" href="https://lg.fsn.fognet.ch/">https://lg.fsn.fognet.ch/</a></td>
-</tr>
-<tr>
-<td><strong>Linode</strong></td>
-<td>AS63949</td>
-<td>VPS &#x2F; 云商</td>
-<td><a target="_blank" rel="noopener" href="https://www.linode.com/speed-test/">https://www.linode.com/speed-test/</a></td>
-</tr>
-<tr>
-<td><strong>OVHcloud</strong></td>
-<td>AS16276</td>
-<td>VPS &#x2F; 云商</td>
-<td><a target="_blank" rel="noopener" href="https://lg.ovh.net/">https://lg.ovh.net/</a></td>
-</tr>
-<tr>
-<td><strong>v.ps</strong></td>
-<td>AS3204</td>
-<td>VPS &#x2F; 云商</td>
-<td><a target="_blank" rel="noopener" href="https://v.ps/speedtest/">https://v.ps/speedtest/</a></td>
-</tr>
-<tr>
-<td><strong>搬瓦工（BandwagonHost DC3）</strong></td>
-<td>AS35916</td>
-<td>VPS &#x2F; 云商</td>
-<td><a target="_blank" rel="noopener" href="https://dc3.bwg.net/lg/">https://dc3.bwg.net/lg/</a></td>
-</tr>
-<tr>
-<td><strong>搬瓦工（BandwagonHost DC8）</strong></td>
-<td>AS35916</td>
-<td>VPS &#x2F; 云商</td>
-<td><a target="_blank" rel="noopener" href="https://dc8.bwg.net/lg/">https://dc8.bwg.net/lg/</a></td>
-</tr>
-<tr>
-<td><strong>Sharon Networks</strong></td>
-<td>AS396856</td>
-<td>VPS &#x2F; 云商</td>
-<td><a target="_blank" rel="noopener" href="https://lg.sharon.io/">https://lg.sharon.io/</a></td>
-</tr>
-<tr>
-<td><strong>Vultr</strong></td>
-<td>AS20473</td>
-<td>VPS &#x2F; 云商</td>
-<td><a target="_blank" rel="noopener" href="https://sgp-ping.vultr.com/">https://sgp-ping.vultr.com/</a></td>
 </tr>
 </tbody></table>
 
