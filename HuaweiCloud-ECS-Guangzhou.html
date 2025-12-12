@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"heiok.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4157401344064000" crossorigin="anonymous"></script>
+
+    <meta name="description" content="脚本检测华为云华南-广州-友好用户环境节点，110.41.110.180。纯粹好奇友好用户环境而测，想看看友不友好。    实测回程 日本  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051去My traceroute  [v0.95]ecs-ca13 (192">
+<meta property="og:type" content="article">
+<meta property="og:title" content="华为云ECS广州友好用户环境测试记录">
+<meta property="og:url" content="https://heiok.com/HuaweiCloud-ECS-Guangzhou.html">
+<meta property="og:site_name" content="网络蝙蝠侠部落">
+<meta property="og:description" content="脚本检测华为云华南-广州-友好用户环境节点，110.41.110.180。纯粹好奇友好用户环境而测，想看看友不友好。    实测回程 日本  123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051去My traceroute  [v0.95]ecs-ca13 (192">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://report.check.place/ip/1WNO22QCA.svg">
+<meta property="og:image" content="https://report.check.place/net/36EXOEOUP.svg">
+<meta property="og:image" content="https://report.check.place/net/24UT1GLW3.svg">
+<meta property="article:published_time" content="2025-12-12T07:51:36.000Z">
+<meta property="article:modified_time" content="2025-12-12T07:55:59.202Z">
+<meta property="article:author" content="heiok.com">
+<meta property="article:tag" content="HuaweiCloud">
+<meta property="article:tag" content="ECS">
+<meta property="article:tag" content="Guangzhou">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://report.check.place/ip/1WNO22QCA.svg">
+
+
+<link rel="canonical" href="https://heiok.com/HuaweiCloud-ECS-Guangzhou.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://heiok.com/HuaweiCloud-ECS-Guangzhou.html","path":"HuaweiCloud-ECS-Guangzhou.html","title":"华为云ECS广州友好用户环境测试记录"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>华为云ECS广州友好用户环境测试记录 | 网络蝙蝠侠部落</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-90W6VHZRMP"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-90W6VHZRMP","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">网络蝙蝠侠部落</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E6%A3%80%E6%B5%8B"><span class="nav-number">1.</span> <span class="nav-text">脚本检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%B5%8B%E5%9B%9E%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">实测回程</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">108</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/HuaweiCloud-ECS-Guangzhou.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="华为云ECS广州友好用户环境测试记录 | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          华为云ECS广州友好用户环境测试记录
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-12-12 15:51:36 / 修改时间：15:55:59" itemprop="dateCreated datePublished" datetime="2025-12-12T15:51:36+08:00">2025-12-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="脚本检测"><a href="#脚本检测" class="headerlink" title="脚本检测"></a>脚本检测</h2><p>华为云华南-广州-友好用户环境节点，110.41.110.180。纯粹好奇友好用户环境而测，想看看友不友好。</p>
+<p><img src="https://report.check.place/ip/1WNO22QCA.svg" alt="IP质量"></p>
+<p><img src="https://report.check.place/net/36EXOEOUP.svg" alt="路由质量"></p>
+<p><img src="https://report.check.place/net/24UT1GLW3.svg" alt="网络质量"></p>
+<h2 id="实测回程"><a href="#实测回程" class="headerlink" title="实测回程"></a>实测回程</h2><ul>
+<li>日本</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">去</span><br><span class="line"></span><br><span class="line">My traceroute  [v0.95]</span><br><span class="line">ecs-ca13 (192.168.0.53) -&gt; 132.226.7.1 (132.226.7.1)                                       2025-12-11T16:04:23+0800</span><br><span class="line">Keys:  Help   Display mode   Restart statistics   Order of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Host                                                                        Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. (waiting for reply)</span><br><span class="line"> 2. (waiting for reply)</span><br><span class="line"> 3. AS749    26.4.105.81                                                      0.0%   273    6.1   3.5   2.8   9.8   1.0</span><br><span class="line"> 4. AS749    26.4.73.106                                                      0.0%   273    3.1   3.6   2.7  24.2   1.9</span><br><span class="line"> 5. AS749    26.4.66.156                                                      0.0%   273    2.4   3.3   2.1  21.6   3.6</span><br><span class="line"> 6. (waiting for reply)</span><br><span class="line"> 7. AS???    172.16.66.114                                                    0.0%   273    9.5   5.0   3.2  23.3   2.9</span><br><span class="line"> 8. AS4134   121.14.60.41                                                    54.8%   273    5.3   6.7   3.7  31.7   4.8</span><br><span class="line"> 9. AS4134   113.108.208.174                                                  0.0%   273    8.1   8.6   3.3  53.6   6.5</span><br><span class="line">10. AS4134   113.96.4.53                                                     43.6%   273    4.2   4.4   4.1  22.3   1.8</span><br><span class="line">11. AS4134   202.97.93.81                                                    88.6%   273    4.8   4.8   4.7   5.6   0.2</span><br><span class="line">12. AS4134   202.97.66.241                                                   30.9%   272    9.9   7.1   6.1  18.6   2.0</span><br><span class="line">13. AS???    203.86.97.18                                                    39.0%   272  135.8 130.2 122.9 159.0   6.7</span><br><span class="line">14. AS2914   ae-5.r32.tokyjp05.jp.bb.gin.ntt.net                             93.4%   272   71.7  73.8  71.0  77.5   2.1</span><br><span class="line">15. AS2914   ae-0.a01.tokyjp10.jp.bb.gin.ntt.net                             40.1%   272  123.9 131.2 122.9 159.8   6.7</span><br><span class="line">16. AS2914   ae-0.oracle-oci.tokyjp10.jp.bb.gin.ntt.net                      39.5%   272  128.2 131.3 126.2 166.4   6.4</span><br><span class="line">17. AS31898  140.91.206.162                                                  33.9%   272  118.1 117.6 114.0 118.5   0.4</span><br><span class="line">18. AS31898  132.226.7.1                                                       38.7%   272  123.3 121.7 114.3 138.3   3.2</span><br><span class="line"></span><br><span class="line">回</span><br><span class="line">                                                My traceroute  [v0.85]</span><br><span class="line">instance-20220225-1300 (0.0.0.0)                                                               Thu Dec 11 08:03:53 2025</span><br><span class="line">Keys:  Help   Display mode   Restart statistics   Order of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Host                                                                        Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. AS31898 140.91.206.118                                                    0.0%   124    0.3   3.3   0.2 349.9  31.4</span><br><span class="line"> 2. AS2914  ae-0.oracle-oci.tokyjp10.jp.bb.gin.ntt.net                        0.0%   124    1.1   3.1   1.0  41.8   5.5</span><br><span class="line"> 3. AS2914  ae-33.a01.tokyjp10.jp.bb.gin.ntt.net                              0.0%   124    1.8   2.5   1.0  40.1   4.9</span><br><span class="line"> 4. AS2914  ae-17.r32.tokyjp05.jp.bb.gin.ntt.net                             93.5%   124    2.0   4.1   2.0  10.6   2.7</span><br><span class="line"> 5. AS2914  ae-0.a03.tokyjp05.jp.bb.gin.ntt.net                               0.0%   123    1.3   4.4   1.1  41.3   6.4</span><br><span class="line"> 6. AS2914  xe-3.chinanet.tokyjp05.jp.bb.gin.ntt.net                         43.1%   123  110.7 111.7 110.3 128.2   2.8</span><br><span class="line"> 7. AS4134  202.97.12.10                                                     82.0%   123  110.9 110.9 110.4 114.4   0.8</span><br><span class="line"> 8. AS4134  202.97.82.57                                                     83.6%   123  120.8 133.3 112.6 396.0  62.1</span><br><span class="line"> 9. AS4134  113.96.4.138                                                     98.4%   123  121.4 121.2 121.0 121.4   0.0</span><br><span class="line">10. AS4134  113.108.208.177                                                  92.6%   123  123.4 121.4 114.8 124.9   3.8</span><br><span class="line">11. AS4134  121.14.60.42                                                     35.2%   123  123.7 130.5 114.9 531.3  54.2</span><br><span class="line">12. ???</span><br><span class="line">13. ???</span><br><span class="line">14. ???</span><br><span class="line">15. ???</span><br><span class="line">16. ???</span><br><span class="line">17. AS55990 ecs-110-41-110-180.compute.hwclouds-dns.com                      32.4%   108  123.0 120.6 114.4 130.8   3.6</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>坡县</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">去</span><br><span class="line"> </span><br><span class="line"> 													My traceroute  [v0.95]</span><br><span class="line">ecs-ca13 (192.168.0.53) -&gt; 8.219.240.150 (8.219.240.150)                                       2025-12-11T16:07:08+0800</span><br><span class="line">Keys:  Help   Display mode   Restart statistics   Order of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Host                                                                        Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. (waiting for reply)</span><br><span class="line"> 2. (waiting for reply)</span><br><span class="line"> 3. AS749    26.4.105.113                                                     0.0%   107    7.8   3.5   3.0   7.8   0.6</span><br><span class="line"> 4. AS749    26.4.73.106                                                      0.0%   107    3.5   3.5   2.9  10.5   1.0</span><br><span class="line"> 5. AS749    26.4.66.156                                                      0.0%   107    2.2   4.1   2.1  21.2   4.3</span><br><span class="line"> 6. (waiting for reply)</span><br><span class="line"> 7. AS???    172.16.66.114                                                    0.0%   107    5.5   7.0   3.3  20.5   3.6</span><br><span class="line"> 8. AS4134   121.14.60.41                                                    72.9%   107    5.4   5.2   3.8   7.2   0.7</span><br><span class="line"> 9. AS4134   183.60.190.1                                                     0.0%   106    4.4   4.9   4.3  15.0   1.7</span><br><span class="line">10. AS4134   113.96.4.153                                                    87.6%   106    4.3   6.3   4.2  27.1   6.3</span><br><span class="line">11. AS4134   202.97.94.134                                                   82.9%   106   16.7   7.3   5.4  22.6   4.7</span><br><span class="line">12. AS4134   202.97.12.17                                                    67.6%   106    6.7   7.2   6.7  20.7   2.4</span><br><span class="line">13. AS4134   202.97.27.238                                                    9.4%   106  341.8 177.0 152.4 400.5  49.5</span><br><span class="line">14. AS4134   218.30.53.45                                                    91.5%   106  152.0 153.8 151.7 160.9   2.9</span><br><span class="line">15. AS6453   if-ae-20-2.tcore2.sv1-santaclara.as6453.net                     87.6%   106  384.4 381.2 371.2 389.2   7.4</span><br><span class="line">16. AS6453   if-bundle-28-2.qcore1.kv8-chiba.as6453.net                      67.9%   106  363.4 365.2 356.2 375.3   6.8</span><br><span class="line">17. AS6453   if-bundle-2-2.qcore2.kv8-chiba.as6453.net                       86.7%   106  355.3 347.6 337.5 355.9   6.7</span><br><span class="line">18. AS6453   if-bundle-45-2.qcore1.svw-singapore.as6453.net                  98.1%   106  360.3 363.7 360.3 367.1   4.8</span><br><span class="line">19. AS6453   if-bundle-2-2.qcore2.svw-singapore.as6453.net                   86.7%   106  355.2 344.9 336.4 355.2   7.8</span><br><span class="line">20. (waiting for reply)</span><br><span class="line">21. AS45102  8.219.240.150                                                    0.0%   106  178.2 178.2 178.2 178.7   0.1</span><br><span class="line"></span><br><span class="line">回</span><br><span class="line"></span><br><span class="line"> 													My traceroute  [v0.94]</span><br><span class="line">s877258 (10.1.159.175) -&gt; 110.41.110.180                                                       2025-12-11T08:09:59+0000</span><br><span class="line">Keys:  Help   Display mode   Restart statistics   Order of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Host                                                                        Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. AS749    11.73.101.30                                                     0.0%   105    3.2   1.3   1.2   3.2   0.2</span><br><span class="line"> 2. AS749    11.73.41.26                                                      0.0%   105    1.3   1.3   1.2   2.3   0.2</span><br><span class="line"> 3. AS749    11.73.55.162                                                     0.0%   105    1.2   1.3   1.2   2.8   0.3</span><br><span class="line"> 4. AS749    11.94.97.134                                                     9.5%   105    1.6   1.6   1.5   2.7   0.2</span><br><span class="line"> 5. AS749    11.94.97.133                                                    99.0%   105    1.9   1.9   1.9   1.9   0.0</span><br><span class="line"> 6. AS???    10.216.171.202                                                   0.0%   105    2.1  12.4   1.8 200.9  32.8</span><br><span class="line"> 7. AS???    10.102.152.5                                                    72.1%   105    2.4   2.1   1.9   3.5   0.3</span><br><span class="line"> 8. AS???    47.246.115.226                                                   0.0%   105   15.6   3.7   2.0  34.4   5.0</span><br><span class="line"> 9. AS10099  162.219.80.241                                                   0.0%   105    5.9   4.4   2.9  17.5   2.4</span><br><span class="line">10. AS???    118.26.159.21                                                    0.0%   105    2.5   3.0   2.4  16.6   1.9</span><br><span class="line">11. AS4837   219.158.17.181                                                   0.0%   105   42.6  42.9  42.2  56.4   2.0</span><br><span class="line">12. AS4837   219.158.3.185                                                   61.2%   104   36.6  36.6  36.3  41.3   0.8</span><br><span class="line">13. AS4837   219.158.3.85                                                    92.2%   104   43.3  44.8  43.3  49.7   2.3</span><br><span class="line">14. AS17816  120.83.0.74                                                     91.3%   104   43.6  44.8  43.5  54.8   3.7</span><br><span class="line">15. AS17816  120.80.137.34                                                   96.1%   104  6884. 7052. 6884. 7284. 170.6</span><br><span class="line">16. AS136958 58.254.152.94                                                    0.0%   104   53.6  45.6  44.3  60.4   3.1</span><br><span class="line">17. (waiting for reply)</span><br><span class="line">18. (waiting for reply)</span><br><span class="line">19. (waiting for reply)</span><br><span class="line">20. (waiting for reply)</span><br><span class="line">21. (waiting for reply)</span><br><span class="line">22. AS55990  ecs-110-41-110-180.compute.hwclouds-dns.com                      0.0%   104  178.2 178.2 178.2 178.5   0.1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>香港</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">华为云香港服务器L实例</span><br><span class="line"></span><br><span class="line">去</span><br><span class="line">													My traceroute  [v0.95]</span><br><span class="line">ecs-ca13 (192.168.0.53) -&gt; 150.40.17.25 (150.40.17.25)                                     2025-12-11T16:13:17+0800</span><br><span class="line">Keys:  Help   Display mode   Restart statistics   Order of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Host                                                                        Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. (waiting for reply)</span><br><span class="line"> 2. (waiting for reply)</span><br><span class="line"> 3. AS749    26.4.105.81                                                      0.0%   157    3.2   3.5   2.8  10.2   0.9</span><br><span class="line"> 4. AS749    26.4.73.106                                                      0.0%   157    2.9   3.1   2.7  10.1   0.8</span><br><span class="line"> 5. AS749    26.4.66.156                                                      0.0%   157    2.2   2.5   2.1  28.5   2.4</span><br><span class="line"> 6. (waiting for reply)</span><br><span class="line"> 7. AS???    172.16.66.94                                                     0.0%   157    2.8   4.7   2.7  25.8   3.9</span><br><span class="line"> 8. AS4134   121.14.60.41                                                    62.2%   157    4.9   5.2   3.8  13.7   1.6</span><br><span class="line"> 9. AS4134   113.108.208.174                                                  0.0%   157    9.7   8.4   3.3  65.7   7.1</span><br><span class="line">10. AS4134   113.96.5.81                                                     94.2%   157    3.7   4.7   3.7   9.9   2.1</span><br><span class="line">11. AS4134   202.97.93.85                                                    83.4%   157    4.9   4.9   4.9   5.4   0.1</span><br><span class="line">12. AS4134   202.97.66.229                                                   27.4%   157    5.9   5.9   5.8   6.3   0.1</span><br><span class="line">13. AS4134   202.97.27.242                                                    7.0%   157  155.8 188.0 154.9 462.5  77.2</span><br><span class="line">14. AS4134   218.30.53.45                                                    84.7%   157  154.1 154.1 151.3 160.2   3.2</span><br><span class="line">15. AS6453   if-ae-20-2.tcore2.sv1-santaclara.as6453.net                     14.1%   157  325.3 324.6 318.8 344.4   4.3</span><br><span class="line">16. AS6453   if-bundle-28-2.qcore1.kv8-chiba.as6453.net                      70.5%   157  318.8 318.2 317.6 318.8   0.3</span><br><span class="line">17. AS6453   if-bundle-9-2.qcore1.hk2-hongkong.as6453.net                    80.8%   157  321.4 321.8 321.3 322.4   0.4</span><br><span class="line">18. AS6453   180.87.185.138                                                  86.5%   157  165.2 165.4 165.1 168.4   0.7</span><br><span class="line">19. (waiting for reply)</span><br><span class="line">20. (waiting for reply)</span><br><span class="line">21. (waiting for reply)</span><br><span class="line">22. (waiting for reply)</span><br><span class="line">23. (waiting for reply)</span><br><span class="line">24. (waiting for reply)</span><br><span class="line">25. AS136907 150.40.17.25                                                     3.2%   155  367.7 362.6 358.6 368.4   3.9</span><br><span class="line"></span><br><span class="line">回</span><br><span class="line">													My traceroute  [v0.95]</span><br><span class="line">hcss-ecs-f1b5 (172.31.9.146) -&gt; 110.41.110.180 (110.41.110.180)                                2025-12-11T16:17:03+0800</span><br><span class="line">Keys:  Help   Display mode   Restart statistics   Order of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Host                                                                        Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. (waiting for reply)</span><br><span class="line"> 2. (waiting for reply)</span><br><span class="line"> 3. (waiting for reply)</span><br><span class="line"> 4. (waiting for reply)</span><br><span class="line"> 5. AS749    11.92.129.146                                                   90.7%   109    1.4   1.4   1.2   1.7   0.2</span><br><span class="line"> 6. (waiting for reply)</span><br><span class="line"> 7. (waiting for reply)</span><br><span class="line"> 8. (waiting for reply)</span><br><span class="line"> 9. (waiting for reply)</span><br><span class="line">10. AS3491   BE43.br02.frf08.as3491.net                                      57.0%   108  200.0 200.3 200.0 204.8   0.8</span><br><span class="line">11. AS4134   81.173.21.41                                                     0.0%   108  205.3 208.7 203.7 257.5   6.6</span><br><span class="line">12. AS4134   202.97.116.77                                                   14.8%   108  345.9 346.9 343.8 353.9   3.9</span><br><span class="line">13. AS4134   202.97.64.166                                                   66.7%   108  359.9 359.2 356.7 366.8   3.7</span><br><span class="line">14. AS4134   202.97.93.46                                                    98.1%   108  347.9 347.1 346.3 347.9   1.1</span><br><span class="line">15. AS4134   113.96.4.154                                                    86.0%   108  365.8 359.6 355.9 365.8   4.1</span><br><span class="line">16. AS4134   183.60.190.2                                                    84.1%   108  361.5 356.5 352.4 368.8   5.0</span><br><span class="line">17. AS4134   121.14.60.42                                                    10.2%   108  368.1 362.2 357.6 375.2   4.8</span><br><span class="line">18. (waiting for reply)</span><br><span class="line">19. (waiting for reply)</span><br><span class="line">20. (waiting for reply)</span><br><span class="line">21. (waiting for reply)</span><br><span class="line">22. (waiting for reply)</span><br><span class="line">23. AS55990  ecs-110-41-110-180.compute.hwclouds-dns.com                     12.2%    98  368.4 361.8 358.7 368.6   3.7</span><br><span class="line"></span><br><span class="line">狗妈咪图灵优化线路</span><br><span class="line"></span><br><span class="line">去</span><br><span class="line"></span><br><span class="line">                                                 My traceroute  [v0.95]</span><br><span class="line">ecs-ca13 (192.168.0.53) -&gt; 103.73.220.16 (103.73.220.16)                                       2025-12-11T16:20:05+0800</span><br><span class="line">Keys:  Help   Display mode   Restart statistics   Order of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Host                                                                        Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. (waiting for reply)</span><br><span class="line"> 2. (waiting for reply)</span><br><span class="line"> 3. AS749    26.4.105.65                                                      0.0%   104    3.3   3.4   3.0   6.0   0.5</span><br><span class="line"> 4. AS749    26.4.73.112                                                      0.0%   104    2.9   3.6   2.9  15.5   1.7</span><br><span class="line"> 5. AS749    26.4.66.158                                                      0.0%   104    3.1   3.6   2.9  13.2   1.9</span><br><span class="line"> 6. (waiting for reply)</span><br><span class="line"> 7. AS???    172.16.66.94                                                     0.0%   104    3.3   3.4   2.6  12.1   1.3</span><br><span class="line"> 8. AS4134   121.14.60.41                                                    49.5%   104    5.4   5.2   3.8  11.6   1.2</span><br><span class="line"> 9. AS4134   113.108.208.174                                                  0.0%   104   49.8   8.9   3.4  49.8   7.6</span><br><span class="line">10. AS4134   113.96.5.65                                                     92.2%   104    5.0   5.1   5.0   5.5   0.2</span><br><span class="line">11. AS4134   202.97.94.138                                                   84.5%   104    5.7   8.2   5.5  20.4   4.1</span><br><span class="line">12. AS4134   202.97.12.13                                                    32.7%   104    6.7   6.9   6.4  17.2   1.3</span><br><span class="line">13. AS4134   202.97.22.126                                                    0.0%   104    9.9   9.9   9.9  10.1   0.0</span><br><span class="line">14. (waiting for reply)</span><br><span class="line">15. (waiting for reply)</span><br><span class="line">16. (waiting for reply)</span><br><span class="line">17. (waiting for reply)</span><br><span class="line">18. (waiting for reply)</span><br><span class="line">19. AS???    10.24.1.104                                                      0.0%   104    9.5  10.0   9.3  27.3   2.5</span><br><span class="line">20. AS???    9.34.128.126                                                     0.0%   103   10.1  10.7  10.1  28.5   1.9</span><br><span class="line">21. AS???    9.34.128.127                                                     0.0%   103    9.3  10.0   9.1  43.1   4.3</span><br><span class="line">22. (waiting for reply)</span><br><span class="line">23. AS36002  103.73.220.16                                                    0.0%   103   11.6  11.6  11.5  11.8   0.1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">回</span><br><span class="line"></span><br><span class="line">Hop  Host                        Loss%  Snt    Last   Avg    Best   Wrst   StDev</span><br><span class="line">0    103.73.220.1                 0.0%  10     2.0    3.0    1.5   13.1    3.6</span><br><span class="line">1    10.38.95.0                   0.0%  10     0.4    2.9    0.3   24.9    7.8</span><br><span class="line">2    9.34.128.126                 0.0%  10     0.5    0.4    0.3    0.6    0.1</span><br><span class="line">3    203.34.194.114               0.0%  10     0.5    0.5    0.4    0.7    0.1</span><br><span class="line">4    (waiting for reply)          0.0%  10     ???    ???    ???    ???    ???</span><br><span class="line">5    69.194.165.81               88.9%  10     1.1    1.1    1.1    1.1    0.0</span><br><span class="line">6    69.194.169.194               0.0%  10     1.6    1.6    1.3    2.9    0.5</span><br><span class="line">7    (waiting for reply)          0.0%  10     ???    ???    ???    ???    ???</span><br><span class="line">8    59.43.250.53                30.0%  10     7.6    7.6    7.5    7.8    0.1</span><br><span class="line">9    59.43.16.181                50.0%  10     9.4    9.4    9.3    9.4    0.0</span><br><span class="line">10   202.97.43.81                 0.0%  10     8.3    8.3    8.3    8.3    0.0</span><br><span class="line">11   113.96.5.134                70.0%  10     8.7    8.7    8.7    8.7    0.0</span><br><span class="line">12   183.60.190.2                 0.0%  10    11.2   11.2   11.2   11.2    0.0</span><br><span class="line">13   121.14.60.42                 0.0%  10    10.6   11.0   10.3   14.7    1.3</span><br><span class="line">14   (waiting for reply)          0.0%  10     ???    ???    ???    ???    ???</span><br><span class="line">15   (waiting for reply)          0.0%  10     ???    ???    ???    ???    ???</span><br><span class="line">16   (waiting for reply)          0.0%  10     ???    ???    ???    ???    ???</span><br><span class="line">17   (waiting for reply)          0.0%  10     ???    ???    ???    ???    ???</span><br><span class="line">18   (waiting for reply)          0.0%  10     ???    ???    ???    ???    ???</span><br><span class="line">19   110.41.110.180               0.0%  10    11.6   11.6   11.5   11.8    0.1</span><br></pre></td></tr></table></figure>
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/HuaweiCloud/" rel="tag"># HuaweiCloud</a>
+              <a href="/tags/ECS/" rel="tag"># ECS</a>
+              <a href="/tags/Guangzhou/" rel="tag"># Guangzhou</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/HuaweiCloud-ECS-Cairo.html" rel="prev" title="华为云开罗ECS测试记录">
+                  <i class="fa fa-angle-left"></i> 华为云开罗ECS测试记录
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">heiok.com</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">107</span>
+        <span class="site-state-item-count">108</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -152,6 +152,436 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Intel-500s-chipset-key-signals.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Intel-500s-chipset-key-signals.html" class="post-title-link" itemprop="url">Intel 500系芯片组上电时序汇总及关键信号</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-07-15 11:43:47 / 修改时间：11:45:40" itemprop="dateCreated datePublished" datetime="2025-07-15T11:43:47+08:00">2025-07-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <table cellspacing="0" cellpadding="8" style="border-collapse: separate; border-spacing: 0; width: 100%;">
+  <thead>
+    <!-- 整个表格大标题 -->
+    <tr>
+      <th colspan="5" style="background-color: #cce5ff; font-size: 18px; text-align: center; padding: 10px;
+        border: 1px solid #999;">
+        Intel 500系芯片组上电时序汇总及关键信号
+      </th>
+    </tr>
+    <!-- 表头 -->
+    <tr>
+      <th style="width: 200px; background-color: #d0eaff; border: 1px solid #999; text-align: center; vertical-align: middle;">
+        工作状态
+      </th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">电压或信号标准名称</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">正常对地值参考</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">正常工作电压</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">故障现象</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- 10行，每行一个左侧大单元格，右侧4个小单元格 -->
+    <tr>
+      <td rowspan="4" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+        <b>G3状态（PCH）</b>
+      </td>
+      <td style="border: 1px solid #999; text-align: center;">VCCRTC</td>
+      <td style="border: 1px solid #999; text-align: center;">~490</td>
+      <td style="border: 1px solid #999; text-align: center;">2.8V-3.3V</td>
+      <td rowspan="25" style="border: 1px solid #999; text-align: center; vertical-align: middle;">不触发</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">RTCRST</td>
+      <td style="border: 1px solid #999; text-align: center;">~800</td>
+      <td style="border: 1px solid #999; text-align: center;">2.8V-3.3V</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">SRTCRST</td>
+      <td style="border: 1px solid #999; text-align: center;">~800</td>
+      <td style="border: 1px solid #999; text-align: center;">2.8V-3.3V</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">RTCX1/RTCX2</td>
+      <td style="border: 1px solid #999; text-align: center;">~830</td>
+      <td style="border: 1px solid #999; text-align: center;">0.15V-1.7V</td>
+    </tr>
+      <tr>
+  <td rowspan="5" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>DEEP状态（PCH）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">VCCDSW_3P3</td>
+  <td style="border: 1px solid #999; text-align: center;">~300</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">DSW_PWROK</td>
+  <td style="border: 1px solid #999; text-align: center;">~430</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SUSWARN#</td>
+  <td style="border: 1px solid #999; text-align: center;">未采用</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SUSACK#</td>
+  <td style="border: 1px solid #999; text-align: center;">未采用</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_SUS</td>
+  <td style="border: 1px solid #999; text-align: center;">~500</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td rowspan="9" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>S5状态（PCH）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">VCCPRIM_3P3->PCIE_SLOT：B10</td>
+  <td style="border: 1px solid #999; text-align: center;">~300</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCCPRIM_1P8</td>
+  <td style="border: 1px solid #999; text-align: center;">~50</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCH_VCCIN_AUX</td>
+  <td style="border: 1px solid #999; text-align: center;">~50</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCCPRIM1P05_OUT_PCH或VCCPRIM_1P05(VOUT) 坐标AJ20</td>
+  <td style="border: 1px solid #999; text-align: center;">~120</td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCC1P05_OUT_FET或VCC1P05(VOUT) 坐标 W20</td>
+  <td style="border: 1px solid #999; text-align: center;">~120</td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">RSMRST</td>
+  <td style="border: 1px solid #999; text-align: center;">~520</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">BATLOW</td>
+  <td style="border: 1px solid #999; text-align: center;">~560</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SUSCLK</td>
+  <td style="border: 1px solid #999; text-align: center;">~500</td>
+  <td style="border: 1px solid #999; text-align: center;">1.6V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_S5</td>
+  <td style="border: 1px solid #999; text-align: center;">~500</td>
+  <td style="border: 1px solid #999; text-align: center;">待机0V/触发后3.3V</td>
+</tr>
+<td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>触发信号 （I/O+PCH）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">I/O供电：3VSB或5VSB</td>
+  <td style="border: 1px solid #999; text-align: center;">~380</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V or 5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SKTOCC</td>
+  <td style="border: 1px solid #999; text-align: center;">~580</td>
+  <td style="border: 1px solid #999; text-align: center;">装上CPU后0V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWRBTN_IN</td>
+  <td style="border: 1px solid #999; text-align: center;">~550</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWRBTN#</td>
+  <td style="border: 1px solid #999; text-align: center;">~470</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_S4</td>
+  <td style="border: 1px solid #999; text-align: center;">~530</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_S3</td>
+  <td style="border: 1px solid #999; text-align: center;">~470</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PS_ON#</td>
+  <td style="border: 1px solid #999; text-align: center;">~530</td>
+  <td style="border: 1px solid #999; text-align: center;">待机5V/开机0V</td>
+</tr>
+<tr>
+<td rowspan="3" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+        <b>SLP_S4状态 开启内存供电</b>
+      </td>
+      <td style="border: 1px solid #999; text-align: center;">DDR4</td>
+      <td style="border: 1px solid #999; text-align: center;">~420</td>
+      <td style="border: 1px solid #999; text-align: center;">2.5V</td>
+    <td rowspan="33" style="border: 1px solid #999; text-align: center; vertical-align: middle;">掉电、缺电压、缺时钟、缺复位</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VPP_2.5V->288Pin</td>
+  <td style="border: 1px solid #999; text-align: center;">~420</td>
+  <td style="border: 1px solid #999; text-align: center;">2.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDQ/VCC_DDR->220Pin</td>
+  <td style="border: 1px solid #999; text-align: center;">~300</td>
+  <td style="border: 1px solid #999; text-align: center;">1.2V</td>
+</tr>
+<tr>
+    <td rowspan="5" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>SLP_S3状态 开启CPU辅助供电</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">VCCST->CPU V1</td>
+  <td style="border: 1px solid #999; text-align: center;">~420</td>
+  <td style="border: 1px solid #999; text-align: center;">1V or 1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCCSTG->CPU R2</td>
+  <td style="border: 1px solid #999; text-align: center;">~230</td>
+  <td style="border: 1px solid #999; text-align: center;">1V or 1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCCIO_0->CPU W1</td>
+  <td style="border: 1px solid #999; text-align: center;">~50</td>
+  <td style="border: 1px solid #999; text-align: center;">0.95V or 1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCCIO_1->CPU AK25</td>
+  <td style="border: 1px solid #999; text-align: center;">~50</td>
+  <td style="border: 1px solid #999; text-align: center;">1V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCCSA->CPU D1</td>
+  <td style="border: 1px solid #999; text-align: center;">~330</td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+<tr>
+<td rowspan="6" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>CLOCK时钟电路（PCH）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">PCH_PWROK</td>
+  <td style="border: 1px solid #999; text-align: center;">~520</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">XCLK_BIASREF</td>
+  <td style="border: 1px solid #999; text-align: center;">~30</td>
+  <td style="border: 1px solid #999; text-align: center;">1V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">XTAL24_IN/XTAL24_OUT</td>
+  <td style="border: 1px solid #999; text-align: center;">~800</td>
+  <td style="border: 1px solid #999; text-align: center;">0.15V-1.7V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCH读取BIOS</td>
+  <td style="border: 1px solid #999; text-align: center;">1/2/5/6/Pin  ~470</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">CLOCK_OUT</td>
+  <td style="border: 1px solid #999; text-align: center;">~280</td>
+  <td style="border: 1px solid #999; text-align: center;">0.3V-0.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCIE_SLOT:->A13/A14</td>
+  <td style="border: 1px solid #999; text-align: center;">~280</td>
+  <td style="border: 1px solid #999; text-align: center;">0.3V-0.5V</td>
+</tr>
+<tr>
+<td rowspan="3" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>CPU核心供电（VRM+VBOOT）           
+        VBOOT电压可设置</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">VR_EN</td>
+  <td style="border: 1px solid #999; text-align: center;">~430</td>
+  <td style="border: 1px solid #999; text-align: center;">0.7V以上</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VR_PG</td>
+  <td style="border: 1px solid #999; text-align: center;">~450</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCCCORE (VBOOT)</td>
+  <td style="border: 1px solid #999; text-align: center;">~50</td>
+  <td style="border: 1px solid #999; text-align: center;">~1.05V</td>
+</tr>
+<tr>
+<td rowspan="9" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>RESET复位电路（PCH+CPU）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">SYS_PWROK</td>
+  <td style="border: 1px solid #999; text-align: center;">~450</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PROCPWRGD->CPU D14</td>
+  <td style="border: 1px solid #999; text-align: center;">~330 装CPU后有效</td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCCST_PWRGD->CPU B13</td>
+  <td style="border: 1px solid #999; text-align: center;">~520 装CPU后有效</td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">BCLKP/BCLKN->CPU U1/T1</td>
+  <td style="border: 1px solid #999; text-align: center;">~280 装CPU后有效</td>
+  <td style="border: 1px solid #999; text-align: center;">0.3V-0.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCI_BCLKP/PCI_BCLKN->CPU T3/T4</td>
+  <td style="border: 1px solid #999; text-align: center;">~280 装CPU后有效</td>
+  <td style="border: 1px solid #999; text-align: center;">0.3V-0.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">CLK24P/CLK24N->CPU U7/U8</td>
+  <td style="border: 1px solid #999; text-align: center;">~280 装CPU后有效</td>
+  <td style="border: 1px solid #999; text-align: center;">0.3V-0.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PLTRST</td>
+  <td style="border: 1px solid #999; text-align: center;">~260</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCIE_SLOT:->A11</td>
+  <td style="border: 1px solid #999; text-align: center;">~520</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PLTRST_CPU#:->CPU T7</td>
+  <td style="border: 1px solid #999; text-align: center;">~460</td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+<tr>
+<td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>CPU核心供电（VRM+SVID）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">PLTRST_CPU#->CPU T7</td>
+  <td style="border: 1px solid #999; text-align: center;">~460</td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">DMI总线（4/8组TX+4/8组RX）</td>
+  <td style="border: 1px solid #999; text-align: center;">~280</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">CPU读取BIOS</td>
+  <td style="border: 1px solid #999; text-align: center;">1/2/5/6/Pin  ~470</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VIDALERT#->CPU A14</td>
+  <td style="border: 1px solid #999; text-align: center;">~450</td>
+  <td style="border: 1px solid #999; text-align: center;">0V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VIDSCK->CPU C14</td>
+  <td style="border: 1px solid #999; text-align: center;">~450</td>
+  <td style="border: 1px solid #999; text-align: center;">0.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VIDSOUT->CPU B14</td>
+  <td style="border: 1px solid #999; text-align: center;">~450</td>
+  <td style="border: 1px solid #999; text-align: center;">0.65V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCCCORE</td>
+  <td style="border: 1px solid #999; text-align: center;">~50</td>
+  <td style="border: 1px solid #999; text-align: center;">~1.1V-1.2V</td>
+</tr>
+  </tbody>
+</table>
+
+
+
+<ul>
+<li><strong>数据来源：ASUS STRIX Z590-A GAMING WIFI II</strong></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2488,104 +2918,6 @@
 
 <h2 id="移动回程"><a href="#移动回程" class="headerlink" title="移动回程"></a>移动回程</h2><p>AS58453-&gt;AS9808 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">广州移动 商宽 (优化线路)</span><br><span class="line"></span><br><span class="line">My traceroute  [v0.94]</span><br><span class="line">s32985 (10.3.26.148) -&gt; 120.196.91.104                                                         2025-01-23T05:16:33+0000</span><br><span class="line"> Loss%   Snt   Last   Avg  Best  Wrst StDevtics   Order of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Host                                                                        Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. AS749    11.73.0.154                                                     81.5%  4612    2.3   2.3   2.1  25.8   0.9</span><br><span class="line"> 2. (waiting for reply)</span><br><span class="line"> 3. AS???    10.36.51.137                                                     0.0%  4612    2.4   5.1   2.2  89.9   9.0</span><br><span class="line"> 4. AS???    47.246.116.54                                                   72.0%  4612    2.6   2.5   2.3  37.0   2.2</span><br><span class="line"> 5. AS749    11.94.177.122                                                    0.0%  4612    4.2  44.2   3.3 928.0  99.1</span><br><span class="line"> 6. AS58453  223.119.19.45                                                    0.7%  4612    3.6   3.4   3.3  23.1   1.3</span><br><span class="line"> 7. AS58453  223.120.22.69                                                   11.0%  4611    4.3   4.1   4.0  32.3   0.9</span><br><span class="line"> 8. AS58453  223.120.2.6                                                      0.0%  4611    9.2   8.9   8.7  30.5   2.2</span><br><span class="line"> 9. AS9808   221.183.55.58                                                   12.8%  4611    9.8   9.7   9.7  20.8   0.6</span><br><span class="line">10. AS9808   221.183.92.21                                                    2.1%  4611    9.8   9.8   9.7  33.7   1.1</span><br><span class="line">11. AS9808   221.183.89.246                                                  97.9%  4611   22.6  13.3  11.8  30.0   3.6</span><br><span class="line">12. AS9808   221.183.39.182                                                  73.4%  4611   23.4  14.0  13.4  37.3   2.3</span><br><span class="line">13. AS9808   183.233.59.226                                                   0.0%  4611   14.5  14.3  14.2  25.4   0.5</span><br><span class="line">14. AS9808   120.196.91.104                                                   0.0%  4611   15.6  15.4  14.4 226.2   5.2</span><br><span class="line"></span><br><span class="line">广州移动 商宽 (普通线路)</span><br><span class="line"></span><br><span class="line">My traceroute  [v0.95]</span><br><span class="line">5d30c3.h2.nexus (10.19.159.159) -&gt; 120.196.91.104 (120.2025-01-23T07:12:06+0000</span><br><span class="line">Keys:  Help   Display mode   Restart statistics   Order of fields   quit</span><br><span class="line">                                       Packets               Pings</span><br><span class="line"> Host                                Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. AS???    10.0.0.1                 0.0%    52    0.1   0.1   0.1   0.1   0.0</span><br><span class="line"> 2. AS215730 core-fra.h2.nexus        0.0%    52    3.8   3.8   3.8   4.0   0.0</span><br><span class="line"> 3. AS???    100.65.40.1              0.0%    52    4.5   6.4   4.5  36.0   5.4</span><br><span class="line"> 4. AS28917  frankfurt-nt-b1-ae1-vla  0.0%    51    7.8   7.4   4.0  16.6   3.7</span><br><span class="line"> 5. AS3257   ae19-1245.cr4-fra6.ip4.  0.0%    51    4.7   7.1   4.2  31.0   5.6</span><br><span class="line"> 6. AS3257   ae7.cr1-nyc2.ip4.gtt.ne  0.0%    51   83.3  86.8  83.1 119.6   7.6</span><br><span class="line"> 7. AS1299   nyk-b7-link.ip.twelve99  0.0%    51   83.2  83.3  83.1  83.7   0.1</span><br><span class="line"> 8. AS1299   ewr-bb2-link.ip.twelve9  0.0%    51   83.9  84.2  83.9  92.9   1.2</span><br><span class="line"> 9. AS1299   ldn-bb2-link.ip.twelve9 88.0%    51   84.0  84.0  83.9  84.2   0.1</span><br><span class="line">10. AS1299   ldn-b3-link.ip.twelve99  0.0%    51   84.2  84.3  84.0  87.6   0.6</span><br><span class="line">11. AS1299   chinamobile-ic-311724.i  0.0%    51   87.0  86.7  86.5  87.1   0.2</span><br><span class="line">12. AS58453  223.118.21.10            3.9%    51   87.8  87.9  87.7  90.5   0.4</span><br><span class="line">13. AS58453  223.120.22.10            0.0%    51  284.9 284.8 284.7 285.3   0.1</span><br><span class="line">14. AS9808   221.183.55.82            0.0%    51  282.5 282.4 282.3 282.8   0.1</span><br><span class="line">15. AS9808   221.183.92.17            0.0%    51  281.5 281.4 281.3 282.1   0.1</span><br><span class="line">16. (waiting for reply)</span><br><span class="line">17. AS9808   221.183.39.178          24.0%    51  281.6 281.9 281.6 282.9   0.2</span><br><span class="line">18. AS9808   183.233.59.222           0.0%    51  281.3 281.8 281.0 284.2   0.8</span><br><span class="line">19. AS9808   120.196.91.104           0.0%    51  282.2 282.1 281.2 283.7   0.5</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/Use-mkvpropedit-to-modify-the-default-audio-track-of-a-video-file.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Use-mkvpropedit-to-modify-the-default-audio-track-of-a-video-file.html" class="post-title-link" itemprop="url">使用 mkvpropedit 工具直接修改视频文件的默认音轨</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-02-08 11:17:17" itemprop="dateCreated datePublished" datetime="2025-02-08T11:17:17+08:00">2025-02-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-31 09:59:35" itemprop="dateModified" datetime="2025-07-31T09:59:35+08:00">2025-07-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Software/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="文件信息"><a href="#文件信息" class="headerlink" title="文件信息"></a>文件信息</h2><p>视频文件里的粤语音轨有些在轨道 ID 3: audio (AAC)，有些在轨道 ID 2: audio (AAC)。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">G:\&gt;D:\software\mkvtoolnix\mkvmerge -i 灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.001.mkv</span><br><span class="line">文件 ｢灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.001.mkv｣: 容器: Matroska</span><br><span class="line">轨道 ID 0: video (AVC/H.264/MPEG-4p10)</span><br><span class="line">轨道 ID 1: audio (AAC)</span><br><span class="line">轨道 ID 2: audio (FLAC)</span><br><span class="line">轨道 ID 3: audio (AAC)</span><br><span class="line">轨道 ID 4: subtitles (SubStationAlpha)</span><br><span class="line"></span><br><span class="line">G:\&gt;D:\software\mkvtoolnix\mkvmerge -i 灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.002.mkv</span><br><span class="line">文件 ｢灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.002.mkv｣: 容器: Matroska</span><br><span class="line">轨道 ID 0: video (AVC/H.264/MPEG-4p10)</span><br><span class="line">轨道 ID 1: audio (AAC)</span><br><span class="line">轨道 ID 2: audio (FLAC)</span><br><span class="line">轨道 ID 3: audio (AAC)</span><br><span class="line">轨道 ID 4: subtitles (SubStationAlpha)</span><br><span class="line"></span><br><span class="line">G:\&gt;D:\software\mkvtoolnix\mkvmerge -i 灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.003.mkv</span><br><span class="line">文件 ｢灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.003.mkv｣: 容器: Matroska</span><br><span class="line">轨道 ID 0: video (AVC/H.264/MPEG-4p10)</span><br><span class="line">轨道 ID 1: audio (AAC)</span><br><span class="line">轨道 ID 2: audio (AAC)</span><br><span class="line">轨道 ID 3: audio (FLAC)</span><br><span class="line">轨道 ID 4: subtitles (SubStationAlpha)</span><br><span class="line">轨道 ID 5: subtitles (SubStationAlpha)</span><br><span class="line"></span><br><span class="line">G:\&gt;D:\software\mkvtoolnix\mkvmerge -i 灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.004.mkv</span><br><span class="line">文件 ｢灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.004.mkv｣: 容器: Matroska</span><br><span class="line">轨道 ID 0: video (AVC/H.264/MPEG-4p10)</span><br><span class="line">轨道 ID 1: audio (AAC)</span><br><span class="line">轨道 ID 2: audio (AAC)</span><br><span class="line">轨道 ID 3: audio (FLAC)</span><br><span class="line">轨道 ID 4: subtitles (SubStationAlpha)</span><br></pre></td></tr></table></figure>
-
-<h2 id="单件处理"><a href="#单件处理" class="headerlink" title="单件处理"></a>单件处理</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\software\mkvtoolnix\mkvpropedit.exe &quot;灌篮高手.1080P.国粤日三语.软字幕.AVC.默认国语音频.001.mkv&quot; --edit track:a1 --set flag-default=0 --set flag-forced=0 --edit track:a2 --set flag-default=0 --set flag-forced=0 --edit track:a3 --set flag-default=1 --set flag-forced=1</span><br></pre></td></tr></table></figure>
-
-<h2 id="批量处理"><a href="#批量处理" class="headerlink" title="批量处理"></a>批量处理</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">setlocal enabledelayedexpansion</span><br><span class="line"></span><br><span class="line">:: 设置输入文件夹</span><br><span class="line">set &quot;input_folder=G:\&quot;</span><br><span class="line"></span><br><span class="line">:: 遍历输入文件夹中的所有 MKV 文件</span><br><span class="line">for %%f in (&quot;%input_folder%\*.mkv&quot;) do (</span><br><span class="line">    echo Processing file: %%f</span><br><span class="line"></span><br><span class="line">    :: 获取音轨信息并存储到临时文件</span><br><span class="line">    D:\software\mkvtoolnix\mkvmerge.exe -i &quot;%%f&quot; &gt; temp_tracks.txt</span><br><span class="line"></span><br><span class="line">    :: 初始化变量</span><br><span class="line">    set &quot;hasAAC2=0&quot;</span><br><span class="line">    set &quot;hasAAC3=0&quot;</span><br><span class="line">    set &quot;hasFLAC=0&quot;</span><br><span class="line"></span><br><span class="line">    :: 检查音轨信息</span><br><span class="line">    for /f &quot;tokens=*&quot; %%a in (temp_tracks.txt) do (</span><br><span class="line">        echo Debug: %%a</span><br><span class="line">        if &quot;%%a&quot;==&quot;轨道 ID 2: audio (AAC)&quot; (</span><br><span class="line">            set &quot;hasAAC2=1&quot;</span><br><span class="line">        ) else if &quot;%%a&quot;==&quot;轨道 ID 3: audio (AAC)&quot; (</span><br><span class="line">            set &quot;hasAAC3=1&quot;</span><br><span class="line">        ) else if &quot;%%a&quot;==&quot;轨道 ID 3: audio (FLAC)&quot; (</span><br><span class="line">            set &quot;hasFLAC=1&quot;</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    :: 根据条件修改默认音轨</span><br><span class="line">    if &quot;!hasAAC2!&quot;==&quot;1&quot; (</span><br><span class="line">        echo Setting AAC track ID 2 as default for file: %%f</span><br><span class="line">        D:\software\mkvtoolnix\mkvpropedit.exe &quot;%%f&quot; --edit track:a1 --set flag-default=0 --set flag-forced=0 --edit track:a2 --set flag-default=1 --set flag-forced=1 --edit track:a3 --set flag-default=0 --set flag-forced=0</span><br><span class="line">    ) else if &quot;!hasAAC3!&quot;==&quot;1&quot; (</span><br><span class="line">        echo Setting AAC track ID 3 as default for file: %%f</span><br><span class="line">        D:\software\mkvtoolnix\mkvpropedit.exe &quot;%%f&quot; --edit track:a1 --set flag-default=0 --set flag-forced=0 --edit track:a2 --set flag-default=0 --set flag-forced=0 --edit track:a3 --set flag-default=1 --set flag-forced=1</span><br><span class="line">    ) else (</span><br><span class="line">        echo No valid AAC track found for file: %%f</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    :: 删除临时文件</span><br><span class="line">    del temp_tracks.txt</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">echo All files processed.</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
-
-<p>​    </p>
-<h2 id="重新命名"><a href="#重新命名" class="headerlink" title="重新命名"></a>重新命名</h2><p>保存rename.py，执行python rename.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义文件夹路径</span></span><br><span class="line">folder_path = <span class="string">r&quot;G:\&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 遍历文件夹中的所有文件</span></span><br><span class="line"><span class="string">for filename in os.listdir(folder_path):</span></span><br><span class="line"><span class="string">    # 检查文件扩展名是否为.mkv</span></span><br><span class="line"><span class="string">    if filename.endswith(&quot;</span>.mkv<span class="string">&quot;):</span></span><br><span class="line"><span class="string">        # 检查文件名是否符合特定模式</span></span><br><span class="line"><span class="string">        if &quot;</span>国语音频<span class="string">&quot; in filename:</span></span><br><span class="line"><span class="string">            # 替换最后一个“国”字为“粤”字</span></span><br><span class="line"><span class="string">            new_name = filename.rsplit(&quot;</span>国<span class="string">&quot;, 1)[0] + &quot;</span>粤<span class="string">&quot; + filename.rsplit(&quot;</span>国<span class="string">&quot;, 1)[1]</span></span><br><span class="line"><span class="string">            # 构造完整的文件路径</span></span><br><span class="line"><span class="string">            old_file_path = os.path.join(folder_path, filename)</span></span><br><span class="line"><span class="string">            new_file_path = os.path.join(folder_path, new_name)</span></span><br><span class="line"><span class="string">            # 重命名文件</span></span><br><span class="line"><span class="string">            os.rename(old_file_path, new_file_path)</span></span><br><span class="line"><span class="string">            print(f&quot;</span>重命名：&#123;filename&#125; -&gt; &#123;new_name&#125;<span class="string">&quot;)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">print(&quot;</span>所有符合条件的文件已重命名完成。<span class="string">&quot;)</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="处理结果"><a href="#处理结果" class="headerlink" title="处理结果"></a>处理结果</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">G:\&gt;D:\software\mkvtoolnix\mkvinfo.exe 灌篮高手.1080P.国粤日三语.软字幕.AVC.默认粤语音频.001.mkv</span><br><span class="line">+ EBML 头</span><br><span class="line">|+ EBML 版本: 1</span><br><span class="line">|+ EBML 读取版本: 1</span><br><span class="line">|+ EBML ID 最大长度: 4</span><br><span class="line">|+ EBML 大小最大长度: 8</span><br><span class="line">|+ 文档类型: matroska</span><br><span class="line">|+ 文档类型版本: 4</span><br><span class="line">|+ 文档类型读取版本: 2</span><br><span class="line">+ 剪辑: 大小 1397911679</span><br><span class="line">|+ 定位头 (子条目将被跳过)</span><br><span class="line">|+ 轨道</span><br><span class="line">| + 轨道</span><br><span class="line">|  + 轨道编号: 1 (mkvmerge &amp; mkvextract 的轨道 ID: 0)</span><br><span class="line">|  + 轨道 UID: 1</span><br><span class="line">|  + 轨道类型: 视频</span><br><span class="line">|  + ｢紧缩｣ 标记: 0</span><br><span class="line">|  + 编码格式 ID: V_MPEG4/ISO/AVC</span><br><span class="line">|  + 编解码器私有数据: 大小 45 (H.264 档次: High 10 @L5.1)</span><br><span class="line">|  + 默认帧时长: 00:00:00.041708333 (对应视频轨的 23.976 帧/场每秒)</span><br><span class="line">|  + 语言: jpn</span><br><span class="line">|  + 名称: [Kagura] Slam Dunk - 001 [BDRip 1440x1080 x264 Hi10P FLAC]</span><br><span class="line">|  + 视频轨道</span><br><span class="line">|   + 像素宽度: 1440</span><br><span class="line">|   + 像素高度: 1080</span><br><span class="line">|   + 显示宽度: 1440</span><br><span class="line">|   + 显示高度: 1080</span><br><span class="line">| + 轨道</span><br><span class="line">|  + 轨道编号: 2 (mkvmerge &amp; mkvextract 的轨道 ID: 1)</span><br><span class="line">|  + 轨道 UID: 4259734031005461432</span><br><span class="line">|  + 轨道类型: 音频</span><br><span class="line">|  + ｢强制显示｣ 标记: 0</span><br><span class="line">|  + 编码格式 ID: A_AAC</span><br><span class="line">|  + 编解码器私有数据: 大小 5</span><br><span class="line">|  + 默认帧时长: 00:00:00.021333333 (对应视频轨的 46.875 帧/场每秒)</span><br><span class="line">|  + 语言: chi</span><br><span class="line">|  + 名称: 国语Mandarin</span><br><span class="line">|  + 音频轨</span><br><span class="line">|   + 采样率: 48000</span><br><span class="line">|   + 声道数: 2</span><br><span class="line">|  + ｢默认轨｣ 标记: 0</span><br><span class="line">| + 轨道</span><br><span class="line">|  + 轨道编号: 3 (mkvmerge &amp; mkvextract 的轨道 ID: 2)</span><br><span class="line">|  + 轨道 UID: 17988462785428992699</span><br><span class="line">|  + 轨道类型: 音频</span><br><span class="line">|  + ｢默认轨｣ 标记: 0</span><br><span class="line">|  + ｢强制显示｣ 标记: 0</span><br><span class="line">|  + 编码格式 ID: A_FLAC</span><br><span class="line">|  + 编解码器私有数据: 大小 113</span><br><span class="line">|  + 默认帧时长: 00:00:00.085333333 (对应视频轨的 11.719 帧/场每秒)</span><br><span class="line">|  + 语言: jpn</span><br><span class="line">|  + 音频轨</span><br><span class="line">|   + 采样率: 48000</span><br><span class="line">|   + 声道数: 2</span><br><span class="line">|   + 位深: 16</span><br><span class="line">| + 轨道</span><br><span class="line">|  + 轨道编号: 4 (mkvmerge &amp; mkvextract 的轨道 ID: 3)</span><br><span class="line">|  + 轨道 UID: 4385456018886019507</span><br><span class="line">|  + 轨道类型: 音频</span><br><span class="line">|  + ｢默认轨｣ 标记: 1</span><br><span class="line">|  + 编码格式 ID: A_AAC</span><br><span class="line">|  + 编解码器私有数据: 大小 5</span><br><span class="line">|  + 默认帧时长: 00:00:00.046439909 (对应视频轨的 21.533 帧/场每秒)</span><br><span class="line">|  + 语言: chi</span><br><span class="line">|  + 名称: 粤语Cantonese</span><br><span class="line">|  + 音频轨</span><br><span class="line">|   + 采样率: 22050</span><br><span class="line">|   + 输出采样频率: 44100</span><br><span class="line">|  + ｢强制显示｣ 标记: 1</span><br><span class="line">| + 轨道</span><br><span class="line">|  + 轨道编号: 5 (mkvmerge &amp; mkvextract 的轨道 ID: 4)</span><br><span class="line">|  + 轨道 UID: 4592099748104795573</span><br><span class="line">|  + 轨道类型: 字幕</span><br><span class="line">|  + ｢紧缩｣ 标记: 0</span><br><span class="line">|  + 编码格式 ID: S_TEXT/ASS</span><br><span class="line">|  + 编解码器私有数据: 大小 1488</span><br><span class="line">|  + 语言: chi</span><br><span class="line">|  + 名称: 诸神简日双语字幕</span><br><span class="line">|+ EBML void: 大小 1923</span><br><span class="line">|+ 剪辑信息</span><br><span class="line">| + 时间戳缩放: 1000000</span><br><span class="line">| + 混流应用程序: libebml v1.3.6 + libmatroska v1.4.9</span><br><span class="line">| + 写入应用程序: mkvmerge v24.0.0 (&#x27;Beyond The Pale&#x27;) 64-bit</span><br><span class="line">| + 时长: 00:19:39.921000000</span><br><span class="line">| + 日期: 2018-06-13 04:01:56 UTC</span><br><span class="line">| + 剪辑 UID: 0x1c 0xe1 0xb8 0x3d 0x99 0x9b 0x00 0x62 0x4c 0x68 0x7d 0x14 0x12 0xf2 0x71 0xf9</span><br><span class="line">|+ EBML void: 大小 3282</span><br><span class="line">|+ 簇</span><br></pre></td></tr></table></figure>
-
 
 
       
