@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">108</span>
+        <span class="site-state-item-count">110</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -152,6 +152,224 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/speedtest.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/speedtest.html" class="post-title-link" itemprop="url">Ookla speedtest测速国内可用节点及一些测试</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-09-25 16:20:50 / 修改时间：16:23:38" itemprop="dateCreated datePublished" datetime="2025-09-25T16:20:50+08:00">2025-09-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="国内节点"><a href="#国内节点" class="headerlink" title="国内节点"></a>国内节点</h2><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>国家</th>
+<th>城市</th>
+<th>IP</th>
+<th>端口</th>
+<th>运营商&#x2F;说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>3633</td>
+<td>CN</td>
+<td>上海</td>
+<td>222.68.195.2</td>
+<td></td>
+<td>China Telecom</td>
+</tr>
+<tr>
+<td>5396</td>
+<td>CN</td>
+<td>南京</td>
+<td>115.169.22.130</td>
+<td>8080</td>
+<td>China Telecom JiangSu 5G</td>
+</tr>
+<tr>
+<td>59386</td>
+<td>CN</td>
+<td>杭州</td>
+<td>61.130.56.1</td>
+<td>8080</td>
+<td>China Telecom&#x2F;浙江电信</td>
+</tr>
+<tr>
+<td>16204</td>
+<td>CN</td>
+<td>苏州</td>
+<td>36.156.46.53</td>
+<td>8080</td>
+<td>China Mobile&#x2F;JSQY - Suzhou</td>
+</tr>
+<tr>
+<td>24447</td>
+<td>CN</td>
+<td>上海</td>
+<td>210.22.155.34</td>
+<td>8080</td>
+<td>China Unicom 5G</td>
+</tr>
+</tbody></table>
+<h2 id="电信测速"><a href="#电信测速" class="headerlink" title="电信测速"></a>电信测速</h2><p>广州电信—浙江电信</p>
+<p>[root@localhost ~]# curl ip.sb<br>113.66.3.1<br>[root@localhost ~]# speedtest -s 59386</p>
+<p>   Speedtest by Ookla</p>
+<pre><code>  Server: 浙江电信 - HangZhou (id: 59386)
+     ISP: China Telecom
+</code></pre>
+<p>Idle Latency:    21.53 ms   (jitter: 0.21ms, low: 21.34ms, high: 22.18ms)<br>    Download:   907.47 Mbps (data used: 1.3 GB)<br>                 42.71 ms   (jitter: 1.77ms, low: 22.12ms, high: 92.46ms)<br>      Upload:   111.14 Mbps (data used: 92.2 MB)<br>                104.76 ms   (jitter: 54.90ms, low: 20.17ms, high: 498.53ms)<br> Packet Loss: Not available.</p>
+<p>广州电信—广州电信，同城。白天测速</p>
+<p>PS C:\nezha&gt; .\iperf3 -c 113.66.3.1 -P 1 -t 10 -p 9527<br>Connecting to host 113.66.3.1, port 9527<br>[  5] local 192.168.31.62 port 53193 connected to 113.66.3.1 port 9527<br>[ ID] Interval           Transfer     Bitrate<br>[  5]   0.00-1.01   sec  17.6 MBytes   146 Mbits&#x2F;sec<br>[  5]   1.01-2.01   sec  7.12 MBytes  60.1 Mbits&#x2F;sec<br>[  5]   2.01-3.00   sec  6.62 MBytes  55.8 Mbits&#x2F;sec<br>[  5]   3.00-4.00   sec  7.00 MBytes  58.8 Mbits&#x2F;sec<br>[  5]   4.00-5.01   sec  6.75 MBytes  56.3 Mbits&#x2F;sec<br>[  5]   5.01-6.01   sec  6.75 MBytes  56.2 Mbits&#x2F;sec<br>[  5]   6.01-7.00   sec  6.75 MBytes  57.4 Mbits&#x2F;sec<br>[  5]   7.00-8.00   sec  6.75 MBytes  56.4 Mbits&#x2F;sec<br>[  5]   8.00-9.01   sec  6.88 MBytes  57.3 Mbits&#x2F;sec<br>[  5]   9.01-10.00  sec  6.62 MBytes  55.8 Mbits&#x2F;sec</p>
+<hr>
+<p>[ ID] Interval           Transfer     Bitrate<br>[  5]   0.00-10.00  sec  78.9 MBytes  66.1 Mbits&#x2F;sec                  sender<br>[  5]   0.00-10.00  sec  78.0 MBytes  65.4 Mbits&#x2F;sec                  receiver</p>
+<p>iperf Done.<br>PS C:\nezha&gt; .\iperf3 -c 113.66.3.1 -P 1 -t 10 -p 9527 -R<br>Connecting to host 113.66.3.1, port 9527<br>Reverse mode, remote host 113.66.3.1 is sending<br>[  5] local 192.168.31.62 port 53209 connected to 113.66.3.1 port 9527<br>[ ID] Interval           Transfer     Bitrate<br>[  5]   0.00-1.01   sec  13.2 MBytes   110 Mbits&#x2F;sec<br>[  5]   1.01-2.01   sec  5.62 MBytes  47.3 Mbits&#x2F;sec<br>[  5]   2.01-3.01   sec  5.38 MBytes  45.2 Mbits&#x2F;sec<br>[  5]   3.01-4.00   sec  5.62 MBytes  47.3 Mbits&#x2F;sec<br>[  5]   4.00-5.01   sec  5.62 MBytes  46.8 Mbits&#x2F;sec<br>[  5]   5.01-6.01   sec  5.38 MBytes  45.3 Mbits&#x2F;sec<br>[  5]   6.01-7.01   sec  5.00 MBytes  42.0 Mbits&#x2F;sec<br>[  5]   7.01-8.01   sec  6.00 MBytes  50.2 Mbits&#x2F;sec<br>[  5]   8.01-9.01   sec  5.38 MBytes  44.9 Mbits&#x2F;sec<br>[  5]   9.01-10.01  sec  5.50 MBytes  46.4 Mbits&#x2F;sec</p>
+<hr>
+<p>[ ID] Interval           Transfer     Bitrate         Retr<br>[  5]   0.00-10.01  sec  64.6 MBytes  54.1 Mbits&#x2F;sec  998            sender<br>[  5]   0.00-10.01  sec  62.8 MBytes  52.6 Mbits&#x2F;sec                  receiver</p>
+<p>iperf Done.</p>
+<p>广州电信—广州电信，同城，22点后测速。（下行&#x2F;上行，1000Mbps&#x2F;50Mbps—1000Mbps&#x2F;100Mbps), 测速结果与电信官网10000.gd.cn基本一致。</p>
+<p>C:\Users\user&gt;iperf3 -c 113.66.3.1 -P 1 -t 10 -p 9527<br>Connecting to host 113.66.3.1, port 9527<br>[  5] local 192.168.100.2 port 55113 connected to 113.66.3.1 port 9527<br>[ ID] Interval           Transfer     Bitrate<br>[  5]   0.00-1.00   sec   256 KBytes  2.10 Mbits&#x2F;sec<br>[  5]   1.00-2.01   sec   256 KBytes  2.08 Mbits&#x2F;sec<br>[  5]   2.01-3.00   sec   128 KBytes  1.06 Mbits&#x2F;sec<br>[  5]   3.00-4.01   sec   128 KBytes  1.04 Mbits&#x2F;sec<br>[  5]   4.01-5.01   sec   128 KBytes  1.05 Mbits&#x2F;sec<br>[  5]   5.01-6.01   sec   128 KBytes  1.05 Mbits&#x2F;sec<br>[  5]   6.01-7.00   sec   256 KBytes  2.11 Mbits&#x2F;sec<br>[  5]   7.00-8.01   sec   128 KBytes  1.04 Mbits&#x2F;sec<br>[  5]   8.01-9.01   sec   128 KBytes  1.06 Mbits&#x2F;sec<br>[  5]   9.01-10.01  sec   384 KBytes  3.14 Mbits&#x2F;sec</p>
+<hr>
+<p>[ ID] Interval           Transfer     Bitrate<br>[  5]   0.00-10.01  sec  1.88 MBytes  1.57 Mbits&#x2F;sec                  sender<br>[  5]   0.00-10.01  sec  1.69 MBytes  1.42 Mbits&#x2F;sec                  receiver</p>
+<p>iperf Done.</p>
+<p>C:\Users\user&gt;iperf3 -c 113.66.3.1 -P 1 -t 10 -p 9527 -R<br>Connecting to host 113.66.36.1, port 9527<br>Reverse mode, remote host 113.66.3.1 is sending<br>[  5] local 192.168.100.2 port 55131 connected to 113.66.3.1 port 9527<br>[ ID] Interval           Transfer     Bitrate<br>[  5]   0.00-1.01   sec  4.25 MBytes  35.2 Mbits&#x2F;sec<br>[  5]   1.01-2.00   sec  2.50 MBytes  21.2 Mbits&#x2F;sec<br>[  5]   2.00-3.01   sec  2.38 MBytes  19.7 Mbits&#x2F;sec<br>[  5]   3.01-4.00   sec  3.12 MBytes  26.5 Mbits&#x2F;sec<br>[  5]   4.00-5.01   sec  5.25 MBytes  44.0 Mbits&#x2F;sec<br>[  5]   5.01-6.01   sec  5.62 MBytes  47.1 Mbits&#x2F;sec<br>[  5]   6.01-7.00   sec  5.62 MBytes  47.3 Mbits&#x2F;sec<br>[  5]   7.00-8.01   sec  5.00 MBytes  41.7 Mbits&#x2F;sec<br>[  5]   8.01-9.01   sec  6.00 MBytes  50.4 Mbits&#x2F;sec<br>[  5]   9.01-10.01  sec  5.75 MBytes  48.3 Mbits&#x2F;sec</p>
+<hr>
+<p>[ ID] Interval           Transfer     Bitrate         Retr<br>[  5]   0.00-10.01  sec  46.4 MBytes  38.9 Mbits&#x2F;sec    4            sender<br>[  5]   0.00-10.01  sec  45.5 MBytes  38.1 Mbits&#x2F;sec                  receiver</p>
+<p>iperf Done.</p>
+<p>广州电信—DMIT HKG 白天速度</p>
+<p>C:\Users\user&gt;iperf3 -c 103.117.100.199 -P 1 -t 10 -p 41529<br>Connecting to host 103.117.100.199, port 41529<br>[  5] local 192.168.3.9 port 61687 connected to 103.117.100.199 port 41529<br>[ ID] Interval           Transfer     Bitrate<br>[  5]   0.00-1.01   sec  3.00 MBytes  24.9 Mbits&#x2F;sec<br>[  5]   1.01-2.01   sec  5.50 MBytes  46.3 Mbits&#x2F;sec<br>[  5]   2.01-3.00   sec  9.00 MBytes  75.7 Mbits&#x2F;sec<br>[  5]   3.00-4.00   sec  11.2 MBytes  94.6 Mbits&#x2F;sec<br>[  5]   4.00-5.01   sec  7.62 MBytes  63.8 Mbits&#x2F;sec<br>[  5]   5.01-6.01   sec  8.25 MBytes  69.2 Mbits&#x2F;sec<br>[  5]   6.01-7.01   sec  5.12 MBytes  42.8 Mbits&#x2F;sec<br>[  5]   7.01-8.01   sec  5.88 MBytes  49.3 Mbits&#x2F;sec<br>[  5]   8.01-9.00   sec  9.12 MBytes  76.9 Mbits&#x2F;sec<br>[  5]   9.00-10.01  sec  4.38 MBytes  36.5 Mbits&#x2F;sec</p>
+<hr>
+<p>[ ID] Interval           Transfer     Bitrate<br>[  5]   0.00-10.01  sec  69.1 MBytes  57.9 Mbits&#x2F;sec                  sender<br>[  5]   0.00-10.08  sec  69.1 MBytes  57.5 Mbits&#x2F;sec                  receiver</p>
+<p>iperf Done.</p>
+<p>C:\Users\user&gt;iperf3 -c 103.117.100.199 -P 1 -t 10 -p 41529 -R<br>Connecting to host 103.117.100.199, port 41529<br>Reverse mode, remote host 103.117.100.199 is sending<br>[  5] local 192.168.3.9 port 61689 connected to 103.117.100.199 port 41529<br>[ ID] Interval           Transfer     Bitrate<br>[  5]   0.00-1.00   sec  19.1 MBytes   160 Mbits&#x2F;sec<br>[  5]   1.00-2.01   sec  22.1 MBytes   185 Mbits&#x2F;sec<br>[  5]   2.01-3.01   sec  21.8 MBytes   182 Mbits&#x2F;sec<br>[  5]   3.01-4.00   sec  21.4 MBytes   181 Mbits&#x2F;sec<br>[  5]   4.00-5.02   sec  21.1 MBytes   175 Mbits&#x2F;sec<br>[  5]   5.02-6.01   sec  21.5 MBytes   180 Mbits&#x2F;sec<br>[  5]   6.01-7.01   sec  20.9 MBytes   176 Mbits&#x2F;sec<br>[  5]   7.01-8.01   sec  21.6 MBytes   181 Mbits&#x2F;sec<br>[  5]   8.01-9.00   sec  22.5 MBytes   191 Mbits&#x2F;sec<br>[  5]   9.00-10.01  sec  22.1 MBytes   185 Mbits&#x2F;sec</p>
+<hr>
+<p>[ ID] Interval           Transfer     Bitrate         Retr<br>[  5]   0.00-10.05  sec   217 MBytes   181 Mbits&#x2F;sec    2            sender<br>[  5]   0.00-10.01  sec   214 MBytes   179 Mbits&#x2F;sec                  receiver</p>
+<p>iperf Done.</p>
+<p>广州电信—DMIT HK晚上22点后测速（电信上传降为1.5Mbps左右）电信官网10000.gd.cn结果基本也是1.5Mbps上传。</p>
+<p>C:\Users\user&gt;iperf3 -c 103.117.100.199 -P 1 -t 10 -p 42267<br>Connecting to host 103.117.100.199, port 42267<br>[  5] local 192.168.100.2 port 55283 connected to 103.117.100.199 port 42267<br>[ ID] Interval           Transfer     Bitrate<br>[  5]   0.00-1.01   sec   256 KBytes  2.08 Mbits&#x2F;sec<br>[  5]   1.01-2.01   sec   128 KBytes  1.05 Mbits&#x2F;sec<br>[  5]   2.01-3.01   sec   128 KBytes  1.05 Mbits&#x2F;sec<br>[  5]   3.01-4.01   sec   128 KBytes  1.05 Mbits&#x2F;sec<br>[  5]   4.01-5.01   sec   128 KBytes  1.05 Mbits&#x2F;sec<br>[  5]   5.01-6.01   sec  0.00 Bytes  0.00 bits&#x2F;sec<br>[  5]   6.01-7.00   sec   128 KBytes  1.06 Mbits&#x2F;sec<br>[  5]   7.00-8.01   sec   128 KBytes  1.05 Mbits&#x2F;sec<br>[  5]   8.01-9.00   sec   256 KBytes  2.11 Mbits&#x2F;sec<br>[  5]   9.00-10.01  sec   128 KBytes  1.04 Mbits&#x2F;sec</p>
+<hr>
+<p>[ ID] Interval           Transfer     Bitrate<br>[  5]   0.00-10.01  sec  1.38 MBytes  1.15 Mbits&#x2F;sec                  sender<br>[  5]   0.00-10.29  sec  1.25 MBytes  1.02 Mbits&#x2F;sec                  receiver</p>
+<p>iperf Done.</p>
+<p>C:\Users\user&gt;iperf3 -c 103.117.100.199 -P 1 -t 10 -p 42267 -R<br>Connecting to host 103.117.100.199, port 42267<br>Reverse mode, remote host 103.117.100.199 is sending<br>[  5] local 192.168.100.2 port 55285 connected to 103.117.100.199 port 42267<br>[ ID] Interval           Transfer     Bitrate<br>[  5]   0.00-1.01   sec  5.62 MBytes  46.9 Mbits&#x2F;sec<br>[  5]   1.01-2.00   sec  5.25 MBytes  44.1 Mbits&#x2F;sec<br>[  5]   2.00-3.00   sec  5.38 MBytes  45.1 Mbits&#x2F;sec<br>[  5]   3.00-4.01   sec  5.25 MBytes  43.9 Mbits&#x2F;sec<br>[  5]   4.01-5.00   sec  4.62 MBytes  38.9 Mbits&#x2F;sec<br>[  5]   5.00-6.00   sec  4.50 MBytes  37.7 Mbits&#x2F;sec<br>[  5]   6.00-7.00   sec  4.38 MBytes  36.7 Mbits&#x2F;sec<br>[  5]   7.00-8.00   sec  4.62 MBytes  38.9 Mbits&#x2F;sec<br>[  5]   8.00-9.01   sec  4.50 MBytes  37.3 Mbits&#x2F;sec<br>[  5]   9.01-10.01  sec  4.50 MBytes  37.7 Mbits&#x2F;sec</p>
+<hr>
+<p>[ ID] Interval           Transfer     Bitrate         Retr<br>[  5]   0.00-10.07  sec  50.7 MBytes  42.2 Mbits&#x2F;sec    1            sender<br>[  5]   0.00-10.01  sec  48.6 MBytes  40.7 Mbits&#x2F;sec                  receiver</p>
+<p>iperf Done.</p>
+<h2 id="联通测速"><a href="#联通测速" class="headerlink" title="联通测速"></a>联通测速</h2><p>~ # .&#x2F;speedtest -L<br>Closest servers:</p>
+<pre><code>ID  Name                           Location             Country
+</code></pre>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;<br> 24447  China Unicom 5G                Shanghai             China<br> 33794  CTM Mobile Services            Macau                Macau<br> 71541  MTel Telecommunication Company Ltd. Macao                Macau<br> 13538  CSL                            Hong Kong            Hong Kong<br> 63143  Netvigator                     Hong Kong            Hong Kong<br> 37390  HGC環電                      Hong Kong            Hong Kong<br> 35791  SmarTone                       Hong Kong            Hong Kong<br>  1536  STC                            Hong Kong            Hong Kong<br> 65463  HKBN                           Hong Kong            Hong Kong<br> 61296  HKIX                           Hong Kong            Hong Kong<br> 63076  SoSIM                          Hong Kong            Hong Kong</p>
+<p>珠海联通—上海联通5G</p>
+<p>~ # .&#x2F;speedtest -s 24447</p>
+<p>Speedtest by Ookla</p>
+<pre><code>  Server: China Unicom 5G - Shanghai (id: 24447)
+     ISP: China Unicom
+</code></pre>
+<p>Idle Latency:    30.51 ms   (jitter: 0.59ms, low: 30.42ms, high: 31.57ms)<br>    Download:   365.45 Mbps (data used: 397.0 MB)<br>                 29.24 ms   (jitter: 0.95ms, low: 27.85ms, high: 50.02ms)<br>      Upload:    49.18 Mbps (data used: 80.2 MB)<br>                 35.85 ms   (jitter: 0.39ms, low: 34.80ms, high: 41.73ms)<br> Packet Loss: Not available.<br>  Result URL: <a target="_blank" rel="noopener" href="https://www.speedtest.net/result/c/12686666-2952-4896-9535-4eba0b79e4e6">https://www.speedtest.net/result/c/12686666-2952-4896-9535-4eba0b79e4e6</a><br>~ # </p>
+<p>广州电信—上海联通5G</p>
+<p>[root@localhost ~]# speedtest -s 24447</p>
+<p>   Speedtest by Ookla</p>
+<pre><code>  Server: China Unicom 5G - Shanghai (id: 24447)
+     ISP: China Telecom
+</code></pre>
+<p>Idle Latency:    30.60 ms   (jitter: 0.45ms, low: 29.80ms, high: 31.58ms)<br>    Download:   912.52 Mbps (data used: 1.1 GB)<br>                 57.89 ms   (jitter: 4.61ms, low: 31.20ms, high: 167.93ms)<br>      Upload:   110.44 Mbps (data used: 74.6 MB)<br>                180.88 ms   (jitter: 63.40ms, low: 30.53ms, high: 1005.45ms)<br> Packet Loss: Not available.<br>  Result URL: <a target="_blank" rel="noopener" href="https://www.speedtest.net/result/c/b0c41a01-fe36-41d3-bf7b-cd7d71d0dbec">https://www.speedtest.net/result/c/b0c41a01-fe36-41d3-bf7b-cd7d71d0dbec</a><br>[root@localhost ~]#</p>
+<p>珠海联通—浙江电信</p>
+<p>~ # .&#x2F;speedtest -s 59386</p>
+<p>   Speedtest by Ookla</p>
+<pre><code>  Server: 浙江电信 - HangZhou (id: 59386)
+     ISP: China Unicom
+</code></pre>
+<p>Idle Latency:    30.55 ms   (jitter: 0.25ms, low: 30.45ms, high: 31.36ms)<br>    Download:   288.88 Mbps (data used: 414.6 MB)<br>                 29.87 ms   (jitter: 1.14ms, low: 28.76ms, high: 81.97ms)<br>      Upload:    50.79 Mbps (data used: 85.1 MB)<br>                 31.86 ms   (jitter: 7.25ms, low: 28.60ms, high: 357.45ms)<br> Packet Loss: Not available.<br>  Result URL: <a target="_blank" rel="noopener" href="https://www.speedtest.net/result/c/503decc9-3d89-41fe-8d10-9e0a802d90e4">https://www.speedtest.net/result/c/503decc9-3d89-41fe-8d10-9e0a802d90e4</a><br>~ # </p>
+<h2 id="海外节点"><a href="#海外节点" class="headerlink" title="海外节点"></a>海外节点</h2><pre><code>ID  Name                           Location             Country
+</code></pre>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;<br> 31180  Campana                        Singapore            Singapore<br> 31293  Pacific Internet (S)           Singapore            Singapore<br> 23467  PT. Indonesia Comnets Plus     Singapore            Singapore<br> 12687  SIMBA Telecom                  Singapore            Singapore<br> 67827  FPT Telecom                    Singapore            Singapore<br> 47713  PT. Mora Telematika Indonesia  Singapore            Singapore<br>  7311  M1 Limited                     Singapore            Singapore<br> 13623  Singtel                        Singapore            Singapore<br> 59016  CBN                            Singapore            Singapore<br>  5935  MyRepublic Singapore           Singapore            Singapore</p>
+<p>LegendVPS</p>
+<p>Speedtest by Ookla</p>
+<pre><code>  Server: MyRepublic Singapore - Singapore (id: 5935)
+     ISP: Coaxial Cable
+</code></pre>
+<p>Idle Latency:     0.47 ms   (jitter: 0.09ms, low: 0.40ms, high: 0.64ms)<br>    Download:   986.21 Mbps (data used: 443.0 MB)<br>                 35.10 ms   (jitter: 0.84ms, low: 3.29ms, high: 36.64ms)<br>      Upload:  1022.57 Mbps (data used: 475.5 MB)<br>                  0.53 ms   (jitter: 0.15ms, low: 0.45ms, high: 7.15ms)<br> Packet Loss:     0.0%<br>  Result URL: <a target="_blank" rel="noopener" href="https://www.speedtest.net/result/c/571b8165-1034-49f2-9b1a-554c917ef550">https://www.speedtest.net/result/c/571b8165-1034-49f2-9b1a-554c917ef550</a></p>
+<p>ClawVPS</p>
+<p>[root@s877256 ~]# .&#x2F;speedtest -s 13623</p>
+<p>   Speedtest by Ookla</p>
+<pre><code>  Server: Singtel - Singapore (id: 13623)
+     ISP: Alibaba
+</code></pre>
+<p>Idle Latency:     3.17 ms   (jitter: 0.44ms, low: 2.91ms, high: 3.63ms)<br>    Download:   921.45 Mbps (data used: 766.2 MB)<br>                 16.76 ms   (jitter: 7.24ms, low: 3.12ms, high: 74.83ms)<br>      Upload:  1120.64 Mbps (data used: 1.4 GB)<br>                  3.90 ms   (jitter: 3.58ms, low: 2.10ms, high: 96.59ms)<br> Packet Loss:     0.0%<br>  Result URL: <a target="_blank" rel="noopener" href="https://www.speedtest.net/result/c/8d5fa295-f6da-49c4-a7ca-5fe3eb1f58a1">https://www.speedtest.net/result/c/8d5fa295-f6da-49c4-a7ca-5fe3eb1f58a1</a><br>[root@s877256 ~]# .&#x2F;speedtest -s 5935</p>
+<p>   Speedtest by Ookla</p>
+<pre><code>  Server: MyRepublic Singapore - Singapore (id: 5935)
+     ISP: Alibaba
+</code></pre>
+<p>Idle Latency:     3.03 ms   (jitter: 0.66ms, low: 2.31ms, high: 4.30ms)<br>    Download:   952.73 Mbps (data used: 1.7 GB)<br>                 49.24 ms   (jitter: 11.31ms, low: 6.75ms, high: 130.21ms)<br>      Upload:  1123.20 Mbps (data used: 2.0 GB)<br>                  3.12 ms   (jitter: 19.93ms, low: 1.56ms, high: 416.69ms)<br> Packet Loss:     0.0%<br>  Result URL: <a target="_blank" rel="noopener" href="https://www.speedtest.net/result/c/e82e5de8-751c-4729-b5cf-1c38c22bb159">https://www.speedtest.net/result/c/e82e5de8-751c-4729-b5cf-1c38c22bb159</a><br>[root@s877256 ~]#</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2725,441 +2943,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/Intel-600s-700s-chipset-key-signals.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Intel-600s-700s-chipset-key-signals.html" class="post-title-link" itemprop="url">Intel 600系-700系芯片组上电时序汇总及关键信号</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-07-15 13:48:51 / 修改时间：13:50:19" itemprop="dateCreated datePublished" datetime="2025-07-15T13:48:51+08:00">2025-07-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <table cellspacing="0" cellpadding="8" style="border-collapse: separate; border-spacing: 0; width: 100%;">
-  <thead>
-    <!-- 整个表格大标题 -->
-    <tr>
-      <th colspan="5" style="background-color: #cce5ff; font-size: 18px; text-align: center; padding: 10px;
-        border: 1px solid #999;">
-        Intel 600系-700系芯片组上电时序汇总及关键信号
-      </th>
-    </tr>
-    <!-- 表头 -->
-    <tr>
-      <th style="width: 200px; background-color: #d0eaff; border: 1px solid #999; text-align: center; vertical-align: middle;">
-        工作状态
-      </th>
-      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">电压或信号标准名称</th>
-      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">正常对地值参考</th>
-      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">正常工作电压</th>
-      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">故障现象</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- 10行，每行一个左侧大单元格，右侧4个小单元格 -->
-    <tr>
-      <td rowspan="4" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-        <b>G3状态（PCH）</b>
-      </td>
-      <td style="border: 1px solid #999; text-align: center;">VCCRTC</td>
-      <td style="border: 1px solid #999; text-align: center;">~530</td>
-      <td style="border: 1px solid #999; text-align: center;">2.8V-3.3V</td>
-      <td rowspan="25" style="border: 1px solid #999; text-align: center; vertical-align: middle;">不触发</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #999; text-align: center;">RTCRST</td>
-      <td style="border: 1px solid #999; text-align: center;">~800</td>
-      <td style="border: 1px solid #999; text-align: center;">2.8V-3.3V</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #999; text-align: center;">SRTCRST</td>
-      <td style="border: 1px solid #999; text-align: center;">~800</td>
-      <td style="border: 1px solid #999; text-align: center;">2.8V-3.3V</td>
-    </tr>
-    <tr>
-      <td style="border: 1px solid #999; text-align: center;">RTCX1/RTCX2</td>
-      <td style="border: 1px solid #999; text-align: center;">~800</td>
-      <td style="border: 1px solid #999; text-align: center;">0.15V-1.7V</td>
-    </tr>
-      <tr>
-  <td rowspan="5" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-    <b>DEEP状态（PCH）</b>
-  </td>
-  <td style="border: 1px solid #999; text-align: center;">VCCDSW_3P3</td>
-  <td style="border: 1px solid #999; text-align: center;">~380</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">DSW_PWROK</td>
-  <td style="border: 1px solid #999; text-align: center;">~420</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">SUSWARN#</td>
-  <td style="border: 1px solid #999; text-align: center;">~380</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">SUSACK#</td>
-  <td style="border: 1px solid #999; text-align: center;">~380</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
- <tr>
-  <td style="border: 1px solid #999; text-align: center;">SLP_SUS</td>
-  <td style="border: 1px solid #999; text-align: center;">未采用</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td rowspan="9" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-    <b>S5状态（PCH）</b>
-  </td>
-  <td style="border: 1px solid #999; text-align: center;">VCCPRIM_3P3->PCIE_SLOT：B10</td>
-  <td style="border: 1px solid #999; text-align: center;">~380</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VCCPRIM_1P8</td>
-  <td style="border: 1px solid #999; text-align: center;">~120</td>
-  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VCCPRIM_0P82</td>
-  <td style="border: 1px solid #999; text-align: center;">>5</td>
-  <td style="border: 1px solid #999; text-align: center;">0.82V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VCCPRIM1P05</td>
-  <td style="border: 1px solid #999; text-align: center;">~400</td>
-  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">DCPRTC(VOUT)</td>
-  <td style="border: 1px solid #999; text-align: center;">~600</td>
-  <td style="border: 1px solid #999; text-align: center;">1.2V-1.5V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">CLKOUT_CPURTC->CPU N9（32.768Khz）</td>
-  <td style="border: 1px solid #999; text-align: center;">~330</td>
-  <td style="border: 1px solid #999; text-align: center;">0.15V-1.7V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">BATLOW</td>
-  <td style="border: 1px solid #999; text-align: center;">~550</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">RSMRST</td>
-  <td style="border: 1px solid #999; text-align: center;">~450</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">SLP_S5</td>
-  <td style="border: 1px solid #999; text-align: center;">未采用</td>
-  <td style="border: 1px solid #999; text-align: center;">待机0V/触发后3.3V</td>
-</tr>
-<td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-    <b>触发信号 （I/O+PCH）</b>
-  </td>
-  <td style="border: 1px solid #999; text-align: center;">I/O供电：3VSB或5VSB</td>
-  <td style="border: 1px solid #999; text-align: center;">~350</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V or 5V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">SKTOCC</td>
-  <td style="border: 1px solid #999; text-align: center;">~700</td>
-  <td style="border: 1px solid #999; text-align: center;">装上CPU后0V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PWRBTN_IN</td>
-  <td style="border: 1px solid #999; text-align: center;">~600</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PWRBTN#</td>
-  <td style="border: 1px solid #999; text-align: center;">~550</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">SLP_S4</td>
-  <td style="border: 1px solid #999; text-align: center;">~380</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">SLP_S3</td>
-  <td style="border: 1px solid #999; text-align: center;">~380</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PS_ON#</td>
-  <td style="border: 1px solid #999; text-align: center;">~520</td>
-  <td style="border: 1px solid #999; text-align: center;">待机5V/开机0V</td>
-</tr>
-<tr>
-<td rowspan="5" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-        <b>SLP_S4状态 开启内存供电</b>
-      </td>
-      <td style="border: 1px solid #999; text-align: center;">DDR5</td>
-      <td style="border: 1px solid #999; text-align: center;"></td>
-      <td style="border: 1px solid #999; text-align: center;">1.1V</td>
-    <td rowspan="33" style="border: 1px solid #999; text-align: center; vertical-align: middle;">掉电、缺电压、缺时钟、缺复位</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VDD2/VCC_DDR->CPU BA22</td>
-  <td style="border: 1px solid #999; text-align: center;"></td>
-  <td style="border: 1px solid #999; text-align: center;">1.1V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VIN_BULK->1Pin</td>
-  <td style="border: 1px solid #999; text-align: center;"></td>
-  <td style="border: 1px solid #999; text-align: center;">5V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PWR_EN->151Pin</td>
-  <td style="border: 1px solid #999; text-align: center;"></td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PWR_GOOD->147Pin</td>
-  <td style="border: 1px solid #999; text-align: center;"></td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-    <td rowspan="3" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-    <b>SLP_S3状态 开启CPU辅助供电</b>
-  </td>
-  <td style="border: 1px solid #999; text-align: center;">VCC1P05_PROC->CPU T9</td>
-  <td style="border: 1px solid #999; text-align: center;">~330</td>
-  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VCC1P8_PROC->CPU AJ1</td>
-  <td style="border: 1px solid #999; text-align: center;">~540</td>
-  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">CPU_VCCIN_AUX->CPU K20</td>
-  <td style="border: 1px solid #999; text-align: center;">~440</td>
-  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
-</tr>
-<tr>
-<td rowspan="6" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-    <b>CLOCK时钟电路（PCH）</b>
-  </td>
-  <td style="border: 1px solid #999; text-align: center;">PCH_PWROK</td>
-  <td style="border: 1px solid #999; text-align: center;">~540</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">XTAL_IN/XTAL_OUT(38M)</td>
-  <td style="border: 1px solid #999; text-align: center;">~800/500</td>
-  <td style="border: 1px solid #999; text-align: center;">0.15V-1.7V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PCH读取BIOS</td>
-  <td style="border: 1px solid #999; text-align: center;">1Pin~380/2Pin~420/5Pin~600/6Pin~420</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">SRCCLKREQ</td>
-  <td style="border: 1px solid #999; text-align: center;">~380</td>
-  <td style="border: 1px solid #999; text-align: center;">0V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">CLOCK_OUT</td>
-  <td style="border: 1px solid #999; text-align: center;">~360</td>
-  <td style="border: 1px solid #999; text-align: center;">0.3V-0.5V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PCIE_SLOT:->A13/A14</td>
-  <td style="border: 1px solid #999; text-align: center;">~360</td>
-  <td style="border: 1px solid #999; text-align: center;">0.3V-0.5V</td>
-</tr>
-<tr>
-<td rowspan="3" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-    <b>CPU核心供电（VRM+VBOOT）           
-        VBOOT电压可设置</b>
-  </td>
-  <td style="border: 1px solid #999; text-align: center;">VR_EN</td>
-  <td style="border: 1px solid #999; text-align: center;">~440</td>
-  <td style="border: 1px solid #999; text-align: center;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VR_PGOOD</td>
-  <td style="border: 1px solid #999; text-align: center;">~330</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VCCCORE (VBOOT)</td>
-  <td style="border: 1px solid #999; text-align: center;">~400</td>
-  <td style="border: 1px solid #999; text-align: center;"></td>
-</tr>
-<tr>
-<td rowspan="10" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-    <b>RESET复位电路（PCH+CPU）</b>
-  </td>
-  <td style="border: 1px solid #999; text-align: center;">SYS_PWROK</td>
-  <td style="border: 1px solid #999; text-align: center;">~330</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PROCPWRGD->CPU A6</td>
-  <td style="border: 1px solid #999; text-align: center;">~330 装CPU后有效</td>
-  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VCCST_PWRGD_SX->CPU A7</td>
-  <td style="border: 1px solid #999; text-align: center;">~330 未采用</td>
-  <td style="border: 1px solid #999; text-align: center;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VCCST_PWRGD->CPU B6</td>
-  <td style="border: 1px solid #999; text-align: center;">~560 装CPU后有效</td>
-  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">BCLK_P/BCLK_N->CPU V8/V9</td>
-  <td style="border: 1px solid #999; text-align: center;">~360 装CPU后有效</td>
-  <td style="border: 1px solid #999; text-align: center;">0.3V-0.5V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PCI_BCLKP/PCI_BCLKN->CPU AA10/Y10</td>
-  <td style="border: 1px solid #999; text-align: center;">~360 装CPU后有效</td>
-  <td style="border: 1px solid #999; text-align: center;">0.3V-0.5V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">CLK24_P/CLK24_N->CPU AA8/Y8</td>
-  <td style="border: 1px solid #999; text-align: center;">~360 装CPU后有效</td>
-  <td style="border: 1px solid #999; text-align: center;">0.3V-0.5V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PLTRST</td>
-  <td style="border: 1px solid #999; text-align: center;">~380</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PCIE_SLOT:->A11</td>
-  <td style="border: 1px solid #999; text-align: center;">~570</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">PLTRST_CPU#:->CPU B5</td>
-  <td style="border: 1px solid #999; text-align: center;">~330</td>
-  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
-</tr>
-<tr>
-<td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
-    <b>CPU核心供电（VRM+SVID）</b>
-  </td>
-  <td style="border: 1px solid #999; text-align: center;">PLTRST_CPU#->CPU B5</td>
-  <td style="border: 1px solid #999; text-align: center;">~330</td>
-  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">DMI总线（4/8组TX+4/8组RX）</td>
-  <td style="border: 1px solid #999; text-align: center;">~320</td>
-  <td style="border: 1px solid #999; text-align: center;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">CPU读取BIOS</td>
-  <td style="border: 1px solid #999; text-align: center;">1Pin~380/2Pin~420/5Pin~600/6Pin~420</td>
-  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VIDALERT#->CPU B40</td>
-  <td style="border: 1px solid #999; text-align: center;">~360</td>
-  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VIDSCK->CPU A40</td>
-  <td style="border: 1px solid #999; text-align: center;">~360</td>
-  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VIDSOUT->CPU B41</td>
-  <td style="border: 1px solid #999; text-align: center;">~360</td>
-  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #999; text-align: center;">VCCCORE</td>
-  <td style="border: 1px solid #999; text-align: center;">0</td>
-  <td style="border: 1px solid #999; text-align: center;">~1V</td>
-</tr>
-  </tbody>
-</table>
-
-
-
-<ul>
-<li><strong>数据来源：ASUS PRIME B660M-K D4 R1.02</strong></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -3172,7 +2955,7 @@
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2025</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
