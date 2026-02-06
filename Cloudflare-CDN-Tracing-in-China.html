@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"heiok.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4157401344064000" crossorigin="anonymous"></script>
+
+    <meta name="description" content="国内三大运营商访问 Cloudflare CDN的真实路径分析 本文基于 Cloudflare colo 实测数据、真实用户访问记录以及国内骨干网结构经验，对 中国移动 &#x2F; 中国联通 &#x2F; 中国电信 访问 Cloudflare（CF）时的实际出海方向进行整理与分析。 结论并不基于“理论最优”，而是当前真实网络环境下的结果。   一、结论速览（给不想看细节的人）   运营商 主流命">
+<meta property="og:type" content="article">
+<meta property="og:title" content="国内三大运营商访问 Cloudflare CDN的真实路径分析">
+<meta property="og:url" content="https://heiok.com/Cloudflare-CDN-Tracing-in-China.html">
+<meta property="og:site_name" content="网络蝙蝠侠部落">
+<meta property="og:description" content="国内三大运营商访问 Cloudflare CDN的真实路径分析 本文基于 Cloudflare colo 实测数据、真实用户访问记录以及国内骨干网结构经验，对 中国移动 &#x2F; 中国联通 &#x2F; 中国电信 访问 Cloudflare（CF）时的实际出海方向进行整理与分析。 结论并不基于“理论最优”，而是当前真实网络环境下的结果。   一、结论速览（给不想看细节的人）   运营商 主流命">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-06T08:46:22.000Z">
+<meta property="article:modified_time" content="2026-02-06T08:49:01.811Z">
+<meta property="article:author" content="heiok.com">
+<meta property="article:tag" content="Cloudflare CDN">
+<meta property="article:tag" content="Cloudflare colo">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://heiok.com/Cloudflare-CDN-Tracing-in-China.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://heiok.com/Cloudflare-CDN-Tracing-in-China.html","path":"Cloudflare-CDN-Tracing-in-China.html","title":"国内三大运营商访问 Cloudflare CDN的真实路径分析"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>国内三大运营商访问 Cloudflare CDN的真实路径分析 | 网络蝙蝠侠部落</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-90W6VHZRMP"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-90W6VHZRMP","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">网络蝙蝠侠部落</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BD%E5%86%85%E4%B8%89%E5%A4%A7%E8%BF%90%E8%90%A5%E5%95%86%E8%AE%BF%E9%97%AE-Cloudflare-CDN%E7%9A%84%E7%9C%9F%E5%AE%9E%E8%B7%AF%E5%BE%84%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">国内三大运营商访问 Cloudflare CDN的真实路径分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%BB%93%E8%AE%BA%E9%80%9F%E8%A7%88%EF%BC%88%E7%BB%99%E4%B8%8D%E6%83%B3%E7%9C%8B%E7%BB%86%E8%8A%82%E7%9A%84%E4%BA%BA%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">一、结论速览（给不想看细节的人）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%88%A4%E6%96%AD%E4%BE%9D%E6%8D%AE%EF%BC%9ACloudflare-colo"><span class="nav-number">1.2.</span> <span class="nav-text">二、判断依据：Cloudflare colo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8%EF%BC%88CMCC%EF%BC%89%EF%BC%9A%E5%87%A0%E4%B9%8E%E5%85%A8%E8%B5%B0%E9%A6%99%E6%B8%AF"><span class="nav-number">1.3.</span> <span class="nav-text">三、中国移动（CMCC）：几乎全走香港</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E6%B5%8B%E7%8E%B0%E8%B1%A1"><span class="nav-number">1.3.1.</span> <span class="nav-text">实测现象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E9%9D%A2%E8%A7%A3%E9%87%8A"><span class="nav-number">1.3.2.</span> <span class="nav-text">网络层面解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%B8%AD%E5%9B%BD%E8%81%94%E9%80%9A%EF%BC%88CU%EF%BC%89%EF%BC%9A%E7%BB%95%E7%BE%8E%E6%98%AF%E5%B8%B8%E6%80%81"><span class="nav-number">1.4.</span> <span class="nav-text">四、中国联通（CU）：绕美是常态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E6%B5%8B%E7%8E%B0%E8%B1%A1-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">实测现象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%A7%84%E5%BE%8B%EF%BC%88%E9%9D%9E%E5%B8%B8%E9%87%8D%E8%A6%81%EF%BC%89"><span class="nav-number">1.4.2.</span> <span class="nav-text">核心规律（非常重要）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E5%9F%8E%E5%9F%9F%E7%BD%91%E6%9C%89%E7%8B%AC%E7%AB%8B-AS"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">1️⃣ 城域网有独立 AS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-%E7%9B%B4%E8%BF%9E%E7%9C%81%E7%BD%91%E6%88%96-AS4837-%E9%AA%A8%E5%B9%B2"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">2️⃣ 直连省网或 AS4837 骨干</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">3️⃣ 特殊情况</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%81%94%E9%80%9A%E8%BF%99%E4%B9%88%E2%80%9C%E7%88%B1%E5%8E%BB%E7%BE%8E%E5%9B%BD%E2%80%9D%EF%BC%9F"><span class="nav-number">1.4.3.</span> <span class="nav-text">为什么联通这么“爱去美国”？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%EF%BC%88CT%EF%BC%89%EF%BC%9A%E6%9C%80%E5%A4%8D%E6%9D%82%EF%BC%8C%E4%B9%9F%E6%9C%80%E2%80%9C%E8%AE%B2%E8%BA%AB%E4%BB%BD%E2%80%9D"><span class="nav-number">1.5.</span> <span class="nav-text">五、中国电信（CT）：最复杂，也最“讲身份”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-%E6%99%AE%E9%80%9A%E5%AE%B6%E5%AE%BD%EF%BC%88%E5%BD%93%E5%89%8D%E4%B8%BB%E6%B5%81%EF%BC%89"><span class="nav-number">1.5.1.</span> <span class="nav-text">1️⃣ 普通家宽（当前主流）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">原因</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-%E4%BC%98%E5%8C%96-IP-%E7%89%B9%E5%AE%9A-CF-%E5%9F%9F%E5%90%8D"><span class="nav-number">1.5.2.</span> <span class="nav-text">2️⃣ 优化 IP &#x2F; 特定 CF 域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-%E7%B2%BE%E5%93%81%E7%BD%91-%E4%B8%93%E7%BA%BF-AS4812"><span class="nav-number">1.5.3.</span> <span class="nav-text">3️⃣ 精品网 &#x2F; 专线 &#x2F; AS4812</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%8C%89%E2%80%9C%E6%98%AF%E5%90%A6%E6%8B%A5%E6%9C%89%E7%8B%AC%E7%AB%8B-AS%E2%80%9D%E6%80%BB%E7%BB%93%E8%A7%84%E5%BE%8B"><span class="nav-number">1.6.</span> <span class="nav-text">六、按“是否拥有独立 AS”总结规律</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8"><span class="nav-number">1.6.1.</span> <span class="nav-text">中国移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E5%9B%BD%E8%81%94%E9%80%9A"><span class="nav-number">1.6.2.</span> <span class="nav-text">中国联通</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1"><span class="nav-number">1.6.3.</span> <span class="nav-text">中国电信</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%BB%93%E8%AF%AD"><span class="nav-number">1.7.</span> <span class="nav-text">七、结语</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">110</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Cloudflare-CDN-Tracing-in-China.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="国内三大运营商访问 Cloudflare CDN的真实路径分析 | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          国内三大运营商访问 Cloudflare CDN的真实路径分析
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-02-06 16:46:22 / 修改时间：16:49:01" itemprop="dateCreated datePublished" datetime="2026-02-06T16:46:22+08:00">2026-02-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="国内三大运营商访问-Cloudflare-CDN的真实路径分析"><a href="#国内三大运营商访问-Cloudflare-CDN的真实路径分析" class="headerlink" title="国内三大运营商访问 Cloudflare CDN的真实路径分析"></a>国内三大运营商访问 Cloudflare CDN的真实路径分析</h1><blockquote>
+<p>本文基于 Cloudflare <code>colo</code> 实测数据、真实用户访问记录以及国内骨干网结构经验，对 <strong>中国移动 &#x2F; 中国联通 &#x2F; 中国电信</strong> 访问 Cloudflare（CF）时的实际出海方向进行整理与分析。</p>
+<p>结论并不基于“理论最优”，而是<strong>当前真实网络环境下的结果</strong>。</p>
+</blockquote>
+<hr>
+<h2 id="一、结论速览（给不想看细节的人）"><a href="#一、结论速览（给不想看细节的人）" class="headerlink" title="一、结论速览（给不想看细节的人）"></a>一、结论速览（给不想看细节的人）</h2><table>
+<thead>
+<tr>
+<th>运营商</th>
+<th>主流命中 CF 节点</th>
+<th>核心特征</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>中国移动</td>
+<td>🇭🇰 香港（HKG）</td>
+<td>最稳定，不爱绕路</td>
+</tr>
+<tr>
+<td>中国联通</td>
+<td>🇺🇸 洛杉矶（LAX）</td>
+<td>城域网 AS 基本全绕美</td>
+</tr>
+<tr>
+<td>中国电信</td>
+<td>🇳🇱 阿姆斯特丹（AMS）为主</td>
+<td>路由最复杂，与 AS 强相关</td>
+</tr>
+</tbody></table>
+<p>一句话总结：</p>
+<blockquote>
+<p><strong>移动走香港，联通绕美国，电信去荷兰；精品网才有资格直连香港。</strong></p>
+</blockquote>
+<hr>
+<h2 id="二、判断依据：Cloudflare-colo"><a href="#二、判断依据：Cloudflare-colo" class="headerlink" title="二、判断依据：Cloudflare colo"></a>二、判断依据：Cloudflare <code>colo</code></h2><p>Cloudflare 在 HTTP 响应头或调试页面中，会返回当前命中的边缘节点代号（<code>colo</code>），例如：</p>
+<ul>
+<li><code>HKG</code> → 香港</li>
+<li><code>LAX</code> → 洛杉矶</li>
+<li><code>AMS</code> → 阿姆斯特丹</li>
+<li><code>SIN</code> → 新加坡</li>
+</ul>
+<p>这可以非常直观地反映：</p>
+<blockquote>
+<p><strong>你的请求最终是从哪个 CF 数据中心回来的。</strong></p>
+</blockquote>
+<hr>
+<h2 id="三、中国移动（CMCC）：几乎全走香港"><a href="#三、中国移动（CMCC）：几乎全走香港" class="headerlink" title="三、中国移动（CMCC）：几乎全走香港"></a>三、中国移动（CMCC）：几乎全走香港</h2><h3 id="实测现象"><a href="#实测现象" class="headerlink" title="实测现象"></a>实测现象</h3><ul>
+<li>绝大多数移动 IP 命中：<code>colo=HKG</code></li>
+<li>常见 IP 段：<code>120.231.*.*</code></li>
+<li>不论南北，不论城域</li>
+</ul>
+<h3 id="网络层面解释"><a href="#网络层面解释" class="headerlink" title="网络层面解释"></a>网络层面解释</h3><ul>
+<li>移动国际出口高度集中</li>
+<li>与 Cloudflare 在 <strong>香港互联质量极佳</strong></li>
+<li>即便城域网拥有独立 AS，也很少被引导绕美</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>✅ <strong>移动是三家里访问 Cloudflare 路径最“正常”的运营商</strong>，延迟低、稳定性好。</p>
+<hr>
+<h2 id="四、中国联通（CU）：绕美是常态"><a href="#四、中国联通（CU）：绕美是常态" class="headerlink" title="四、中国联通（CU）：绕美是常态"></a>四、中国联通（CU）：绕美是常态</h2><h3 id="实测现象-1"><a href="#实测现象-1" class="headerlink" title="实测现象"></a>实测现象</h3><ul>
+<li>大量联通用户命中：<code>colo=LAX</code></li>
+<li>上海 &#x2F; 广州 &#x2F; 浙江 &#x2F; 其他省份表现一致</li>
+</ul>
+<h3 id="核心规律（非常重要）"><a href="#核心规律（非常重要）" class="headerlink" title="核心规律（非常重要）"></a>核心规律（非常重要）</h3><h4 id="1️⃣-城域网有独立-AS"><a href="#1️⃣-城域网有独立-AS" class="headerlink" title="1️⃣ 城域网有独立 AS"></a>1️⃣ 城域网有独立 AS</h4><ul>
+<li><strong>100% 绕美（洛杉矶）</strong></li>
+<li>与地理位置无关</li>
+</ul>
+<h4 id="2️⃣-直连省网或-AS4837-骨干"><a href="#2️⃣-直连省网或-AS4837-骨干" class="headerlink" title="2️⃣ 直连省网或 AS4837 骨干"></a>2️⃣ 直连省网或 AS4837 骨干</h4><ul>
+<li>可命中 <strong>香港 CF 节点</strong></li>
+</ul>
+<h4 id="3️⃣-特殊情况"><a href="#3️⃣-特殊情况" class="headerlink" title="3️⃣ 特殊情况"></a>3️⃣ 特殊情况</h4><ul>
+<li>浙江：HKIX → 13335</li>
+<li>北京：部分情况下直接黑洞（CF 不可达）</li>
+</ul>
+<h3 id="为什么联通这么“爱去美国”？"><a href="#为什么联通这么“爱去美国”？" class="headerlink" title="为什么联通这么“爱去美国”？"></a>为什么联通这么“爱去美国”？</h3><ul>
+<li>联通国际出口历史结构问题</li>
+<li>城域 AS 与国际 Peer 关系弱</li>
+<li>Cloudflare Anycast 在联通侧被“推”向美西</li>
+</ul>
+<p>❌ <strong>联通是三家里对 Cloudflare 体验最差的</strong>。</p>
+<hr>
+<h2 id="五、中国电信（CT）：最复杂，也最“讲身份”"><a href="#五、中国电信（CT）：最复杂，也最“讲身份”" class="headerlink" title="五、中国电信（CT）：最复杂，也最“讲身份”"></a>五、中国电信（CT）：最复杂，也最“讲身份”</h2><p>中国电信的 Cloudflare 路径，<strong>高度依赖用户所处的网络层级</strong>。</p>
+<hr>
+<h3 id="1️⃣-普通家宽（当前主流）"><a href="#1️⃣-普通家宽（当前主流）" class="headerlink" title="1️⃣ 普通家宽（当前主流）"></a>1️⃣ 普通家宽（当前主流）</h3><ul>
+<li>命中：<code>colo=AMS</code>（阿姆斯特丹）</li>
+<li>itdog.cn 多地测试结果：<strong>100% 去 AMS</strong></li>
+</ul>
+<h4 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h4><ul>
+<li>电信拥有直达欧洲的欧陆光缆</li>
+<li>在 <strong>AMSIX 与 Cloudflare 直接 Peer</strong></li>
+<li>去阿姆斯特丹的延迟 <strong>低于去美西</strong></li>
+</ul>
+<p>➡️ 从运营商角度看，这是一个：</p>
+<blockquote>
+<p><strong>成本最低 + 延迟可接受 + 稳定性高</strong> 的选择</p>
+</blockquote>
+<hr>
+<h3 id="2️⃣-优化-IP-特定-CF-域名"><a href="#2️⃣-优化-IP-特定-CF-域名" class="headerlink" title="2️⃣ 优化 IP &#x2F; 特定 CF 域名"></a>2️⃣ 优化 IP &#x2F; 特定 CF 域名</h3><ul>
+<li>命中：<code>colo=SIN</code>（新加坡）</li>
+<li>多见于：<ul>
+<li>人为优选 CF IP</li>
+<li>特定 Anycast 命中</li>
+</ul>
+</li>
+</ul>
+<p>⚠️ 不具备普遍性，稳定性一般。</p>
+<hr>
+<h3 id="3️⃣-精品网-专线-AS4812"><a href="#3️⃣-精品网-专线-AS4812" class="headerlink" title="3️⃣ 精品网 &#x2F; 专线 &#x2F; AS4812"></a>3️⃣ 精品网 &#x2F; 专线 &#x2F; AS4812</h3><ul>
+<li>命中：<code>colo=HKG</code></li>
+<li>特点：<ul>
+<li>直连 AS4134</li>
+<li>不走欧陆</li>
+</ul>
+</li>
+</ul>
+<p>✅ <strong>只有“身份足够高”的电信用户，才能直连香港 CF。</strong></p>
+<hr>
+<h2 id="六、按“是否拥有独立-AS”总结规律"><a href="#六、按“是否拥有独立-AS”总结规律" class="headerlink" title="六、按“是否拥有独立 AS”总结规律"></a>六、按“是否拥有独立 AS”总结规律</h2><h3 id="中国移动"><a href="#中国移动" class="headerlink" title="中国移动"></a>中国移动</h3><ul>
+<li>城域 AS &#x2F; 直连 9808：<ul>
+<li>🇭🇰 香港（HKG）</li>
+</ul>
+</li>
+<li>少数情况：<ul>
+<li>🇺🇸 美国</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="中国联通"><a href="#中国联通" class="headerlink" title="中国联通"></a>中国联通</h3><ul>
+<li>城域 AS：<ul>
+<li>🇺🇸 洛杉矶（LAX）</li>
+</ul>
+</li>
+<li>省网 &#x2F; 4837 骨干：<ul>
+<li>🇭🇰 香港</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="中国电信"><a href="#中国电信" class="headerlink" title="中国电信"></a>中国电信</h3><ul>
+<li>普通家宽 &#x2F; 城域 AS：<ul>
+<li>🇳🇱 阿姆斯特丹（AMS）</li>
+</ul>
+</li>
+<li>精品网 &#x2F; 直连 4134：<ul>
+<li>🇭🇰 香港</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="七、结语"><a href="#七、结语" class="headerlink" title="七、结语"></a>七、结语</h2><p>Cloudflare 在国内的访问路径，并不是简单的“就近原则”，而是：</p>
+<blockquote>
+<p><strong>运营商策略 × AS 结构 × 国际 Peer 关系 × 成本控制</strong> 的综合结果。</p>
+</blockquote>
+<p>如果你在使用 Cloudflare CDN、反代、Tunnel 或自建服务时发现：</p>
+<ul>
+<li>延迟异常高</li>
+<li>明明在国内却跑到欧美</li>
+</ul>
+<p>那<strong>大概率不是你的问题，而是运营商替你做了选择</strong>。</p>
+<hr>
+<blockquote>
+<p>本文仅反映当前阶段的网络现实，不排除未来因 Peer 调整而变化。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Cloudflare-CDN/" rel="tag"># Cloudflare CDN</a>
+              <a href="/tags/Cloudflare-colo/" rel="tag"># Cloudflare colo</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/HuaweiCloud-ECS-Guangzhou.html" rel="prev" title="华为云ECS广州友好用户环境测试记录">
+                  <i class="fa fa-angle-left"></i> 华为云ECS广州友好用户环境测试记录
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">heiok.com</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

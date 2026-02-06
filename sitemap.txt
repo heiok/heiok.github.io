@@ -1,3 +1,4 @@
+https://heiok.com/Cloudflare-CDN-Tracing-in-China.html
 https://heiok.com/HuaweiCloud-ECS-Guangzhou.html
 https://heiok.com/looking-glass.html
 https://heiok.com/HuaweiCloud-ECS-Cairo.html
@@ -165,6 +166,8 @@ https://heiok.com/tags/aliyun/
 https://heiok.com/tags/Centralized-Internet-Gateway/
 https://heiok.com/tags/Cairo/
 https://heiok.com/tags/Guangzhou/
+https://heiok.com/tags/Cloudflare-CDN/
+https://heiok.com/tags/Cloudflare-colo/
 https://heiok.com/categories/Software/
 https://heiok.com/categories/Hardware/
 https://heiok.com/categories/Network/
