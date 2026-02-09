@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">110</span>
+        <span class="site-state-item-count">116</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -376,6 +376,375 @@
 <blockquote>
 <p>本文仅反映当前阶段的网络现实，不排除未来因 Peer 调整而变化。</p>
 </blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Cloudflare-CustomHostname-SaaS.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Cloudflare-CustomHostname-SaaS.html" class="post-title-link" itemprop="url">Cloudflare 域名优选（Custom Hostname / SaaS）设置</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-01-22 18:23:05" itemprop="dateCreated datePublished" datetime="2026-01-22T18:23:05+08:00">2026-01-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-02-09 09:51:44" itemprop="dateModified" datetime="2026-02-09T09:51:44+08:00">2026-02-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="一、必要条件"><a href="#一、必要条件" class="headerlink" title="一、必要条件"></a>一、必要条件</h2><ol>
+<li>Cloudflare 账号需已绑定支付方式（SaaS 为付费功能）</li>
+<li>拥有两个可完全管理的域名</li>
+<li><strong>回源域名必须托管在 Cloudflare</strong></li>
+<li>必须在 Cloudflare 中配置回源（Fallback Origin）</li>
+</ol>
+<hr>
+<h2 id="二、基本设定说明"><a href="#二、基本设定说明" class="headerlink" title="二、基本设定说明"></a>二、基本设定说明</h2><ul>
+<li><strong>访问域名</strong>：<code>b.com</code>（用户访问的域名）</li>
+<li><strong>回源域名</strong>：<code>a.com</code>（托管在 Cloudflare，用于回源）</li>
+</ul>
+<hr>
+<h2 id="三、场景一：a-com-在-CF，b-com-不在-CF"><a href="#三、场景一：a-com-在-CF，b-com-不在-CF" class="headerlink" title="三、场景一：a.com 在 CF，b.com 不在 CF"></a>三、场景一：<code>a.com</code> 在 CF，<code>b.com</code> 不在 CF</h2><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li><p><strong>a.com（CF）</strong></p>
+<ul>
+<li><p>添加回源记录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">origin  A  1.2.3.4</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>状态：<strong>橙云（Proxy ON）</strong></p>
+</li>
+</ul>
+</li>
+<li><p><strong>Cloudflare → SSL&#x2F;TLS → Custom Hostname</strong></p>
+<ul>
+<li>Fallback Origin：<code>origin.a.com</code></li>
+<li>添加 Custom Hostname：<code>www.b.com</code></li>
+</ul>
+</li>
+<li><p><strong>b.com（非 CF 托管）</strong></p>
+<ul>
+<li><p>添加 TXT 记录完成验证</p>
+</li>
+<li><p>添加 CNAME 记录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www  →  优选域名（如 www.visa.cn等）</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="四、场景二：a-com-与-b-com-均在-CF（重点）"><a href="#四、场景二：a-com-与-b-com-均在-CF（重点）" class="headerlink" title="四、场景二：a.com 与 b.com 均在 CF（重点）"></a>四、场景二：<code>a.com</code> 与 <code>b.com</code> 均在 CF（重点）</h2><blockquote>
+<p><strong>关键原则：Custom Hostname 的 DNS Target 不能经过 Cloudflare Proxy</strong></p>
+</blockquote>
+<h3 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li><p><strong>a.com（CF）</strong></p>
+<ul>
+<li><p>添加回源记录（橙云）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">origin  A  1.2.3.4</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>a.com（CF）</strong></p>
+<ul>
+<li><p>添加优选入口（DNS Target）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cdn  CNAME  优选域名（如 www.visa.cn）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>状态：<strong>灰云（DNS only）</strong></p>
+</li>
+</ul>
+</li>
+<li><p><strong>Cloudflare → SSL&#x2F;TLS → Custom Hostname</strong></p>
+<ul>
+<li>Fallback Origin：<code>origin.a.com</code></li>
+<li>添加 Custom Hostname：<code>www.b.com</code></li>
+</ul>
+</li>
+<li><p><strong>b.com（CF）</strong></p>
+<ul>
+<li><p>添加 TXT 记录完成验证</p>
+</li>
+<li><p>添加 CNAME 记录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www  →  cdn.a.com</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>状态：<strong>灰云（DNS only）</strong></p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="五、关于使用优选-IP"><a href="#五、关于使用优选-IP" class="headerlink" title="五、关于使用优选 IP"></a>五、关于使用优选 IP</h2><p>若使用 <strong>优选 IP</strong> 而非优选域名：</p>
+<ul>
+<li>将 DNS Target 的 <code>CNAME</code> 改为 <code>A</code> 记录</li>
+<li>必须为 <strong>DNS only</strong></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Intel-architecture-trigger-circuit-working-principle.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Intel-architecture-trigger-circuit-working-principle.html" class="post-title-link" itemprop="url">Intel架构触发电路工作原理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-01-09 16:48:02" itemprop="dateCreated datePublished" datetime="2026-01-09T16:48:02+08:00">2026-01-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-02-09 09:52:30" itemprop="dateModified" datetime="2026-02-09T09:52:30+08:00">2026-02-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="一、Intel-平台触发电路的总目标"><a href="#一、Intel-平台触发电路的总目标" class="headerlink" title="一、Intel 平台触发电路的总目标"></a>一、Intel 平台触发电路的总目标</h1><p><strong>让 PS_ON# 被 Super I&#x2F;O 拉低，使 ATX 电源工作，从而进入主板 S0 状态。</strong></p>
+<p>这需要三个核心角色共同参与：</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>ATX 电源</strong></td>
+<td>提供 5VSB 和主电源（12&#x2F;5&#x2F;3.3V）</td>
+</tr>
+<tr>
+<td><strong>Super I&#x2F;O（SIO）</strong></td>
+<td>接收开机键、控制 PS_ON#</td>
+</tr>
+<tr>
+<td><strong>PCH（Platform Controller Hub）</strong></td>
+<td>Intel 电源状态机核心（S5→S0）</td>
+</tr>
+</tbody></table>
+<p>整套系统是 Intel 平台的“典型触发设计”。</p>
+<hr>
+<h1 id="二、Intel-平台上电流程总览图"><a href="#二、Intel-平台上电流程总览图" class="headerlink" title="二、Intel 平台上电流程总览图"></a>二、Intel 平台上电流程总览图</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">+5VSB 上电</span><br><span class="line">     ↓</span><br><span class="line">Super I/O 上电（仅依靠 5VSB）</span><br><span class="line">     ↓</span><br><span class="line">FP PWRBTN# 按下</span><br><span class="line">     ↓</span><br><span class="line">SIO → 将按键事件发送给 PCH</span><br><span class="line">     ↓</span><br><span class="line">PCH 决定是否从 S5/S4/S3 唤醒</span><br><span class="line">     ↓</span><br><span class="line">PCH 拉高 SLP_S5# / SLP_S4# / SLP_S3#</span><br><span class="line">（退出睡眠/断电状态）</span><br><span class="line">     ↓</span><br><span class="line">PCH 授权 SIO：可以开机</span><br><span class="line">     ↓</span><br><span class="line">SIO 输出 PS_ON# = 0</span><br><span class="line">     ↓</span><br><span class="line">ATX 电源启动 12V/5V/3.3V</span><br><span class="line">     ↓</span><br><span class="line">ATX 输出 PG（Power Good）</span><br><span class="line">     ↓</span><br><span class="line">PCH 接收到 PG → 释放 PLTRST#、CPURST#、VR_EN</span><br><span class="line">     ↓</span><br><span class="line">CPU 进入 S0 → BIOS 运行</span><br></pre></td></tr></table></figure>
+
+<p>这就是 <strong>Intel 平台的标准触发模型（Power Sequence）</strong>。</p>
+<hr>
+<h1 id="三、详细解释-Intel-上电的每个步骤"><a href="#三、详细解释-Intel-上电的每个步骤" class="headerlink" title="三、详细解释 Intel 上电的每个步骤"></a>三、详细解释 Intel 上电的每个步骤</h1><h2 id="①-ATX-电源先提供-5VSB"><a href="#①-ATX-电源先提供-5VSB" class="headerlink" title="① ATX 电源先提供 +5VSB"></a>① ATX 电源先提供 +5VSB</h2><p>主板断电状态下唯一有电的就是：</p>
+<ul>
+<li>+5VSB → 供给 SIO、PCH 的 RTC&#x2F;一些逻辑</li>
+</ul>
+<p>Intel 规定：</p>
+<blockquote>
+<p><strong>只有 5VSB + SIO 正常工作，开机键才能被识别。</strong></p>
+</blockquote>
+<hr>
+<h2 id="②-Super-I-O-接到前面板按钮"><a href="#②-Super-I-O-接到前面板按钮" class="headerlink" title="② Super I&#x2F;O 接到前面板按钮"></a>② Super I&#x2F;O 接到前面板按钮</h2><p>前面板开关（PWRBTN#）按下：</p>
+<ul>
+<li>信号由 FP Header → 直接进入 <strong>Super I&#x2F;O</strong></li>
+<li>Super I&#x2F;O 并不会自己决定开机<br> 它只会向 PCH 报告“有人按了按键”</li>
+</ul>
+<hr>
+<h2 id="③-PCH-是开机的总裁（S-状态机核心）"><a href="#③-PCH-是开机的总裁（S-状态机核心）" class="headerlink" title="③ PCH 是开机的总裁（S 状态机核心）"></a>③ PCH 是开机的总裁（S 状态机核心）</h2><p>Intel 平台的电源状态完全由 PCH 决定：</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>S5</strong></td>
+<td>软关机，仅 5VSB</td>
+</tr>
+<tr>
+<td><strong>S4</strong></td>
+<td>休眠</td>
+</tr>
+<tr>
+<td><strong>S3</strong></td>
+<td>待机（内存供电）</td>
+</tr>
+<tr>
+<td><strong>S0</strong></td>
+<td>全工作</td>
+</tr>
+</tbody></table>
+<p>按钮事件到达 PCH 后，PCH 会判断：</p>
+<ul>
+<li>当前状态是否允许开机？</li>
+<li>是否要唤醒？</li>
+<li>是否要退出睡眠？</li>
+</ul>
+<p>如果允许开机，PCH 会输出：</p>
+<h3 id="✔-SLP-S5-高"><a href="#✔-SLP-S5-高" class="headerlink" title="✔ SLP_S5# &#x3D; 高"></a>✔ SLP_S5# &#x3D; 高</h3><h3 id="✔-SLP-S4-高"><a href="#✔-SLP-S4-高" class="headerlink" title="✔ SLP_S4# &#x3D; 高"></a>✔ SLP_S4# &#x3D; 高</h3><h3 id="✔-SLP-S3-高"><a href="#✔-SLP-S3-高" class="headerlink" title="✔ SLP_S3# &#x3D; 高"></a>✔ SLP_S3# &#x3D; 高</h3><p>这些信号是 Intel 定义的电源域控制信号。</p>
+<p>“桥输出 S3&#x2F;S4”就是 **SLP_S3# &#x2F; SLP_S4# &#x2F; SLP_S5#**。</p>
+<hr>
+<h2 id="④-PCH-授权-Super-I-O-发出-PS-ON"><a href="#④-PCH-授权-Super-I-O-发出-PS-ON" class="headerlink" title="④ PCH 授权 Super I&#x2F;O 发出 PS_ON#"></a>④ PCH 授权 Super I&#x2F;O 发出 PS_ON#</h2><p>PCH 不直接控制 ATX 电源。<br> 真正拉低 PS_ON# 的是 <strong>Super I&#x2F;O</strong>。</p>
+<p>但 I&#x2F;O 必须等到 PCH 发出“允许上电”后才会执行。</p>
+<p>Intel 规范认为：</p>
+<blockquote>
+<p><strong>只有当 PCH 的睡眠信号 SLP_Sx# 都变为高电平，SIO 才能拉低 PS_ON#。</strong></p>
+</blockquote>
+<p>所以流程是：</p>
+<ul>
+<li>PCH：退出 S5&#x2F;S4&#x2F;S3</li>
+<li>PCH：授权开机</li>
+<li>Super I&#x2F;O：PS_ON# → Low</li>
+</ul>
+<hr>
+<h2 id="⑤-ATX-电源启动并输出主电源"><a href="#⑤-ATX-电源启动并输出主电源" class="headerlink" title="⑤ ATX 电源启动并输出主电源"></a>⑤ ATX 电源启动并输出主电源</h2><p>当 PS_ON# &#x3D; 0：</p>
+<p>ATX 开始输出：</p>
+<ul>
+<li>+12V</li>
+<li>+5V</li>
+<li>+3.3V</li>
+<li>-12V</li>
+</ul>
+<p>并在稳定后输出：</p>
+<h3 id="✔-PG（Power-Good）"><a href="#✔-PG（Power-Good）" class="headerlink" title="✔ PG（Power Good）"></a>✔ PG（Power Good）</h3><hr>
+<h2 id="⑥-PCH-接收到-PG-后，真正开始启动-CPU"><a href="#⑥-PCH-接收到-PG-后，真正开始启动-CPU" class="headerlink" title="⑥ PCH 接收到 PG 后，真正开始启动 CPU"></a>⑥ PCH 接收到 PG 后，真正开始启动 CPU</h2><p>PG 被送给 PCH（不是 CPU）。<br> 之后：</p>
+<ul>
+<li>PCH 拉高 <strong>CPUPWRGD</strong></li>
+<li>VRM 给 CPU 上电</li>
+<li>PCH 释放 <strong>PLTRST#</strong></li>
+<li>CPU 复位完成 → 取指令 → 执行 BIOS</li>
+</ul>
+<p>主机才真正开机。</p>
+<hr>
+<h1 id="四、Intel-平台触发电路的本质总结（关键逻辑）"><a href="#四、Intel-平台触发电路的本质总结（关键逻辑）" class="headerlink" title="四、Intel 平台触发电路的本质总结（关键逻辑）"></a>四、Intel 平台触发电路的本质总结（关键逻辑）</h1><p>一句话总结：</p>
+<blockquote>
+<p><strong>Intel 平台中，PCH 是开机状态机；I&#x2F;O 是 PS_ON# 的执行者；ATX 电源根据 PS_ON# 启动。</strong></p>
+</blockquote>
+<p>拆成三句话：</p>
+<ol>
+<li><strong>按钮按下 → SIO 接收 → PCH 决策</strong></li>
+<li><strong>PCH 决定 S 状态（S5 → S0）并授权</strong></li>
+<li><strong>SIO 拉低 PS_ON# → ATX 启动 → PG → PCH 完成 CPU 上电</strong></li>
+</ol>
 
       
     </div>
@@ -1466,213 +1835,6 @@
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">My traceroute  [v0.95]</span><br><span class="line">ecs-6231 (172.31.12.186) -&gt; 219.135.167.225 (219.135.167.225)                                  2025-10-17T10:00:41+0800</span><br><span class="line">Keys:  Help   Display mode   Restart statistics   Order of fields   quit</span><br><span class="line">                                                                               Packets               Pings</span><br><span class="line"> Hostraceroute  [v0.95]                                                      Loss%   Snt   Last   Avg  Best  Wrst StDev</span><br><span class="line"> 1. AS???    100.66.0.1                                                       0.0%   136   52.5  46.3   3.7  56.9  14.7</span><br><span class="line"> 2. AS749    11.22.17.222                                                     0.0%   136    3.1   3.3   2.7  11.1   1.3</span><br><span class="line"> 3. AS749    11.22.80.139                                                     0.0%   136   52.4  90.8   2.9 2084. 240.2</span><br><span class="line"> 4. (waiting for reply)</span><br><span class="line"> 5. (waiting for reply)</span><br><span class="line"> 6. (waiting for reply)</span><br><span class="line"> 7. (waiting for reply)</span><br><span class="line"> 8. AS749    11.22.97.214                                                     6.6%   136    2.4   3.3   2.2  51.8   4.8</span><br><span class="line"> 9. AS749    11.22.97.61                                                     96.3%   136    1.7   1.5   1.4   1.7   0.1</span><br><span class="line">10. (waiting for reply)</span><br><span class="line">11. (waiting for reply)</span><br><span class="line">12. AS???    172.16.12.157                                                    0.0%   136   35.4  36.2  35.4  49.9   2.4</span><br><span class="line">13. AS23764  121.59.100.45                                                    0.0%   136   35.6  36.1  35.6  64.8   2.8</span><br><span class="line">14. AS???    CN.HKG.CTGNet                                                   69.6%   136   35.3  35.7  35.3  48.2   2.0</span><br><span class="line">15. AS???    CN.HKG.CTGNet                                                    5.2%   136   39.0  40.4  35.6  57.5   4.0</span><br><span class="line">16. AS???    CTCN2.CN.CAN.CTGNet                                             85.2%   136   40.9  40.9  40.8  41.1   0.1</span><br><span class="line">17. AS???    59.43.250.113                                                   32.4%   136   43.2  43.2  42.8  52.0   1.0</span><br><span class="line">18. AS???    59.43.22.34                                                      0.7%   136   43.2  43.4  43.0  62.8   2.0</span><br><span class="line">19. AS4134   183.57.161.10                                                   31.9%   136   45.1  47.1  44.8  71.9   4.3</span><br><span class="line">20. AS4134   219.135.167.225                                                  0.0%   135   50.3  46.9  43.1  51.0   2.2</span><br></pre></td></tr></table></figure></li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/Huaweicloud.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Huaweicloud.html" class="post-title-link" itemprop="url">新开华为云亚太L实例测试</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-10-14 18:26:50 / 修改时间：18:30:43" itemprop="dateCreated datePublished" datetime="2025-10-14T18:26:50+08:00">2025-10-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="香港"><a href="#香港" class="headerlink" title="香港"></a>香港</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">########################################################################</span><br><span class="line">                        IP质量体检报告：150.40.*.*</span><br><span class="line">                    https://github.com/xykt/IPQuality</span><br><span class="line">                 bash &lt;(curl -sL https://Check.Place) -I</span><br><span class="line">         报告时间：2025-10-14 17:17:17 CST  脚本版本：v2025-09-19</span><br><span class="line"> ########################################################################</span><br><span class="line"> 一、基础信息（Maxmind 数据库）</span><br><span class="line"> 自治系统号：            AS136907</span><br><span class="line"> 组织：                  HUAWEI CLOUDS</span><br><span class="line"> 坐标：                  114°10′33″E, 22°17′3″N</span><br><span class="line"> 地图：                  https://check.place/22.2842,114.1759,15,cn</span><br><span class="line"> 城市：                  N/A, 香港</span><br><span class="line"> 使用地：                [HK]香港, [AS]亚洲</span><br><span class="line"> 注册地：                [SG]新加坡</span><br><span class="line"> 时区：                  Asia/Hong_Kong</span><br><span class="line"> IP类型：                 广播IP </span><br><span class="line"> 二、IP类型属性</span><br><span class="line"> 数据库：      IPinfo    ipregistry    ipapi    IP2Location   AbuseIPDB </span><br><span class="line"> 使用类型：     机房        机房        机房        机房        机房 </span><br><span class="line"> 公司类型：     机房        机房        机房        机房 </span><br><span class="line"> 三、风险评分</span><br><span class="line"> 风险等级：      极低         低       中等       高         极高</span><br><span class="line"> IP2Location：   3|低风险</span><br><span class="line"> ipapi：     0.09%|低风险</span><br><span class="line"> AbuseIPDB：    0|低风险</span><br><span class="line"> IPQS：                        75|可疑IP</span><br><span class="line"> DB-IP：         |低风险</span><br><span class="line"> 四、风险因子</span><br><span class="line"> 库： IP2Location ipapi ipregistry IPQS SCAMALYTICS ipdata IPinfo IPWHOIS</span><br><span class="line"> 地区：    [HK]    [HK]    [CN]    [HK]     无     [HK]    [HK]    [HK]</span><br><span class="line"> 代理：     否      否      否      是      无      否      否      否 </span><br><span class="line"> Tor：      否      否      否      否      无      否      否      否 </span><br><span class="line"> VPN：      否      是      否      是      无      无      否      否 </span><br><span class="line"> 服务器：   是      是      是      无      无      否      是      是 </span><br><span class="line"> 滥用：     否      否      否      否      无      否      无      无 </span><br><span class="line"> 机器人：   否      否      无      否      无      无      无      无 </span><br><span class="line"> 五、流媒体及AI服务解锁检测</span><br><span class="line"> 服务商：  TikTok   Disney+  Netflix Youtube  AmazonPV  Spotify  ChatGPT </span><br><span class="line"> 状态：     失败     解锁     解锁     解锁     解锁     屏蔽     仅APP </span><br><span class="line"> 地区：              [HK]     [HK]     [HK]     [HK]              [HK]   </span><br><span class="line"> 方式：              原生     原生     原生     原生              原生 </span><br><span class="line"> 六、邮局连通性及黑名单检测</span><br><span class="line"> 本地25端口出站：阻断</span><br><span class="line"> 通信：远端25端口不可达​</span><br><span class="line"> IP地址黑名单数据库：  有效 439   正常 365   已标记 74   黑名单 0</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">********************************************************************************</span><br><span class="line">                           网络质量体检报告：150.40.*.*</span><br><span class="line">                        https://github.com/xykt/NetQuality</span><br><span class="line">                     bash &lt;(curl -sL https://Check.Place) -N</span><br><span class="line">             报告时间：2025-10-14 17:19:19 CST  脚本版本：v2025-09-18</span><br><span class="line"> ********************************************************************************</span><br><span class="line"> 一、BGP信息（BGP.TOOLS &amp; HE.NET）</span><br><span class="line"> 注册信息：          APNIC, AS136907, Prefix/20</span><br><span class="line"> 注册/修改日期：     NoRecord / 2024-08-13</span><br><span class="line"> 地区：              [HK]Hong Kong, Eastern Asia, Asia</span><br><span class="line"> 地址：              15A Changi Business Park Central 1 Eightrium</span><br><span class="line"> 地理数据供给：      https://res-static.hc-cdn.cn/cloudbu-site/china/zh-cn/IP-location/google-geo-feed.csv</span><br><span class="line"> 二、本地策略</span><br><span class="line"> NAT类型：         全锥形 </span><br><span class="line"> 映射行为：独立映射  过滤行为：端点独立过滤 端口行为：端口保留  环回：支持</span><br><span class="line"> TCP拥塞控制算法：cubic        TCP接收缓冲区（rmem）：4096 131072 3318976</span><br><span class="line"> 队列调度算法：   fq_codel     TCP发送缓冲区（wmem）：4096 16384 3318976</span><br><span class="line"> 三、接入信息（*=Tier1 *=非Tier1 *=上游）</span><br><span class="line"> 互联网交换点接入数：-         上游数量：-         对等互联数量：-</span><br><span class="line"> 五、三网回程路由（线路可能随网络负载动态变化）</span><br><span class="line">   北京 电信    TATA -&gt; 163  </span><br><span class="line"> 地理路径：日本 -&gt; 美国 -&gt; 北京    自治系统路径：AS6453 -&gt; AS4134 -&gt; AS4847 </span><br><span class="line">  5       1.77ms  11.92.*.*                                * DOD</span><br><span class="line"> 10     157.82ms  116.0.*.*    AS6453    [TATA-COMMUNICATIONS]日本 千叶 tatacommunications.com</span><br><span class="line"> 12     164.00ms  207.45.*.*   AS6453                      美国 加利福尼亚 洛杉矶 tatacommunications.com</span><br><span class="line"> 13-14  357.73ms  202.97.*.*   AS4134    [CHINANET-BB]     中国 北京 www.chinatelecom.com.cn 电信</span><br><span class="line"> 16     325.76ms  106.37.*.*   AS4847    [CHINANET-HN]     中国 北京市 朝阳 chinatelecom.cn 电信</span><br><span class="line"> 18     332.09ms  36.112.*.*   AS4847                      中国 北京 chinatelecom.cn</span><br><span class="line"> 19     338.39ms  219.141.*.*  AS4847    [CHINATELECOM-BJ] 中国 北京 chinatelecom.cn</span><br><span class="line"> 21     354.54ms  106.37.*.*   AS4847    [CHINANET-HN]     中国 北京 chinatelecom.cn</span><br><span class="line">   北京 联通    TATA -&gt; 4837  </span><br><span class="line"> 地理路径：香港 -&gt; 日本 -&gt; 澳大利亚 -&gt; 美国 -&gt; 北京    自治系统路径：AS6453 -&gt; AS4837 -&gt; AS4808 </span><br><span class="line">  3       7.35ms  10.92.*.*                                * RFC1918</span><br><span class="line">  5       1.76ms  11.92.*.*                                * DOD</span><br><span class="line"> 10     161.37ms  180.87.*.*   AS6453    [TATA-COMMUNICATIONS]中国 香港 tatacommunications.com</span><br><span class="line"> 11     162.34ms  180.87.*.*   AS6453    [TATA-COMMUNICATIONS]日本 千叶 tatacommunications.com</span><br><span class="line"> 13     162.93ms  180.87.*.*   AS6453    [TATA-COMMUNICATIONS]澳大利亚 新南威尔士州 悉尼 tatacommunications.com</span><br><span class="line"> 14-15  162.69ms  207.45.*.*   AS6453                      美国 加利福尼亚 洛杉矶 tatacommunications.com</span><br><span class="line"> 16     326.11ms  219.158.*.*  AS4837    [CU169-BACKBONE]  中国 北京 chinaunicom.cn 联通</span><br><span class="line"> 20     325.37ms  61.149.*.*   AS4808    [UNICOM-CN]       中国 北京 北京 China Unicom Beijing Province Network</span><br><span class="line"> 25     312.90ms  123.125.*.*  AS4808    [UNICOM-BJ]       中国 北京市 中国联通 联通</span><br><span class="line">   北京 移动    Unknown -&gt; CMI  </span><br><span class="line"> 地理路径：新加坡 -&gt; 北京    自治系统路径：AS58453 -&gt; AS9808 -&gt; AS56048 </span><br><span class="line">  5       1.49ms  11.92.*.*                                * DOD</span><br><span class="line"> 10      43.82ms  223.121.*.*  AS58453   [CMI-INT]         新加坡 cmi.chinamobile.com 移动</span><br><span class="line"> 12     223.17ms  223.120.*.*  AS58453   [CMI-INT]         中国 北京 cmi.chinamobile.com 移动</span><br><span class="line"> 13-16  223.89ms  221.183.*.*  AS9808    [CMNET]           中国 北京 X-I chinamobileltd.com 移动</span><br><span class="line"> 17-19  233.02ms  211.136.*.*  AS56048   [CMNET]           中国 北京 bj.10086.cn 移动</span><br><span class="line"> 23     227.89ms  211.136.*.*  AS56048   [CMNET]           中国 北京 bj.10086.cn 移动</span><br><span class="line">   上海 电信    PCCW -&gt; 163  </span><br><span class="line"> 地理路径：德国 -&gt; 上海    自治系统路径：AS3491 -&gt; AS4134 -&gt; AS4812 </span><br><span class="line">  5       1.25ms  11.92.*.*                                * DOD</span><br><span class="line"> 10     185.54ms  63.223.*.*   AS3491    [PCCW-BACKBONE]   德国 黑森 美因河畔法兰克福 pccwglobal.com</span><br><span class="line"> 11     315.80ms  81.173.*.*   AS4134                      德国 黑森州 美因河畔法兰克福 www.chinatelecom.com.cn 电信</span><br><span class="line"> 12-14  342.96ms  202.97.*.*   AS4134    [CHINANET-BB]     中国 上海 www.chinatelecom.com.cn 电信</span><br><span class="line"> 15-16  378.25ms  61.152.*.*   AS4812    [CHINANET-SH]     中国 上海 chinatelecom.cn 电信</span><br><span class="line"> 22     373.22ms  101.226.*.*  AS4812    [CHINANET-SH]     中国 上海市 chinatelecom.cn 电信</span><br><span class="line">   上海 联通    TATA -&gt; 4837  </span><br><span class="line"> 地理路径：香港 -&gt; 日本 -&gt; 澳大利亚 -&gt; 美国 -&gt; 广东 -&gt; 北京 -&gt; 上海    自治系统路径：AS6453 -&gt; AS4837 -&gt; AS140979 </span><br><span class="line"> 10     160.78ms  180.87.*.*   AS6453    [TATA-COMMUNICATIONS]中国 香港 tatacommunications.com</span><br><span class="line"> 11-12  161.53ms  180.87.*.*   AS6453    [TATA-COMMUNICATIONS]日本 千叶 tatacommunications.com</span><br><span class="line"> 13     165.89ms  180.87.*.*   AS6453    [TATA-COMMUNICATIONS]澳大利亚 新南威尔士州 悉尼 tatacommunications.com</span><br><span class="line"> 14-15  166.21ms  207.45.*.*   AS6453                      美国 加利福尼亚 洛杉矶 tatacommunications.com</span><br><span class="line"> 16     335.47ms  219.158.*.*  AS4837    [CU169-BACKBONE]  中国 广东省 广州市 chinaunicom.cn</span><br><span class="line"> 17     352.89ms  219.158.*.*  AS4837    [CU169-BACKBONE]  中国 北京 chinaunicom.cn 联通</span><br><span class="line"> 26     370.28ms  58.246.*.*   AS140979                    中国 上海市 chinaunicom.cn 联通</span><br><span class="line">   上海 移动    PCCW -&gt; CMI  </span><br><span class="line"> 地理路径：美国 -&gt; 上海    自治系统路径：AS3491 -&gt; AS58453 -&gt; AS9808 </span><br><span class="line">  5       1.17ms  11.92.*.*                                * DOD</span><br><span class="line"> 11     154.63ms  63.220.*.*   AS3491                      美国 加利福尼亚 洛杉矶 pccwglobal.com</span><br><span class="line"> 12     151.90ms  223.120.*.*  AS58453   [CMI-INT]         美国 加利福尼亚 洛杉矶 cmi.chinamobile.com 移动</span><br><span class="line"> 13     341.68ms  223.120.*.*  AS58453   [CMI-INT]         中国 上海 cmi.chinamobile.com 移动</span><br><span class="line"> 14-16  179.71ms  221.183.*.*  AS9808    [CMNET]           中国 上海 X-I chinamobileltd.com 移动</span><br><span class="line"> 22     182.35ms  117.185.*.*  AS9808    [CMNET]           中国 上海市 chinamobileltd.com 移动</span><br><span class="line">   广东 电信    Unknown -&gt; 163  </span><br><span class="line"> 地理路径：美国 -&gt; 广东    自治系统路径：AS4134 </span><br><span class="line">  3      17.06ms  10.92.*.*                                * RFC1918</span><br><span class="line">  5       1.25ms  11.92.*.*                                * DOD</span><br><span class="line"> 10     155.06ms  218.30.*.*   AS4134    [CHINANET-US]     美国 加利福尼亚 洛杉矶 PCCW-CT-PoP www.chinatelecom.com.cn 电信</span><br><span class="line"> 11-13  309.75ms  202.97.*.*   AS4134    [CHINANET-BB]     中国 广东 广州 www.chinatelecom.com.cn 电信</span><br><span class="line"> 15     314.54ms  121.14.*.*   AS4134    [CHINANET-GD]     中国 广东 广州 www.chinatelecom.com.cn 电信</span><br><span class="line"> 18     313.48ms  14.22.*.*    AS4134                      中国 广东 www.chinatelecom.com.cn</span><br><span class="line">   广东 联通    TATA -&gt; 4837  </span><br><span class="line"> 地理路径：香港 -&gt; 日本 -&gt; 美国 -&gt; 广东    自治系统路径：AS6453 -&gt; AS4837 -&gt; AS17816 -&gt; AS134543 </span><br><span class="line">  5       5.78ms  11.92.*.*                                * DOD</span><br><span class="line"> 10     161.40ms  180.87.*.*   AS6453    [TATA-COMMUNICATIONS]中国 香港 tatacommunications.com</span><br><span class="line"> 11     162.52ms  180.87.*.*   AS6453    [TATA-COMMUNICATIONS]日本 千叶 tatacommunications.com</span><br><span class="line"> 14-15  162.61ms  207.45.*.*   AS6453                      美国 加利福尼亚 洛杉矶 tatacommunications.com</span><br><span class="line"> 16     330.06ms  219.158.*.*  AS4837    [CU169-BACKBONE]  中国 广东省 广州市 chinaunicom.cn</span><br><span class="line"> 17     349.77ms  219.158.*.*  AS4837    [CU169-BACKBONE]  中国 北京 chinaunicom.cn</span><br><span class="line"> 20     366.43ms  157.148.*.*  AS17816   [UNICOM-GD]       中国 广东 东莞市 chinaunicom.cn 联通</span><br><span class="line"> 21     363.79ms  120.80.*.*   AS134543  [APNIC-AP]        中国 广东 东莞市 chinaunicom.cn 联通</span><br><span class="line"> 28     361.57ms  157.148.*.*  AS134543  [UNICOM-GD]       中国 广东 东莞 chinaunicom.cn</span><br><span class="line">   广东 移动    TATA -&gt; CMI  </span><br><span class="line"> 地理路径：日本 -&gt; 广东    自治系统路径：AS6453 -&gt; AS58453 -&gt; AS9808 -&gt; AS56040 -&gt; AS9808 </span><br><span class="line">  5       1.81ms  11.92.*.*                                * DOD</span><br><span class="line"> 10-12   46.87ms  209.58.*.*   AS6453    [TATAC-ARIN]      日本 东京都 东京 tatacommunications.com</span><br><span class="line"> 13      53.76ms  223.120.*.*  AS58453   [CMI-INT]         中国 广东 广州 cmi.chinamobile.com 移动</span><br><span class="line"> 14-15   52.60ms  221.183.*.*  AS9808    [CMNET]           中国 广东 广州 chinamobileltd.com 移动</span><br><span class="line"> 18-19   82.09ms  211.136.*.*  AS56040   [CMNET]           中国 广东 广州 gd.10086.cn 移动</span><br><span class="line"> 20     247.16ms  120.196.*.*  AS56040   [APNIC-AP]        中国 广东 广州 gd.10086.cn</span><br><span class="line"> 26     243.14ms  183.232.*.*  AS9808    [APNIC-AP]        中国 广东 东莞 chinamobileltd.com</span><br></pre></td></tr></table></figure>
-
-<h2 id="新加坡"><a href="#新加坡" class="headerlink" title="新加坡"></a>新加坡</h2><p>新加坡IP好看点，移动回程经PCCW稍好。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">########################################################################</span><br><span class="line">                       IP质量体检报告：188.239.*.*</span><br><span class="line">                    https://github.com/xykt/IPQuality</span><br><span class="line">                 bash &lt;(curl -sL https://Check.Place) -I</span><br><span class="line">         报告时间：2025-10-14 17:43:07 CST  脚本版本：v2025-09-19</span><br><span class="line"> ########################################################################</span><br><span class="line"> 一、基础信息（Maxmind 数据库）</span><br><span class="line"> 自治系统号：            AS136907</span><br><span class="line"> 组织：                  HUAWEI CLOUDS</span><br><span class="line"> 坐标：                  103°51′3″E, 1°17′14″N</span><br><span class="line"> 地图：                  https://check.place/1.2872,103.8507,15,cn</span><br><span class="line"> 城市：                  N/A, 新加坡, 17</span><br><span class="line"> 使用地：                [SG]新加坡, [AS]亚洲</span><br><span class="line"> 注册地：                [SG]新加坡</span><br><span class="line"> 时区：                  Asia/Singapore</span><br><span class="line"> IP类型：                 原生IP </span><br><span class="line"> 二、IP类型属性</span><br><span class="line"> 数据库：      IPinfo    ipregistry    ipapi    IP2Location   AbuseIPDB </span><br><span class="line"> 使用类型：     机房        机房        机房        机房        机房 </span><br><span class="line"> 公司类型：     机房        机房        机房        机房 </span><br><span class="line"> 三、风险评分</span><br><span class="line"> 风险等级：      极低         低       中等       高         极高</span><br><span class="line"> IP2Location：   3|低风险</span><br><span class="line"> ipapi：                                    10.51%|高风险</span><br><span class="line"> AbuseIPDB：    0|低风险</span><br><span class="line"> IPQS：                        75|可疑IP</span><br><span class="line"> DB-IP：         |低风险</span><br><span class="line"> 四、风险因子</span><br><span class="line"> 库： IP2Location ipapi ipregistry IPQS SCAMALYTICS ipdata IPinfo IPWHOIS</span><br><span class="line"> 地区：    [SG]    [SG]    [SG]    [SG]     无     [SG]    [SG]    [SG]</span><br><span class="line"> 代理：     否      否      否      是      无      否      否      否 </span><br><span class="line"> Tor：      否      否      否      否      无      否      否      否 </span><br><span class="line"> VPN：      否      是      否      是      无      无      否      否 </span><br><span class="line"> 服务器：   是      是      是      无      无      否      是      是 </span><br><span class="line"> 滥用：     否      否      否      否      无      否      无      无 </span><br><span class="line"> 机器人：   否      否      无      否      无      无      无      无 </span><br><span class="line"> 五、流媒体及AI服务解锁检测</span><br><span class="line"> 服务商：  TikTok   Disney+  Netflix Youtube  AmazonPV  Spotify  ChatGPT </span><br><span class="line"> 状态：     解锁     屏蔽    仅自制    解锁     解锁     屏蔽     解锁 </span><br><span class="line"> 地区：     [SG]              [SG]     [SG]     [SG]              [SG]   </span><br><span class="line"> 方式：     原生              原生     原生     原生              原生 </span><br><span class="line"> 六、邮局连通性及黑名单检测</span><br><span class="line"> 本地25端口出站：阻断</span><br><span class="line"> 通信：远端25端口不可达​</span><br><span class="line"> IP地址黑名单数据库：  有效 439   正常 359   已标记 80   黑名单 0</span><br><span class="line"> ========================================================================</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">********************************************************************************</span><br><span class="line">                          网络质量体检报告：188.239.*.*</span><br><span class="line">                        https://github.com/xykt/NetQuality</span><br><span class="line">                     bash &lt;(curl -sL https://Check.Place) -N</span><br><span class="line">             报告时间：2025-10-14 17:46:14 CST  脚本版本：v2025-09-18</span><br><span class="line"> ********************************************************************************</span><br><span class="line"> 一、BGP信息（BGP.TOOLS &amp; HE.NET）</span><br><span class="line"> 注册信息：          APNIC, AS136907, Prefix/20</span><br><span class="line"> 注册/修改日期：     NoRecord / 2024-08-07</span><br><span class="line"> 地区：              [SG]Singapore, South-eastern Asia, Asia</span><br><span class="line"> 地址：              15A Changi Business Park Central 1 Eightrium</span><br><span class="line"> 地理数据供给：      https://res-static.hc-cdn.cn/cloudbu-site/china/zh-cn/IP-location/google-geo-feed.csv</span><br><span class="line"> 二、本地策略</span><br><span class="line"> NAT类型：         全锥形 </span><br><span class="line"> 映射行为：独立映射  过滤行为：端点独立过滤 端口行为：端口保留  环回：支持</span><br><span class="line"> TCP拥塞控制算法：cubic        TCP接收缓冲区（rmem）：4096 131072 3318976</span><br><span class="line"> 队列调度算法：   fq_codel     TCP发送缓冲区（wmem）：4096 16384 3318976</span><br><span class="line"> 三、接入信息（*=Tier1 *=非Tier1 *=上游）</span><br><span class="line"> 互联网交换点接入数：-         上游数量：-         对等互联数量：-</span><br><span class="line"> 五、三网回程路由（线路可能随网络负载动态变化）</span><br><span class="line">   北京 电信    TATA -&gt; 163  </span><br><span class="line"> 地理路径：日本 -&gt; 澳大利亚 -&gt; 美国 -&gt; 北京    自治系统路径：AS6453 -&gt; AS4134 -&gt; AS4847 </span><br><span class="line">  5       1.92ms  11.23.*.*                                * DOD</span><br><span class="line"> 10     175.07ms  180.87.*.*   AS6453    [TATA-COMMUNICATIONS]日本 千叶 tatacommunications.com</span><br><span class="line"> 11     174.82ms  180.87.*.*   AS6453    [TATA-COMMUNICATIONS]澳大利亚 新南威尔士州 悉尼 tatacommunications.com</span><br><span class="line"> 12     194.71ms  207.45.*.*   AS6453                      美国 加利福尼亚 洛杉矶 tatacommunications.com</span><br><span class="line"> 13-14  343.33ms  202.97.*.*   AS4134    [CHINANET-BB]     中国 北京 www.chinatelecom.com.cn 电信</span><br><span class="line"> 18     366.76ms  36.112.*.*   AS4847                      中国 北京 chinatelecom.cn</span><br><span class="line"> 19     360.36ms  219.141.*.*  AS4847    [CHINATELECOM-BJ] 中国 北京 chinatelecom.cn</span><br><span class="line"> 21     343.45ms  106.37.*.*   AS4847    [CHINANET-HN]     中国 北京 chinatelecom.cn</span><br><span class="line">   北京 联通    Unknown -&gt; 4837  </span><br><span class="line"> 地理路径：北京    自治系统路径：AS4837 -&gt; AS4808 </span><br><span class="line">  5       2.32ms  11.22.*.*                                * DOD</span><br><span class="line"> 11-12  216.42ms  219.158.*.*  AS4837    [CU169-BACKBONE]  中国 北京市 chinaunicom.cn</span><br><span class="line"> 13-14  205.07ms  124.65.*.*   AS4808    [UNICOM-BJ]       中国 北京 中国联通 联通</span><br><span class="line"> 19     205.61ms  123.125.*.*  AS4808    [UNICOM-BJ]       中国 北京市 中国联通 联通</span><br><span class="line">   北京 移动    Unknown -&gt; CMI  </span><br><span class="line"> 地理路径：北京    自治系统路径：AS58453 -&gt; AS9808 -&gt; AS56048 </span><br><span class="line">  3      10.19ms  10.25.*.*                                * RFC1918</span><br><span class="line">  5       1.62ms  11.23.*.*                                * DOD</span><br><span class="line"> 12      93.31ms  223.120.*.*  AS58453   [CMI-INT]         中国 北京 cmi.chinamobile.com 移动</span><br><span class="line"> 13-14   93.83ms  221.183.*.*  AS9808    [CMNET]           中国 北京 X-I chinamobileltd.com 移动</span><br><span class="line"> 18-19   96.81ms  211.136.*.*  AS56048   [CMNET]           中国 北京 bj.10086.cn 移动</span><br><span class="line"> 22      95.77ms  211.136.*.*  AS56048   [CMNET]           中国 北京 bj.10086.cn 移动</span><br><span class="line">   上海 电信    Unknown -&gt; 163  </span><br><span class="line"> 地理路径：德国 -&gt; 上海    自治系统路径：AS4134 -&gt; AS4812 </span><br><span class="line">  5       9.37ms  11.22.*.*                                * DOD</span><br><span class="line"> 11     343.02ms  81.173.*.*   AS4134                      德国 黑森州 美因河畔法兰克福 www.chinatelecom.com.cn 电信</span><br><span class="line"> 13-14  343.43ms  202.97.*.*   AS4134    [CHINANET-BB]     中国 上海 www.chinatelecom.com.cn 电信</span><br><span class="line"> 15-16  320.73ms  61.152.*.*   AS4812    [CHINANET-SH]     中国 上海 chinatelecom.cn 电信</span><br><span class="line"> 22     324.11ms  101.226.*.*  AS4812    [CHINANET-SH]     中国 上海市 chinatelecom.cn 电信</span><br><span class="line">   上海 联通    TATA -&gt; 4837  </span><br><span class="line"> 地理路径：美国 -&gt; 广东 -&gt; 北京 -&gt; 上海    自治系统路径：AS6453 -&gt; AS4837 -&gt; AS140979 </span><br><span class="line">  5       2.24ms  11.23.*.*                                * DOD</span><br><span class="line"> 13-14  175.87ms  207.45.*.*   AS6453                      美国 加利福尼亚 洛杉矶 tatacommunications.com</span><br><span class="line"> 15     336.91ms  219.158.*.*  AS4837    [CU169-BACKBONE]  中国 广东省 广州市 chinaunicom.cn</span><br><span class="line"> 16     343.18ms  219.158.*.*  AS4837    [CU169-BACKBONE]  中国 北京 chinaunicom.cn</span><br><span class="line"> 25     343.04ms  58.246.*.*   AS140979                    中国 上海市 chinaunicom.cn 联通</span><br><span class="line">   上海 移动    Unknown -&gt; CMI  </span><br><span class="line"> 地理路径：上海    自治系统路径：AS9808 </span><br><span class="line"> 13-15  192.67ms  221.183.*.*  AS9808    [CMNET]           中国 上海 X-I chinamobileltd.com 移动</span><br><span class="line"> 21      69.09ms  117.185.*.*  AS9808    [CMNET]           中国 上海市 chinamobileltd.com 移动</span><br><span class="line">   广东 电信    TATA -&gt; 163  </span><br><span class="line"> 地理路径：日本 -&gt; 美国 -&gt; 广东    自治系统路径：AS6453 -&gt; AS4134 </span><br><span class="line">  5       1.61ms  11.23.*.*                                * DOD</span><br><span class="line"> 11     172.84ms  116.0.*.*    AS6453    [TATA-COMMUNICATIONS]日本 千叶 tatacommunications.com</span><br><span class="line"> 13     279.54ms  207.45.*.*   AS6453                      美国 加利福尼亚 洛杉矶 tatacommunications.com</span><br><span class="line"> 14-16  337.72ms  202.97.*.*   AS4134    [CHINANET-BB]     中国 广东 广州 www.chinatelecom.com.cn 电信</span><br><span class="line"> 17     344.66ms  113.96.*.*   AS4134    [CHINANET-GD]     中国 广东 广州 www.chinatelecom.com.cn 电信</span><br><span class="line"> 18     338.77ms  183.60.*.*   AS4134    [APNIC-AP]        中国 广东 广州 www.chinatelecom.com.cn</span><br><span class="line"> 21     338.78ms  14.22.*.*    AS4134                      中国 广东 www.chinatelecom.com.cn</span><br><span class="line">   广东 联通    Unknown -&gt; 4837  </span><br><span class="line"> 地理路径：上海 -&gt; 广东    自治系统路径：AS4837 -&gt; AS17816 -&gt; AS134543 </span><br><span class="line">  5       2.68ms  11.23.*.*                                * DOD</span><br><span class="line"> 11     198.45ms  219.158.*.*  AS4837    [CU169-BACKBONE]  中国 上海 chinaunicom.cn 联通</span><br><span class="line"> 13     224.59ms  120.86.*.*   AS17816   [APNIC-AP]        中国 广东 东莞市 chinaunicom.cn 联通</span><br><span class="line"> 14     252.58ms  120.80.*.*   AS134543  [APNIC-AP]        中国 广东 东莞市 chinaunicom.cn</span><br><span class="line"> 21     239.99ms  157.148.*.*  AS134543  [UNICOM-GD]       中国 广东 东莞 chinaunicom.cn</span><br><span class="line">   广东 移动    PCCW -&gt; CMI  </span><br><span class="line"> 地理路径：香港 -&gt; 广东    自治系统路径：AS3491 -&gt; AS58453 -&gt; AS9808 -&gt; AS56040 -&gt; AS9808 </span><br><span class="line">  4-5    32.21ms  11.22.*.*                                * DOD</span><br><span class="line"> 10      40.03ms  63.223.*.*   AS3491    [PCCW-BACKBONE]   中国 香港 pccwglobal.com</span><br><span class="line"> 11      40.77ms  63.217.*.*   AS3491    [PCCWG]           中国 香港 pccwglobal.com</span><br><span class="line"> 13      47.59ms  223.120.*.*  AS58453   [CMI-INT]         中国 广东 广州 cmi.chinamobile.com</span><br><span class="line"> 14-17   81.12ms  221.183.*.*  AS9808    [CMNET]           中国 广东 广州 chinamobileltd.com 移动</span><br><span class="line"> 18      95.33ms  183.235.*.*  AS56040   [APNIC-AP]        中国 广东 广州 gd.10086.cn 移动</span><br><span class="line"> 19      73.57ms  221.179.*.*  AS56040   [CMNET]           中国 广东 广州 gd.10086.cn</span><br><span class="line"> 26      75.40ms  183.232.*.*  AS9808    [APNIC-AP]        中国 广东 东莞 chinamobileltd.com</span><br><span class="line"> ================================================================================</span><br></pre></td></tr></table></figure>
-
-<h2 id="绕路IP"><a href="#绕路IP" class="headerlink" title="绕路IP"></a>绕路IP</h2><ul>
-<li>香港：183.87  |  150.40</li>
-<li>新加坡：111.91 |  188.239 移动友好</li>
-</ul>
-<p>2025年6月后开的华为云L实例应大多都是以上绕路网段！！！</p>
-<h2 id="直连IP"><a href="#直连IP" class="headerlink" title="直连IP"></a>直连IP</h2><ul>
-<li>新加坡 <ul>
-<li>94.74.90.1</li>
-<li>159.138.89.20</li>
-<li>114.119.186.2</li>
-<li>166.108.206.1</li>
-<li>111.119.237.168</li>
-<li>190.92.219.222</li>
-<li>124.243</li>
-</ul>
-</li>
-<li>香港<ul>
-<li>119</li>
-</ul>
-</li>
-</ul>
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://console.huaweicloud.com/smb/next/?region=ap-southeast-1#/create</span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/Manually-download-Bilibili-videos.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Manually-download-Bilibili-videos.html" class="post-title-link" itemprop="url">手动下载Bilibili视频</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-10-14 15:54:54 / 修改时间：16:05:44" itemprop="dateCreated datePublished" datetime="2025-10-14T15:54:54+08:00">2025-10-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/IPTV/" itemprop="url" rel="index"><span itemprop="name">IPTV</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="提取BV号"><a href="#提取BV号" class="headerlink" title="提取BV号"></a>提取BV号</h2><ol>
-<li>Edge浏览器打开合集页面<a target="_blank" rel="noopener" href="https://space.bilibili.com/95117517/lists/4372632?type=season">https://space.bilibili.com/95117517/lists/4372632?type=season</a></li>
-<li>按键盘F12打开开发工具，切到<strong>Console（控制台）</strong> 标签页</li>
-<li>输入以下代码提取BV号</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.clear();</span><br><span class="line">const bvs = [...document.querySelectorAll(&#x27;a[href*=&quot;/video/BV&quot;]&#x27;)]</span><br><span class="line">  .map(a =&gt; a.href.match(/BV[0-9A-Za-z]+/)[0])</span><br><span class="line">  .filter((v, i, a) =&gt; a.indexOf(v) === i);</span><br><span class="line"></span><br><span class="line">bvs.forEach(bv =&gt; console.log(bv));</span><br><span class="line">console.log(`\n共提取到 $&#123;bvs.length&#125; 个BV号`);</span><br></pre></td></tr></table></figure>
-
-<h2 id="整理文件"><a href="#整理文件" class="headerlink" title="整理文件"></a>整理文件</h2><p>复制控制台文件并处理，保存为bv_list.txt，如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">BV1fr4kzBEY1</span><br><span class="line">BV1e2idY1EsV</span><br><span class="line">BV1wni6YEEnp</span><br><span class="line">BV1RXqpYxEjs</span><br><span class="line">BV1cLqkYWET6</span><br><span class="line">BV1WbqXYsEu4</span><br><span class="line">BV13yBuYEEzC</span><br><span class="line">BV1yJBFYCEs8</span><br><span class="line">BV1dcBwYeE7M</span><br><span class="line">BV1xSknYEEBi</span><br><span class="line">BV1gRk6Y2Efh</span><br><span class="line">BV1jpk8YZE4x</span><br><span class="line">BV1b1CKYUEYq</span><br><span class="line">BV1CZkoYUESn</span><br><span class="line">BV1CWCYYmEmp</span><br><span class="line">BV1rAC8YvELM</span><br><span class="line">BV1AG6bYfEAz</span><br><span class="line">BV1DE68YCESP</span><br><span class="line">BV1kEKNeoEUJ</span><br><span class="line">BV1Hx6ZYkEvG</span><br><span class="line">BV15VrLYyEcU</span><br><span class="line">BV1xZrXYuE42</span><br><span class="line">BV1tcrvYsEim</span><br><span class="line">BV19pcnerEhv</span><br><span class="line">BV1JqccehEWt</span><br></pre></td></tr></table></figure>
-
-<h2 id="批量下载"><a href="#批量下载" class="headerlink" title="批量下载"></a>批量下载</h2><p>在 PowerShell 中直接复制并运行以下完整命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># 进入工作目录</span><br><span class="line">cd &quot;G:\ffmpeg-7.0-essentials_build\bin&quot;</span><br><span class="line"></span><br><span class="line"># 创建 bv_list.txt（就在当前目录）</span><br><span class="line">@&quot;</span><br><span class="line">BV1fr4kzBEY1</span><br><span class="line">BV1e2idY1EsV</span><br><span class="line">BV1wni6YEEnp</span><br><span class="line">BV1RXqpYxEjs</span><br><span class="line">BV1cLqkYWET6</span><br><span class="line">BV1WbqXYsEu4</span><br><span class="line">BV13yBuYEEzC</span><br><span class="line">BV1yJBFYCEs8</span><br><span class="line">BV1dcBwYeE7M</span><br><span class="line">BV1xSknYEEBi</span><br><span class="line">BV1gRk6Y2Efh</span><br><span class="line">BV1jpk8YZE4x</span><br><span class="line">BV1b1CKYUEYq</span><br><span class="line">BV1CZkoYUESn</span><br><span class="line">BV1CWCYYmEmp</span><br><span class="line">BV1rAC8YvELM</span><br><span class="line">BV1AG6bYfEAz</span><br><span class="line">BV1DE68YCESP</span><br><span class="line">BV1kEKNeoEUJ</span><br><span class="line">BV1Hx6ZYkEvG</span><br><span class="line">BV15VrLYyEcU</span><br><span class="line">BV1xZrXYuE42</span><br><span class="line">BV1tcrvYsEim</span><br><span class="line">BV19pcnerEhv</span><br><span class="line">BV1JqccehEWt</span><br><span class="line">&quot;@ | Out-File -Encoding UTF8 &quot;.\bv_list.txt&quot;</span><br><span class="line"></span><br><span class="line"># 逐行读取并下载</span><br><span class="line">Get-Content &quot;.\bv_list.txt&quot; | ForEach-Object &#123;</span><br><span class="line">    Write-Host &quot;正在下载 $_ ...&quot; -ForegroundColor Yellow</span><br><span class="line">    .\BBDown.exe $_ -tv</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Write-Host &quot;`n全部下载完成！&quot; -ForegroundColor Green</span><br></pre></td></tr></table></figure>
-
-<h2 id="处理过程"><a href="#处理过程" class="headerlink" title="处理过程"></a>处理过程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br></pre></td><td class="code"><pre><span class="line">正在下载 BV1xZrXYuE42 ...</span><br><span class="line">BBDown version 1.6.3, Bilibili Downloader.</span><br><span class="line">遇到问题请首先到以下地址查阅有无相关信息：</span><br><span class="line">https://github.com/nilaoda/BBDown/issues</span><br><span class="line"></span><br><span class="line">[2025-10-14 14:51:08.217] - 检测账号登录...</span><br><span class="line">[2025-10-14 14:51:08.307] - 获取aid...</span><br><span class="line">[2025-10-14 14:51:08.705] - 获取aid结束: 113788061748358</span><br><span class="line">[2025-10-14 14:51:08.706] - 获取视频信息...</span><br><span class="line">[2025-10-14 14:51:08.782] - 视频标题: 德鲁比（Droopy）【视频修复+字幕压制】第21集</span><br><span class="line">[2025-10-14 14:51:08.782] - 发布时间: 2025-01-08 00:45:55 +08:00</span><br><span class="line">[2025-10-14 14:51:08.783] - UP主页: https://space.bilibili.com/95117517</span><br><span class="line">[2025-10-14 14:51:08.784] - P1: [28418707036] [德鲁比（Droopy）【视频修复+字幕压制】第21集] [07m51s]</span><br><span class="line">[2025-10-14 14:51:08.784] - 共计 1 个分P, 已选择：ALL</span><br><span class="line">[2025-10-14 14:51:08.785] - 开始解析P1: 113788061748358... (1 of 1)</span><br><span class="line">[2025-10-14 14:51:09.137] - 跳过下载AI字幕</span><br><span class="line">[2025-10-14 14:51:09.292] - 共计4条视频流.</span><br><span class="line">                            0. [720P 高清] [AVC] [589 kbps] [~33.05 MB]</span><br><span class="line">                            1. [720P 高清] [HEVC] [289 kbps] [~16.22 MB]</span><br><span class="line">                            2. [480P 清晰] [AVC] [353 kbps] [~19.81 MB]</span><br><span class="line">                            3. [480P 清晰] [HEVC] [184 kbps] [~10.35 MB]</span><br><span class="line">[2025-10-14 14:51:09.295] - 共计3条音频流.</span><br><span class="line">                            0. [M4A] [72 kbps] [~4.14 MB]</span><br><span class="line">                            1. [M4A] [60 kbps] [~3.45 MB]</span><br><span class="line">                            2. [M4A] [28 kbps] [~1.61 MB]</span><br><span class="line">[2025-10-14 14:51:09.297] - 已选择的流:</span><br><span class="line">                            [视频] [720P 高清] [AVC] [589 kbps] [~33.05 MB]</span><br><span class="line">                            [音频] [M4A] [72 kbps] [~4.14 MB]</span><br><span class="line">[2025-10-14 14:51:09.298] - 尝试将视频流强制替换为upos-sz-mirrorcoso1.bilivideo.com……</span><br><span class="line">[2025-10-14 14:51:09.298] - 尝试将音频流强制替换为upos-sz-mirrorcoso1.bilivideo.com……</span><br><span class="line">[2025-10-14 14:51:09.299] - 开始下载P1视频...</span><br><span class="line">[2025-10-14 14:51:31.830] - 合并视频分片...</span><br><span class="line">[2025-10-14 14:51:31.857] - 清理分片...</span><br><span class="line">[2025-10-14 14:51:31.862] - 开始下载P1音频...</span><br><span class="line">[2025-10-14 14:51:37.793] - 合并音频分片...</span><br><span class="line">[2025-10-14 14:51:37.794] - 清理分片...</span><br><span class="line">[2025-10-14 14:51:37.795] - 下载P1完毕</span><br><span class="line">[2025-10-14 14:51:37.795] - 开始合并音视频...</span><br><span class="line">[2025-10-14 14:51:38.025] - 清理临时文件...</span><br><span class="line">[2025-10-14 14:51:38.231] - 任务完成</span><br><span class="line">正在下载 BV1tcrvYsEim ...</span><br><span class="line">BBDown version 1.6.3, Bilibili Downloader.</span><br><span class="line">遇到问题请首先到以下地址查阅有无相关信息：</span><br><span class="line">https://github.com/nilaoda/BBDown/issues</span><br><span class="line"></span><br><span class="line">[2025-10-14 14:51:38.290] - 检测账号登录...</span><br><span class="line">[2025-10-14 14:51:38.373] - 获取aid...</span><br><span class="line">[2025-10-14 14:51:38.919] - 获取aid结束: 113793464076835</span><br><span class="line">[2025-10-14 14:51:38.920] - 获取视频信息...</span><br><span class="line">[2025-10-14 14:51:38.976] - 视频标题: 德鲁比（Droopy）【视频修复+字幕压制】第22集</span><br><span class="line">[2025-10-14 14:51:38.977] - 发布时间: 2025-01-08 23:37:30 +08:00</span><br><span class="line">[2025-10-14 14:51:38.978] - UP主页: https://space.bilibili.com/95117517</span><br><span class="line">[2025-10-14 14:51:38.978] - P1: [28422442369] [德鲁比（Droopy）【视频修复+字幕压制】第22集] [07m22s]</span><br><span class="line">[2025-10-14 14:51:38.979] - 共计 1 个分P, 已选择：ALL</span><br><span class="line">[2025-10-14 14:51:38.979] - 开始解析P1: 113793464076835... (1 of 1)</span><br><span class="line">[2025-10-14 14:51:39.382] - 跳过下载AI字幕</span><br><span class="line">[2025-10-14 14:51:39.536] - 共计4条视频流.</span><br><span class="line">                            0. [720P 高清] [AVC] [649 kbps] [~34.17 MB]</span><br><span class="line">                            1. [720P 高清] [HEVC] [274 kbps] [~14.44 MB]</span><br><span class="line">                            2. [480P 清晰] [AVC] [358 kbps] [~18.87 MB]</span><br><span class="line">                            3. [480P 清晰] [HEVC] [202 kbps] [~10.66 MB]</span><br><span class="line">[2025-10-14 14:51:39.540] - 共计3条音频流.</span><br><span class="line">                            0. [M4A] [72 kbps] [~3.88 MB]</span><br><span class="line">                            1. [M4A] [60 kbps] [~3.24 MB]</span><br><span class="line">                            2. [M4A] [28 kbps] [~1.51 MB]</span><br><span class="line">[2025-10-14 14:51:39.542] - 已选择的流:</span><br><span class="line">                            [视频] [720P 高清] [AVC] [649 kbps] [~34.17 MB]</span><br><span class="line">                            [音频] [M4A] [72 kbps] [~3.88 MB]</span><br><span class="line">[2025-10-14 14:51:39.543] - 尝试将视频流强制替换为upos-sz-mirrorcoso1.bilivideo.com……</span><br><span class="line">[2025-10-14 14:51:39.543] - 尝试将音频流强制替换为upos-sz-mirrorcoso1.bilivideo.com……</span><br><span class="line">[2025-10-14 14:51:39.543] - 开始下载P1视频...</span><br><span class="line">[2025-10-14 14:52:03.064] - 合并视频分片...</span><br><span class="line">[2025-10-14 14:52:03.092] - 清理分片...</span><br><span class="line">[2025-10-14 14:52:03.098] - 开始下载P1音频...</span><br><span class="line">[2025-10-14 14:52:07.341] - 合并音频分片...</span><br><span class="line">[2025-10-14 14:52:07.342] - 清理分片...</span><br><span class="line">[2025-10-14 14:52:07.343] - 下载P1完毕</span><br><span class="line">[2025-10-14 14:52:07.343] - 开始合并音视频...</span><br><span class="line">[2025-10-14 14:52:07.539] - 清理临时文件...</span><br><span class="line">[2025-10-14 14:52:07.745] - 任务完成</span><br><span class="line">正在下载 BV19pcnerEhv ...</span><br><span class="line">BBDown version 1.6.3, Bilibili Downloader.</span><br><span class="line">遇到问题请首先到以下地址查阅有无相关信息：</span><br><span class="line">https://github.com/nilaoda/BBDown/issues</span><br><span class="line"></span><br><span class="line">[2025-10-14 14:52:07.874] - 检测账号登录...</span><br><span class="line">[2025-10-14 14:52:07.966] - 获取aid...</span><br><span class="line">[2025-10-14 14:52:08.296] - 获取aid结束: 113804620859333</span><br><span class="line">[2025-10-14 14:52:08.297] - 获取视频信息...</span><br><span class="line">[2025-10-14 14:52:08.353] - 视频标题: 德鲁比（Droopy）【视频修复+字幕压制】第23集</span><br><span class="line">[2025-10-14 14:52:08.354] - 发布时间: 2025-01-10 23:48:09 +08:00</span><br><span class="line">[2025-10-14 14:52:08.354] - UP主页: https://space.bilibili.com/95117517</span><br><span class="line">[2025-10-14 14:52:08.355] - P1: [28494070316] [德鲁比（Droopy）【视频修复+字幕压制】第23集] [07m54s]</span><br><span class="line">[2025-10-14 14:52:08.355] - 共计 1 个分P, 已选择：ALL</span><br><span class="line">[2025-10-14 14:52:08.355] - 开始解析P1: 113804620859333... (1 of 1)</span><br><span class="line">[2025-10-14 14:52:08.796] - 跳过下载AI字幕</span><br><span class="line">[2025-10-14 14:52:08.955] - 共计4条视频流.</span><br><span class="line">                            0. [720P 高清] [AVC] [518 kbps] [~29.26 MB]</span><br><span class="line">                            1. [720P 高清] [HEVC] [256 kbps] [~14.48 MB]</span><br><span class="line">                            2. [480P 清晰] [AVC] [357 kbps] [~20.19 MB]</span><br><span class="line">                            3. [480P 清晰] [HEVC] [189 kbps] [~10.72 MB]</span><br><span class="line">[2025-10-14 14:52:08.957] - 共计3条音频流.</span><br><span class="line">                            0. [M4A] [71 kbps] [~4.11 MB]</span><br><span class="line">                            1. [M4A] [59 kbps] [~3.41 MB]</span><br><span class="line">                            2. [M4A] [27 kbps] [~1.56 MB]</span><br><span class="line">[2025-10-14 14:52:08.959] - 已选择的流:</span><br><span class="line">                            [视频] [720P 高清] [AVC] [518 kbps] [~29.26 MB]</span><br><span class="line">                            [音频] [M4A] [71 kbps] [~4.11 MB]</span><br><span class="line">[2025-10-14 14:52:08.960] - 尝试将视频流强制替换为upos-sz-mirrorcoso1.bilivideo.com……</span><br><span class="line">[2025-10-14 14:52:08.961] - 尝试将音频流强制替换为upos-sz-mirrorcoso1.bilivideo.com……</span><br><span class="line">[2025-10-14 14:52:08.961] - 开始下载P1视频...</span><br><span class="line">[2025-10-14 14:52:31.954] - 合并视频分片...</span><br><span class="line">[2025-10-14 14:52:31.979] - 清理分片...</span><br><span class="line">[2025-10-14 14:52:31.984] - 开始下载P1音频...</span><br><span class="line">[2025-10-14 14:52:36.418] - 合并音频分片...</span><br><span class="line">[2025-10-14 14:52:36.420] - 清理分片...</span><br><span class="line">[2025-10-14 14:52:36.420] - 下载P1完毕</span><br><span class="line">[2025-10-14 14:52:36.420] - 开始合并音视频...</span><br><span class="line">[2025-10-14 14:52:36.641] - 清理临时文件...</span><br><span class="line">[2025-10-14 14:52:36.847] - 任务完成</span><br><span class="line">正在下载 BV1JqccehEWt ...</span><br><span class="line">BBDown version 1.6.3, Bilibili Downloader.</span><br><span class="line">遇到问题请首先到以下地址查阅有无相关信息：</span><br><span class="line">https://github.com/nilaoda/BBDown/issues</span><br><span class="line"></span><br><span class="line">[2025-10-14 14:52:36.973] - 检测账号登录...</span><br><span class="line">[2025-10-14 14:52:37.051] - 获取aid...</span><br><span class="line">[2025-10-14 14:52:37.377] - 获取aid结束: 113808412574358</span><br><span class="line">[2025-10-14 14:52:37.377] - 获取视频信息...</span><br><span class="line">[2025-10-14 14:52:37.438] - 视频标题: 德鲁比（Droopy）【视频修复+字幕压制】第24集</span><br><span class="line">[2025-10-14 14:52:37.439] - 发布时间: 2025-01-11 15:03:16 +08:00</span><br><span class="line">[2025-10-14 14:52:37.439] - UP主页: https://space.bilibili.com/95117517</span><br><span class="line">[2025-10-14 14:52:37.440] - P1: [28528807493] [德鲁比（Droopy）【视频修复+字幕压制】第24集] [07m37s]</span><br><span class="line">[2025-10-14 14:52:37.440] - 共计 1 个分P, 已选择：ALL</span><br><span class="line">[2025-10-14 14:52:37.440] - 开始解析P1: 113808412574358... (1 of 1)</span><br><span class="line">[2025-10-14 14:52:37.840] - 跳过下载AI字幕</span><br><span class="line">[2025-10-14 14:52:38.001] - 共计4条视频流.</span><br><span class="line">                            0. [720P 高清] [AVC] [556 kbps] [~30.31 MB]</span><br><span class="line">                            1. [720P 高清] [HEVC] [322 kbps] [~17.58 MB]</span><br><span class="line">                            2. [480P 清晰] [AVC] [389 kbps] [~21.22 MB]</span><br><span class="line">                            3. [480P 清晰] [HEVC] [206 kbps] [~11.25 MB]</span><br><span class="line">[2025-10-14 14:52:38.005] - 共计3条音频流.</span><br><span class="line">                            0. [M4A] [71 kbps] [~3.96 MB]</span><br><span class="line">                            1. [M4A] [59 kbps] [~3.29 MB]</span><br><span class="line">                            2. [M4A] [28 kbps] [~1.56 MB]</span><br><span class="line">[2025-10-14 14:52:38.007] - 已选择的流:</span><br><span class="line">                            [视频] [720P 高清] [AVC] [556 kbps] [~30.31 MB]</span><br><span class="line">                            [音频] [M4A] [71 kbps] [~3.96 MB]</span><br><span class="line">[2025-10-14 14:52:38.008] - 尝试将视频流强制替换为upos-sz-mirrorcoso1.bilivideo.com……</span><br><span class="line">[2025-10-14 14:52:38.009] - 尝试将音频流强制替换为upos-sz-mirrorcoso1.bilivideo.com……</span><br><span class="line">[2025-10-14 14:52:38.012] - 开始下载P1视频...</span><br><span class="line">[2025-10-14 14:53:00.584] - 合并视频分片...</span><br><span class="line">[2025-10-14 14:53:00.619] - 清理分片...</span><br><span class="line">[2025-10-14 14:53:00.624] - 开始下载P1音频...</span><br><span class="line">[2025-10-14 14:53:06.755] - 合并音频分片...</span><br><span class="line">[2025-10-14 14:53:06.757] - 清理分片...</span><br><span class="line">[2025-10-14 14:53:06.757] - 下载P1完毕</span><br><span class="line">[2025-10-14 14:53:06.758] - 开始合并音视频...</span><br><span class="line">[2025-10-14 14:53:06.959] - 清理临时文件...</span><br><span class="line">[2025-10-14 14:53:07.165] - 任务完成</span><br><span class="line">PS G:\ffmpeg-7.0-essentials_build\bin&gt;</span><br><span class="line">PS G:\ffmpeg-7.0-essentials_build\bin&gt; Write-Host &quot;`n全部下载完成！&quot; -ForegroundColor Green</span><br><span class="line"></span><br><span class="line">全部下载完成！</span><br></pre></td></tr></table></figure>
-
-<h2 id="结果分享"><a href="#结果分享" class="headerlink" title="结果分享"></a>结果分享</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">链接: https://pan.baidu.com/s/1KBZz4FXW-sTzmyrko560Fw 提取码: z39z</span><br></pre></td></tr></table></figure>
 
       
     </div>

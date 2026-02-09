@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">110</span>
+        <span class="site-state-item-count">116</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -152,6 +152,864 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/AMD-AM4-X570-chipset-key-signals.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/AMD-AM4-X570-chipset-key-signals.html" class="post-title-link" itemprop="url">AMD AM4 ASUS STRIX X570-E GAMING上电时序汇总与及关键信号</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-07-16 10:49:23 / 修改时间：10:52:56" itemprop="dateCreated datePublished" datetime="2025-07-16T10:49:23+08:00">2025-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <table cellspacing="0" cellpadding="8" style="border-collapse: separate; border-spacing: 0; width: 100%;">
+  <thead>
+    <!-- 整个表格大标题 -->
+    <tr>
+      <th colspan="5" style="background-color: #cce5ff; font-size: 18px; text-align: center; padding: 10px;
+        border: 1px solid #999;">
+        AMD AM4 ASUS STRIX X570-E GAMING上电时序汇总与及关键信号
+      </th>
+    </tr>
+    <!-- 表头 -->
+    <tr>
+      <th style="width: 200px; background-color: #d0eaff; border: 1px solid #999; text-align: center; vertical-align: middle;">
+        工作状态
+      </th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">电压或信号标准名称</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">正常对地值参考</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">正常工作电压</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">故障现象</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- 10行，每行一个左侧大单元格，右侧4个小单元格 -->
+    <tr>
+      <td rowspan="4" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+        <b>G3状态（CPU+I/O）</b>
+      </td>
+      <td style="border: 1px solid #999; text-align: center;">+3V_BAT</td>
+      <td style="border: 1px solid #999; text-align: center;">~540</td>
+      <td style="border: 1px solid #999; text-align: center;">2.8V-3.3V</td>
+      <td rowspan="29" style="border: 1px solid #999; text-align: center; vertical-align: middle;">不触发</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">O1_32K_XIN/O1_32K_XOUT、32.768KHZ(I/O）</td>
+      <td style="border: 1px solid #999; text-align: center;">~720</td>
+      <td style="border: 1px solid #999; text-align: center;">1.5V-1.9V</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">VDDBT_RTC_G->CPU:AL15</td>
+      <td style="border: 1px solid #999; text-align: center;">~560</td>
+      <td style="border: 1px solid #999; text-align: center;">1.5V</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">X32K_X1/X32K_X2->CPU:AW5/AW6</td>
+      <td style="border: 1px solid #999; text-align: center;">~740</td>
+      <td style="border: 1px solid #999; text-align: center;">0.4V-0.7V</td>
+    </tr>
+  <tr>
+  <td rowspan="14" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>（FCH/PMU+CPU）待机条件</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">3VSB PCIE_SLOT:->B10</td>
+  <td style="border: 1px solid #999; text-align: center;">~220</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDD_33_S5->CPU:AK19</td>
+  <td style="border: 1px solid #999; text-align: center;">~220</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDD_18_S5->CPU:AK15</td>
+  <td style="border: 1px solid #999; text-align: center;">~130</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDCR_SOC_S5->CPU:AK18</td>
+  <td style="border: 1px solid #999; text-align: center;">OL(未采用)</td>
+  <td style="border: 1px solid #999; text-align: center;">0.8(可选）</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDP_S5->CPU:AJ16</td>
+  <td style="border: 1px solid #999; text-align: center;">~50</td>
+  <td style="border: 1px solid #999; text-align: center;">0.9V-0V-1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDIO_AUDIO->CPU:AM15</td>
+  <td style="border: 1px solid #999; text-align: center;">~130</td>
+  <td style="border: 1px solid #999; text-align: center;">1.5V-1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">RTCCLK->CPU:AP8</td>
+  <td style="border: 1px solid #999; text-align: center;">~350</td>
+  <td style="border: 1px solid #999; text-align: center;">0.8V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">RSMRST_L->CPU:AP5</td>
+  <td style="border: 1px solid #999; text-align: center;">~810</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">PWR_BTN->CPU:AN5</td>
+  <td style="border: 1px solid #999; text-align: center;">~350</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_S5_L->CPU:AP2</td>
+  <td style="border: 1px solid #999; text-align: center;">~320</td>
+  <td style="border: 1px solid #999; text-align: center;">0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_S3_L->CPU:AT2</td>
+  <td style="border: 1px solid #999; text-align: center;">~320</td>
+  <td style="border: 1px solid #999; text-align: center;">0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDD_33_S5->FCH:R10</td>
+  <td style="border: 1px solid #999; text-align: center;">~220</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">VDD_18_S5->FCH:L10</td>
+  <td style="border: 1px solid #999; text-align: center;">~130</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDCR_SOC_S5->FCH:K15</td>
+  <td style="border: 1px solid #999; text-align: center;">~130</td>
+  <td style="border: 1px solid #999; text-align: center;">1V</td>
+</tr>
+  <tr>
+  <td rowspan="8" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>（IO）待机条件</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">+3VSB_SIO</td>
+  <td style="border: 1px solid #999; text-align: center;">~220</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">H_SKTOCC#</td>
+  <td style="border: 1px solid #999; text-align: center;">0(上CPU后）</td>
+  <td style="border: 1px solid #999; text-align: center;">0V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">O1_RSMRST#_R</td>
+  <td style="border: 1px solid #999; text-align: center;">~560</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWRBTN#</td>
+  <td style="border: 1px solid #999; text-align: center;">~820</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">O_IOPWRBTN#</td>
+  <td style="border: 1px solid #999; text-align: center;">~350</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">S_SLP_S4#</td>
+  <td style="border: 1px solid #999; text-align: center;">~320</td>
+  <td style="border: 1px solid #999; text-align: center;">0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">S_SLP_S3#</td>
+  <td style="border: 1px solid #999; text-align: center;">~320</td>
+  <td style="border: 1px solid #999; text-align: center;">0V-3.3V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">O_PSON#_O1</td>
+  <td style="border: 1px solid #999; text-align: center;">~580</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+ <tr>
+  <td rowspan="3" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>TPU 待机条件</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">+3VSB_EC</td>
+  <td style="border: 1px solid #999; text-align: center;">~220</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">O2_SPI_CS#（1、2、5、6Pin）</td>
+  <td style="border: 1px solid #999; text-align: center;">~550</td>
+  <td style="border: 1px solid #999; text-align: center;">波形</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">O2_CUT_PSON#_R</td>
+  <td style="border: 1px solid #999; text-align: center;">~540</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+<td rowspan="3" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+        <b>SLP_S5状态 开启内存供电</b>
+      </td>
+      <td style="border: 1px solid #999; text-align: center;">DDR4</td>
+      <td style="border: 1px solid #999; text-align: center;">~450</td>
+      <td style="border: 1px solid #999; text-align: center;">2.5V</td>
+    <td rowspan="33" style="border: 1px solid #999; text-align: center; vertical-align: middle;">掉电、缺电压、缺时钟、缺复位</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VPP_2.5V->288Pin</td>
+  <td style="border: 1px solid #999; text-align: center;">~450</td>
+  <td style="border: 1px solid #999; text-align: center;">2.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDQ/VCC_DDR->220Pin</td>
+  <td style="border: 1px solid #999; text-align: center;">~38</td>
+  <td style="border: 1px solid #999; text-align: center;">1.2V</td>
+</tr>
+<tr>
+    <td rowspan="5" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>SLP_S3状态 开启FCH/PMU+CPU供电</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">VDD_33->CPU:AK21/->FCH:R8</td>
+  <td style="border: 1px solid #999; text-align: center;">~160</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDP->CPU:AM18</td>
+  <td style="border: 1px solid #999; text-align: center;">~50</td>
+  <td style="border: 1px solid #999; text-align: center;">0.9V/1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDD_18->CPU:AK20/->FCH:K13</td>
+  <td style="border: 1px solid #999; text-align: center;">~250</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDD_CLDO->FCH:AA13</td>
+  <td style="border: 1px solid #999; text-align: center;">~280</td>
+  <td style="border: 1px solid #999; text-align: center;">1.2V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDCR_SOC->FCH:AA21</td>
+  <td style="border: 1px solid #999; text-align: center;">~8</td>
+  <td style="border: 1px solid #999; text-align: center;">1V</td>
+</tr>
+<tr>
+<td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>CPU核心供电(SVI2）（VRM+CPU）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">VCC/VDDIO/VINSEN</td>
+  <td style="border: 1px solid #999; text-align: center;">~450/~250/~420</td>
+  <td style="border: 1px solid #999; text-align: center;">5V/1.8V/0.86V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SVT/SVC/SVD</td>
+  <td style="border: 1px solid #999; text-align: center;">~340</td>
+  <td style="border: 1px solid #999; text-align: center;">1.65V/1.6V/1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">EN</td>
+  <td style="border: 1px solid #999; text-align: center;">~490</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDCR_CPU/VCORE->CPU:AA7</td>
+  <td style="border: 1px solid #999; text-align: center;">0-1</td>
+  <td style="border: 1px solid #999; text-align: center;">1V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDCR_SOC->CPU:B5</td>
+  <td style="border: 1px solid #999; text-align: center;">0-2</td>
+  <td style="border: 1px solid #999; text-align: center;">1V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VRDY</td>
+  <td style="border: 1px solid #999; text-align: center;">~650</td>
+  <td style="border: 1px solid #999; text-align: center;">1.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWROK/APU_PWROK->CPU:E16</td>
+  <td style="border: 1px solid #999; text-align: center;">~250</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+<td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>CLOCK时钟电路(CPU+FCH/PMU)</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">PWR_GOOD->CPU:AM3</td>
+  <td style="border: 1px solid #999; text-align: center;">~300</td>
+  <td style="border: 1px solid #999; text-align: center;">3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">X48M_X1/X48M_X2->CPU:AJ1 AH1</td>
+  <td style="border: 1px solid #999; text-align: center;">~700/~420</td>
+  <td style="border: 1px solid #999; text-align: center;">0.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">GFX_CLKP/GFX_CLKN->PCI_E_SLOT：A13/A14</td>
+  <td style="border: 1px solid #999; text-align: center;">~200->CPU/~260->FCH</td>
+  <td style="border: 1px solid #999; text-align: center;">0.45V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">GPP_CLK2P/GPP_CLK2N->CPU:AH7 AH8 to FCH</td>
+  <td style="border: 1px solid #999; text-align: center;">~200</td>
+  <td style="border: 1px solid #999; text-align: center;">0.45V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">X48M_X1/X48M_X2->FCH:BA14/AY23</td>
+  <td style="border: 1px solid #999; text-align: center;">~730/~480</td>
+  <td style="border: 1px solid #999; text-align: center;">0.9V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">CLK_REQ2->FCH:AY33</td>
+  <td style="border: 1px solid #999; text-align: center;">~360</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V-0V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">GPP_CLK2P/GPP_CLK2N->FCH:BA18/AY18</td>
+  <td style="border: 1px solid #999; text-align: center;">~260</td>
+  <td style="border: 1px solid #999; text-align: center;">0.49V</td>
+</tr>
+<tr>
+<td rowspan="8" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>RESET复位电路（CPU+FCH/PMU）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">PWR_GOOD->CPU:AM3</td>
+  <td style="border: 1px solid #999; text-align: center;">~300</td>
+  <td style="border: 1px solid #999; text-align: center;">3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCIE_RST_L->PCI_E_SLOT:A11</td>
+  <td style="border: 1px solid #999; text-align: center;">~300?</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">LPC_RST_L->CPU:AU22</td>
+  <td style="border: 1px solid #999; text-align: center;">~250</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCIE_RST_L/EGPIO26->CPU:AL7</td>
+  <td style="border: 1px solid #999; text-align: center;">~315</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWROK->FCH:AV41</td>
+  <td style="border: 1px solid #999; text-align: center;">~350</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWR_GOOD->FCH:BA28</td>
+  <td style="border: 1px solid #999; text-align: center;">~260</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">RESET_L/PERSTN->FCH:AV40</td>
+  <td style="border: 1px solid #999; text-align: center;">~260</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCIE_RST_L/EGPIO26->FCH:AV29</td>
+  <td style="border: 1px solid #999; text-align: center;">0(未采用）</td>
+  <td style="border: 1px solid #999; text-align: center;">0</td>
+</tr>
+  </tbody>
+</table>
+
+
+
+
+<ul>
+<li><strong>数据来源：ASUS STRIX X570-E</strong></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/AMD-AM4-A320-chipset-key-signals.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/AMD-AM4-A320-chipset-key-signals.html" class="post-title-link" itemprop="url">AMD AM4 A320上电时序汇总及关键信号</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-07-16 10:45:55 / 修改时间：10:48:55" itemprop="dateCreated datePublished" datetime="2025-07-16T10:45:55+08:00">2025-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <table cellspacing="0" cellpadding="8" style="border-collapse: separate; border-spacing: 0; width: 100%;">
+  <thead>
+    <!-- 整个表格大标题 -->
+    <tr>
+      <th colspan="5" style="background-color: #cce5ff; font-size: 18px; text-align: center; padding: 10px;
+        border: 1px solid #999;">
+        AMD AM4 A320上电时序汇总及关键信号
+      </th>
+    </tr>
+    <!-- 表头 -->
+    <tr>
+      <th style="width: 200px; background-color: #d0eaff; border: 1px solid #999; text-align: center; vertical-align: middle;">
+        工作状态
+      </th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">电压或信号标准名称</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">正常对地值参考</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">正常工作电压</th>
+      <th style="background-color: #d0eaff; border: 1px solid #999; text-align: center;">故障现象及说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- 10行，每行一个左侧大单元格，右侧4个小单元格 -->
+    <tr>
+      <td rowspan="6" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+        <b>G3状态（CPU+U124）</b>
+      </td>
+      <td style="border: 1px solid #999; text-align: center;">VBAT/VCCRTC</td>
+      <td style="border: 1px solid #999; text-align: center;">~530</td>
+      <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+      <td rowspan="6" style="border: 1px solid #999; text-align: center; vertical-align: middle;">不会引起不触发</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">RTC_CLK</td>
+      <td style="border: 1px solid #999; text-align: center;">~690</td>
+      <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">RTC_DATA</td>
+      <td style="border: 1px solid #999; text-align: center;">~690</td>
+      <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">OSC1/OSC2 (32.768KHZ)</td>
+      <td style="border: 1px solid #999; text-align: center;">~720</td>
+      <td style="border: 1px solid #999; text-align: center;">0.4V-0.8V</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">VDDBT_RTC_G ->CPU：AL15</td>
+      <td style="border: 1px solid #999; text-align: center;">~560</td>
+      <td style="border: 1px solid #999; text-align: center;">1.5V</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #999; text-align: center;">X32K_X1/X32K_X2 ->CPU：AW5/AW6</td>
+      <td style="border: 1px solid #999; text-align: center;">上CPU后~740</td>
+      <td style="border: 1px solid #999; text-align: center;">0.4V-0.8V</td>
+    </tr>
+      <tr>
+  <td rowspan="9" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>不上CPU触发电路 (I/O+U123->SLG4R41187)</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">I/O供电：SIO_3VA</td>
+  <td style="border: 1px solid #999; text-align: center;">~400</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+  <td rowspan="9" style="border: 1px solid #999; text-align: center; vertical-align: middle;">会引起不触发</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VSUS33/3VSB PCIE_SLOT:->B10</td>
+  <td style="border: 1px solid #999; text-align: center;">~370</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SKTOCC</td>
+  <td style="border: 1px solid #999; text-align: center;">~440</td>
+  <td style="border: 1px solid #999; text-align: center;">0V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWRBTN(PSIN)</td>
+  <td style="border: 1px solid #999; text-align: center;">~690</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">PWRBTN#(PSOUT)</td>
+  <td style="border: 1px solid #999; text-align: center;">~530</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V-0V-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_S5</td>
+  <td style="border: 1px solid #999; text-align: center;">~510</td>
+  <td style="border: 1px solid #999; text-align: center;">0-3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SLP_S3</td>
+  <td style="border: 1px solid #999; text-align: center;">~490</td>
+  <td style="border: 1px solid #999; text-align: center;">0-3.3V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">PWR_FAULT#</td>
+  <td style="border: 1px solid #999; text-align: center;">~590</td>
+  <td style="border: 1px solid #999; text-align: center;">5V</td>
+</tr>
+ <tr>
+  <td style="border: 1px solid #999; text-align: center;">PSON#</td>
+  <td style="border: 1px solid #999; text-align: center;">~540</td>
+  <td style="border: 1px solid #999; text-align: center;">5V-0V</td>
+</tr>
+<tr>
+  <td rowspan="9" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>S5状态（PCH）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">VSUS33/3VSB PCIE_SLOT:->B10</td>
+  <td style="border: 1px solid #999; text-align: center;">~370</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+  <td rowspan="9" style="border: 1px solid #999; text-align: center; vertical-align: middle;">上CPU后不触发</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VSUS105 ->FCH：V7</td>
+  <td style="border: 1px solid #999; text-align: center;">~280</td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDD_18_S5 ->CPU：AK15</td>
+  <td style="border: 1px solid #999; text-align: center;">~480</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDCR_SOC_S5 ->CPU：AK18</td>
+  <td style="border: 1px solid #999; text-align: center;">~400</td>
+  <td style="border: 1px solid #999; text-align: center;">0.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDP_S5 ->CPU：AJ16 (可选）</td>
+  <td style="border: 1px solid #999; text-align: center;">~260</td>
+  <td style="border: 1px solid #999; text-align: center;">0.9V/1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDIO_AUDIO ->CPU：AM15</td>
+  <td style="border: 1px solid #999; text-align: center;">~500</td>
+  <td style="border: 1px solid #999; text-align: center;">1.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">X32K_X1/X32K_X2 ->CPU：AW5/AW6</td>
+  <td style="border: 1px solid #999; text-align: center;">上CPU后~740</td>
+  <td style="border: 1px solid #999; text-align: center;">0.4V-0.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">RTCCLK->CPU：AP8</td>
+  <td style="border: 1px solid #999; text-align: center;">上CPU后~400</td>
+  <td style="border: 1px solid #999; text-align: center;">0.7V-1.7V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">RSMRST_L->CPU：AP5</td>
+  <td style="border: 1px solid #999; text-align: center;">~550</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+<td rowspan="3" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+        <b>SLP_S5状态 开启内存供电</b>
+      </td>
+      <td style="border: 1px solid #999; text-align: center;">DDR4</td>
+      <td style="border: 1px solid #999; text-align: center;">~300</td>
+      <td style="border: 1px solid #999; text-align: center;">2.5V</td>
+    <td rowspan="33" style="border: 1px solid #999; text-align: center; vertical-align: middle;">掉电、缺电压、缺时钟、缺复位</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VPP_2.5V->288Pin</td>
+  <td style="border: 1px solid #999; text-align: center;">~300</td>
+  <td style="border: 1px solid #999; text-align: center;">2.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDQ/VCC_DDR->220Pin</td>
+  <td style="border: 1px solid #999; text-align: center;">~270</td>
+  <td style="border: 1px solid #999; text-align: center;">1.2V</td>
+</tr>
+<tr>
+    <td rowspan="5" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>SLP_S3状态 开启FCH+CPU供电</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">VDD105 ->FCH: T1</td>
+  <td style="border: 1px solid #999; text-align: center;">~20</td>
+  <td style="border: 1px solid #999; text-align: center;">1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VCC25 ->FCH: C1</td>
+  <td style="border: 1px solid #999; text-align: center;">~480</td>
+  <td style="border: 1px solid #999; text-align: center;">2.5V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWR_GD ->FCH: C25</td>
+  <td style="border: 1px solid #999; text-align: center;">~500</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDP ->CPU: AM18</td>
+  <td style="border: 1px solid #999; text-align: center;">~480</td>
+  <td style="border: 1px solid #999; text-align: center;">0.9V/1.05V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDD_18 ->CPU: AK20</td>
+  <td style="border: 1px solid #999; text-align: center;">~440</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+<td rowspan="8" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>CPU核心供电（VRM+VBOOT） VBOOT电压可设置</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">PVCC/VCC/VDDIO</td>
+  <td style="border: 1px solid #999; text-align: center;">~500/~340/~500</td>
+  <td style="border: 1px solid #999; text-align: center;">12V/5V/1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VRM_EN</td>
+  <td style="border: 1px solid #999; text-align: center;">~500</td>
+  <td style="border: 1px solid #999; text-align: center;">3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWROK->CPU:E16</td>
+  <td style="border: 1px solid #999; text-align: center;">~520</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">SVC/ SVD /SVT  (设置VBOOT)</td>
+  <td style="border: 1px solid #999; text-align: center;">~540</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V/0V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDCR_CPU<VCORE>->CPU:Y2</td>
+  <td style="border: 1px solid #999; text-align: center;">~430</td>
+  <td style="border: 1px solid #999; text-align: center;">0.9V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDCR_SOC<VDDNB>->CPU:B5</td>
+  <td style="border: 1px solid #999; text-align: center;">~450</td>
+  <td style="border: 1px solid #999; text-align: center;">0.9V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VRM_VRDY</td>
+  <td style="border: 1px solid #999; text-align: center;">~550</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PWROK/APU_PWROK->CPU:E16</td>
+  <td style="border: 1px solid #999; text-align: center;">~260</td>
+  <td style="border: 1px solid #999; text-align: center;">1.8V</td>
+</tr>
+<tr>
+<td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>CLOCK时钟电路(CPU+FCH)</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">PWR_GOOD ->CPU:AM3</td>
+  <td style="border: 1px solid #999; text-align: center;">~680</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">X48M_X1/X48M_X2->CPU:AJ1 AH1</td>
+  <td style="border: 1px solid #999; text-align: center;">上CPU后~700/~400</td>
+  <td style="border: 1px solid #999; text-align: center;">0.8V/0.9V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">GFX_CLKP/GFX_CLKN->PCI_E_SLOT：A13/A14</td>
+  <td style="border: 1px solid #999; text-align: center;">上CPU后~200</td>
+  <td style="border: 1px solid #999; text-align: center;">0.45V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">GPP_CLK2P/GPP_CLK2N->CPU:AH7 AH8</td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+  <td style="border: 1px solid #999; text-align: center;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">XI/XO 25M （FCH）</td>
+  <td style="border: 1px solid #999; text-align: center;">~650</td>
+  <td style="border: 1px solid #999; text-align: center;">0.48V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">GPP_CLKREQ</td>
+  <td style="border: 1px solid #999; text-align: center;">~400</td>
+  <td style="border: 1px solid #999; text-align: center;">0V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PE_LAN_CLKP/PE_LAN_CLKN</td>
+  <td style="border: 1px solid #999; text-align: center;">~240</td>
+  <td style="border: 1px solid #999; text-align: center;">0.5V</td>
+</tr>
+<tr>
+<td rowspan="7" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>RESET复位电路（CPU+FCH）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">PWR_GOOD->CPU:AM3</td>
+  <td style="border: 1px solid #999; text-align: center;">~680</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PCIE_RST_L->PCI_E_SLOT:A11</td>
+  <td style="border: 1px solid #999; text-align: center;">~400</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">LPC_RST_L->CPU:AU22</td>
+  <td style="border: 1px solid #999; text-align: center;">上CPU后~320</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PERSTN->FCH:V6</td>
+  <td style="border: 1px solid #999; text-align: center;">~400</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">GPP_RSTN->FCH:AC10</td>
+  <td style="border: 1px solid #999; text-align: center;">~500</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">PLTRST_BU1#_LAN</td>
+  <td style="border: 1px solid #999; text-align: center;">~560</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">ESPI_RESET_L->CPU:AN24</td>
+  <td style="border: 1px solid #999; text-align: center;">~320</td>
+  <td style="border: 1px solid #999; text-align: center;">3.3V</td>
+</tr>
+<tr>
+<td rowspan="3" style="background-color: #f0f0f0; color: darkred; text-align: center; vertical-align: middle; border: 1px solid #999;">
+    <b>CPU核心供电（VRM+SVI2）</b>
+  </td>
+  <td style="border: 1px solid #999; text-align: center;">SVC/SVD/SVT（动态调节）</td>
+  <td style="border: 1px solid #999; text-align: center;">上CPU后~330</td>
+  <td style="border: 1px solid #999; text-align: center;">波形</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDCR_CPU<VCORE>->CPU:Y2</td>
+  <td style="border: 1px solid #999; text-align: center;">0</td>
+  <td style="border: 1px solid #999; text-align: center;">0.9V</td>
+</tr>
+<tr>
+  <td style="border: 1px solid #999; text-align: center;">VDDCR_SOC<VDDNB>->CPU:B5</td>
+  <td style="border: 1px solid #999; text-align: center;">0-1</td>
+  <td style="border: 1px solid #999; text-align: center;">0.9V</td>
+</tr>
+  </tbody>
+</table>
+
+
+
+
+<ul>
+<li><strong>数据来源：MSI MS-7B38</strong></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -3004,268 +3862,6 @@
 <li>PHASE 相位输出。</li>
 <li>FB 反馈。</li>
 </ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/Remotely-manage-openwrt-routers-via-cloudflare-tunnel.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Remotely-manage-openwrt-routers-via-cloudflare-tunnel.html" class="post-title-link" itemprop="url">通过Cloudflare tunnel远程管理openwrt路由器</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-03-31 14:36:29 / 修改时间：14:43:39" itemprop="dateCreated datePublished" datetime="2025-03-31T14:36:29+08:00">2025-03-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
-<li><p>cloudflare账号注册（tunnel有Cloudflared与WARP Connector类型，如果只用cloudflared可以不添加支付信息）</p>
-</li>
-<li><p>路由器要保证空间足够，我插了个8GB的U盘扩充空间。可以参考<a href="OpenWRT-adds-external-storage-expansion">路由器扩容</a>！</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@OpenWrt:~# df -h</span><br><span class="line">Filesystem                Size      Used Available Use% Mounted on</span><br><span class="line">/dev/root                 3.8M      3.8M         0 100% /rom</span><br><span class="line">tmpfs                    58.8M     76.0K     58.8M   0% /tmp</span><br><span class="line">/dev/sda1                 7.3G      7.2M      6.9G   0% /overlay</span><br><span class="line">overlayfs:/overlay        7.3G      7.2M      6.9G   0% /</span><br><span class="line">tmpfs                   512.0K         0    512.0K   0% /dev</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="安装客户端"><a href="#安装客户端" class="headerlink" title="安装客户端"></a>安装客户端</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">root@OpenWrt:~# opkg update</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/targets/ramips/mt7621/packages/Packages.gz</span><br><span class="line">Updated list of available packages in /var/opkg-lists/openwrt_core</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/targets/ramips/mt7621/packages/Packages.sig</span><br><span class="line">Signature check passed.</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/base/Packages.gz</span><br><span class="line">Updated list of available packages in /var/opkg-lists/openwrt_base</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/base/Packages.sig</span><br><span class="line">Signature check passed.</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/luci/Packages.gz</span><br><span class="line">Updated list of available packages in /var/opkg-lists/openwrt_luci</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/luci/Packages.sig</span><br><span class="line">Signature check passed.</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/packages/Packages.gz</span><br><span class="line">Updated list of available packages in /var/opkg-lists/openwrt_packages</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/packages/Packages.sig</span><br><span class="line">Signature check passed.</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/routing/Packages.gz</span><br><span class="line">Updated list of available packages in /var/opkg-lists/openwrt_routing</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/routing/Packages.sig</span><br><span class="line">Signature check passed.</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/telephony/Packages.gz</span><br><span class="line">Updated list of available packages in /var/opkg-lists/openwrt_telephony</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/telephony/Packages.sig</span><br><span class="line">Signature check passed.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">root@OpenWrt:~# opkg install cloudflared</span><br><span class="line">Installing cloudflared (2024.4.1-2) to root...</span><br><span class="line">Downloading https://downloads.openwrt.org/releases/23.05.4/packages/mipsel_24kc/packages/cloudflared_2024.4.1-2_mipsel_24kc.ipk</span><br><span class="line">Configuring cloudflared.</span><br></pre></td></tr></table></figure>
-
-<h2 id="路由端登录"><a href="#路由端登录" class="headerlink" title="路由端登录"></a>路由端登录</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">root@OpenWrt:~# cloudflared tunnel login</span><br><span class="line">2025-03-31T03:47:24Z ERR Configuration file /etc/cloudflared/config.yml was empty</span><br><span class="line">Please open the following URL and log in with your Cloudflare account:</span><br><span class="line"></span><br><span class="line">https://dash.cloudflare.com/argotunnel?aud=&amp;callback=https%3A%2F%2Flogin.cloudflareaccess.org%2Fn0wo8UFOsn48iqCvz0brhqK2JznOfF2WC0oDKPSbV2U%3D</span><br><span class="line"></span><br><span class="line">Leave cloudflared running to download the cert automatically.</span><br><span class="line">2025-03-31T03:48:21Z INF Waiting for login...</span><br></pre></td></tr></table></figure>
-
-<h2 id="网页端登录"><a href="#网页端登录" class="headerlink" title="网页端登录"></a>网页端登录</h2><p>登录cloudflare，并复制路由器命令行下那一串链接到浏览器的另一个标签页打开。提示如下：</p>
-<p>Authorize Tunnel for heiok.com</p>
-<p>To finish configuring Tunnel for your zone, click Authorize below.</p>
-<p>点击Authorize</p>
-<p>浏览器界面显示</p>
-<p>Success<br>Cloudflared has installed a certificate allowing your origin to create a Tunnel on this zone.</p>
-<p>You may now close this window and start your Cloudflare Tunnel!</p>
-<p>路由器界面显示</p>
-<p>You have successfully logged in.<br>If you wish to copy your credentials to a server, they have been saved to:<br>&#x2F;root&#x2F;.cloudflared&#x2F;cert.pem<br>root@OpenWrt:~#</p>
-<h2 id="建一条通道"><a href="#建一条通道" class="headerlink" title="建一条通道"></a>建一条通道</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root@OpenWrt:~# cloudflared tunnel create openwrt</span><br><span class="line">2025-03-31T03:52:00Z ERR Configuration file /etc/cloudflared/config.yml was empty</span><br><span class="line">Tunnel credentials written to /root/.cloudflared/a41e4879-e5a8-4efa-9668-d31ed37585a5.json. cloudflared chose this file based on where your origin certificate was found. Keep this file secret. To revoke these credentials, delete the tunnel.</span><br><span class="line"></span><br><span class="line">Created tunnel heiok with id a41e4879-e5a8-4efa-9668-d31ed37585a5</span><br><span class="line">root@OpenWrt:~#</span><br></pre></td></tr></table></figure>
-
-<h2 id="加域名解析"><a href="#加域名解析" class="headerlink" title="加域名解析"></a>加域名解析</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@OpenWrt:~# cloudflared tunnel route dns openwrt openwrt.heiok.com</span><br><span class="line">2025-03-31T03:52:56Z ERR Configuration file /etc/cloudflared/config.yml was empty</span><br><span class="line">2025-03-31T03:53:00Z INF Added CNAME openwrt.heiok.com which will route to this tunnel tunnelID=a41e4879-e5a8-4efa-9668-d31ed37585a5</span><br><span class="line">root@OpenWrt:~#</span><br></pre></td></tr></table></figure>
-
-<h2 id="写配置文件"><a href="#写配置文件" class="headerlink" title="写配置文件"></a>写配置文件</h2><p>root@OpenWrt:~# vi &#x2F;etc&#x2F;cloudflared&#x2F;config.yml</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#tunnel: &lt;Tunnel-UUID&gt;</span><br><span class="line">#credentials-file: /etc/cloudflared/&lt;Tunnel-UUID&gt;.json</span><br><span class="line">#</span><br><span class="line">#ingress:</span><br><span class="line"></span><br><span class="line">#  - hostname: luci.example.com</span><br><span class="line"></span><br><span class="line">#    service: http://localhost:80</span><br><span class="line"></span><br><span class="line">#  - hostname: ssh.example.com</span><br><span class="line"></span><br><span class="line">#    service: ssh://localhost:22</span><br><span class="line"></span><br><span class="line">#  - service: http_status:404</span><br><span class="line"></span><br><span class="line">url: http://192.168.18.1</span><br><span class="line">tunnel: a41e4879-e5a8-4efa-9668-d31ed37585a5</span><br><span class="line">credentials-file: /root/.cloudflared/a41e4879-e5a8-4efa-9668-d31ed37585a5.json</span><br></pre></td></tr></table></figure>
-
-<h2 id="测试下连接"><a href="#测试下连接" class="headerlink" title="测试下连接"></a>测试下连接</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/cloudflared tunnel --config /etc/cloudflared/config.yml run</span><br></pre></td></tr></table></figure>
-
-<p>网页端Cloudflare–Networks–Tunnels-Your tunnels–Status下显示绿色HEALTHY即表示tunnel建立连接成功。</p>
-<h2 id="自启动脚本"><a href="#自启动脚本" class="headerlink" title="自启动脚本"></a>自启动脚本</h2><p>root@OpenWrt:~#vi &#x2F;etc&#x2F;init.d&#x2F;cf</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh /etc/rc.common</span><br><span class="line"></span><br><span class="line">START=99</span><br><span class="line">USE_PROCD=1</span><br><span class="line"></span><br><span class="line">start_service() &#123;</span><br><span class="line">    echo &quot;Starting cloudflared...&quot;</span><br><span class="line">    procd_open_instance</span><br><span class="line">    procd_set_param command /usr/bin/cloudflared tunnel --config /etc/cloudflared/config.yml run</span><br><span class="line">    procd_set_param respawn</span><br><span class="line">    procd_close_instance</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">stop_service() &#123;</span><br><span class="line">    echo &quot;Stopping cloudflared...&quot;</span><br><span class="line">    procd_open_instance</span><br><span class="line">    procd_close_instance</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@OpenWrt:~#chmod +x /etc/init.d/cf</span><br><span class="line"></span><br><span class="line">root@OpenWrt:~#/etc/init.d/cf enable</span><br><span class="line"></span><br><span class="line">root@OpenWrt:~#/etc/init.d/cf start</span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/sing-box.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/sing-box.html" class="post-title-link" itemprop="url">sing-box越过长城走向世界</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-02-14 17:44:43 / 修改时间：17:46:41" itemprop="dateCreated datePublished" datetime="2025-02-14T17:44:43+08:00">2025-02-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="不忘初心"><a href="#不忘初心" class="headerlink" title="不忘初心"></a>不忘初心</h2><p>​	1987年，那封email告诉我们，Across the Great Wall we can reach every corner in the world”（“越过长城，走向世界”）。</p>
-<p>​	入手爪云后，勾起越过长城，走向世界的心。在此之前的越法参考<a href="iPhone-configuration-socks-proxy">iPhone配置socks代理</a>，在本地服务器如192.168.1.25通过SSH代理，然后内网客户端浏览器设置特定代理访问，手机WiFi设置http代理访问。这一次，想找一款工具替代SSH、gost或Potatso的方式穿越。</p>
-<h2 id="选定工具"><a href="#选定工具" class="headerlink" title="选定工具"></a>选定工具</h2><p>​	sing-box  </p>
-<p>​        优点：简洁易用（入手后才易），全平台，免费，还可以隐藏VPN图标~~~；</p>
-<p>​	缺点：不易入手，并非不宜入手；LOGO略丑。</p>
-<p>​	官网地址：<a target="_blank" rel="noopener" href="https://sing-box.sagernet.org/">https://sing-box.sagernet.org/</a></p>
-<p>​	项目地址：<a target="_blank" rel="noopener" href="https://github.com/SagerNet/sing-box">https://github.com/SagerNet/sing-box</a></p>
-<p>​	第三方GUI：<a target="_blank" rel="noopener" href="https://github.com/GUI-for-Cores/GUI.for.SingBox">https://github.com/GUI-for-Cores/GUI.for.SingBox</a></p>
-<p>​	sing-box 程序本身不区分客户端与服务端，区别在于JSON配置文件。</p>
-<h2 id="安装管理"><a href="#安装管理" class="headerlink" title="安装管理"></a>安装管理</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -fsSL https://sing-box.app/rpm-install.sh)</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th align="left">Operation</th>
-<th align="left">Command</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">Enable</td>
-<td align="left"><code>sudo systemctl enable sing-box</code></td>
-</tr>
-<tr>
-<td align="left">Disable</td>
-<td align="left"><code>sudo systemctl disable sing-box</code></td>
-</tr>
-<tr>
-<td align="left">Start</td>
-<td align="left"><code>sudo systemctl start sing-box</code></td>
-</tr>
-<tr>
-<td align="left">Stop</td>
-<td align="left"><code>sudo systemctl stop sing-box</code></td>
-</tr>
-<tr>
-<td align="left">Kill</td>
-<td align="left"><code>sudo systemctl kill sing-box</code></td>
-</tr>
-<tr>
-<td align="left">Restart</td>
-<td align="left"><code>sudo systemctl restart sing-box</code></td>
-</tr>
-<tr>
-<td align="left">Logs</td>
-<td align="left"><code>sudo journalctl -u sing-box --output cat -e</code></td>
-</tr>
-<tr>
-<td align="left">New Logs</td>
-<td align="left"><code>sudo journalctl -u sing-box --output cat -f</code></td>
-</tr>
-</tbody></table>
-<h2 id="订阅转换"><a href="#订阅转换" class="headerlink" title="订阅转换"></a>订阅转换</h2><ul>
-<li>在线部署 参考 <a target="_blank" rel="noopener" href="https://github.com/Toperlock/sing-box-subscribe">https://github.com/Toperlock/sing-box-subscribe</a></li>
-<li>离线部署</li>
-</ul>
-<ol>
-<li>下载安装配置好python环境；</li>
-<li>下载<a target="_blank" rel="noopener" href="https://github.com/Toperlock/sing-box-subscribe/releases/download/v2.8.0/sing-box-subscribe-no-flask-2.8.0.zip">sing-box-subscribe-no-flask-2.8.0</a>解压；</li>
-<li>拷贝要转换的如http、ss链接替换文件providers.json里的url；</li>
-<li>CMD或powershell下执行python main.py，选择相应配置文件，最终生成config.json；</li>
-<li>苹果手机安装sing-box后导入config.json。</li>
-</ol>
-<h2 id="一个小坑"><a href="#一个小坑" class="headerlink" title="一个小坑"></a>一个小坑</h2><p>WIN平台用的是第三方GUI，导入订阅链接或设置单个链接后，一直无法启动。提示：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fork/exec data/sing-box/sing-box.exe: The system cannot find the file specified.</span><br></pre></td></tr></table></figure>
-
-<p>解决方法是使用前需要先更新一下内核。打开GUI.for.SingBox，设置，点击最右侧更新。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">本地：无核心 远程：1.11.3 更新：1.11.3</span><br><span class="line">local: Core Not Found Remote:1.11.3 Update:1.11.3</span><br></pre></td></tr></table></figure>
-
 
       
     </div>

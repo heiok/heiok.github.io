@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"heiok.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4157401344064000" crossorigin="anonymous"></script>
+
+    <meta name="description" content="一、Intel 平台触发电路的总目标让 PS_ON# 被 Super I&#x2F;O 拉低，使 ATX 电源工作，从而进入主板 S0 状态。 这需要三个核心角色共同参与：    组件 作用    ATX 电源 提供 5VSB 和主电源（12&#x2F;5&#x2F;3.3V）   Super I&#x2F;O（SIO） 接收开机键、控制 PS_ON#   PCH（Platform Control">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Intel架构触发电路工作原理">
+<meta property="og:url" content="https://heiok.com/Intel-architecture-trigger-circuit-working-principle.html">
+<meta property="og:site_name" content="网络蝙蝠侠部落">
+<meta property="og:description" content="一、Intel 平台触发电路的总目标让 PS_ON# 被 Super I&#x2F;O 拉低，使 ATX 电源工作，从而进入主板 S0 状态。 这需要三个核心角色共同参与：    组件 作用    ATX 电源 提供 5VSB 和主电源（12&#x2F;5&#x2F;3.3V）   Super I&#x2F;O（SIO） 接收开机键、控制 PS_ON#   PCH（Platform Control">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-09T08:48:02.000Z">
+<meta property="article:modified_time" content="2026-02-09T01:52:30.012Z">
+<meta property="article:author" content="heiok.com">
+<meta property="article:tag" content="Intel">
+<meta property="article:tag" content="Power Sequence">
+<meta property="article:tag" content="PS_ON#">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://heiok.com/Intel-architecture-trigger-circuit-working-principle.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://heiok.com/Intel-architecture-trigger-circuit-working-principle.html","path":"Intel-architecture-trigger-circuit-working-principle.html","title":"Intel架构触发电路工作原理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Intel架构触发电路工作原理 | 网络蝙蝠侠部落</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-90W6VHZRMP"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-90W6VHZRMP","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">网络蝙蝠侠部落</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81Intel-%E5%B9%B3%E5%8F%B0%E8%A7%A6%E5%8F%91%E7%94%B5%E8%B7%AF%E7%9A%84%E6%80%BB%E7%9B%AE%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">一、Intel 平台触发电路的总目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Intel-%E5%B9%B3%E5%8F%B0%E4%B8%8A%E7%94%B5%E6%B5%81%E7%A8%8B%E6%80%BB%E8%A7%88%E5%9B%BE"><span class="nav-number">2.</span> <span class="nav-text">二、Intel 平台上电流程总览图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%AF%A6%E7%BB%86%E8%A7%A3%E9%87%8A-Intel-%E4%B8%8A%E7%94%B5%E7%9A%84%E6%AF%8F%E4%B8%AA%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.</span> <span class="nav-text">三、详细解释 Intel 上电的每个步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%91%A0-ATX-%E7%94%B5%E6%BA%90%E5%85%88%E6%8F%90%E4%BE%9B-5VSB"><span class="nav-number">3.1.</span> <span class="nav-text">① ATX 电源先提供 +5VSB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%91%A1-Super-I-O-%E6%8E%A5%E5%88%B0%E5%89%8D%E9%9D%A2%E6%9D%BF%E6%8C%89%E9%92%AE"><span class="nav-number">3.2.</span> <span class="nav-text">② Super I&#x2F;O 接到前面板按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%91%A2-PCH-%E6%98%AF%E5%BC%80%E6%9C%BA%E7%9A%84%E6%80%BB%E8%A3%81%EF%BC%88S-%E7%8A%B6%E6%80%81%E6%9C%BA%E6%A0%B8%E5%BF%83%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">③ PCH 是开机的总裁（S 状态机核心）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%94-SLP-S5-%E9%AB%98"><span class="nav-number">3.3.1.</span> <span class="nav-text">✔ SLP_S5# &#x3D; 高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%94-SLP-S4-%E9%AB%98"><span class="nav-number">3.3.2.</span> <span class="nav-text">✔ SLP_S4# &#x3D; 高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%94-SLP-S3-%E9%AB%98"><span class="nav-number">3.3.3.</span> <span class="nav-text">✔ SLP_S3# &#x3D; 高</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%91%A3-PCH-%E6%8E%88%E6%9D%83-Super-I-O-%E5%8F%91%E5%87%BA-PS-ON"><span class="nav-number">3.4.</span> <span class="nav-text">④ PCH 授权 Super I&#x2F;O 发出 PS_ON#</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%91%A4-ATX-%E7%94%B5%E6%BA%90%E5%90%AF%E5%8A%A8%E5%B9%B6%E8%BE%93%E5%87%BA%E4%B8%BB%E7%94%B5%E6%BA%90"><span class="nav-number">3.5.</span> <span class="nav-text">⑤ ATX 电源启动并输出主电源</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%9C%94-PG%EF%BC%88Power-Good%EF%BC%89"><span class="nav-number">3.5.1.</span> <span class="nav-text">✔ PG（Power Good）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%91%A5-PCH-%E6%8E%A5%E6%94%B6%E5%88%B0-PG-%E5%90%8E%EF%BC%8C%E7%9C%9F%E6%AD%A3%E5%BC%80%E5%A7%8B%E5%90%AF%E5%8A%A8-CPU"><span class="nav-number">3.6.</span> <span class="nav-text">⑥ PCH 接收到 PG 后，真正开始启动 CPU</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81Intel-%E5%B9%B3%E5%8F%B0%E8%A7%A6%E5%8F%91%E7%94%B5%E8%B7%AF%E7%9A%84%E6%9C%AC%E8%B4%A8%E6%80%BB%E7%BB%93%EF%BC%88%E5%85%B3%E9%94%AE%E9%80%BB%E8%BE%91%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">四、Intel 平台触发电路的本质总结（关键逻辑）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">116</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Intel-architecture-trigger-circuit-working-principle.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Intel架构触发电路工作原理 | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Intel架构触发电路工作原理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-01-09 16:48:02" itemprop="dateCreated datePublished" datetime="2026-01-09T16:48:02+08:00">2026-01-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-02-09 09:52:30" itemprop="dateModified" datetime="2026-02-09T09:52:30+08:00">2026-02-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="一、Intel-平台触发电路的总目标"><a href="#一、Intel-平台触发电路的总目标" class="headerlink" title="一、Intel 平台触发电路的总目标"></a>一、Intel 平台触发电路的总目标</h1><p><strong>让 PS_ON# 被 Super I&#x2F;O 拉低，使 ATX 电源工作，从而进入主板 S0 状态。</strong></p>
+<p>这需要三个核心角色共同参与：</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>ATX 电源</strong></td>
+<td>提供 5VSB 和主电源（12&#x2F;5&#x2F;3.3V）</td>
+</tr>
+<tr>
+<td><strong>Super I&#x2F;O（SIO）</strong></td>
+<td>接收开机键、控制 PS_ON#</td>
+</tr>
+<tr>
+<td><strong>PCH（Platform Controller Hub）</strong></td>
+<td>Intel 电源状态机核心（S5→S0）</td>
+</tr>
+</tbody></table>
+<p>整套系统是 Intel 平台的“典型触发设计”。</p>
+<hr>
+<h1 id="二、Intel-平台上电流程总览图"><a href="#二、Intel-平台上电流程总览图" class="headerlink" title="二、Intel 平台上电流程总览图"></a>二、Intel 平台上电流程总览图</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">+5VSB 上电</span><br><span class="line">     ↓</span><br><span class="line">Super I/O 上电（仅依靠 5VSB）</span><br><span class="line">     ↓</span><br><span class="line">FP PWRBTN# 按下</span><br><span class="line">     ↓</span><br><span class="line">SIO → 将按键事件发送给 PCH</span><br><span class="line">     ↓</span><br><span class="line">PCH 决定是否从 S5/S4/S3 唤醒</span><br><span class="line">     ↓</span><br><span class="line">PCH 拉高 SLP_S5# / SLP_S4# / SLP_S3#</span><br><span class="line">（退出睡眠/断电状态）</span><br><span class="line">     ↓</span><br><span class="line">PCH 授权 SIO：可以开机</span><br><span class="line">     ↓</span><br><span class="line">SIO 输出 PS_ON# = 0</span><br><span class="line">     ↓</span><br><span class="line">ATX 电源启动 12V/5V/3.3V</span><br><span class="line">     ↓</span><br><span class="line">ATX 输出 PG（Power Good）</span><br><span class="line">     ↓</span><br><span class="line">PCH 接收到 PG → 释放 PLTRST#、CPURST#、VR_EN</span><br><span class="line">     ↓</span><br><span class="line">CPU 进入 S0 → BIOS 运行</span><br></pre></td></tr></table></figure>
+
+<p>这就是 <strong>Intel 平台的标准触发模型（Power Sequence）</strong>。</p>
+<hr>
+<h1 id="三、详细解释-Intel-上电的每个步骤"><a href="#三、详细解释-Intel-上电的每个步骤" class="headerlink" title="三、详细解释 Intel 上电的每个步骤"></a>三、详细解释 Intel 上电的每个步骤</h1><h2 id="①-ATX-电源先提供-5VSB"><a href="#①-ATX-电源先提供-5VSB" class="headerlink" title="① ATX 电源先提供 +5VSB"></a>① ATX 电源先提供 +5VSB</h2><p>主板断电状态下唯一有电的就是：</p>
+<ul>
+<li>+5VSB → 供给 SIO、PCH 的 RTC&#x2F;一些逻辑</li>
+</ul>
+<p>Intel 规定：</p>
+<blockquote>
+<p><strong>只有 5VSB + SIO 正常工作，开机键才能被识别。</strong></p>
+</blockquote>
+<hr>
+<h2 id="②-Super-I-O-接到前面板按钮"><a href="#②-Super-I-O-接到前面板按钮" class="headerlink" title="② Super I&#x2F;O 接到前面板按钮"></a>② Super I&#x2F;O 接到前面板按钮</h2><p>前面板开关（PWRBTN#）按下：</p>
+<ul>
+<li>信号由 FP Header → 直接进入 <strong>Super I&#x2F;O</strong></li>
+<li>Super I&#x2F;O 并不会自己决定开机<br> 它只会向 PCH 报告“有人按了按键”</li>
+</ul>
+<hr>
+<h2 id="③-PCH-是开机的总裁（S-状态机核心）"><a href="#③-PCH-是开机的总裁（S-状态机核心）" class="headerlink" title="③ PCH 是开机的总裁（S 状态机核心）"></a>③ PCH 是开机的总裁（S 状态机核心）</h2><p>Intel 平台的电源状态完全由 PCH 决定：</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>S5</strong></td>
+<td>软关机，仅 5VSB</td>
+</tr>
+<tr>
+<td><strong>S4</strong></td>
+<td>休眠</td>
+</tr>
+<tr>
+<td><strong>S3</strong></td>
+<td>待机（内存供电）</td>
+</tr>
+<tr>
+<td><strong>S0</strong></td>
+<td>全工作</td>
+</tr>
+</tbody></table>
+<p>按钮事件到达 PCH 后，PCH 会判断：</p>
+<ul>
+<li>当前状态是否允许开机？</li>
+<li>是否要唤醒？</li>
+<li>是否要退出睡眠？</li>
+</ul>
+<p>如果允许开机，PCH 会输出：</p>
+<h3 id="✔-SLP-S5-高"><a href="#✔-SLP-S5-高" class="headerlink" title="✔ SLP_S5# &#x3D; 高"></a>✔ SLP_S5# &#x3D; 高</h3><h3 id="✔-SLP-S4-高"><a href="#✔-SLP-S4-高" class="headerlink" title="✔ SLP_S4# &#x3D; 高"></a>✔ SLP_S4# &#x3D; 高</h3><h3 id="✔-SLP-S3-高"><a href="#✔-SLP-S3-高" class="headerlink" title="✔ SLP_S3# &#x3D; 高"></a>✔ SLP_S3# &#x3D; 高</h3><p>这些信号是 Intel 定义的电源域控制信号。</p>
+<p>“桥输出 S3&#x2F;S4”就是 **SLP_S3# &#x2F; SLP_S4# &#x2F; SLP_S5#**。</p>
+<hr>
+<h2 id="④-PCH-授权-Super-I-O-发出-PS-ON"><a href="#④-PCH-授权-Super-I-O-发出-PS-ON" class="headerlink" title="④ PCH 授权 Super I&#x2F;O 发出 PS_ON#"></a>④ PCH 授权 Super I&#x2F;O 发出 PS_ON#</h2><p>PCH 不直接控制 ATX 电源。<br> 真正拉低 PS_ON# 的是 <strong>Super I&#x2F;O</strong>。</p>
+<p>但 I&#x2F;O 必须等到 PCH 发出“允许上电”后才会执行。</p>
+<p>Intel 规范认为：</p>
+<blockquote>
+<p><strong>只有当 PCH 的睡眠信号 SLP_Sx# 都变为高电平，SIO 才能拉低 PS_ON#。</strong></p>
+</blockquote>
+<p>所以流程是：</p>
+<ul>
+<li>PCH：退出 S5&#x2F;S4&#x2F;S3</li>
+<li>PCH：授权开机</li>
+<li>Super I&#x2F;O：PS_ON# → Low</li>
+</ul>
+<hr>
+<h2 id="⑤-ATX-电源启动并输出主电源"><a href="#⑤-ATX-电源启动并输出主电源" class="headerlink" title="⑤ ATX 电源启动并输出主电源"></a>⑤ ATX 电源启动并输出主电源</h2><p>当 PS_ON# &#x3D; 0：</p>
+<p>ATX 开始输出：</p>
+<ul>
+<li>+12V</li>
+<li>+5V</li>
+<li>+3.3V</li>
+<li>-12V</li>
+</ul>
+<p>并在稳定后输出：</p>
+<h3 id="✔-PG（Power-Good）"><a href="#✔-PG（Power-Good）" class="headerlink" title="✔ PG（Power Good）"></a>✔ PG（Power Good）</h3><hr>
+<h2 id="⑥-PCH-接收到-PG-后，真正开始启动-CPU"><a href="#⑥-PCH-接收到-PG-后，真正开始启动-CPU" class="headerlink" title="⑥ PCH 接收到 PG 后，真正开始启动 CPU"></a>⑥ PCH 接收到 PG 后，真正开始启动 CPU</h2><p>PG 被送给 PCH（不是 CPU）。<br> 之后：</p>
+<ul>
+<li>PCH 拉高 <strong>CPUPWRGD</strong></li>
+<li>VRM 给 CPU 上电</li>
+<li>PCH 释放 <strong>PLTRST#</strong></li>
+<li>CPU 复位完成 → 取指令 → 执行 BIOS</li>
+</ul>
+<p>主机才真正开机。</p>
+<hr>
+<h1 id="四、Intel-平台触发电路的本质总结（关键逻辑）"><a href="#四、Intel-平台触发电路的本质总结（关键逻辑）" class="headerlink" title="四、Intel 平台触发电路的本质总结（关键逻辑）"></a>四、Intel 平台触发电路的本质总结（关键逻辑）</h1><p>一句话总结：</p>
+<blockquote>
+<p><strong>Intel 平台中，PCH 是开机状态机；I&#x2F;O 是 PS_ON# 的执行者；ATX 电源根据 PS_ON# 启动。</strong></p>
+</blockquote>
+<p>拆成三句话：</p>
+<ol>
+<li><strong>按钮按下 → SIO 接收 → PCH 决策</strong></li>
+<li><strong>PCH 决定 S 状态（S5 → S0）并授权</strong></li>
+<li><strong>SIO 拉低 PS_ON# → ATX 启动 → PG → PCH 完成 CPU 上电</strong></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Intel/" rel="tag"># Intel</a>
+              <a href="/tags/Power-Sequence/" rel="tag"># Power Sequence</a>
+              <a href="/tags/PS-ON/" rel="tag"># PS_ON#</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/HuaweiCloud-ECS-Guangzhou.html" rel="prev" title="华为云ECS广州友好用户环境测试记录">
+                  <i class="fa fa-angle-left"></i> 华为云ECS广州友好用户环境测试记录
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Cloudflare-CustomHostname-SaaS.html" rel="next" title="Cloudflare 域名优选（Custom Hostname / SaaS）设置">
+                  Cloudflare 域名优选（Custom Hostname / SaaS）设置 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">heiok.com</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
