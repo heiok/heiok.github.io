@@ -1,3 +1,4 @@
+https://heiok.com/Common-HTTP-Connectivity-Test-Services.html
 https://heiok.com/Intel-architecture-trigger-circuit-working-principle.html
 https://heiok.com/Cloudflare-CustomHostname-SaaS.html
 https://heiok.com/Cloudflare-CDN-Tracing-in-China.html
@@ -95,6 +96,8 @@ https://heiok.com/tags/Cloudflare/
 https://heiok.com/tags/Custom-Hostname/
 https://heiok.com/tags/Cloudflare-SaaS/
 https://heiok.com/tags/Fallback-Origin/
+https://heiok.com/tags/HTTP-204/
+https://heiok.com/tags/generate-204/
 https://heiok.com/tags/Conan/
 https://heiok.com/tags/ATX/
 https://heiok.com/tags/PS-ON/
