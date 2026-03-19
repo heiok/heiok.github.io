@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">118</span>
+        <span class="site-state-item-count">121</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -152,6 +152,322 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Summary-of-test-IPs-for-major-Hong-Kong-ISP-backbone-networks.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Summary-of-test-IPs-for-major-Hong-Kong-ISP-backbone-networks.html" class="post-title-link" itemprop="url">香港各大ISP骨干网测试IP汇总</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-03-19 15:53:41 / 修改时间：15:55:48" itemprop="dateCreated datePublished" datetime="2026-03-19T15:53:41+08:00">2026-03-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>本文整理了香港及国际主要运营商的骨干网测试 IP，适用于：</p>
+<ul>
+<li>网络延迟测试</li>
+<li>路由质量分析</li>
+<li>回程线路判断</li>
+<li>机房 &#x2F; VPS 网络对比</li>
+<li>BGP 线路研究</li>
+</ul>
+<hr>
+<h2 id="🌍-国际-Tier-1-骨干运营商"><a href="#🌍-国际-Tier-1-骨干运营商" class="headerlink" title="🌍 国际 Tier-1 骨干运营商"></a>🌍 国际 Tier-1 骨干运营商</h2><table>
+<thead>
+<tr>
+<th>运营商</th>
+<th>ASN</th>
+<th>测试 IP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tata Communications</td>
+<td>AS6453</td>
+<td>180.87.112.142</td>
+</tr>
+<tr>
+<td>NTT Communications</td>
+<td>AS2914</td>
+<td>203.131.243.153</td>
+</tr>
+<tr>
+<td>Lumen Technologies</td>
+<td>AS3356</td>
+<td>4.69.208.58</td>
+</tr>
+<tr>
+<td>Hurricane Electric</td>
+<td>AS6939</td>
+<td>184.104.220.67</td>
+</tr>
+<tr>
+<td>GTT Communications</td>
+<td>AS3257</td>
+<td>103.232.19.186</td>
+</tr>
+<tr>
+<td>PCCW Global</td>
+<td>AS3491</td>
+<td>63.216.84.146</td>
+</tr>
+<tr>
+<td>Telstra</td>
+<td>AS4637</td>
+<td>202.84.156.58</td>
+</tr>
+<tr>
+<td>Arelion</td>
+<td>AS1299</td>
+<td>62.115.169.212</td>
+</tr>
+<tr>
+<td>Cogent Communications</td>
+<td>AS174</td>
+<td>205.199.1.17</td>
+</tr>
+<tr>
+<td>Verizon</td>
+<td>AS9337</td>
+<td>210.80.1.13</td>
+</tr>
+<tr>
+<td>Zayo Group</td>
+<td>AS6461</td>
+<td>64.125.24.21</td>
+</tr>
+<tr>
+<td>Vodafone</td>
+<td>AS1273</td>
+<td>195.2.14.77</td>
+</tr>
+<tr>
+<td>RETN</td>
+<td>AS9002</td>
+<td>87.245.232.73</td>
+</tr>
+<tr>
+<td>Telecom Italia Sparkle</td>
+<td>AS6762</td>
+<td>195.22.223.128</td>
+</tr>
+<tr>
+<td>Orange</td>
+<td>AS5511</td>
+<td>193.251.150.24</td>
+</tr>
+<tr>
+<td>Singtel</td>
+<td>AS7473</td>
+<td>203.208.150.37</td>
+</tr>
+<tr>
+<td>Chunghwa Telecom</td>
+<td>AS3462</td>
+<td>211.22.33.137</td>
+</tr>
+<tr>
+<td>KDDI</td>
+<td>AS2516</td>
+<td>111.87.5.185</td>
+</tr>
+<tr>
+<td>Internet Initiative Japan</td>
+<td>AS2497</td>
+<td>58.138.97.226</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🇨🇳-中国大陆运营商骨干网"><a href="#🇨🇳-中国大陆运营商骨干网" class="headerlink" title="🇨🇳 中国大陆运营商骨干网"></a>🇨🇳 中国大陆运营商骨干网</h2><table>
+<thead>
+<tr>
+<th>运营商</th>
+<th>ASN</th>
+<th>测试 IP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>China Mobile International</td>
+<td>AS58453</td>
+<td>223.120.2.118</td>
+</tr>
+<tr>
+<td>China Mobile International CN2</td>
+<td>AS58807</td>
+<td>223.120.130.5</td>
+</tr>
+<tr>
+<td>China Unicom</td>
+<td>AS4837</td>
+<td>219.158.20.94</td>
+</tr>
+<tr>
+<td>China Unicom AS9929</td>
+<td>AS9929</td>
+<td>218.105.10.126</td>
+</tr>
+<tr>
+<td>China Unicom Global 普通线路</td>
+<td>AS10099</td>
+<td>203.160.84.242</td>
+</tr>
+<tr>
+<td>China Unicom Global 精品线路</td>
+<td>AS10099</td>
+<td>203.160.92.78</td>
+</tr>
+<tr>
+<td>China Telecom 163 骨干网</td>
+<td>AS4134</td>
+<td>203.215.232.3</td>
+</tr>
+<tr>
+<td>China Telecom CN2</td>
+<td>AS4809</td>
+<td>203.8.25.187</td>
+</tr>
+<tr>
+<td>China Telecom Global</td>
+<td>AS23764</td>
+<td>203.19.32.131</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🇭🇰-香港本地运营商"><a href="#🇭🇰-香港本地运营商" class="headerlink" title="🇭🇰 香港本地运营商"></a>🇭🇰 香港本地运营商</h2><table>
+<thead>
+<tr>
+<th>运营商</th>
+<th>ASN</th>
+<th>测试 IP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HGC Global Communications</td>
+<td>AS9304</td>
+<td>223.19.54.1</td>
+</tr>
+<tr>
+<td>HKT</td>
+<td>AS4760</td>
+<td>218.102.20.42</td>
+</tr>
+<tr>
+<td>Hong Kong Broadband Network</td>
+<td>AS9269</td>
+<td>119.246.40.1</td>
+</tr>
+<tr>
+<td>China Mobile Hong Kong</td>
+<td>AS137872</td>
+<td>182.239.125.254</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="☁️-云服务与-CDN-厂商"><a href="#☁️-云服务与-CDN-厂商" class="headerlink" title="☁️ 云服务与 CDN 厂商"></a>☁️ 云服务与 CDN 厂商</h2><table>
+<thead>
+<tr>
+<th>厂商</th>
+<th>ASN</th>
+<th>测试 IP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CDN77</td>
+<td>AS60068</td>
+<td>84.17.57.129</td>
+</tr>
+<tr>
+<td>Cloudflare</td>
+<td>AS13335</td>
+<td>103.22.203.79</td>
+</tr>
+<tr>
+<td>Google</td>
+<td>AS15169</td>
+<td>142.250.76.238</td>
+</tr>
+<tr>
+<td>Microsoft</td>
+<td>AS8075</td>
+<td>104.44.212.216</td>
+</tr>
+<tr>
+<td>Akamai Technologies</td>
+<td>AS20940</td>
+<td>23.77.215.46</td>
+</tr>
+<tr>
+<td>Apple</td>
+<td>AS6185</td>
+<td>17.253.85.204</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1737,248 +2053,6 @@
 <h3 id="三网回程-1"><a href="#三网回程-1" class="headerlink" title="三网回程"></a>三网回程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line">********************************************************************************</span><br><span class="line">                         网络质量体检报告：217.116.*.*</span><br><span class="line">                       https://github.com/xykt/NetQuality</span><br><span class="line">                    bash &lt;(curl -sL https://Check.Place) -N</span><br><span class="line">            报告时间：2025-11-10 09:31:50 CST  脚本版本：v2025-09-18</span><br><span class="line">********************************************************************************</span><br><span class="line">一、BGP信息（BGP.TOOLS &amp; HE.NET）</span><br><span class="line">注册信息：          RIPE, AS209699 Coaxial Cable LLC, Prefix/22</span><br><span class="line">注册/修改日期：     2025-11-03 / 2025-11-03</span><br><span class="line">地区：              [SG]Singapore, South-eastern Asia, Asia</span><br><span class="line">地址：              Dummy address for ORG-CCL114-RIPE</span><br><span class="line">活跃邻居：          Subnet/24  0 / 256     Prefix/22  0 / 1024</span><br><span class="line">二、本地策略</span><br><span class="line">NAT类型：         开放网络无NAT</span><br><span class="line">TCP拥塞控制算法：bbr          TCP接收缓冲区（rmem）：4096 131072 3637856</span><br><span class="line">队列调度算法：   fq           TCP发送缓冲区（wmem）：4096 16384 3637856</span><br><span class="line">三、接入信息（*=Tier1 *=非Tier1 *=上游）</span><br><span class="line">互联网交换点接入数：30        上游数量：3         对等互联数量：1</span><br><span class="line">AS174   AS701  AS1299  AS2914 AS3257 AS3320 AS3356 AS3491 AS5511 AS6453 AS6461</span><br><span class="line">Cogent Verizon Arelion   NTT    GTT   DTAG   Lumen  PCCW  Orange  TATA   Zayo</span><br><span class="line">AS6762  AS6830  AS7018 AS12956 AS9002 AS9516 AS9886 AS49304 AS137409 AS150684</span><br><span class="line">Sparkle Liberty  AT&amp;T  Telxius  RETN  SAKURA CTCSCI  SAKURA    GSL     JINX</span><br><span class="line">AS213845</span><br><span class="line">  Cylix</span><br><span class="line">五、三网回程路由（线路可能随网络负载动态变化）</span><br><span class="line">  北京 电信    Softbank -&gt; NoData</span><br><span class="line">地理路径：德国 -&gt; 香港 -&gt; 日本 -&gt; 上海 -&gt; 北京    自治系统路径：AS213845 -&gt; AS140096 -&gt; AS17676 -&gt; AS4847</span><br><span class="line"> 1       0.34ms  92.112.*.*   AS213845                    德国 黑森州 美因河畔法兰克福</span><br><span class="line"> 2-3     0.52ms  10.14.*.*                                * RFC1918</span><br><span class="line"> 4-5    76.92ms  103.55.*.*   AS140096                    中国 香港 jinx.cloud</span><br><span class="line"> 6-7    76.82ms  101.203.*.*            [BBIXINTLNET]     * 日本</span><br><span class="line">11     167.32ms  221.111.*.*  AS17676   [BBTEC]           中国 上海 softbank.jp</span><br><span class="line">17     186.61ms  219.141.*.*  AS4847    [CHINATELECOM-BJ] 中国 北京 chinatelecom.cn</span><br><span class="line">18     188.09ms  219.141.*.*  AS4847    [CHINATELECOM-BJ] 中国 北京 chinatelecom.cn</span><br><span class="line">  北京 联通    Softbank -&gt; 4837</span><br><span class="line">地理路径：德国 -&gt; 香港 -&gt; 日本 -&gt; 北京    自治系统路径：AS213845 -&gt; AS140096 -&gt; AS17676 -&gt; AS4837 -&gt; AS4808</span><br><span class="line"> 1       0.51ms  92.112.*.*   AS213845                    德国 黑森州 美因河畔法兰克福</span><br><span class="line"> 2-3     0.55ms  10.14.*.*                                * RFC1918</span><br><span class="line"> 4-5    76.73ms  103.55.*.*   AS140096                    中国 香港 jinx.cloud</span><br><span class="line"> 6-7    77.33ms  101.203.*.*            [BBIXINTLNET]     * 日本</span><br><span class="line">11     133.89ms  221.111.*.*  AS17676   [BBTEC]           中国 北京 BBTEC-CU-Peer softbank.jp</span><br><span class="line">12     130.72ms  219.158.*.*  AS4837    [CU169-BACKBONE]  中国 北京 chinaunicom.cn 联通</span><br><span class="line">14     131.99ms  124.65.*.*   AS4808    [UNICOM-BJ]       中国 北京 中国联通 联通</span><br><span class="line">15     131.50ms  61.149.*.*   AS4808    [UNICOM-CN]       中国 北京市 丰台 中国联通 联通</span><br><span class="line">  北京 移动    Level3 -&gt; CMI</span><br><span class="line">地理路径：德国 -&gt; 新加坡 -&gt; 北京    自治系统路径：AS213845 -&gt; AS7578 -&gt; AS3356 -&gt; AS58453 -&gt; AS9808 -&gt; AS56048</span><br><span class="line"> 1       0.73ms  92.112.*.*   AS213845                    德国 黑森州 美因河畔法兰克福</span><br><span class="line"> 2-3     0.97ms  10.14.*.*                                * RFC1918</span><br><span class="line"> 4       0.88ms  206.148.*.*  AS7578                      新加坡 globalsecurelayer.com</span><br><span class="line"> 5-6     0.75ms  8.245.*.*    AS3356                      新加坡 lumen.com</span><br><span class="line"> 8      89.89ms  223.120.*.*  AS58453   [CMI-INT]         中国 北京 cmi.chinamobile.com 移动</span><br><span class="line"> 9-12  108.95ms  221.183.*.*  AS9808    [CMNET]           中国 北京 X-I chinamobileltd.com 移动</span><br><span class="line">13-15  112.39ms  211.136.*.*  AS56048   [CMNET]           中国 北京 bj.10086.cn 移动</span><br><span class="line">19     112.32ms  211.136.*.*  AS56048   [CMNET]           中国 北京 bj.10086.cn 移动</span><br><span class="line">  上海 电信    Softbank -&gt; 163</span><br><span class="line">地理路径：德国 -&gt; 香港 -&gt; 日本 -&gt; 北京 -&gt; 上海    自治系统路径：AS213845 -&gt; AS140096 -&gt; AS17676 -&gt; AS4134 -&gt; AS4812</span><br><span class="line"> 1       0.50ms  92.112.*.*   AS213845                    德国 黑森州 美因河畔法兰克福</span><br><span class="line"> 2-3     0.74ms  10.14.*.*                                * RFC1918</span><br><span class="line"> 4-5    76.90ms  103.55.*.*   AS140096                    中国 香港 jinx.cloud</span><br><span class="line"> 6-7    76.98ms  101.203.*.*            [BBIXINTLNET]     * 日本</span><br><span class="line">11     130.15ms  221.111.*.*  AS17676   [BBTEC]           中国 北京 softbank.jp</span><br><span class="line">13     161.95ms  202.97.*.*   AS4134    [CHINANET-BB]     中国 北京 www.chinatelecom.com.cn</span><br><span class="line">14     148.52ms  202.97.*.*   AS4134    [CHINANET-BB]     中国 上海 www.chinatelecom.com.cn 电信</span><br><span class="line">15     135.59ms  61.152.*.*   AS4812    [CHINANET-SH]     中国 上海 chinatelecom.cn 电信</span><br><span class="line">22     143.15ms  101.226.*.*  AS4812    [CHINANET-SH]     中国 上海市 chinatelecom.cn 电信</span><br><span class="line">  上海 联通    Softbank -&gt; 4837</span><br><span class="line">地理路径：德国 -&gt; 香港 -&gt; 日本 -&gt; 北京 -&gt; 上海    自治系统路径：AS213845 -&gt; AS140096 -&gt; AS17676 -&gt; AS4837 -&gt; AS140979</span><br><span class="line"> 1       0.58ms  92.112.*.*   AS213845                    德国 黑森州 美因河畔法兰克福</span><br><span class="line"> 2-3    21.41ms  10.14.*.*                                * RFC1918</span><br><span class="line"> 4-5    76.82ms  103.55.*.*   AS140096                    中国 香港 jinx.cloud</span><br><span class="line"> 6-7    77.14ms  101.203.*.*            [BBIXINTLNET]     * 日本</span><br><span class="line">11     130.58ms  221.111.*.*  AS17676   [BBTEC]           中国 北京 BBTEC-CU-Peer softbank.jp</span><br><span class="line">12-13  129.58ms  219.158.*.*  AS4837    [CU169-BACKBONE]  中国 北京 chinaunicom.cn</span><br><span class="line">21     150.24ms  58.246.*.*   AS140979                    中国 上海市 chinaunicom.cn 联通</span><br><span class="line">  上海 移动    Level3 -&gt; CMI</span><br><span class="line">地理路径：德国 -&gt; 新加坡 -&gt; 上海    自治系统路径：AS213845 -&gt; AS7578 -&gt; AS3356 -&gt; AS9808</span><br><span class="line"> 1       0.85ms  92.112.*.*   AS213845                    德国 黑森州 美因河畔法兰克福</span><br><span class="line"> 2-3     1.07ms  10.14.*.*                                * RFC1918</span><br><span class="line"> 4       0.65ms  206.148.*.*  AS7578                      新加坡 globalsecurelayer.com</span><br><span class="line"> 5-6     0.74ms  8.245.*.*    AS3356                      新加坡 lumen.com</span><br><span class="line"> 9-11   58.70ms  221.183.*.*  AS9808    [CMNET]           中国 上海 X-I chinamobileltd.com 移动</span><br><span class="line">17      80.64ms  117.185.*.*  AS9808    [CMNET]           中国 上海市 chinamobileltd.com 移动</span><br><span class="line">  广东 电信    Softbank -&gt; 163</span><br><span class="line">地理路径：德国 -&gt; 香港 -&gt; 日本 -&gt; 上海 -&gt; 北京 -&gt; 广东    自治系统路径：AS213845 -&gt; AS140096 -&gt; AS17676 -&gt; AS4134</span><br><span class="line"> 1       1.57ms  92.112.*.*   AS213845                    德国 黑森州 美因河畔法兰克福</span><br><span class="line"> 2-3     1.08ms  10.14.*.*                                * RFC1918</span><br><span class="line"> 4-5    76.62ms  103.55.*.*   AS140096                    中国 香港 jinx.cloud</span><br><span class="line"> 6-7    77.06ms  101.203.*.*            [BBIXINTLNET]     * 日本</span><br><span class="line">12     105.70ms  221.111.*.*  AS17676   [BBTEC]           中国 上海 softbank.jp</span><br><span class="line">13-14  107.92ms  202.97.*.*   AS4134    [CHINANET-BB]     中国 上海 www.chinatelecom.com.cn 电信</span><br><span class="line">15     139.71ms  202.97.*.*   AS4134    [CHINANET-BB]     中国 北京 北京 www.chinatelecom.com.cn</span><br><span class="line">16-17  159.08ms  219.128.*.*  AS4134    [CHINANET-GD]     中国 广东省 汕头市 www.chinatelecom.com.cn 电信</span><br><span class="line">20     174.03ms  14.22.*.*    AS4134                      中国 广东 www.chinatelecom.com.cn</span><br><span class="line">  广东 联通    Softbank -&gt; 4837</span><br><span class="line">地理路径：德国 -&gt; 香港 -&gt; 日本 -&gt; 北京 -&gt; 广东    自治系统路径：AS213845 -&gt; AS140096 -&gt; AS17676 -&gt; AS4837 -&gt; AS17816 -&gt; AS134543</span><br><span class="line"> 1       0.67ms  92.112.*.*   AS213845                    德国 黑森州 美因河畔法兰克福</span><br><span class="line"> 2-3     1.15ms  10.14.*.*                                * RFC1918</span><br><span class="line"> 4-5    76.75ms  103.55.*.*   AS140096                    中国 香港 jinx.cloud</span><br><span class="line"> 6-7    77.26ms  101.203.*.*            [BBIXINTLNET]     * 日本</span><br><span class="line">11     130.23ms  221.111.*.*  AS17676   [BBTEC]           中国 北京 BBTEC-CU-Peer softbank.jp</span><br><span class="line">12     130.50ms  219.158.*.*  AS4837    [CU169-BACKBONE]  中国 北京 chinaunicom.cn</span><br><span class="line">15     165.68ms  120.86.*.*   AS17816   [APNIC-AP]        中国 广东省 广州市 chinaunicom.cn 联通</span><br><span class="line">16     163.91ms  120.80.*.*   AS134543  [APNIC-AP]        中国 广东 东莞市 chinaunicom.cn 联通</span><br><span class="line">23     162.78ms  157.148.*.*  AS134543  [UNICOM-GD]       中国 广东 东莞 chinaunicom.cn</span><br><span class="line">  广东 移动    Level3 -&gt; CMI</span><br><span class="line">地理路径：德国 -&gt; 新加坡 -&gt; 广东    自治系统路径：AS213845 -&gt; AS7578 -&gt; AS3356 -&gt; AS58453 -&gt; AS9808 -&gt; AS56040 -&gt; AS9808</span><br><span class="line"> 1       0.92ms  92.112.*.*   AS213845                    德国 黑森州 美因河畔法兰克福</span><br><span class="line"> 2-3    13.45ms  10.14.*.*                                * RFC1918</span><br><span class="line"> 4       1.36ms  206.148.*.*  AS7578                      新加坡 globalsecurelayer.com</span><br><span class="line"> 5-6     1.51ms  8.245.*.*    AS3356                      新加坡 lumen.com</span><br><span class="line"> 8      43.33ms  223.120.*.*  AS58453   [CMI-INT]         中国 广东 广州 cmi.chinamobile.com</span><br><span class="line"> 9-12   41.08ms  221.183.*.*  AS9808    [CMNET]           中国 广东 广州 chinamobileltd.com 移动</span><br><span class="line">13      49.05ms  221.179.*.*  AS56040   [CMNET]           中国 广东 广州 gd.10086.cn</span><br><span class="line">14      49.28ms  120.196.*.*  AS56040   [APNIC-AP]        中国 广东 广州 gd.10086.cn</span><br><span class="line">20      48.45ms  183.232.*.*  AS9808    [APNIC-AP]        中国 广东 东莞 chinamobileltd.com</span><br><span class="line">================================================================================</span><br><span class="line">今日网络检测量：90；总检测量：244225。感谢使用xy系列脚本！</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/Notebook-ODM-manufacturer.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Notebook-ODM-manufacturer.html" class="post-title-link" itemprop="url">主要笔记本电脑代工厂及板号</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-11-03 11:14:01 / 修改时间：11:15:45" itemprop="dateCreated datePublished" datetime="2025-11-03T11:14:01+08:00">2025-11-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="主要笔记本电脑代工厂商"><a href="#主要笔记本电脑代工厂商" class="headerlink" title="主要笔记本电脑代工厂商"></a>主要笔记本电脑代工厂商</h2><table>
-<thead>
-<tr>
-<th>厂商</th>
-<th>英文名</th>
-<th>性质</th>
-<th>主要客户 &#x2F; 品牌</th>
-<th>主要基地</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>广达</strong></td>
-<td>Quanta</td>
-<td>独立 ODM</td>
-<td>Apple, HP, Dell, Lenovo</td>
-<td>上海、重庆、越南</td>
-</tr>
-<tr>
-<td><strong>仁宝</strong></td>
-<td>Compal</td>
-<td>独立 ODM</td>
-<td>HP, Dell, Lenovo, Acer</td>
-<td>昆山、重庆、合肥</td>
-</tr>
-<tr>
-<td><strong>纬创</strong></td>
-<td>Wistron</td>
-<td>独立 ODM</td>
-<td>Acer, Lenovo, Dell, HP</td>
-<td>昆山、越南、印度</td>
-</tr>
-<tr>
-<td><strong>英业达</strong></td>
-<td>Inventec</td>
-<td>独立 ODM</td>
-<td>HP, Acer, Apple</td>
-<td>上海、无锡、重庆</td>
-</tr>
-<tr>
-<td><strong>和硕</strong></td>
-<td>Pegatron</td>
-<td>独立 ODM&#x2F;OEM</td>
-<td>Apple, Asus, Dell, Lenovo</td>
-<td>上海、苏州、越南</td>
-</tr>
-<tr>
-<td><strong>联宝</strong></td>
-<td>LCFC</td>
-<td><strong>仁宝 + 联想合资 ODM</strong></td>
-<td><strong>Lenovo 专属</strong></td>
-<td>合肥</td>
-</tr>
-<tr>
-<td><strong>富士康</strong></td>
-<td>Foxconn (Hon Hai)</td>
-<td>OEM &#x2F; EMS</td>
-<td>HP, Dell, Apple, Asus</td>
-<td>深圳、郑州、重庆、越南</td>
-</tr>
-<tr>
-<td><strong>广明光电</strong></td>
-<td>Qisda (BenQ Group)</td>
-<td>ODM &#x2F; 自有品牌</td>
-<td>Acer, BenQ</td>
-<td>苏州、台湾</td>
-</tr>
-<tr>
-<td><strong>华硕</strong></td>
-<td>ASUS</td>
-<td><strong>品牌厂 + 部分自制 ODM</strong></td>
-<td>自有品牌（ASUS、ROG）、部分代工 MSI 等</td>
-<td>苏州、重庆、台湾</td>
-</tr>
-<tr>
-<td><strong>华勤通讯</strong></td>
-<td>Huaqin</td>
-<td><strong>中国大陆新兴 ODM</strong></td>
-<td>Lenovo, Honor, Xiaomi, HP, Dell</td>
-<td>上海、昆山、越南、印度</td>
-</tr>
-<tr>
-<td><strong>蓝天电脑</strong></td>
-<td><strong>Clevo</strong></td>
-<td><strong>ODM &#x2F; 自有品牌制造商</strong></td>
-<td>自有品牌 Clevo、Sager、XMG、Eurocom 等</td>
-<td>台湾、昆山</td>
-</tr>
-</tbody></table>
-<h2 id="主要笔电代工厂板号前缀"><a href="#主要笔电代工厂板号前缀" class="headerlink" title="主要笔电代工厂板号前缀"></a>主要笔电代工厂板号前缀</h2><table>
-<thead>
-<tr>
-<th>代工厂</th>
-<th>英文名</th>
-<th>常见主板编号前缀 &#x2F; 样式</th>
-<th>典型品牌或机型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>英业达</strong></td>
-<td><strong>Inventec</strong></td>
-<td>🧩 <code>6050-xxxxxx-xxx</code></td>
-<td>HP、Acer、Dell</td>
-</tr>
-<tr>
-<td><strong>纬创</strong></td>
-<td><strong>Wistron</strong></td>
-<td>🧩 <code>18825xxxxx</code></td>
-<td>HP、Dell、Lenovo、Acer</td>
-</tr>
-<tr>
-<td><strong>广达</strong></td>
-<td><strong>Quanta</strong></td>
-<td>🧩 <code>DA0xxxxMBxE</code>、<code>QCLAxxxx</code></td>
-<td>Lenovo、HP、Dell</td>
-</tr>
-<tr>
-<td><strong>仁宝</strong></td>
-<td><strong>Compal</strong></td>
-<td>🧩 <code>LA-xxxxP</code>、<code>DLFxxxxMB</code>、<code>PKxxxMB</code></td>
-<td>Acer、Dell、HP、Lenovo</td>
-</tr>
-<tr>
-<td><strong>和硕</strong></td>
-<td><strong>Pegatron</strong></td>
-<td>🧩 <code>DBLxxxxMB</code>、<code>DABLxxxxMB</code></td>
-<td>Apple、Asus、Dell</td>
-</tr>
-<tr>
-<td><strong>联宝</strong></td>
-<td><strong>LCFC (Lenovo + Compal)</strong></td>
-<td>🧩 <code>NM-Bxxx / NM-Cxxx / NM-Dxxx</code></td>
-<td>Lenovo 专属</td>
-</tr>
-<tr>
-<td><strong>富士康</strong></td>
-<td><strong>Foxconn (Hon Hai)</strong></td>
-<td>🧩<code>HSTNN-xxxx</code></td>
-<td>HP、Dell、Apple</td>
-</tr>
-<tr>
-<td><strong>蓝天</strong></td>
-<td><strong>Clevo</strong></td>
-<td>🧩 <code>6-71-xxxxx-Dxx</code>、<code>6-77-xxxxx-Dxx</code></td>
-<td>蓝天、雷神、Sager、XMG</td>
-</tr>
-<tr>
-<td><strong>广明光电</strong></td>
-<td><strong>Qisda (BenQ Group)</strong></td>
-<td>🧩 <code>QxxxxMB</code></td>
-<td>BenQ、Acer</td>
-</tr>
-<tr>
-<td><strong>华勤</strong></td>
-<td><strong>Huaqin</strong></td>
-<td>🧩 <code>HQxxxxMB</code>、<code>HFxxxxMB</code>（较新）</td>
-<td>HP、Lenovo、Chromebook</td>
-</tr>
-<tr>
-<td><strong>华硕</strong></td>
-<td><strong>ASUS</strong></td>
-<td>🧩 <code>XxxxMB</code>、<code>DABLxxxxMB</code>、<code>Asus MB Ver.x.x</code></td>
-<td>华硕自有品牌</td>
-</tr>
-</tbody></table>
 
       
     </div>

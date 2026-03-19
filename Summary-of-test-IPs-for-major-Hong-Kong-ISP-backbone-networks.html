@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"heiok.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4157401344064000" crossorigin="anonymous"></script>
+
+    <meta name="description" content="本文整理了香港及国际主要运营商的骨干网测试 IP，适用于：  网络延迟测试 路由质量分析 回程线路判断 机房 &#x2F; VPS 网络对比 BGP 线路研究   🌍 国际 Tier-1 骨干运营商   运营商 ASN 测试 IP    Tata Communications AS6453 180.87.112.142   NTT Communications AS2914 203.131.24">
+<meta property="og:type" content="article">
+<meta property="og:title" content="香港各大ISP骨干网测试IP汇总">
+<meta property="og:url" content="https://heiok.com/Summary-of-test-IPs-for-major-Hong-Kong-ISP-backbone-networks.html">
+<meta property="og:site_name" content="网络蝙蝠侠部落">
+<meta property="og:description" content="本文整理了香港及国际主要运营商的骨干网测试 IP，适用于：  网络延迟测试 路由质量分析 回程线路判断 机房 &#x2F; VPS 网络对比 BGP 线路研究   🌍 国际 Tier-1 骨干运营商   运营商 ASN 测试 IP    Tata Communications AS6453 180.87.112.142   NTT Communications AS2914 203.131.24">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-19T07:53:41.000Z">
+<meta property="article:modified_time" content="2026-03-19T07:55:48.203Z">
+<meta property="article:author" content="heiok.com">
+<meta property="article:tag" content="Hong Kong ISP">
+<meta property="article:tag" content="Backbone Network">
+<meta property="article:tag" content="Looking Glass">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://heiok.com/Summary-of-test-IPs-for-major-Hong-Kong-ISP-backbone-networks.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://heiok.com/Summary-of-test-IPs-for-major-Hong-Kong-ISP-backbone-networks.html","path":"Summary-of-test-IPs-for-major-Hong-Kong-ISP-backbone-networks.html","title":"香港各大ISP骨干网测试IP汇总"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>香港各大ISP骨干网测试IP汇总 | 网络蝙蝠侠部落</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-90W6VHZRMP"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-90W6VHZRMP","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">网络蝙蝠侠部落</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8C%8D-%E5%9B%BD%E9%99%85-Tier-1-%E9%AA%A8%E5%B9%B2%E8%BF%90%E8%90%A5%E5%95%86"><span class="nav-number">1.</span> <span class="nav-text">🌍 国际 Tier-1 骨干运营商</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%87%A8%F0%9F%87%B3-%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E8%BF%90%E8%90%A5%E5%95%86%E9%AA%A8%E5%B9%B2%E7%BD%91"><span class="nav-number">2.</span> <span class="nav-text">🇨🇳 中国大陆运营商骨干网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%87%AD%F0%9F%87%B0-%E9%A6%99%E6%B8%AF%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%90%A5%E5%95%86"><span class="nav-number">3.</span> <span class="nav-text">🇭🇰 香港本地运营商</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%98%81%EF%B8%8F-%E4%BA%91%E6%9C%8D%E5%8A%A1%E4%B8%8E-CDN-%E5%8E%82%E5%95%86"><span class="nav-number">4.</span> <span class="nav-text">☁️ 云服务与 CDN 厂商</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">121</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Summary-of-test-IPs-for-major-Hong-Kong-ISP-backbone-networks.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="香港各大ISP骨干网测试IP汇总 | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          香港各大ISP骨干网测试IP汇总
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-03-19 15:53:41 / 修改时间：15:55:48" itemprop="dateCreated datePublished" datetime="2026-03-19T15:53:41+08:00">2026-03-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>本文整理了香港及国际主要运营商的骨干网测试 IP，适用于：</p>
+<ul>
+<li>网络延迟测试</li>
+<li>路由质量分析</li>
+<li>回程线路判断</li>
+<li>机房 &#x2F; VPS 网络对比</li>
+<li>BGP 线路研究</li>
+</ul>
+<hr>
+<h2 id="🌍-国际-Tier-1-骨干运营商"><a href="#🌍-国际-Tier-1-骨干运营商" class="headerlink" title="🌍 国际 Tier-1 骨干运营商"></a>🌍 国际 Tier-1 骨干运营商</h2><table>
+<thead>
+<tr>
+<th>运营商</th>
+<th>ASN</th>
+<th>测试 IP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tata Communications</td>
+<td>AS6453</td>
+<td>180.87.112.142</td>
+</tr>
+<tr>
+<td>NTT Communications</td>
+<td>AS2914</td>
+<td>203.131.243.153</td>
+</tr>
+<tr>
+<td>Lumen Technologies</td>
+<td>AS3356</td>
+<td>4.69.208.58</td>
+</tr>
+<tr>
+<td>Hurricane Electric</td>
+<td>AS6939</td>
+<td>184.104.220.67</td>
+</tr>
+<tr>
+<td>GTT Communications</td>
+<td>AS3257</td>
+<td>103.232.19.186</td>
+</tr>
+<tr>
+<td>PCCW Global</td>
+<td>AS3491</td>
+<td>63.216.84.146</td>
+</tr>
+<tr>
+<td>Telstra</td>
+<td>AS4637</td>
+<td>202.84.156.58</td>
+</tr>
+<tr>
+<td>Arelion</td>
+<td>AS1299</td>
+<td>62.115.169.212</td>
+</tr>
+<tr>
+<td>Cogent Communications</td>
+<td>AS174</td>
+<td>205.199.1.17</td>
+</tr>
+<tr>
+<td>Verizon</td>
+<td>AS9337</td>
+<td>210.80.1.13</td>
+</tr>
+<tr>
+<td>Zayo Group</td>
+<td>AS6461</td>
+<td>64.125.24.21</td>
+</tr>
+<tr>
+<td>Vodafone</td>
+<td>AS1273</td>
+<td>195.2.14.77</td>
+</tr>
+<tr>
+<td>RETN</td>
+<td>AS9002</td>
+<td>87.245.232.73</td>
+</tr>
+<tr>
+<td>Telecom Italia Sparkle</td>
+<td>AS6762</td>
+<td>195.22.223.128</td>
+</tr>
+<tr>
+<td>Orange</td>
+<td>AS5511</td>
+<td>193.251.150.24</td>
+</tr>
+<tr>
+<td>Singtel</td>
+<td>AS7473</td>
+<td>203.208.150.37</td>
+</tr>
+<tr>
+<td>Chunghwa Telecom</td>
+<td>AS3462</td>
+<td>211.22.33.137</td>
+</tr>
+<tr>
+<td>KDDI</td>
+<td>AS2516</td>
+<td>111.87.5.185</td>
+</tr>
+<tr>
+<td>Internet Initiative Japan</td>
+<td>AS2497</td>
+<td>58.138.97.226</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🇨🇳-中国大陆运营商骨干网"><a href="#🇨🇳-中国大陆运营商骨干网" class="headerlink" title="🇨🇳 中国大陆运营商骨干网"></a>🇨🇳 中国大陆运营商骨干网</h2><table>
+<thead>
+<tr>
+<th>运营商</th>
+<th>ASN</th>
+<th>测试 IP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>China Mobile International</td>
+<td>AS58453</td>
+<td>223.120.2.118</td>
+</tr>
+<tr>
+<td>China Mobile International CN2</td>
+<td>AS58807</td>
+<td>223.120.130.5</td>
+</tr>
+<tr>
+<td>China Unicom</td>
+<td>AS4837</td>
+<td>219.158.20.94</td>
+</tr>
+<tr>
+<td>China Unicom AS9929</td>
+<td>AS9929</td>
+<td>218.105.10.126</td>
+</tr>
+<tr>
+<td>China Unicom Global 普通线路</td>
+<td>AS10099</td>
+<td>203.160.84.242</td>
+</tr>
+<tr>
+<td>China Unicom Global 精品线路</td>
+<td>AS10099</td>
+<td>203.160.92.78</td>
+</tr>
+<tr>
+<td>China Telecom 163 骨干网</td>
+<td>AS4134</td>
+<td>203.215.232.3</td>
+</tr>
+<tr>
+<td>China Telecom CN2</td>
+<td>AS4809</td>
+<td>203.8.25.187</td>
+</tr>
+<tr>
+<td>China Telecom Global</td>
+<td>AS23764</td>
+<td>203.19.32.131</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🇭🇰-香港本地运营商"><a href="#🇭🇰-香港本地运营商" class="headerlink" title="🇭🇰 香港本地运营商"></a>🇭🇰 香港本地运营商</h2><table>
+<thead>
+<tr>
+<th>运营商</th>
+<th>ASN</th>
+<th>测试 IP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HGC Global Communications</td>
+<td>AS9304</td>
+<td>223.19.54.1</td>
+</tr>
+<tr>
+<td>HKT</td>
+<td>AS4760</td>
+<td>218.102.20.42</td>
+</tr>
+<tr>
+<td>Hong Kong Broadband Network</td>
+<td>AS9269</td>
+<td>119.246.40.1</td>
+</tr>
+<tr>
+<td>China Mobile Hong Kong</td>
+<td>AS137872</td>
+<td>182.239.125.254</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="☁️-云服务与-CDN-厂商"><a href="#☁️-云服务与-CDN-厂商" class="headerlink" title="☁️ 云服务与 CDN 厂商"></a>☁️ 云服务与 CDN 厂商</h2><table>
+<thead>
+<tr>
+<th>厂商</th>
+<th>ASN</th>
+<th>测试 IP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CDN77</td>
+<td>AS60068</td>
+<td>84.17.57.129</td>
+</tr>
+<tr>
+<td>Cloudflare</td>
+<td>AS13335</td>
+<td>103.22.203.79</td>
+</tr>
+<tr>
+<td>Google</td>
+<td>AS15169</td>
+<td>142.250.76.238</td>
+</tr>
+<tr>
+<td>Microsoft</td>
+<td>AS8075</td>
+<td>104.44.212.216</td>
+</tr>
+<tr>
+<td>Akamai Technologies</td>
+<td>AS20940</td>
+<td>23.77.215.46</td>
+</tr>
+<tr>
+<td>Apple</td>
+<td>AS6185</td>
+<td>17.253.85.204</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hong-Kong-ISP/" rel="tag"># Hong Kong ISP</a>
+              <a href="/tags/Backbone-Network/" rel="tag"># Backbone Network</a>
+              <a href="/tags/Looking-Glass/" rel="tag"># Looking Glass</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Common-HTTP-Connectivity-Test-Services.html" rel="prev" title="常用HTTP网络连通性测试服务">
+                  <i class="fa fa-angle-left"></i> 常用HTTP网络连通性测试服务
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">heiok.com</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
