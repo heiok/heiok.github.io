@@ -1,3 +1,4 @@
+https://heiok.com/Xiaomi-TV-ADB-Image-Transfer-Solution.html
 https://heiok.com/Summary-of-test-IPs-for-major-Hong-Kong-ISP-backbone-networks.html
 https://heiok.com/Common-HTTP-Connectivity-Test-Services.html
 https://heiok.com/Intel-architecture-trigger-circuit-working-principle.html
@@ -163,6 +164,8 @@ https://heiok.com/tags/Cantonese/
 https://heiok.com/tags/mkvmerge/
 https://heiok.com/tags/aliyun/
 https://heiok.com/tags/Centralized-Internet-Gateway/
+https://heiok.com/tags/Xiaomi-TV/
+https://heiok.com/tags/ADB/
 https://heiok.com/tags/Xiaomi-TV/
 https://heiok.com/tags/Xiaomi-TV-API/
 https://heiok.com/tags/port-6095/
