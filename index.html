@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">123</span>
+        <span class="site-state-item-count">126</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -152,6 +152,186 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Japan-US-VPS-Routing-Case-Traffic-Through-China.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Japan-US-VPS-Routing-Case-Traffic-Through-China.html" class="post-title-link" itemprop="url">三网优化线路机日美互联绕道中国案例</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-04-17 15:15:24 / 修改时间：15:23:45" itemprop="dateCreated datePublished" datetime="2026-04-17T15:15:24+08:00">2026-04-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>某坛里发现一个比较有意思的案例：</p>
+<p>从绿云 JP（三网 IIJ 优化）线路机 向 DMIT 传输文件时速度明显偏慢。</p>
+<p>原本以为是带宽或磁盘性能问题，但通过 traceroute 排查后发现：</p>
+<p>不仅没有走传统的日美直连路径，反而先进入中国骨干网，并在国内跨运营商后再出海到美国。</p>
+<hr>
+<h2 id="一、先说结论"><a href="#一、先说结论" class="headerlink" title="一、先说结论"></a>一、先说结论</h2><p>通过两组 traceroute 可以总结出实际路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">绿云JP → IIJ → 联通4837 → 电信163 → CN2 → DMIT（洛杉矶）</span><br></pre></td></tr></table></figure>
+
+<p>以及另一组软银优化线路：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">日本VPS → 联通4837 → 电信CN2 → DMIT（洛杉矶）</span><br></pre></td></tr></table></figure>
+
+<p>最终都指向同一个事实：</p>
+<blockquote>
+<p>日本 → 中国 → 美国</p>
+</blockquote>
+<p>而不是：</p>
+<blockquote>
+<p>日本 → 太平洋直连 → 美国</p>
+</blockquote>
+<hr>
+<h2 id="二、实测一：三网-IIJ-优化（绿云-JP）"><a href="#二、实测一：三网-IIJ-优化（绿云-JP）" class="headerlink" title="二、实测一：三网 IIJ 优化（绿云 JP）"></a>二、实测一：三网 IIJ 优化（绿云 JP）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">traceroute to x.x.x.x, 30 hops max, 52 bytes packets</span><br><span class="line">1   x.x.x.x   AS23959  [OWL-JP]         日本 东京都 东京  owl.net</span><br><span class="line">                                              6.87 ms / 19.83 ms / 15.67 ms</span><br><span class="line">2   *</span><br><span class="line">3   211.14.4.221    AS9607   [JPNIC-NET]      日本 东京都 东京  bbtower.co.jp</span><br><span class="line">4   211.14.4.222    AS9607   [JPNIC-NET]      日本 东京都 东京  bbtower.ad.jp</span><br><span class="line">5   172.29.0.10     *                         RFC1918</span><br><span class="line">6   210.138.130.225 AS2497   [IIJ]            日本 东京 iij.ad.jp</span><br><span class="line">7   58.138.98.73    AS2497   [IIJ]            日本 东京 IIJ</span><br><span class="line">8   58.138.112.38   AS2497   [IIJ]            日本 东京 IIJ</span><br><span class="line">9   202.232.1.158   AS2497   [IIJ]            日本 东京 IIJ</span><br><span class="line">10  219.158.30.69   AS4837   [CU169]          中国上海 联通</span><br><span class="line">11  219.158.19.86   AS4837   [CU169]          中国上海 联通</span><br><span class="line">12  219.158.19.81   AS4837   [CU169]          中国上海 联通</span><br><span class="line">13  219.158.8.250   AS4837   [CU169]          中国上海 联通</span><br><span class="line">14  *</span><br><span class="line">15  202.97.62.117   AS4134   [CHINANET]       中国上海 电信</span><br><span class="line">16  *</span><br><span class="line">17  *</span><br><span class="line">22  x.x.x.x         AS906    DMIT 洛杉矶</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="三、实测二：三网软银优化机器"><a href="#三、实测二：三网软银优化机器" class="headerlink" title="三、实测二：三网软银优化机器"></a>三、实测二：三网软银优化机器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">traceroute to x.x.x.x, 30 hops max, 52 bytes packets</span><br><span class="line">1   x.x.x.x    AS147293 日本东京 nearoute.io</span><br><span class="line">2   10.50.1.1</span><br><span class="line">3   *</span><br><span class="line">9   219.158.16.249  AS4837 中国上海 联通</span><br><span class="line">10  219.158.6.185   AS4837 中国上海 联通</span><br><span class="line">11  *</span><br><span class="line">12  219.158.117.14  AS4837 中国上海 联通</span><br><span class="line">15  59.43.80.146    CN2 中国电信</span><br><span class="line">16  59.43.159.98    CN2 中国电信</span><br><span class="line">17  59.43.39.206    CN2 中国北京 电信</span><br><span class="line">19  193.41.248.129  DMIT 洛杉矶</span><br><span class="line">21  x.x.x.x         DMIT 洛杉矶</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="四、关键现象总结"><a href="#四、关键现象总结" class="headerlink" title="四、关键现象总结"></a>四、关键现象总结</h2><p>两条线路呈现出高度一致的路径结构：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">日本出口</span><br><span class="line">→ 中国联通（4837）</span><br><span class="line">→ 中国电信（163 / CN2）</span><br><span class="line">→ 美国洛杉矶</span><br></pre></td></tr></table></figure>
+
+<p>并且在第二条线路中还出现了：</p>
+<p>联通到电信 CN2 的跨运营商切换。</p>
+<hr>
+<h2 id="五、本质：国际流量“国内中转化”"><a href="#五、本质：国际流量“国内中转化”" class="headerlink" title="五、本质：国际流量“国内中转化”"></a>五、本质：国际流量“国内中转化”</h2><p>这类线路的本质并不是传统意义上的日美直连优化，而是：</p>
+<p>将中国骨干网作为国际流量中转节点使用。</p>
+<p>换句话说：</p>
+<p>表面是“日本到美国线路”，实际是“日本 → 中国 → 美国”的三段式路径。</p>
+<hr>
+<h2 id="六、为什么会出现这种路径？"><a href="#六、为什么会出现这种路径？" class="headerlink" title="六、为什么会出现这种路径？"></a>六、为什么会出现这种路径？</h2><h3 id="1-成本驱动"><a href="#1-成本驱动" class="headerlink" title="1. 成本驱动"></a>1. 成本驱动</h3><p>相比日本直连美国海底光缆：</p>
+<ul>
+<li>中国国际出口带宽更便宜</li>
+<li>运营商可以降低上游成本</li>
+<li>更容易做高性价比产品</li>
+</ul>
+<p>本质是用更低成本换取可接受体验。</p>
+<hr>
+<h3 id="2-中国骨干网具备中转能力"><a href="#2-中国骨干网具备中转能力" class="headerlink" title="2. 中国骨干网具备中转能力"></a>2. 中国骨干网具备中转能力</h3><p>中国三大运营商：</p>
+<p>中国联通（AS4837）<br>中国电信（AS4134 &#x2F; CN2）</p>
+<p>具备：</p>
+<ul>
+<li>大带宽国际出口</li>
+<li>稳定中美链路</li>
+<li>成熟骨干调度体系</li>
+</ul>
+<p>因此被部分线路作为中转枢纽。</p>
+<hr>
+<h3 id="3-回国体验优化的副作用"><a href="#3-回国体验优化的副作用" class="headerlink" title="3. 回国体验优化的副作用"></a>3. 回国体验优化的副作用</h3><p>这种路径还有一个明显附带收益：</p>
+<p>回中国访问速度非常快。</p>
+<p>因为流量本身就在中国骨干网中流转。</p>
+<hr>
+<h2 id="七、为什么你会感觉变慢？"><a href="#七、为什么你会感觉变慢？" class="headerlink" title="七、为什么你会感觉变慢？"></a>七、为什么你会感觉变慢？</h2><p>问题主要集中在三个方面：</p>
+<h3 id="1-路径变长"><a href="#1-路径变长" class="headerlink" title="1. 路径变长"></a>1. 路径变长</h3><p>日本 → 美国（理论最短路径）<br>变成 日本 → 中国 → 美国。</p>
+<hr>
+<h3 id="2-跨运营商切换"><a href="#2-跨运营商切换" class="headerlink" title="2. 跨运营商切换"></a>2. 跨运营商切换</h3><p>联通 → 电信（163 &#x2F; CN2）之间的切换<br>容易带来调度延迟与拥塞风险。</p>
+<hr>
+<h3 id="3-国际优化方向不一致"><a href="#3-国际优化方向不一致" class="headerlink" title="3. 国际优化方向不一致"></a>3. 国际优化方向不一致</h3><p>这类线路的优化重点通常是中国用户体验，而不是国际低延迟。</p>
+<hr>
+<h2 id="八、为什么仍然被称为“优化线路”？"><a href="#八、为什么仍然被称为“优化线路”？" class="headerlink" title="八、为什么仍然被称为“优化线路”？"></a>八、为什么仍然被称为“优化线路”？</h2><p>因为优化的目标不同。</p>
+<p>商家优化的是：</p>
+<ul>
+<li>中国方向访问体验</li>
+<li>回国链路质量</li>
+<li>成本控制与稳定性</li>
+</ul>
+<p>但并不等同于：</p>
+<ul>
+<li>日本到美国的直连优化</li>
+<li>国际路径纯净性</li>
+<li>低延迟跨洲通信</li>
+</ul>
+<hr>
+<h2 id="九、适用与不适用场景"><a href="#九、适用与不适用场景" class="headerlink" title="九、适用与不适用场景"></a>九、适用与不适用场景</h2><h3 id="适合"><a href="#适合" class="headerlink" title="适合"></a>适合</h3><ul>
+<li>面向中国用户的业务</li>
+<li>回国访问占比高</li>
+<li>建站、下载、代理用途</li>
+</ul>
+<h3 id="不适合"><a href="#不适合" class="headerlink" title="不适合"></a>不适合</h3><ul>
+<li>游戏服务器</li>
+<li>金融或交易系统</li>
+<li>低延迟国际通信</li>
+<li>对路径稳定性要求极高的业务</li>
+</ul>
+<hr>
+<h2 id="十、一句话总结"><a href="#十、一句话总结" class="headerlink" title="十、一句话总结"></a>十、一句话总结</h2><p>所谓“三网优化日美线路”，本质是：</p>
+<blockquote>
+<p>日本入口 + 中国中转 + 美国落地。</p>
+</blockquote>
+<hr>
+<h2 id="十一、结语"><a href="#十一、结语" class="headerlink" title="十一、结语"></a>十一、结语</h2><p>这类案例说明一个关键点：</p>
+<p>优化线路不等于直连线路，必须通过实际 traceroute 才能判断真实路径。</p>
+<p>否则很容易出现误判：</p>
+<p>以为是国际直连，实际是在中国骨干网绕了一圈再出海。</p>
+<hr>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1862,267 +2042,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/CMCC-CMI.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/CMCC-CMI.html" class="post-title-link" itemprop="url">为什么移动对于很多 vps 线路体验好</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-11-27 17:15:19 / 修改时间：17:20:29" itemprop="dateCreated datePublished" datetime="2025-11-27T17:15:19+08:00">2025-11-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Q-A/" itemprop="url" rel="index"><span itemprop="name">Q&A</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="一、移动对海外链路的策略与历史原因"><a href="#一、移动对海外链路的策略与历史原因" class="headerlink" title="一、移动对海外链路的策略与历史原因"></a><strong>一、移动对海外链路的策略与历史原因</strong></h1><p>中国移动在建设国际链路方面思路清晰、投入巨大，与电信&#x2F;联通传统依赖 Tier1 的模式不同。移动依靠 <strong>自建国际出口 + 区域直联 + 亚太布局优先</strong> 获得优势。</p>
-<p>移动重点做了三件事：</p>
-<ul>
-<li>在 <strong>香港、新加坡、日本</strong> 大规模建 POP 和传输节点</li>
-<li>与区域运营商（HGC、PCCW、Singtel、HKIX 等）进行 <strong>大带宽直联（peer）</strong></li>
-<li>拥有大量海缆资源（APG、SMW5、AAE-1 等）用于亚太互联</li>
-</ul>
-<p><strong>结果：移动访问亚洲 VPS 时几乎不用绕道美国或欧洲。</strong></p>
-<p>表现就是：</p>
-<ul>
-<li>搬瓦工香港&#x2F;日本、AWS HK、腾讯云 HK、Cloudflare HK&#x2F;SG</li>
-<li>移动宽带都几乎是“秒开”，非常强势。</li>
-</ul>
-<hr>
-<h1 id="二、中国移动的骨干路由策略更简单（省网统一→CMI）"><a href="#二、中国移动的骨干路由策略更简单（省网统一→CMI）" class="headerlink" title="二、中国移动的骨干路由策略更简单（省网统一→CMI）"></a><strong>二、中国移动的骨干路由策略更简单（省网统一→CMI）</strong></h1><p>电信、联通骨干历史太长，架构复杂、政策多：</p>
-<ul>
-<li>电信 163&#x2F;CN2 双系统</li>
-<li>联通 169&#x2F;4837&#x2F;9929 混合体系</li>
-</ul>
-<p>移动因为起步晚（2007 年之后快速建设），反而更现代：</p>
-<ul>
-<li>采用 <strong>扁平化骨干网络</strong></li>
-<li>更少的策略分叉</li>
-<li>大量地区走 <strong>CMNET → CMI（中国移动国际）统一出口</strong></li>
-</ul>
-<p><strong>出口统一 + 路由简单 &#x3D; 更容易实现全球优化。</strong></p>
-<hr>
-<h1 id="三、中国移动国际-CMI-对-VPS-商极度友好"><a href="#三、中国移动国际-CMI-对-VPS-商极度友好" class="headerlink" title="三、中国移动国际 CMI 对 VPS 商极度友好"></a><strong>三、中国移动国际 CMI 对 VPS 商极度友好</strong></h1><p>这是移动在海外体验极好的核心原因之一。</p>
-<p>大量 VPS 商会写：</p>
-<blockquote>
-<p><strong>CMI 优化</strong><br> <strong>移动直连</strong><br> <strong>CMI Premium 路线</strong></p>
-</blockquote>
-<p>移动的策略是：<br> 为了快速扩大国际业务份额，会主动对中小 VPS&#x2F;IDC：</p>
-<ul>
-<li>给便宜的国际带宽</li>
-<li>开放更多互联（peer）</li>
-<li>提供足够大的出口能力</li>
-</ul>
-<p>这与电信“高价 CN2-GIA”路线完全相反。</p>
-<p>结果：</p>
-<p><strong>移动 &#x3D; 国际带宽最充足 + 最容易被 VPS 商优化。</strong></p>
-<hr>
-<h1 id="四、移动用户巨大-→-海外链路必须好"><a href="#四、移动用户巨大-→-海外链路必须好" class="headerlink" title="四、移动用户巨大 → 海外链路必须好"></a><strong>四、移动用户巨大 → 海外链路必须好</strong></h1><p>移动是全球最大运营商，国内用户 10+ 亿，其中：</p>
-<ul>
-<li>海外流量大</li>
-<li>国际漫游多</li>
-<li>YouTube&#x2F;Netflix&#x2F;TikTok&#x2F;Steam 下载需求高</li>
-</ul>
-<p>为了服务庞大用户群，移动必须保持：</p>
-<ul>
-<li>亚太地区低延迟</li>
-<li>全球多地可靠的带宽池</li>
-<li>不出现大规模晚高峰拥塞</li>
-</ul>
-<p>这也自然让 VPS 方向的表现优秀。</p>
-<hr>
-<h1 id="五、移动出口“更干净”、不容易晚高峰爆炸"><a href="#五、移动出口“更干净”、不容易晚高峰爆炸" class="headerlink" title="五、移动出口“更干净”、不容易晚高峰爆炸"></a><strong>五、移动出口“更干净”、不容易晚高峰爆炸</strong></h1><p>对比：</p>
-<table>
-<thead>
-<tr>
-<th>运营商</th>
-<th>出口特点</th>
-<th>晚高峰表现</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>电信</strong></td>
-<td>多走 CN2&#x2F;163→欧美</td>
-<td>163 容易拥塞、CN2 贵</td>
-</tr>
-<tr>
-<td><strong>联通</strong></td>
-<td>主要走 4837&#x2F;9929→美西、欧洲</td>
-<td>4837 晚间抖动明显</td>
-</tr>
-<tr>
-<td><strong>移动（CMI）</strong></td>
-<td>多点分布 + 海外 POP 广</td>
-<td>一般不会拥塞</td>
-</tr>
-</tbody></table>
-<p>移动的国际出口：</p>
-<ul>
-<li>新加坡、香港、日本、洛杉矶、法兰克福多点分布</li>
-<li>带宽池巨大</li>
-<li>晚高峰也基本不爆</li>
-</ul>
-<p><strong>“国际比国内稳”在移动身上非常常见。</strong></p>
-<hr>
-<h1 id="六、移动与-Lumen（Level3）是带宽最足的-peer-之一"><a href="#六、移动与-Lumen（Level3）是带宽最足的-peer-之一" class="headerlink" title="六、移动与 Lumen（Level3）是带宽最足的 peer 之一"></a><strong>六、移动与 Lumen（Level3）是带宽最足的 peer 之一</strong></h1><p>这是移动访问 <strong>美国&#x2F;欧洲 VPS 特别稳、延迟低的关键因素</strong>。</p>
-<h2 id="1-Lumen（Level3，AS3356）是全球最大-Tier1-之一"><a href="#1-Lumen（Level3，AS3356）是全球最大-Tier1-之一" class="headerlink" title="1. Lumen（Level3，AS3356）是全球最大 Tier1 之一"></a><strong>1. Lumen（Level3，AS3356）是全球最大 Tier1 之一</strong></h2><ul>
-<li>美国 backbone 覆盖最全</li>
-<li>欧洲流量枢纽</li>
-<li>大量 CDN、Cloud&#x2F;IDC 默认走 Lumen</li>
-<li>是全球最粗的国际流量 artery 之一</li>
-</ul>
-<h2 id="2-移动（CMI）与-Lumen-之间互联带宽特别大"><a href="#2-移动（CMI）与-Lumen-之间互联带宽特别大" class="headerlink" title="2. 移动（CMI）与 Lumen 之间互联带宽特别大"></a><strong>2. 移动（CMI）与 Lumen 之间互联带宽特别大</strong></h2><p>原因：</p>
-<ul>
-<li>CMI 是 Lumen 的“大客户级”伙伴</li>
-<li>两边互补型流量（移动下行大、Lumen内容上行大）</li>
-<li>LAX&#x2F;SJC&#x2F;ORD&#x2F;FRA 等多地都有 CMI ↔ Lumen 对等互联</li>
-<li>移动大量 VPS&#x2F;IDC 优先跑向 Lumen</li>
-</ul>
-<p><strong>这条链路是移动海外最稳的线路之一。</strong></p>
-<h2 id="3-实际体验：移动-→-Lumen-通常优于电信-联通"><a href="#3-实际体验：移动-→-Lumen-通常优于电信-联通" class="headerlink" title="3. 实际体验：移动 → Lumen 通常优于电信&#x2F;联通"></a><strong>3. 实际体验：移动 → Lumen 通常优于电信&#x2F;联通</strong></h2><table>
-<thead>
-<tr>
-<th>方向</th>
-<th>移动</th>
-<th>电信</th>
-<th>联通</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>到 Lumen 美国</td>
-<td>⭐⭐⭐⭐⭐ 极好</td>
-<td>⭐⭐ 易拥塞</td>
-<td>⭐⭐⭐ 中等</td>
-</tr>
-<tr>
-<td>到 Lumen 欧洲</td>
-<td>⭐⭐⭐⭐ 稳定</td>
-<td>⭐⭐ 容易走绕路</td>
-<td>⭐⭐⭐ 一般</td>
-</tr>
-<tr>
-<td>到 cheap VPS（多走 Lumen）</td>
-<td>稳得离谱</td>
-<td>一般</td>
-<td>看机房</td>
-</tr>
-</tbody></table>
-<p>因此：</p>
-<blockquote>
-<p><strong>如果 VPS 位于 Lumen 或依赖 Lumen 回程，移动用户体验通常是三网里最好的。</strong></p>
-</blockquote>
-<hr>
-<h1 id="七、为什么体验尤其明显？"><a href="#七、为什么体验尤其明显？" class="headerlink" title="七、为什么体验尤其明显？"></a><strong>七、为什么体验尤其明显？</strong></h1><table>
-<thead>
-<tr>
-<th>VPS 区域</th>
-<th>移动体验</th>
-<th>原因</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>香港</td>
-<td>很快</td>
-<td>CMI + HKIX + 本地直连</td>
-</tr>
-<tr>
-<td>日本</td>
-<td>很快</td>
-<td>CMI 东京&#x2F;大阪多点互联</td>
-</tr>
-<tr>
-<td>新加坡</td>
-<td>很快</td>
-<td>CMI 在 SG 带宽极大</td>
-</tr>
-<tr>
-<td>美西</td>
-<td>稳定</td>
-<td>CMI ↔ Lumen 强互联</td>
-</tr>
-<tr>
-<td>韩国</td>
-<td>快</td>
-<td>多条直连 peer</td>
-</tr>
-<tr>
-<td>台湾</td>
-<td>快</td>
-<td>区域互联密度大</td>
-</tr>
-</tbody></table>
-<p><strong>移动强在：东亚 + 东南亚 + 美国西海岸（Lumen方向）。</strong></p>
-<hr>
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a><strong>结论</strong></h1><blockquote>
-<p><strong>中国移动之所以对 VPS 线路“优化极好”，是因为它构建了一套以亚太为中心、出口多点分布、带宽巨大、peer 关系丰富的国际网络；同时 CMI 与 Lumen 等 Tier1 建立了足够大的互联带宽，使得移动用户访问海外 VPS 十分稳定且低延迟。</strong></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
