@@ -1,3 +1,4 @@
+https://heiok.com/Hyper-v-server-vs-client-vm-migration-differences.html
 https://heiok.com/Japan-US-VPS-Routing-Case-Traffic-Through-China.html
 https://heiok.com/Xiaomi-TV-ADB-Image-Transfer-Solution.html
 https://heiok.com/Summary-of-test-IPs-for-major-Hong-Kong-ISP-backbone-networks.html
@@ -130,6 +131,12 @@ https://heiok.com/tags/CN2/
 https://heiok.com/tags/CTGGIA/
 https://heiok.com/tags/Huawei-cloud/
 https://heiok.com/tags/Flexus-L/
+https://heiok.com/tags/Hyper-V/
+https://heiok.com/tags/Live-Migration/
+https://heiok.com/tags/Virtualization/
+https://heiok.com/tags/VM-Migration/
+https://heiok.com/tags/Windows-Server/
+https://heiok.com/tags/Windows-10/
 https://heiok.com/tags/OpenWRT/
 https://heiok.com/tags/Python/
 https://heiok.com/tags/pip/
