@@ -1,3 +1,4 @@
+https://heiok.com/Motherboard-No-Power-On-Troubleshooting-Guide.html
 https://heiok.com/Hyper-v-server-vs-client-vm-migration-differences.html
 https://heiok.com/Japan-US-VPS-Routing-Case-Traffic-Through-China.html
 https://heiok.com/Xiaomi-TV-ADB-Image-Transfer-Solution.html
@@ -197,6 +198,8 @@ https://heiok.com/tags/sing-box/
 https://heiok.com/tags/GUIforSingBox/
 https://heiok.com/tags/speedtest/
 https://heiok.com/tags/iperf3/
+https://heiok.com/tags/Motherboard/
+https://heiok.com/tags/PS-ON/
 https://heiok.com/categories/Software/
 https://heiok.com/categories/Hardware/
 https://heiok.com/categories/Q-A/
