@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"heiok.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4157401344064000" crossorigin="anonymous"></script>
+
+    <meta name="description" content="本文记录在 Hyper-V 宿主机上开启远程管理的标准配置流程，适用于非域环境、跨网段远程访问Hyper-V 管理场景。  一、启用 WinRM（核心入口）在宿主机执行： 1winrm quickconfig -Force  作用说明 启动 WinRM 服务 开启 5985 端口监听 自动配置基础防火墙规则 自动设置 LocalAccountTokenFilterPolicy（关键权限项） 这是远">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hyper-V远程管理配置">
+<meta property="og:url" content="https://heiok.com/Hyper-V-Remote-Management-Configuration.html">
+<meta property="og:site_name" content="网络蝙蝠侠部落">
+<meta property="og:description" content="本文记录在 Hyper-V 宿主机上开启远程管理的标准配置流程，适用于非域环境、跨网段远程访问Hyper-V 管理场景。  一、启用 WinRM（核心入口）在宿主机执行： 1winrm quickconfig -Force  作用说明 启动 WinRM 服务 开启 5985 端口监听 自动配置基础防火墙规则 自动设置 LocalAccountTokenFilterPolicy（关键权限项） 这是远">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-17T10:12:32.000Z">
+<meta property="article:modified_time" content="2026-06-17T10:18:10.396Z">
+<meta property="article:author" content="heiok.com">
+<meta property="article:tag" content="Hyper-V">
+<meta property="article:tag" content="Virtualization">
+<meta property="article:tag" content="WinRM">
+<meta property="article:tag" content="CredSSP">
+<meta property="article:tag" content="Remote Management">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://heiok.com/Hyper-V-Remote-Management-Configuration.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://heiok.com/Hyper-V-Remote-Management-Configuration.html","path":"Hyper-V-Remote-Management-Configuration.html","title":"Hyper-V远程管理配置"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Hyper-V远程管理配置 | 网络蝙蝠侠部落</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-90W6VHZRMP"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-90W6VHZRMP","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">网络蝙蝠侠部落</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%90%AF%E7%94%A8-WinRM%EF%BC%88%E6%A0%B8%E5%BF%83%E5%85%A5%E5%8F%A3%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">一、启用 WinRM（核心入口）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%AE%BE%E7%BD%AE-TrustedHosts%EF%BC%88%E8%B7%A8%E7%BD%91%E6%AE%B5%E6%88%96%E9%9D%9E%E5%9F%9F%E7%8E%AF%E5%A2%83%E5%BF%85%E5%81%9A%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">二、设置 TrustedHosts（跨网段或非域环境必做）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%90%AF%E7%94%A8-CredSSP%EF%BC%88%E8%A7%A3%E5%86%B3%E5%87%AD%E6%8D%AE%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">三、启用 CredSSP（解决凭据传递问题）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C%E7%B1%BB%E5%9E%8B%E4%B8%BA-Private"><span class="nav-number">4.</span> <span class="nav-text">四、设置网络类型为 Private</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%A1%AE%E8%AE%A4%E5%B9%B6%E5%90%AF%E7%94%A8%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">五、确认并启用远程管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%90%AF%E7%94%A8-WinRM-%E9%98%B2%E7%81%AB%E5%A2%99%E8%A7%84%E5%88%99%EF%BC%88%E5%85%BC%E5%AE%B9%E6%80%A7%E5%A4%84%E7%90%86%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">六、启用 WinRM 防火墙规则（兼容性处理）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">137</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Hyper-V-Remote-Management-Configuration.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Hyper-V远程管理配置 | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hyper-V远程管理配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-06-17 18:12:32 / 修改时间：18:18:10" itemprop="dateCreated datePublished" datetime="2026-06-17T18:12:32+08:00">2026-06-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Software/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>本文记录在 Hyper-V 宿主机上开启远程管理的标准配置流程，适用于非域环境、跨网段远程访问Hyper-V 管理场景。</p>
+<hr>
+<h2 id="一、启用-WinRM（核心入口）"><a href="#一、启用-WinRM（核心入口）" class="headerlink" title="一、启用 WinRM（核心入口）"></a>一、启用 WinRM（核心入口）</h2><p>在宿主机执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winrm quickconfig -Force</span><br></pre></td></tr></table></figure>
+
+<p>作用说明<br> 启动 WinRM 服务<br> 开启 5985 端口监听<br> 自动配置基础防火墙规则<br> 自动设置 LocalAccountTokenFilterPolicy（关键权限项）</p>
+<p>这是远程管理的基础步骤，必须先执行。</p>
+<hr>
+<h2 id="二、设置-TrustedHosts（跨网段或非域环境必做）"><a href="#二、设置-TrustedHosts（跨网段或非域环境必做）" class="headerlink" title="二、设置 TrustedHosts（跨网段或非域环境必做）"></a>二、设置 TrustedHosts（跨网段或非域环境必做）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Item WSMan:\localhost\Client\TrustedHosts -Value &quot;192.168.1.27&quot; -Force</span><br></pre></td></tr></table></figure>
+
+<p>作用说明<br> 允许指定主机 192.168.1.27 连接本机<br> 解决非域环境下 Kerberos 认证不可用问题<br> 支持 IP 级别的信任连接</p>
+<p>多客户端情况下可以使用多个 IP 或通配配置。</p>
+<hr>
+<h2 id="三、启用-CredSSP（解决凭据传递问题）"><a href="#三、启用-CredSSP（解决凭据传递问题）" class="headerlink" title="三、启用 CredSSP（解决凭据传递问题）"></a>三、启用 CredSSP（解决凭据传递问题）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enable-WSManCredSSP -Role Server -Force</span><br></pre></td></tr></table></figure>
+
+<p>作用说明<br> 启用 CredSSP 凭据委派机制<br> 解决远程再跳转（double-hop）权限问题<br> 适用于 Hyper-V 远程管理场景</p>
+<hr>
+<h2 id="四、设置网络类型为-Private"><a href="#四、设置网络类型为-Private" class="headerlink" title="四、设置网络类型为 Private"></a>四、设置网络类型为 Private</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-NetConnectionProfile -NetworkCategory Private</span><br></pre></td></tr></table></figure>
+
+<p>作用说明<br> Windows 在 Public 网络模式下会限制远程访问<br> 设置为 Private 后允许远程管理规则生效<br> 确保 WinRM 正常通信</p>
+<hr>
+<h2 id="五、确认并启用远程管理"><a href="#五、确认并启用远程管理" class="headerlink" title="五、确认并启用远程管理"></a>五、确认并启用远程管理</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">winrm quickconfig -force</span><br><span class="line">Enable-PSRemoting -Force</span><br></pre></td></tr></table></figure>
+
+<p>作用说明<br> 确保 WinRM 配置生效<br> 启用 PowerShell Remoting 功能<br> 修复部分策略未完全应用的问题</p>
+<hr>
+<h2 id="六、启用-WinRM-防火墙规则（兼容性处理）"><a href="#六、启用-WinRM-防火墙规则（兼容性处理）" class="headerlink" title="六、启用 WinRM 防火墙规则（兼容性处理）"></a>六、启用 WinRM 防火墙规则（兼容性处理）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Get-NetFirewallRule |</span><br><span class="line">Where-Object DisplayName -like &quot;*WinRM*&quot; |</span><br><span class="line">Enable-NetFirewallRule</span><br></pre></td></tr></table></figure>
+
+<p>作用说明<br> 统一放行 WinRM 相关防火墙规则<br> 避免不同 Windows 版本规则名称不一致的问题<br> 确保 5985 端口通信正常</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hyper-V/" rel="tag"># Hyper-V</a>
+              <a href="/tags/Virtualization/" rel="tag"># Virtualization</a>
+              <a href="/tags/WinRM/" rel="tag"># WinRM</a>
+              <a href="/tags/CredSSP/" rel="tag"># CredSSP</a>
+              <a href="/tags/Remote-Management/" rel="tag"># Remote Management</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Motherboard-No-Power-On-Troubleshooting-Guide.html" rel="prev" title="主板不触发故障维修思路">
+                  <i class="fa fa-angle-left"></i> 主板不触发故障维修思路
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">heiok.com</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

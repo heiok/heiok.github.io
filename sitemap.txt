@@ -1,3 +1,4 @@
+https://heiok.com/Hyper-V-Remote-Management-Configuration.html
 https://heiok.com/Motherboard-No-Power-On-Troubleshooting-Guide.html
 https://heiok.com/Hyper-v-server-vs-client-vm-migration-differences.html
 https://heiok.com/Japan-US-VPS-Routing-Case-Traffic-Through-China.html
@@ -200,6 +201,9 @@ https://heiok.com/tags/sing-box/
 https://heiok.com/tags/GUIforSingBox/
 https://heiok.com/tags/speedtest/
 https://heiok.com/tags/iperf3/
+https://heiok.com/tags/WinRM/
+https://heiok.com/tags/CredSSP/
+https://heiok.com/tags/Remote-Management/
 https://heiok.com/categories/Software/
 https://heiok.com/categories/Hardware/
 https://heiok.com/categories/Q-A/
