@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">137</span>
+        <span class="site-state-item-count">142</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -152,6 +152,212 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/PCIe-Interface-Test-Points-for-Graphics-Card-Repair.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/PCIe-Interface-Test-Points-for-Graphics-Card-Repair.html" class="post-title-link" itemprop="url">显卡 PCIe 接口关键测试点参考</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-06-30 14:55:30 / 修改时间：14:58:29" itemprop="dateCreated datePublished" datetime="2026-06-30T14:55:30+08:00">2026-06-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在维修独立显卡时，PCIe 金手指各信号的对地阻值（或二极管压降）能够快速判断供电、时钟、复位以及 PCIe 总线是否存在异常。</p>
+<blockquote>
+<p><strong>测量方式：</strong></p>
+<ul>
+<li>万用表二极管档（推荐）</li>
+<li>红表笔接地（GND）</li>
+<li>黑表笔测量对应测试点</li>
+</ul>
+</blockquote>
+<h2 id="PCIe-金手指关键测试点"><a href="#PCIe-金手指关键测试点" class="headerlink" title="PCIe 金手指关键测试点"></a>PCIe 金手指关键测试点</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>PCIe 引脚</th>
+<th>正常参考值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12V 主供电</td>
+<td>B1～B12（如 B11&#x2F;B12）</td>
+<td>约 400</td>
+</tr>
+<tr>
+<td>3.3V 供电</td>
+<td>B8</td>
+<td>约 400</td>
+</tr>
+<tr>
+<td>3.3V AUX 待机供电</td>
+<td>B10</td>
+<td>OL 或约 400</td>
+</tr>
+<tr>
+<td>REFCLK 时钟</td>
+<td>A13 &#x2F; A14</td>
+<td>约 800</td>
+</tr>
+<tr>
+<td>PERST# 复位信号</td>
+<td>A11</td>
+<td>约 500</td>
+</tr>
+<tr>
+<td>PCIe 数据总线</td>
+<td>A 面 32 根 &#x2F; B 面 32 根</td>
+<td>A 面约 200，B 面约 300</td>
+</tr>
+</tbody></table>
+<h2 id="各测试点说明"><a href="#各测试点说明" class="headerlink" title="各测试点说明"></a>各测试点说明</h2><h3 id="12V-主供电（B1～B12）"><a href="#12V-主供电（B1～B12）" class="headerlink" title="12V 主供电（B1～B12）"></a>12V 主供电（B1～B12）</h3><ul>
+<li>为显卡核心供电输入。</li>
+<li>对地阻值明显偏低时，应优先检查：<ul>
+<li>输入 MOS 管</li>
+<li>供电 PWM</li>
+<li>显存或 GPU 是否短路</li>
+</ul>
+</li>
+</ul>
+<p>参考值：</p>
+<blockquote>
+<p><strong>约 400</strong></p>
+</blockquote>
+<hr>
+<h3 id="3-3V-电源（B8）"><a href="#3-3V-电源（B8）" class="headerlink" title="3.3V 电源（B8）"></a>3.3V 电源（B8）</h3><p>主要为 PCIe 接口逻辑供电。</p>
+<p>参考值：</p>
+<blockquote>
+<p><strong>约 400</strong></p>
+</blockquote>
+<p>若接近 0，则需要检查：</p>
+<ul>
+<li>PCIe 电源滤波电容</li>
+<li>3.3V 电源转换电路</li>
+</ul>
+<hr>
+<h3 id="3-3V-AUX（B10）"><a href="#3-3V-AUX（B10）" class="headerlink" title="3.3V AUX（B10）"></a>3.3V AUX（B10）</h3><p>属于待机供电，在部分显卡上可能测得：</p>
+<ul>
+<li><strong>OL（开路）</strong></li>
+<li><strong>约 400</strong></li>
+</ul>
+<p>不同品牌和型号存在一定差异，属于正常现象。</p>
+<hr>
+<h3 id="REFCLK-时钟（A13-A14）"><a href="#REFCLK-时钟（A13-A14）" class="headerlink" title="REFCLK 时钟（A13 &#x2F; A14）"></a>REFCLK 时钟（A13 &#x2F; A14）</h3><p>PCIe 100MHz 差分参考时钟。</p>
+<p>参考值：</p>
+<blockquote>
+<p><strong>约 800</strong></p>
+</blockquote>
+<p>若数值明显异常，可能存在：</p>
+<ul>
+<li>时钟发生器故障</li>
+<li>时钟线路断线</li>
+<li>GPU 内部异常</li>
+</ul>
+<hr>
+<h3 id="PERST-复位（A11）"><a href="#PERST-复位（A11）" class="headerlink" title="PERST# 复位（A11）"></a>PERST# 复位（A11）</h3><p>PCIe 总线复位信号。</p>
+<p>参考值：</p>
+<blockquote>
+<p><strong>约 500</strong></p>
+</blockquote>
+<p>若接近 0 或完全开路，应进一步检查：</p>
+<ul>
+<li>主板复位控制</li>
+<li>GPU</li>
+<li>上拉电阻</li>
+</ul>
+<hr>
+<h3 id="PCIe-数据总线"><a href="#PCIe-数据总线" class="headerlink" title="PCIe 数据总线"></a>PCIe 数据总线</h3><p>PCIe x16 接口共有：</p>
+<ul>
+<li>A 面：32 条高速信号</li>
+<li>B 面：32 条高速信号</li>
+</ul>
+<p>正常参考值：</p>
+<ul>
+<li><strong>A 面约 200</strong></li>
+<li><strong>B 面约 300</strong></li>
+</ul>
+<p>若某一路明显偏离其它信号（例如为 0、OL 或差异很大），需重点排查：</p>
+<ul>
+<li>金手指损坏</li>
+<li>PCB 断线</li>
+<li>GPU PCIe PHY 损坏</li>
+<li>ESD 保护器件异常</li>
+</ul>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>不同品牌、不同 GPU（NVIDIA、AMD、Intel）以及不同 PCB 设计，测试值会存在一定差异。</li>
+<li>本文数据主要用于快速判断是否存在异常，不应作为唯一维修依据。</li>
+<li>建议结合供电时序、示波器波形、阻值测量及故障现象综合分析。</li>
+<li>若某一路数据与同类信号相比差异明显，应优先排查该线路。</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>显卡维修中，PCIe 金手指是最重要的检测位置之一。通常只需测量 <strong>12V、3.3V、3.3V AUX、REFCLK、PERST#</strong> 以及 <strong>64 条 PCIe 数据线</strong> 的对地值，就能够快速判断是否存在短路、断线或芯片异常，大幅提高故障定位效率。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2139,210 +2345,6 @@
 <li>将 DNS Target 的 <code>CNAME</code> 改为 <code>A</code> 记录</li>
 <li>必须为 <strong>DNS only</strong></li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/Intel-architecture-trigger-circuit-working-principle.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Intel-architecture-trigger-circuit-working-principle.html" class="post-title-link" itemprop="url">Intel架构触发电路工作原理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-01-09 16:48:02" itemprop="dateCreated datePublished" datetime="2026-01-09T16:48:02+08:00">2026-01-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-02-09 09:52:30" itemprop="dateModified" datetime="2026-02-09T09:52:30+08:00">2026-02-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="一、Intel-平台触发电路的总目标"><a href="#一、Intel-平台触发电路的总目标" class="headerlink" title="一、Intel 平台触发电路的总目标"></a>一、Intel 平台触发电路的总目标</h1><p><strong>让 PS_ON# 被 Super I&#x2F;O 拉低，使 ATX 电源工作，从而进入主板 S0 状态。</strong></p>
-<p>这需要三个核心角色共同参与：</p>
-<table>
-<thead>
-<tr>
-<th>组件</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>ATX 电源</strong></td>
-<td>提供 5VSB 和主电源（12&#x2F;5&#x2F;3.3V）</td>
-</tr>
-<tr>
-<td><strong>Super I&#x2F;O（SIO）</strong></td>
-<td>接收开机键、控制 PS_ON#</td>
-</tr>
-<tr>
-<td><strong>PCH（Platform Controller Hub）</strong></td>
-<td>Intel 电源状态机核心（S5→S0）</td>
-</tr>
-</tbody></table>
-<p>整套系统是 Intel 平台的“典型触发设计”。</p>
-<hr>
-<h1 id="二、Intel-平台上电流程总览图"><a href="#二、Intel-平台上电流程总览图" class="headerlink" title="二、Intel 平台上电流程总览图"></a>二、Intel 平台上电流程总览图</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">+5VSB 上电</span><br><span class="line">     ↓</span><br><span class="line">Super I/O 上电（仅依靠 5VSB）</span><br><span class="line">     ↓</span><br><span class="line">FP PWRBTN# 按下</span><br><span class="line">     ↓</span><br><span class="line">SIO → 将按键事件发送给 PCH</span><br><span class="line">     ↓</span><br><span class="line">PCH 决定是否从 S5/S4/S3 唤醒</span><br><span class="line">     ↓</span><br><span class="line">PCH 拉高 SLP_S5# / SLP_S4# / SLP_S3#</span><br><span class="line">（退出睡眠/断电状态）</span><br><span class="line">     ↓</span><br><span class="line">PCH 授权 SIO：可以开机</span><br><span class="line">     ↓</span><br><span class="line">SIO 输出 PS_ON# = 0</span><br><span class="line">     ↓</span><br><span class="line">ATX 电源启动 12V/5V/3.3V</span><br><span class="line">     ↓</span><br><span class="line">ATX 输出 PG（Power Good）</span><br><span class="line">     ↓</span><br><span class="line">PCH 接收到 PG → 释放 PLTRST#、CPURST#、VR_EN</span><br><span class="line">     ↓</span><br><span class="line">CPU 进入 S0 → BIOS 运行</span><br></pre></td></tr></table></figure>
-
-<p>这就是 <strong>Intel 平台的标准触发模型（Power Sequence）</strong>。</p>
-<hr>
-<h1 id="三、详细解释-Intel-上电的每个步骤"><a href="#三、详细解释-Intel-上电的每个步骤" class="headerlink" title="三、详细解释 Intel 上电的每个步骤"></a>三、详细解释 Intel 上电的每个步骤</h1><h2 id="①-ATX-电源先提供-5VSB"><a href="#①-ATX-电源先提供-5VSB" class="headerlink" title="① ATX 电源先提供 +5VSB"></a>① ATX 电源先提供 +5VSB</h2><p>主板断电状态下唯一有电的就是：</p>
-<ul>
-<li>+5VSB → 供给 SIO、PCH 的 RTC&#x2F;一些逻辑</li>
-</ul>
-<p>Intel 规定：</p>
-<blockquote>
-<p><strong>只有 5VSB + SIO 正常工作，开机键才能被识别。</strong></p>
-</blockquote>
-<hr>
-<h2 id="②-Super-I-O-接到前面板按钮"><a href="#②-Super-I-O-接到前面板按钮" class="headerlink" title="② Super I&#x2F;O 接到前面板按钮"></a>② Super I&#x2F;O 接到前面板按钮</h2><p>前面板开关（PWRBTN#）按下：</p>
-<ul>
-<li>信号由 FP Header → 直接进入 <strong>Super I&#x2F;O</strong></li>
-<li>Super I&#x2F;O 并不会自己决定开机<br> 它只会向 PCH 报告“有人按了按键”</li>
-</ul>
-<hr>
-<h2 id="③-PCH-是开机的总裁（S-状态机核心）"><a href="#③-PCH-是开机的总裁（S-状态机核心）" class="headerlink" title="③ PCH 是开机的总裁（S 状态机核心）"></a>③ PCH 是开机的总裁（S 状态机核心）</h2><p>Intel 平台的电源状态完全由 PCH 决定：</p>
-<table>
-<thead>
-<tr>
-<th>状态</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>S5</strong></td>
-<td>软关机，仅 5VSB</td>
-</tr>
-<tr>
-<td><strong>S4</strong></td>
-<td>休眠</td>
-</tr>
-<tr>
-<td><strong>S3</strong></td>
-<td>待机（内存供电）</td>
-</tr>
-<tr>
-<td><strong>S0</strong></td>
-<td>全工作</td>
-</tr>
-</tbody></table>
-<p>按钮事件到达 PCH 后，PCH 会判断：</p>
-<ul>
-<li>当前状态是否允许开机？</li>
-<li>是否要唤醒？</li>
-<li>是否要退出睡眠？</li>
-</ul>
-<p>如果允许开机，PCH 会输出：</p>
-<h3 id="✔-SLP-S5-高"><a href="#✔-SLP-S5-高" class="headerlink" title="✔ SLP_S5# &#x3D; 高"></a>✔ SLP_S5# &#x3D; 高</h3><h3 id="✔-SLP-S4-高"><a href="#✔-SLP-S4-高" class="headerlink" title="✔ SLP_S4# &#x3D; 高"></a>✔ SLP_S4# &#x3D; 高</h3><h3 id="✔-SLP-S3-高"><a href="#✔-SLP-S3-高" class="headerlink" title="✔ SLP_S3# &#x3D; 高"></a>✔ SLP_S3# &#x3D; 高</h3><p>这些信号是 Intel 定义的电源域控制信号。</p>
-<p>“桥输出 S3&#x2F;S4”就是 **SLP_S3# &#x2F; SLP_S4# &#x2F; SLP_S5#**。</p>
-<hr>
-<h2 id="④-PCH-授权-Super-I-O-发出-PS-ON"><a href="#④-PCH-授权-Super-I-O-发出-PS-ON" class="headerlink" title="④ PCH 授权 Super I&#x2F;O 发出 PS_ON#"></a>④ PCH 授权 Super I&#x2F;O 发出 PS_ON#</h2><p>PCH 不直接控制 ATX 电源。<br> 真正拉低 PS_ON# 的是 <strong>Super I&#x2F;O</strong>。</p>
-<p>但 I&#x2F;O 必须等到 PCH 发出“允许上电”后才会执行。</p>
-<p>Intel 规范认为：</p>
-<blockquote>
-<p><strong>只有当 PCH 的睡眠信号 SLP_Sx# 都变为高电平，SIO 才能拉低 PS_ON#。</strong></p>
-</blockquote>
-<p>所以流程是：</p>
-<ul>
-<li>PCH：退出 S5&#x2F;S4&#x2F;S3</li>
-<li>PCH：授权开机</li>
-<li>Super I&#x2F;O：PS_ON# → Low</li>
-</ul>
-<hr>
-<h2 id="⑤-ATX-电源启动并输出主电源"><a href="#⑤-ATX-电源启动并输出主电源" class="headerlink" title="⑤ ATX 电源启动并输出主电源"></a>⑤ ATX 电源启动并输出主电源</h2><p>当 PS_ON# &#x3D; 0：</p>
-<p>ATX 开始输出：</p>
-<ul>
-<li>+12V</li>
-<li>+5V</li>
-<li>+3.3V</li>
-<li>-12V</li>
-</ul>
-<p>并在稳定后输出：</p>
-<h3 id="✔-PG（Power-Good）"><a href="#✔-PG（Power-Good）" class="headerlink" title="✔ PG（Power Good）"></a>✔ PG（Power Good）</h3><hr>
-<h2 id="⑥-PCH-接收到-PG-后，真正开始启动-CPU"><a href="#⑥-PCH-接收到-PG-后，真正开始启动-CPU" class="headerlink" title="⑥ PCH 接收到 PG 后，真正开始启动 CPU"></a>⑥ PCH 接收到 PG 后，真正开始启动 CPU</h2><p>PG 被送给 PCH（不是 CPU）。<br> 之后：</p>
-<ul>
-<li>PCH 拉高 <strong>CPUPWRGD</strong></li>
-<li>VRM 给 CPU 上电</li>
-<li>PCH 释放 <strong>PLTRST#</strong></li>
-<li>CPU 复位完成 → 取指令 → 执行 BIOS</li>
-</ul>
-<p>主机才真正开机。</p>
-<hr>
-<h1 id="四、Intel-平台触发电路的本质总结（关键逻辑）"><a href="#四、Intel-平台触发电路的本质总结（关键逻辑）" class="headerlink" title="四、Intel 平台触发电路的本质总结（关键逻辑）"></a>四、Intel 平台触发电路的本质总结（关键逻辑）</h1><p>一句话总结：</p>
-<blockquote>
-<p><strong>Intel 平台中，PCH 是开机状态机；I&#x2F;O 是 PS_ON# 的执行者；ATX 电源根据 PS_ON# 启动。</strong></p>
-</blockquote>
-<p>拆成三句话：</p>
-<ol>
-<li><strong>按钮按下 → SIO 接收 → PCH 决策</strong></li>
-<li><strong>PCH 决定 S 状态（S5 → S0）并授权</strong></li>
-<li><strong>SIO 拉低 PS_ON# → ATX 启动 → PG → PCH 完成 CPU 上电</strong></li>
-</ol>
 
       
     </div>

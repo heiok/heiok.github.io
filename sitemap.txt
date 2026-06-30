@@ -1,3 +1,4 @@
+https://heiok.com/PCIe-Interface-Test-Points-for-Graphics-Card-Repair.html
 https://heiok.com/Hyper-V-Remote-Management-Configuration.html
 https://heiok.com/Motherboard-No-Power-On-Troubleshooting-Guide.html
 https://heiok.com/Hyper-v-server-vs-client-vm-migration-differences.html
@@ -204,6 +205,11 @@ https://heiok.com/tags/iperf3/
 https://heiok.com/tags/WinRM/
 https://heiok.com/tags/CredSSP/
 https://heiok.com/tags/Remote-Management/
+https://heiok.com/tags/Graphics-Card-Repair/
+https://heiok.com/tags/GPU-Repair/
+https://heiok.com/tags/Graphics-Card-Diagnostics/
+https://heiok.com/tags/PCIe-Test-Points/
+https://heiok.com/tags/GPU-Troubleshooting/
 https://heiok.com/categories/Software/
 https://heiok.com/categories/Hardware/
 https://heiok.com/categories/Q-A/
