@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"heiok.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4157401344064000" crossorigin="anonymous"></script>
+
+    <meta name="description" content="在学习 BGP 的过程中，经常会看到 Transit（中转）、Peering（对等互联）、Upstream（上游） 等术语。 很多资料都会解释它们的定义，但对于刚接触 BGP 的人来说，仍然容易混淆。 本文结合实际例子，介绍它们之间的区别，以及互联网为什么需要这两种互联方式。  什么是 Transit？Transit 可以理解为：  花钱购买互联网接入服务。  例如，我们申请了自己的自治系统： 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈 BGP 中的 Transit（中转）与 Peering（对等互联）">
+<meta property="og:url" content="https://heiok.com/bgp-transit-and-peering.html">
+<meta property="og:site_name" content="网络蝙蝠侠部落">
+<meta property="og:description" content="在学习 BGP 的过程中，经常会看到 Transit（中转）、Peering（对等互联）、Upstream（上游） 等术语。 很多资料都会解释它们的定义，但对于刚接触 BGP 的人来说，仍然容易混淆。 本文结合实际例子，介绍它们之间的区别，以及互联网为什么需要这两种互联方式。  什么是 Transit？Transit 可以理解为：  花钱购买互联网接入服务。  例如，我们申请了自己的自治系统： 1">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-22T01:40:56.000Z">
+<meta property="article:modified_time" content="2026-07-22T01:43:43.705Z">
+<meta property="article:author" content="heiok.com">
+<meta property="article:tag" content="BGP">
+<meta property="article:tag" content="ISP">
+<meta property="article:tag" content="ASN">
+<meta property="article:tag" content="Transit">
+<meta property="article:tag" content="Peering">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://heiok.com/bgp-transit-and-peering.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://heiok.com/bgp-transit-and-peering.html","path":"bgp-transit-and-peering.html","title":"浅谈 BGP 中的 Transit（中转）与 Peering（对等互联）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>浅谈 BGP 中的 Transit（中转）与 Peering（对等互联） | 网络蝙蝠侠部落</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-90W6VHZRMP"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-90W6VHZRMP","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">网络蝙蝠侠部落</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Transit%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是 Transit？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Peering%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">什么是 Peering？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-Peer-%E4%B8%8D%E6%8F%90%E4%BE%9B%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%AD%E8%BD%AC%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">为什么 Peer 不提供互联网中转？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Transit-%E4%B8%8E-Peering-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">4.</span> <span class="nav-text">Transit 与 Peering 的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%94%9F%E6%B4%BB%E4%B8%AD%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">5.</span> <span class="nav-text">一个生活中的例子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Transit"><span class="nav-number">5.1.</span> <span class="nav-text">Transit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Peering"><span class="nav-number">5.2.</span> <span class="nav-text">Peering</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BA%92%E8%81%94%E7%BD%91%E9%9C%80%E8%A6%81-Peering%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">为什么互联网需要 Peering？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Transit-%E4%B8%8E-Peering-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">7.</span> <span class="nav-text">Transit 与 Peering 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4%E6%89%80%E6%9C%89-ISP-%E9%83%BD%E7%A6%BB%E4%B8%8D%E5%BC%80-Transit%EF%BC%9F"><span class="nav-number">8.</span> <span class="nav-text">为什么说所有 ISP 都离不开 Transit？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">66</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">144</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/bgp-transit-and-peering.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="浅谈 BGP 中的 Transit（中转）与 Peering（对等互联） | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          浅谈 BGP 中的 Transit（中转）与 Peering（对等互联）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-07-22 09:40:56 / 修改时间：09:43:43" itemprop="dateCreated datePublished" datetime="2026-07-22T09:40:56+08:00">2026-07-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>在学习 BGP 的过程中，经常会看到 <strong>Transit（中转）</strong>、<strong>Peering（对等互联）</strong>、<strong>Upstream（上游）</strong> 等术语。</p>
+<p>很多资料都会解释它们的定义，但对于刚接触 BGP 的人来说，仍然容易混淆。</p>
+<p>本文结合实际例子，介绍它们之间的区别，以及互联网为什么需要这两种互联方式。</p>
+<hr>
+<h1 id="什么是-Transit？"><a href="#什么是-Transit？" class="headerlink" title="什么是 Transit？"></a>什么是 Transit？</h1><p>Transit 可以理解为：</p>
+<blockquote>
+<p><strong>花钱购买互联网接入服务。</strong></p>
+</blockquote>
+<p>例如，我们申请了自己的自治系统：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AS402309</span><br></pre></td></tr></table></figure>
+
+<p>如果想让自己的网络能够访问整个互联网，就必须找一家运营商作为自己的 <strong>Transit Provider（中转提供商）</strong>。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> Internet</span><br><span class="line">      │</span><br><span class="line">Transit Provider</span><br><span class="line">   AS17476</span><br><span class="line">      │</span><br><span class="line">  AS402309</span><br></pre></td></tr></table></figure>
+
+<p>这里：</p>
+<ul>
+<li>AS17476 就是 AS402309 的上游（Upstream）</li>
+<li>AS402309 每月支付 Transit 费用</li>
+<li>AS17476 负责把整个互联网的路由提供给 AS402309</li>
+</ul>
+<p>也就是说：</p>
+<blockquote>
+<p><strong>Transit Provider 会告诉你：”整个互联网我都能带你去。”</strong></p>
+</blockquote>
+<p>因此：</p>
+<ul>
+<li>可以访问 Google</li>
+<li>可以访问 Cloudflare</li>
+<li>可以访问 AWS</li>
+<li>可以访问世界上几乎所有网络</li>
+</ul>
+<p>这就是 Transit。</p>
+<hr>
+<h1 id="什么是-Peering？"><a href="#什么是-Peering？" class="headerlink" title="什么是 Peering？"></a>什么是 Peering？</h1><p>Peering 中文通常翻译为：</p>
+<blockquote>
+<p><strong>对等互联</strong></p>
+</blockquote>
+<p>假设：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AS402309  &lt;-------&gt;  AS216458</span><br></pre></td></tr></table></figure>
+
+<p>双方建立了 BGP Peering。</p>
+<p>它们约定：</p>
+<ul>
+<li>我告诉你我的网络</li>
+<li>你告诉我你的网络</li>
+</ul>
+<p>双方互相访问彼此的网络。</p>
+<p>但是：</p>
+<blockquote>
+<p><strong>不会帮对方访问整个互联网。</strong></p>
+</blockquote>
+<p>例如：</p>
+<p>AS216458 可以访问：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AS402309</span><br></pre></td></tr></table></figure>
+
+<p>AS402309 也可以访问：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AS216458</span><br></pre></td></tr></table></figure>
+
+<p>但是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AS216458</span><br><span class="line">    │</span><br><span class="line">AS402309</span><br><span class="line">    │</span><br><span class="line">Google</span><br></pre></td></tr></table></figure>
+
+<p>这种情况通常是不允许的。</p>
+<p>因为：</p>
+<p>AS402309 并不会把自己购买的 Transit 服务免费分享给 Peer。</p>
+<hr>
+<h1 id="为什么-Peer-不提供互联网中转？"><a href="#为什么-Peer-不提供互联网中转？" class="headerlink" title="为什么 Peer 不提供互联网中转？"></a>为什么 Peer 不提供互联网中转？</h1><p>原因其实很简单。</p>
+<p>假设：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Google</span><br><span class="line">   │</span><br><span class="line">AS17476</span><br><span class="line">   │</span><br><span class="line">AS402309</span><br><span class="line">   │</span><br><span class="line">AS216458</span><br></pre></td></tr></table></figure>
+
+<p>如果允许：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">AS216458</span><br><span class="line">    │</span><br><span class="line">AS402309</span><br><span class="line">    │</span><br><span class="line">AS17476</span><br><span class="line">    │</span><br><span class="line">Internet</span><br></pre></td></tr></table></figure>
+
+<p>那么：</p>
+<p>AS216458 就不用购买 Transit 了。</p>
+<p>所有互联网流量都走 AS402309。</p>
+<p>最终：</p>
+<ul>
+<li>AS402309 支付 Transit 费用</li>
+<li>AS216458 免费使用</li>
+</ul>
+<p>显然，这种商业模式无法成立。</p>
+<p>因此互联网形成了一条经典规则：</p>
+<blockquote>
+<p><strong>Peer 不会免费提供 Transit。</strong></p>
+</blockquote>
+<hr>
+<h1 id="Transit-与-Peering-的关系"><a href="#Transit-与-Peering-的关系" class="headerlink" title="Transit 与 Peering 的关系"></a>Transit 与 Peering 的关系</h1><p>很多人认为：</p>
+<p>Peering 就是不转发流量。</p>
+<p>其实这种说法并不准确。</p>
+<p>更准确的说法应该是：</p>
+<blockquote>
+<p><strong>Peering 会转发流量，但只转发属于自己网络及客户网络的流量，而不会提供整个互联网的中转服务。</strong></p>
+</blockquote>
+<p>因此：</p>
+<p>Peer 可以访问：</p>
+<ul>
+<li>对方自己的网络</li>
+<li>对方客户(Customer)的网络</li>
+</ul>
+<p>但是：</p>
+<p>不会访问：</p>
+<ul>
+<li>对方 Transit 学到的互联网路由</li>
+</ul>
+<hr>
+<h1 id="一个生活中的例子"><a href="#一个生活中的例子" class="headerlink" title="一个生活中的例子"></a>一个生活中的例子</h1><p>其实 Transit 和 Peering 很像家庭宽带。</p>
+<p>假设：</p>
+<ul>
+<li>我家 &#x3D; AS402309</li>
+<li>邻居 &#x3D; AS216458</li>
+<li>中国电信 &#x3D; AS17476</li>
+</ul>
+<p>那么：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  中国电信</span><br><span class="line">     │</span><br><span class="line"> （Transit）</span><br><span class="line">     │</span><br><span class="line">   我家</span><br><span class="line">     │</span><br><span class="line">（Peering）</span><br><span class="line">     │</span><br><span class="line">   邻居家</span><br></pre></td></tr></table></figure>
+
+<h2 id="Transit"><a href="#Transit" class="headerlink" title="Transit"></a>Transit</h2><p>我向中国电信办理宽带。</p>
+<p>每个月交宽带费。</p>
+<p>电信承诺：</p>
+<blockquote>
+<p>全世界的网站都可以访问。</p>
+</blockquote>
+<p>这就是 Transit。</p>
+<hr>
+<h2 id="Peering"><a href="#Peering" class="headerlink" title="Peering"></a>Peering</h2><p>后来：</p>
+<p>我和邻居之间拉了一根网线。</p>
+<p>双方约定：</p>
+<ul>
+<li>可以互相访问 NAS</li>
+<li>可以互相访问局域网资源</li>
+</ul>
+<p>但是：</p>
+<p>我不会说：</p>
+<blockquote>
+<p>“以后你上互联网都走我家的宽带。”</p>
+</blockquote>
+<p>邻居也不会说：</p>
+<blockquote>
+<p>“以后你走我家的宽带。”</p>
+</blockquote>
+<p>这就是 Peering。</p>
+<p>也就是说：</p>
+<blockquote>
+<p><strong>Peering 是资源共享，而不是互联网共享。</strong></p>
+</blockquote>
+<hr>
+<h1 id="为什么互联网需要-Peering？"><a href="#为什么互联网需要-Peering？" class="headerlink" title="为什么互联网需要 Peering？"></a>为什么互联网需要 Peering？</h1><p>如果没有 Peering：</p>
+<p>访问邻居：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">我家</span><br><span class="line"> │</span><br><span class="line">电信</span><br><span class="line"> │</span><br><span class="line">互联网</span><br><span class="line"> │</span><br><span class="line">联通</span><br><span class="line"> │</span><br><span class="line">邻居</span><br></pre></td></tr></table></figure>
+
+<p>可能需要绕很远。</p>
+<p>如果双方直接建立 Peering：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">我家</span><br><span class="line"> │</span><br><span class="line">────────────</span><br><span class="line"> │</span><br><span class="line">邻居</span><br></pre></td></tr></table></figure>
+
+<p>访问速度明显更快。</p>
+<p>现实中：</p>
+<p>Cloudflare、Google、Meta、Netflix 等大型网络都会在全球 Internet Exchange（IX）建立大量 Peering，就是为了降低延迟、减少 Transit 成本。</p>
+<hr>
+<h1 id="Transit-与-Peering-的区别"><a href="#Transit-与-Peering-的区别" class="headerlink" title="Transit 与 Peering 的区别"></a>Transit 与 Peering 的区别</h1><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>Transit</th>
+<th>Peering</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>中文</td>
+<td>中转、上游</td>
+<td>对等互联</td>
+</tr>
+<tr>
+<td>双方关系</td>
+<td>Provider ↔ Customer</td>
+<td>Peer ↔ Peer</td>
+</tr>
+<tr>
+<td>是否收费</td>
+<td>通常收费</td>
+<td>通常免费（也存在付费 Peering）</td>
+</tr>
+<tr>
+<td>可访问范围</td>
+<td>整个互联网</td>
+<td>对方及其客户网络</td>
+</tr>
+<tr>
+<td>是否提供互联网中转</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>主要目的</td>
+<td>接入互联网</td>
+<td>降低延迟、降低成本</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="为什么说所有-ISP-都离不开-Transit？"><a href="#为什么说所有-ISP-都离不开-Transit？" class="headerlink" title="为什么说所有 ISP 都离不开 Transit？"></a>为什么说所有 ISP 都离不开 Transit？</h1><p>理论上：</p>
+<p>如果一个新的 ASN：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AS65000</span><br></pre></td></tr></table></figure>
+
+<p>没有任何 Transit：</p>
+<p>那么它只能访问：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">自己</span><br></pre></td></tr></table></figure>
+
+<p>即使建立很多 Peer：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AS65000</span><br><span class="line">   │</span><br><span class="line">Peer</span><br><span class="line">   │</span><br><span class="line">很多网络</span><br></pre></td></tr></table></figure>
+
+<p>仍然无法访问整个互联网。</p>
+<p>因此：</p>
+<p><strong>几乎所有小型 ISP 都至少拥有一个 Transit Provider。</strong></p>
+<p>而大型运营商则通常拥有：</p>
+<ul>
+<li>多个 Transit</li>
+<li>大量 Peering</li>
+<li>多个 Internet Exchange</li>
+</ul>
+<p>共同组成自己的全球网络。</p>
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>可以把互联网理解成这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">         整个互联网</span><br><span class="line">              │</span><br><span class="line">        Transit（上游）</span><br><span class="line">              │</span><br><span class="line">          你的 ASN</span><br><span class="line">         /         \</span><br><span class="line">  Peering         Peering</span><br><span class="line">Cloudflare        Google</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li><strong>Transit</strong> 保证”哪里都能去”；</li>
+<li><strong>Peering</strong> 保证”常去的地方走最近的路”。</li>
+</ul>
+<p>两者缺一不可。</p>
+<p>也正是 Transit 与 Peering 的共同作用，构成了今天全球互联网复杂而高效的互联体系。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/BGP/" rel="tag"># BGP</a>
+              <a href="/tags/ISP/" rel="tag"># ISP</a>
+              <a href="/tags/ASN/" rel="tag"># ASN</a>
+              <a href="/tags/Transit/" rel="tag"># Transit</a>
+              <a href="/tags/Peering/" rel="tag"># Peering</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/PCIe-Interface-Test-Points-for-Graphics-Card-Repair.html" rel="prev" title="显卡 PCIe 接口关键测试点参考">
+                  <i class="fa fa-angle-left"></i> 显卡 PCIe 接口关键测试点参考
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">heiok.com</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

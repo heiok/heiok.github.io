@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">142</span>
+        <span class="site-state-item-count">144</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -152,6 +152,314 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/bgp-transit-and-peering.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/bgp-transit-and-peering.html" class="post-title-link" itemprop="url">浅谈 BGP 中的 Transit（中转）与 Peering（对等互联）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-07-22 09:40:56 / 修改时间：09:43:43" itemprop="dateCreated datePublished" datetime="2026-07-22T09:40:56+08:00">2026-07-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在学习 BGP 的过程中，经常会看到 <strong>Transit（中转）</strong>、<strong>Peering（对等互联）</strong>、<strong>Upstream（上游）</strong> 等术语。</p>
+<p>很多资料都会解释它们的定义，但对于刚接触 BGP 的人来说，仍然容易混淆。</p>
+<p>本文结合实际例子，介绍它们之间的区别，以及互联网为什么需要这两种互联方式。</p>
+<hr>
+<h1 id="什么是-Transit？"><a href="#什么是-Transit？" class="headerlink" title="什么是 Transit？"></a>什么是 Transit？</h1><p>Transit 可以理解为：</p>
+<blockquote>
+<p><strong>花钱购买互联网接入服务。</strong></p>
+</blockquote>
+<p>例如，我们申请了自己的自治系统：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AS402309</span><br></pre></td></tr></table></figure>
+
+<p>如果想让自己的网络能够访问整个互联网，就必须找一家运营商作为自己的 <strong>Transit Provider（中转提供商）</strong>。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> Internet</span><br><span class="line">      │</span><br><span class="line">Transit Provider</span><br><span class="line">   AS17476</span><br><span class="line">      │</span><br><span class="line">  AS402309</span><br></pre></td></tr></table></figure>
+
+<p>这里：</p>
+<ul>
+<li>AS17476 就是 AS402309 的上游（Upstream）</li>
+<li>AS402309 每月支付 Transit 费用</li>
+<li>AS17476 负责把整个互联网的路由提供给 AS402309</li>
+</ul>
+<p>也就是说：</p>
+<blockquote>
+<p><strong>Transit Provider 会告诉你：”整个互联网我都能带你去。”</strong></p>
+</blockquote>
+<p>因此：</p>
+<ul>
+<li>可以访问 Google</li>
+<li>可以访问 Cloudflare</li>
+<li>可以访问 AWS</li>
+<li>可以访问世界上几乎所有网络</li>
+</ul>
+<p>这就是 Transit。</p>
+<hr>
+<h1 id="什么是-Peering？"><a href="#什么是-Peering？" class="headerlink" title="什么是 Peering？"></a>什么是 Peering？</h1><p>Peering 中文通常翻译为：</p>
+<blockquote>
+<p><strong>对等互联</strong></p>
+</blockquote>
+<p>假设：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AS402309  &lt;-------&gt;  AS216458</span><br></pre></td></tr></table></figure>
+
+<p>双方建立了 BGP Peering。</p>
+<p>它们约定：</p>
+<ul>
+<li>我告诉你我的网络</li>
+<li>你告诉我你的网络</li>
+</ul>
+<p>双方互相访问彼此的网络。</p>
+<p>但是：</p>
+<blockquote>
+<p><strong>不会帮对方访问整个互联网。</strong></p>
+</blockquote>
+<p>例如：</p>
+<p>AS216458 可以访问：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AS402309</span><br></pre></td></tr></table></figure>
+
+<p>AS402309 也可以访问：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AS216458</span><br></pre></td></tr></table></figure>
+
+<p>但是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AS216458</span><br><span class="line">    │</span><br><span class="line">AS402309</span><br><span class="line">    │</span><br><span class="line">Google</span><br></pre></td></tr></table></figure>
+
+<p>这种情况通常是不允许的。</p>
+<p>因为：</p>
+<p>AS402309 并不会把自己购买的 Transit 服务免费分享给 Peer。</p>
+<hr>
+<h1 id="为什么-Peer-不提供互联网中转？"><a href="#为什么-Peer-不提供互联网中转？" class="headerlink" title="为什么 Peer 不提供互联网中转？"></a>为什么 Peer 不提供互联网中转？</h1><p>原因其实很简单。</p>
+<p>假设：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Google</span><br><span class="line">   │</span><br><span class="line">AS17476</span><br><span class="line">   │</span><br><span class="line">AS402309</span><br><span class="line">   │</span><br><span class="line">AS216458</span><br></pre></td></tr></table></figure>
+
+<p>如果允许：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">AS216458</span><br><span class="line">    │</span><br><span class="line">AS402309</span><br><span class="line">    │</span><br><span class="line">AS17476</span><br><span class="line">    │</span><br><span class="line">Internet</span><br></pre></td></tr></table></figure>
+
+<p>那么：</p>
+<p>AS216458 就不用购买 Transit 了。</p>
+<p>所有互联网流量都走 AS402309。</p>
+<p>最终：</p>
+<ul>
+<li>AS402309 支付 Transit 费用</li>
+<li>AS216458 免费使用</li>
+</ul>
+<p>显然，这种商业模式无法成立。</p>
+<p>因此互联网形成了一条经典规则：</p>
+<blockquote>
+<p><strong>Peer 不会免费提供 Transit。</strong></p>
+</blockquote>
+<hr>
+<h1 id="Transit-与-Peering-的关系"><a href="#Transit-与-Peering-的关系" class="headerlink" title="Transit 与 Peering 的关系"></a>Transit 与 Peering 的关系</h1><p>很多人认为：</p>
+<p>Peering 就是不转发流量。</p>
+<p>其实这种说法并不准确。</p>
+<p>更准确的说法应该是：</p>
+<blockquote>
+<p><strong>Peering 会转发流量，但只转发属于自己网络及客户网络的流量，而不会提供整个互联网的中转服务。</strong></p>
+</blockquote>
+<p>因此：</p>
+<p>Peer 可以访问：</p>
+<ul>
+<li>对方自己的网络</li>
+<li>对方客户(Customer)的网络</li>
+</ul>
+<p>但是：</p>
+<p>不会访问：</p>
+<ul>
+<li>对方 Transit 学到的互联网路由</li>
+</ul>
+<hr>
+<h1 id="一个生活中的例子"><a href="#一个生活中的例子" class="headerlink" title="一个生活中的例子"></a>一个生活中的例子</h1><p>其实 Transit 和 Peering 很像家庭宽带。</p>
+<p>假设：</p>
+<ul>
+<li>我家 &#x3D; AS402309</li>
+<li>邻居 &#x3D; AS216458</li>
+<li>中国电信 &#x3D; AS17476</li>
+</ul>
+<p>那么：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  中国电信</span><br><span class="line">     │</span><br><span class="line"> （Transit）</span><br><span class="line">     │</span><br><span class="line">   我家</span><br><span class="line">     │</span><br><span class="line">（Peering）</span><br><span class="line">     │</span><br><span class="line">   邻居家</span><br></pre></td></tr></table></figure>
+
+<h2 id="Transit"><a href="#Transit" class="headerlink" title="Transit"></a>Transit</h2><p>我向中国电信办理宽带。</p>
+<p>每个月交宽带费。</p>
+<p>电信承诺：</p>
+<blockquote>
+<p>全世界的网站都可以访问。</p>
+</blockquote>
+<p>这就是 Transit。</p>
+<hr>
+<h2 id="Peering"><a href="#Peering" class="headerlink" title="Peering"></a>Peering</h2><p>后来：</p>
+<p>我和邻居之间拉了一根网线。</p>
+<p>双方约定：</p>
+<ul>
+<li>可以互相访问 NAS</li>
+<li>可以互相访问局域网资源</li>
+</ul>
+<p>但是：</p>
+<p>我不会说：</p>
+<blockquote>
+<p>“以后你上互联网都走我家的宽带。”</p>
+</blockquote>
+<p>邻居也不会说：</p>
+<blockquote>
+<p>“以后你走我家的宽带。”</p>
+</blockquote>
+<p>这就是 Peering。</p>
+<p>也就是说：</p>
+<blockquote>
+<p><strong>Peering 是资源共享，而不是互联网共享。</strong></p>
+</blockquote>
+<hr>
+<h1 id="为什么互联网需要-Peering？"><a href="#为什么互联网需要-Peering？" class="headerlink" title="为什么互联网需要 Peering？"></a>为什么互联网需要 Peering？</h1><p>如果没有 Peering：</p>
+<p>访问邻居：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">我家</span><br><span class="line"> │</span><br><span class="line">电信</span><br><span class="line"> │</span><br><span class="line">互联网</span><br><span class="line"> │</span><br><span class="line">联通</span><br><span class="line"> │</span><br><span class="line">邻居</span><br></pre></td></tr></table></figure>
+
+<p>可能需要绕很远。</p>
+<p>如果双方直接建立 Peering：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">我家</span><br><span class="line"> │</span><br><span class="line">────────────</span><br><span class="line"> │</span><br><span class="line">邻居</span><br></pre></td></tr></table></figure>
+
+<p>访问速度明显更快。</p>
+<p>现实中：</p>
+<p>Cloudflare、Google、Meta、Netflix 等大型网络都会在全球 Internet Exchange（IX）建立大量 Peering，就是为了降低延迟、减少 Transit 成本。</p>
+<hr>
+<h1 id="Transit-与-Peering-的区别"><a href="#Transit-与-Peering-的区别" class="headerlink" title="Transit 与 Peering 的区别"></a>Transit 与 Peering 的区别</h1><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>Transit</th>
+<th>Peering</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>中文</td>
+<td>中转、上游</td>
+<td>对等互联</td>
+</tr>
+<tr>
+<td>双方关系</td>
+<td>Provider ↔ Customer</td>
+<td>Peer ↔ Peer</td>
+</tr>
+<tr>
+<td>是否收费</td>
+<td>通常收费</td>
+<td>通常免费（也存在付费 Peering）</td>
+</tr>
+<tr>
+<td>可访问范围</td>
+<td>整个互联网</td>
+<td>对方及其客户网络</td>
+</tr>
+<tr>
+<td>是否提供互联网中转</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>主要目的</td>
+<td>接入互联网</td>
+<td>降低延迟、降低成本</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="为什么说所有-ISP-都离不开-Transit？"><a href="#为什么说所有-ISP-都离不开-Transit？" class="headerlink" title="为什么说所有 ISP 都离不开 Transit？"></a>为什么说所有 ISP 都离不开 Transit？</h1><p>理论上：</p>
+<p>如果一个新的 ASN：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AS65000</span><br></pre></td></tr></table></figure>
+
+<p>没有任何 Transit：</p>
+<p>那么它只能访问：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">自己</span><br></pre></td></tr></table></figure>
+
+<p>即使建立很多 Peer：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AS65000</span><br><span class="line">   │</span><br><span class="line">Peer</span><br><span class="line">   │</span><br><span class="line">很多网络</span><br></pre></td></tr></table></figure>
+
+<p>仍然无法访问整个互联网。</p>
+<p>因此：</p>
+<p><strong>几乎所有小型 ISP 都至少拥有一个 Transit Provider。</strong></p>
+<p>而大型运营商则通常拥有：</p>
+<ul>
+<li>多个 Transit</li>
+<li>大量 Peering</li>
+<li>多个 Internet Exchange</li>
+</ul>
+<p>共同组成自己的全球网络。</p>
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>可以把互联网理解成这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">         整个互联网</span><br><span class="line">              │</span><br><span class="line">        Transit（上游）</span><br><span class="line">              │</span><br><span class="line">          你的 ASN</span><br><span class="line">         /         \</span><br><span class="line">  Peering         Peering</span><br><span class="line">Cloudflare        Google</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li><strong>Transit</strong> 保证”哪里都能去”；</li>
+<li><strong>Peering</strong> 保证”常去的地方走最近的路”。</li>
+</ul>
+<p>两者缺一不可。</p>
+<p>也正是 Transit 与 Peering 的共同作用，构成了今天全球互联网复杂而高效的互联体系。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2180,171 +2488,6 @@
 <blockquote>
 <p>本文仅反映当前阶段的网络现实，不排除未来因 Peer 调整而变化。</p>
 </blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://heiok.com/Cloudflare-CustomHostname-SaaS.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="heiok.com">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 网络蝙蝠侠部落">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Cloudflare-CustomHostname-SaaS.html" class="post-title-link" itemprop="url">Cloudflare 域名优选（Custom Hostname / SaaS）设置</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2026-01-22 18:23:05" itemprop="dateCreated datePublished" datetime="2026-01-22T18:23:05+08:00">2026-01-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-02-09 09:51:44" itemprop="dateModified" datetime="2026-02-09T09:51:44+08:00">2026-02-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="一、必要条件"><a href="#一、必要条件" class="headerlink" title="一、必要条件"></a>一、必要条件</h2><ol>
-<li>Cloudflare 账号需已绑定支付方式（SaaS 为付费功能）</li>
-<li>拥有两个可完全管理的域名</li>
-<li><strong>回源域名必须托管在 Cloudflare</strong></li>
-<li>必须在 Cloudflare 中配置回源（Fallback Origin）</li>
-</ol>
-<hr>
-<h2 id="二、基本设定说明"><a href="#二、基本设定说明" class="headerlink" title="二、基本设定说明"></a>二、基本设定说明</h2><ul>
-<li><strong>访问域名</strong>：<code>b.com</code>（用户访问的域名）</li>
-<li><strong>回源域名</strong>：<code>a.com</code>（托管在 Cloudflare，用于回源）</li>
-</ul>
-<hr>
-<h2 id="三、场景一：a-com-在-CF，b-com-不在-CF"><a href="#三、场景一：a-com-在-CF，b-com-不在-CF" class="headerlink" title="三、场景一：a.com 在 CF，b.com 不在 CF"></a>三、场景一：<code>a.com</code> 在 CF，<code>b.com</code> 不在 CF</h2><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
-<li><p><strong>a.com（CF）</strong></p>
-<ul>
-<li><p>添加回源记录：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">origin  A  1.2.3.4</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>状态：<strong>橙云（Proxy ON）</strong></p>
-</li>
-</ul>
-</li>
-<li><p><strong>Cloudflare → SSL&#x2F;TLS → Custom Hostname</strong></p>
-<ul>
-<li>Fallback Origin：<code>origin.a.com</code></li>
-<li>添加 Custom Hostname：<code>www.b.com</code></li>
-</ul>
-</li>
-<li><p><strong>b.com（非 CF 托管）</strong></p>
-<ul>
-<li><p>添加 TXT 记录完成验证</p>
-</li>
-<li><p>添加 CNAME 记录：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www  →  优选域名（如 www.visa.cn等）</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="四、场景二：a-com-与-b-com-均在-CF（重点）"><a href="#四、场景二：a-com-与-b-com-均在-CF（重点）" class="headerlink" title="四、场景二：a.com 与 b.com 均在 CF（重点）"></a>四、场景二：<code>a.com</code> 与 <code>b.com</code> 均在 CF（重点）</h2><blockquote>
-<p><strong>关键原则：Custom Hostname 的 DNS Target 不能经过 Cloudflare Proxy</strong></p>
-</blockquote>
-<h3 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h3><ol>
-<li><p><strong>a.com（CF）</strong></p>
-<ul>
-<li><p>添加回源记录（橙云）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">origin  A  1.2.3.4</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>a.com（CF）</strong></p>
-<ul>
-<li><p>添加优选入口（DNS Target）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cdn  CNAME  优选域名（如 www.visa.cn）</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>状态：<strong>灰云（DNS only）</strong></p>
-</li>
-</ul>
-</li>
-<li><p><strong>Cloudflare → SSL&#x2F;TLS → Custom Hostname</strong></p>
-<ul>
-<li>Fallback Origin：<code>origin.a.com</code></li>
-<li>添加 Custom Hostname：<code>www.b.com</code></li>
-</ul>
-</li>
-<li><p><strong>b.com（CF）</strong></p>
-<ul>
-<li><p>添加 TXT 记录完成验证</p>
-</li>
-<li><p>添加 CNAME 记录：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www  →  cdn.a.com</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>状态：<strong>灰云（DNS only）</strong></p>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h2 id="五、关于使用优选-IP"><a href="#五、关于使用优选-IP" class="headerlink" title="五、关于使用优选 IP"></a>五、关于使用优选 IP</h2><p>若使用 <strong>优选 IP</strong> 而非优选域名：</p>
-<ul>
-<li>将 DNS Target 的 <code>CNAME</code> 改为 <code>A</code> 记录</li>
-<li>必须为 <strong>DNS only</strong></li>
-</ul>
 
       
     </div>
