@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"heiok.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4157401344064000" crossorigin="anonymous"></script>
+
+    <meta name="description" content="最近一台 CentOS 7 服务器出现了一个很奇怪的问题：  SSH 登录偶尔会卡 5 秒或 10 秒； 同一台服务器，大多数时候又完全正常； 更奇怪的是，只要客户端使用 ssh -vvv 登录，就几乎不会出现卡顿。  最开始一直怀疑是 SSH 本身的问题，结果最后发现根本不是。  故障现象普通登录： 1ssh root@192.168.1.205  偶尔停顿： 12Connecting...（等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次 SSH 登录随机卡顿（5 秒 &#x2F; 10 秒）的排查记录">
+<meta property="og:url" content="https://heiok.com/ssh-login-random-5s-10s-delay-troubleshooting.html">
+<meta property="og:site_name" content="网络蝙蝠侠部落">
+<meta property="og:description" content="最近一台 CentOS 7 服务器出现了一个很奇怪的问题：  SSH 登录偶尔会卡 5 秒或 10 秒； 同一台服务器，大多数时候又完全正常； 更奇怪的是，只要客户端使用 ssh -vvv 登录，就几乎不会出现卡顿。  最开始一直怀疑是 SSH 本身的问题，结果最后发现根本不是。  故障现象普通登录： 1ssh root@192.168.1.205  偶尔停顿： 12Connecting...（等">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-31T02:22:02.000Z">
+<meta property="article:modified_time" content="2026-07-31T02:28:24.732Z">
+<meta property="article:author" content="heiok.com">
+<meta property="article:tag" content="Troubleshooting">
+<meta property="article:tag" content="Random">
+<meta property="article:tag" content="SSH Login">
+<meta property="article:tag" content="DNS">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://heiok.com/ssh-login-random-5s-10s-delay-troubleshooting.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://heiok.com/ssh-login-random-5s-10s-delay-troubleshooting.html","path":"ssh-login-random-5s-10s-delay-troubleshooting.html","title":"一次 SSH 登录随机卡顿（5 秒 / 10 秒）的排查记录"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>一次 SSH 登录随机卡顿（5 秒 / 10 秒）的排查记录 | 网络蝙蝠侠部落</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-90W6VHZRMP"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-90W6VHZRMP","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">网络蝙蝠侠部落</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%85%E9%9A%9C%E7%8E%B0%E8%B1%A1"><span class="nav-number">1.</span> <span class="nav-text">故障现象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A6%96%E8%BD%AE%E6%8E%92%E6%9F%A5"><span class="nav-number">2.</span> <span class="nav-text">首轮排查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%93%E5%8C%85%E5%8F%91%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">抓包发现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A5%87%E5%BC%82%E4%B9%8B%E5%A4%84"><span class="nav-number">4.</span> <span class="nav-text">奇异之处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E5%AE%9A%E4%BD%8D"><span class="nav-number">5.</span> <span class="nav-text">最终定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">6.</span> <span class="nav-text">结论</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">148</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/ssh-login-random-5s-10s-delay-troubleshooting.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="一次 SSH 登录随机卡顿（5 秒 / 10 秒）的排查记录 | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一次 SSH 登录随机卡顿（5 秒 / 10 秒）的排查记录
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-07-31 10:22:02 / 修改时间：10:28:24" itemprop="dateCreated datePublished" datetime="2026-07-31T10:22:02+08:00">2026-07-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>最近一台 CentOS 7 服务器出现了一个很奇怪的问题：</p>
+<ul>
+<li>SSH 登录偶尔会卡 <strong>5 秒或 10 秒</strong>；</li>
+<li>同一台服务器，大多数时候又完全正常；</li>
+<li>更奇怪的是，只要客户端使用 <strong><code>ssh -vvv</code></strong> 登录，就几乎不会出现卡顿。</li>
+</ul>
+<p>最开始一直怀疑是 SSH 本身的问题，结果最后发现根本不是。</p>
+<hr>
+<h2 id="故障现象"><a href="#故障现象" class="headerlink" title="故障现象"></a>故障现象</h2><p>普通登录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@192.168.1.205</span><br></pre></td></tr></table></figure>
+
+<p>偶尔停顿：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Connecting...</span><br><span class="line">（等待约 5 秒）</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（等待约 10 秒）</span><br></pre></td></tr></table></figure>
+
+<p>但是开启调试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -vvv root@192.168.1.205</span><br></pre></td></tr></table></figure>
+
+<p>几乎每次都是秒连。</p>
+<p>由于 <code>-vvv</code> 只是增加调试输出，并不会修改 SSH 协议，因此可以判断：</p>
+<blockquote>
+<p><strong>问题不是 SSH 协议本身，而是某个时序相关的问题。</strong></p>
+</blockquote>
+<hr>
+<h2 id="首轮排查"><a href="#首轮排查" class="headerlink" title="首轮排查"></a>首轮排查</h2><p>检查 <code>sshd_config</code>：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UseDNS no</span><br><span class="line">GSSAPIAuthentication no</span><br></pre></td></tr></table></figure>
+
+<p>这些常见导致登录变慢的配置都已经关闭。</p>
+<p>服务器也没有：</p>
+<ul>
+<li>nscd</li>
+<li>systemd-resolved</li>
+</ul>
+<p>因此基本可以排除 SSH 配置导致的问题。</p>
+<hr>
+<h2 id="抓包发现"><a href="#抓包发现" class="headerlink" title="抓包发现"></a>抓包发现</h2><p>抓 DNS：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -ni ens192 port 53</span><br></pre></td></tr></table></figure>
+
+<p>登录卡顿期间，可以看到服务器不断查询：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PTR? 209.1.168.192.in-addr.arpa</span><br></pre></td></tr></table></figure>
+
+<p>返回：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NXDOMAIN</span><br></pre></td></tr></table></figure>
+
+<p>说明 SSH 登录过程中确实发生了反向 DNS 查询。</p>
+<hr>
+<h2 id="奇异之处"><a href="#奇异之处" class="headerlink" title="奇异之处"></a>奇异之处</h2><p>直接测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dig -x 192.168.1.209</span><br></pre></td></tr></table></figure>
+
+<p>查询时间始终只有：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Query time: 8 ms</span><br></pre></td></tr></table></figure>
+
+<p>连续测试上百次都正常。</p>
+<p>但是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getent hosts 192.168.1.209</span><br></pre></td></tr></table></figure>
+
+<p>却偶尔出现：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">real    0m5.013s</span><br></pre></td></tr></table></figure>
+
+<p>甚至：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">real    0m10.020s</span><br></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<p><strong>DNS 服务器本身没有慢。</strong></p>
+<p>真正慢的是 <strong>glibc 的名称解析（getaddrinfo&#x2F;gethostbyaddr）</strong>。</p>
+<p>Python 同样能复现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socket.getaddrinfo(<span class="string">&quot;www.baidu.com&quot;</span>,<span class="number">80</span>)</span><br></pre></td></tr></table></figure>
+
+<p>有时直接等待 10 秒后报：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">socket.gaierror</span><br></pre></td></tr></table></figure>
+
+<p>进一步证明问题发生在系统解析库，而不是 SSH。</p>
+<hr>
+<h2 id="最终定位"><a href="#最终定位" class="headerlink" title="最终定位"></a>最终定位</h2><p>后来发现，公司出口实际上有三条公网线路：</p>
+<ul>
+<li>A</li>
+<li>B</li>
+<li>C</li>
+</ul>
+<p>205 服务器当时一直走 <strong>C 线路</strong>。</p>
+<p>当出口切换到 A&#x2F;B 后：</p>
+<ul>
+<li><code>getent</code> 不再出现 5 秒或 10 秒等待；</li>
+<li>SSH 登录恢复正常；</li>
+<li><code>ssh -vvv</code> 与普通 SSH 都没有任何区别。</li>
+</ul>
+<p>而走 C 线路时：</p>
+<ul>
+<li>普通 SSH 偶尔卡顿；</li>
+<li><code>ssh -vvv</code> 基本正常；</li>
+<li>DNS 查询 (<code>dig</code>) 很快；</li>
+<li>glibc 名称解析 (<code>getent</code>) 却偶尔超时。</li>
+</ul>
+<p>目前推测是 <strong>C 出口上的 UDP&#x2F;DNS 通信存在偶发异常或丢包</strong>，导致 glibc 重试，从而出现 5 秒、10 秒的等待；而开启 <code>-vvv</code> 后，由于客户端和服务端交互时序发生变化，这个问题反而难以触发，因此表现为“加 <code>-vvv</code> 就正常”。</p>
+<hr>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>这次问题最大的收获有两点：</p>
+<ol>
+<li><strong>SSH 卡顿，不一定是 SSH 的问题。</strong></li>
+<li><strong>如果 <code>ssh -vvv</code> 能恢复正常，往往说明问题与时序、DNS 或网络环境有关，而不是 SSH 配置本身。</strong></li>
+</ol>
+<p>以后再遇到 SSH 登录随机卡 5 秒、10 秒的情况，除了检查 <code>sshd_config</code> 外，也建议同步检查：</p>
+<ul>
+<li>DNS 正向&#x2F;反向解析</li>
+<li><code>getent hosts</code></li>
+<li><code>getent ahosts</code></li>
+<li><code>dig</code></li>
+<li><code>tcpdump port 53</code></li>
+<li>出口线路或 NAT 是否存在异常</li>
+</ul>
+<p>很多时候，真正的问题并不在 SSH，而是在系统名称解析或网络出口。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Troubleshooting/" rel="tag"># Troubleshooting</a>
+              <a href="/tags/Random/" rel="tag"># Random</a>
+              <a href="/tags/SSH-Login/" rel="tag"># SSH Login</a>
+              <a href="/tags/DNS/" rel="tag"># DNS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/bgp-transit-and-peering.html" rel="prev" title="浅谈 BGP 中的 Transit（中转）与 Peering（对等互联）">
+                  <i class="fa fa-angle-left"></i> 浅谈 BGP 中的 Transit（中转）与 Peering（对等互联）
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">heiok.com</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
