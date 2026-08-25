@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"heiok.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4157401344064000" crossorigin="anonymous"></script>
+
+    <meta name="description" content="本文整理 Intel 6代、7代移动平台 BGA1440 CPU + PCH 的上电时序、主要供电电压以及维修过程中常用的关键测试点，方便在笔记本主板维修时根据不触发、不充电、缺电压、缺时钟、缺复位、掉电等故障现象进行逐级排查。 本文数据主要整理自实际维修资料，表中的“正常对地值参考”主要用于万用表二极管档&#x2F;电阻档进行快速判断。不同主板由于元件、CPU、PCH以及外围电路不同，实际测量值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Intel 6代-7代U + PCH上电时序汇总及关键信号（BGA1440）">
+<meta property="og:url" content="https://heiok.com/Intel-6th-7th-gen-mobile-cpu-pch-power-on-sequence-key-signals-BGA1440.html">
+<meta property="og:site_name" content="网络蝙蝠侠部落">
+<meta property="og:description" content="本文整理 Intel 6代、7代移动平台 BGA1440 CPU + PCH 的上电时序、主要供电电压以及维修过程中常用的关键测试点，方便在笔记本主板维修时根据不触发、不充电、缺电压、缺时钟、缺复位、掉电等故障现象进行逐级排查。 本文数据主要整理自实际维修资料，表中的“正常对地值参考”主要用于万用表二极管档&#x2F;电阻档进行快速判断。不同主板由于元件、CPU、PCH以及外围电路不同，实际测量值">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-25T07:00:14.000Z">
+<meta property="article:modified_time" content="2026-08-25T07:07:02.403Z">
+<meta property="article:author" content="heiok.com">
+<meta property="article:tag" content="Power-on sequence">
+<meta property="article:tag" content="Mainboard">
+<meta property="article:tag" content="Intel">
+<meta property="article:tag" content="Notebook">
+<meta property="article:tag" content="BGA1440">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://heiok.com/Intel-6th-7th-gen-mobile-cpu-pch-power-on-sequence-key-signals-BGA1440.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://heiok.com/Intel-6th-7th-gen-mobile-cpu-pch-power-on-sequence-key-signals-BGA1440.html","path":"Intel-6th-7th-gen-mobile-cpu-pch-power-on-sequence-key-signals-BGA1440.html","title":"Intel 6代-7代U + PCH上电时序汇总及关键信号（BGA1440）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Intel 6代-7代U + PCH上电时序汇总及关键信号（BGA1440） | 网络蝙蝠侠部落</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-90W6VHZRMP"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-90W6VHZRMP","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">网络蝙蝠侠部落</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%80%82%E9%85%8D%E5%99%A8%E8%BE%93%E5%85%A5%E5%8F%8A%E9%9A%94%E7%A6%BB%E4%BF%9D%E6%8A%A4%E7%94%B5%E8%B7%AF"><span class="nav-number">1.</span> <span class="nav-text">一、适配器输入及隔离保护电路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%813-3V-ALW-%E7%B3%BB%E7%BB%9F%E5%BE%85%E6%9C%BA%E4%BE%9B%E7%94%B5"><span class="nav-number">2.</span> <span class="nav-text">二、3.3V_ALW 系统待机供电</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81EC-%E5%BE%85%E6%9C%BA%E6%9D%A1%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">三、EC 待机条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%815V-ALW-%E7%B3%BB%E7%BB%9F%E5%BE%85%E6%9C%BA%E4%BE%9B%E7%94%B5"><span class="nav-number">4.</span> <span class="nav-text">四、5V_ALW 系统待机供电</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%85%E6%9C%BA%E9%98%B6%E6%AE%B5%E9%87%8D%E7%82%B9"><span class="nav-number">4.1.</span> <span class="nav-text">待机阶段重点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%813-3V-ALW-%E2%86%92-3-3V-SUS"><span class="nav-number">5.</span> <span class="nav-text">五、3.3V_ALW → 3.3V_SUS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81VCCPRIM-1P0-%E4%BE%9B%E7%94%B5"><span class="nav-number">6.</span> <span class="nav-text">六、VCCPRIM_1P0 供电</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%83%E3%80%81PCH-%E5%BE%85%E6%9C%BA%E6%9D%A1%E4%BB%B6"><span class="nav-number"></span> <span class="nav-text">七、PCH 待机条件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-G3-%E7%8A%B6%E6%80%81"><span class="nav-number">1.</span> <span class="nav-text">7.1 G3 状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-DEEP-%E7%8A%B6%E6%80%81"><span class="nav-number">2.</span> <span class="nav-text">7.2 DEEP 状态</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AB%E3%80%81PCH-S5-%E7%8A%B6%E6%80%81"><span class="nav-number"></span> <span class="nav-text">八、PCH S5 状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B9%9D%E3%80%81PWRBTN-%E4%B8%8E-SLP-%E7%9D%A1%E7%9C%A0%E4%BF%A1%E5%8F%B7"><span class="nav-number"></span> <span class="nav-text">九、PWRBTN 与 SLP 睡眠信号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E3%80%81SLP-S5%EF%BC%9A%E5%BC%80%E5%90%AF%E5%86%85%E5%AD%98%E4%BE%9B%E7%94%B5"><span class="nav-number"></span> <span class="nav-text">十、SLP_S5：开启内存供电</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81SLP-S4-SLP-S3%EF%BC%9A%E4%BA%8C%E7%BA%A7%E4%BE%9B%E7%94%B5%E5%8F%8A-CPU-%E8%BE%85%E5%8A%A9%E4%BE%9B%E7%94%B5"><span class="nav-number"></span> <span class="nav-text">十一、SLP_S4 &#x2F; SLP_S3：二级供电及 CPU 辅助供电</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81CPU-VCCSA-%E4%BE%9B%E7%94%B5"><span class="nav-number"></span> <span class="nav-text">十二、CPU VCCSA 供电</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81PCH-%E6%97%B6%E9%92%9F%E7%94%B5%E8%B7%AF"><span class="nav-number"></span> <span class="nav-text">十三、PCH 时钟电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%92%9F%E6%95%85%E9%9A%9C%E7%9A%84%E5%85%B8%E5%9E%8B%E8%A1%A8%E7%8E%B0"><span class="nav-number">0.1.</span> <span class="nav-text">时钟故障的典型表现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81PCH-CPU-%E5%A4%8D%E4%BD%8D%E7%94%B5%E8%B7%AF"><span class="nav-number"></span> <span class="nav-text">十四、PCH + CPU 复位电路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E4%BA%94%E3%80%81CPU-%E6%A0%B8%E5%BF%83%E4%BE%9B%E7%94%B5%E5%8F%8A-SVID"><span class="nav-number"></span> <span class="nav-text">十五、CPU 核心供电及 SVID</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E5%85%AD%E3%80%81%E6%95%B4%E4%BD%93%E4%B8%8A%E7%94%B5%E6%97%B6%E5%BA%8F%E6%A2%B3%E7%90%86"><span class="nav-number"></span> <span class="nav-text">十六、整体上电时序梳理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E4%B8%83%E3%80%81%E7%BB%B4%E4%BF%AE%E6%8E%92%E6%9F%A5%E6%80%9D%E8%B7%AF"><span class="nav-number"></span> <span class="nav-text">十七、维修排查思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%B8%8D%E5%85%85%E7%94%B5-%E6%97%A0%E5%BE%85%E6%9C%BA"><span class="nav-number">0.1.</span> <span class="nav-text">1. 不充电 &#x2F; 无待机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%9C%89%E5%BE%85%E6%9C%BA%E4%BD%86%E6%8C%89%E5%BC%80%E6%9C%BA%E9%94%AE%E6%97%A0%E5%8F%8D%E5%BA%94"><span class="nav-number">0.2.</span> <span class="nav-text">2. 有待机但按开机键无反应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%8C%89%E5%BC%80%E6%9C%BA%E9%94%AE%E5%90%8E%E5%AE%8C%E5%85%A8%E4%B8%8D%E8%A7%A6%E5%8F%91"><span class="nav-number">0.3.</span> <span class="nav-text">3. 按开机键后完全不触发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%A7%A6%E5%8F%91%E5%90%8E%E6%8E%89%E7%94%B5"><span class="nav-number">0.4.</span> <span class="nav-text">4. 触发后掉电</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%9C%89-CPU-%E6%A0%B8%E5%BF%83%E7%94%B5%E5%8E%8B%E4%BD%86%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8"><span class="nav-number">0.5.</span> <span class="nav-text">5. 有 CPU 核心电压但无法启动</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E5%85%AB%E3%80%81%E5%85%B3%E9%94%AE%E6%95%85%E9%9A%9C%E7%8E%B0%E8%B1%A1%E4%B8%8E%E6%8E%92%E6%9F%A5%E6%96%B9%E5%90%91"><span class="nav-number"></span> <span class="nav-text">十八、关键故障现象与排查方向</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B9%9D%E3%80%81%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">十九、说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">2.</span> <span class="nav-text">二十、总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">150</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Intel-6th-7th-gen-mobile-cpu-pch-power-on-sequence-key-signals-BGA1440.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Intel 6代-7代U + PCH上电时序汇总及关键信号（BGA1440） | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Intel 6代-7代U + PCH上电时序汇总及关键信号（BGA1440）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-08-25 15:00:14 / 修改时间：15:07:02" itemprop="dateCreated datePublished" datetime="2026-08-25T15:00:14+08:00">2026-08-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>本文整理 <strong>Intel 6代、7代移动平台 BGA1440 CPU + PCH</strong> 的上电时序、主要供电电压以及维修过程中常用的关键测试点，方便在笔记本主板维修时根据<strong>不触发、不充电、缺电压、缺时钟、缺复位、掉电</strong>等故障现象进行逐级排查。</p>
+<p>本文数据主要整理自实际维修资料，表中的“正常对地值参考”主要用于万用表二极管档&#x2F;电阻档进行快速判断。不同主板由于元件、CPU、PCH以及外围电路不同，实际测量值可能存在一定差异，因此<strong>对地值应作为参考，不宜作为绝对标准</strong>。</p>
+<h2 id="一、适配器输入及隔离保护电路"><a href="#一、适配器输入及隔离保护电路" class="headerlink" title="一、适配器输入及隔离保护电路"></a>一、适配器输入及隔离保护电路</h2><p>充电管理芯片采用 <strong>BQ24780S</strong> 时，可以首先检查适配器输入以及充电芯片外围的关键条件。</p>
+<table>
+<thead>
+<tr>
+<th>电压&#x2F;信号</th>
+<th>功能说明</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DC_IN</td>
+<td>适配器输入</td>
+<td>19V</td>
+<td>1200左右</td>
+</tr>
+<tr>
+<td>VCC</td>
+<td>充电芯片供电</td>
+<td>19V</td>
+<td>600左右</td>
+</tr>
+<tr>
+<td>ACDET</td>
+<td>适配器接入检测</td>
+<td>2.6V</td>
+<td>660左右</td>
+</tr>
+<tr>
+<td>REGN</td>
+<td>充电芯片内部稳压器输出</td>
+<td>6V</td>
+<td>520左右</td>
+</tr>
+<tr>
+<td>IADP</td>
+<td>适配器电流检测</td>
+<td>0V&#x2F;0.2V变化</td>
+<td>480左右</td>
+</tr>
+<tr>
+<td>ACOK</td>
+<td>适配器检测 OK 信号</td>
+<td>3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>ACDRV</td>
+<td>充电芯片驱动 MOS 管信号</td>
+<td>24V～25V</td>
+<td>700左右</td>
+</tr>
+<tr>
+<td>CMSRC</td>
+<td>涌流限制信号</td>
+<td>19V</td>
+<td>600左右</td>
+</tr>
+<tr>
+<td>PWR_SRC</td>
+<td>公共点电压</td>
+<td>19V</td>
+<td>400左右</td>
+</tr>
+</tbody></table>
+<p>如果这一部分出现异常，可能首先表现为：</p>
+<ul>
+<li>不充电</li>
+<li>适配器无法识别</li>
+<li>待机公共点没有正常电压</li>
+<li>主板完全不触发</li>
+</ul>
+<p>因此维修时可以先确认 <strong>DC_IN → VCC → ACDET → REGN → ACOK → ACDRV → PWR_SRC</strong> 这一链路。</p>
+<h2 id="二、3-3V-ALW-系统待机供电"><a href="#二、3-3V-ALW-系统待机供电" class="headerlink" title="二、3.3V_ALW 系统待机供电"></a>二、3.3V_ALW 系统待机供电</h2><p>系统待机供电采用 <strong>TPS51225C</strong> 时，需要首先建立稳定的 3.3V_ALW。</p>
+<table>
+<thead>
+<tr>
+<th>电压&#x2F;信号</th>
+<th>功能说明</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VIN</td>
+<td>公共点电压</td>
+<td>19V</td>
+<td>400左右</td>
+</tr>
+<tr>
+<td>VRGE5</td>
+<td>芯片内部 5V 稳压输出</td>
+<td>5V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>VREG3</td>
+<td>芯片内部 3.3V 稳压输出</td>
+<td>3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>EN2（3.3V_ALW_ON）</td>
+<td>3.3V_ALW 开启信号</td>
+<td>3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>VBST2</td>
+<td>高端 MOS 驱动自举电压</td>
+<td>8.5V</td>
+<td>600左右</td>
+</tr>
+<tr>
+<td>DRVH2</td>
+<td>高端 MOS 驱动</td>
+<td>3.3V&#x2F;3.8V</td>
+<td>860左右</td>
+</tr>
+<tr>
+<td>DRVL2</td>
+<td>低端 MOS 驱动</td>
+<td>0.02V&#x2F;2.2V</td>
+<td>440左右</td>
+</tr>
+<tr>
+<td>SW2（3.3V_ALW）</td>
+<td>3.3V 系统待机供电</td>
+<td>3.3V</td>
+<td>400左右</td>
+</tr>
+<tr>
+<td>CS2</td>
+<td>电流检测</td>
+<td>0.87V</td>
+<td>560左右</td>
+</tr>
+<tr>
+<td>VFB2</td>
+<td>反馈检测</td>
+<td>2V</td>
+<td>560左右</td>
+</tr>
+</tbody></table>
+<p><strong>3.3V_ALW 是后续 EC、PCH 待机以及开机时序的重要基础。</strong></p>
+<p>如果这一部分没有正常工作，后面的 EC 待机条件以及 PCH 上电时序通常无法继续。</p>
+<h2 id="三、EC-待机条件"><a href="#三、EC-待机条件" class="headerlink" title="三、EC 待机条件"></a>三、EC 待机条件</h2><p>EC 采用 <strong>IT8528</strong> 时，需要满足基本的待机供电和输入条件。</p>
+<table>
+<thead>
+<tr>
+<th>电压&#x2F;信号</th>
+<th>功能说明</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>3V_ALW &#x2F; +3.3V_EC</td>
+<td>EC 供电</td>
+<td>3.3V</td>
+<td>400左右</td>
+</tr>
+<tr>
+<td>ACAV_IN（ACOK）</td>
+<td>适配器检测输入</td>
+<td>3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>WRST#</td>
+<td>EC 复位信号</td>
+<td>3.3V</td>
+<td>520左右</td>
+</tr>
+<tr>
+<td>LID_SW#</td>
+<td>合盖&#x2F;休眠检测信号</td>
+<td>3.3V</td>
+<td>600左右</td>
+</tr>
+<tr>
+<td>读取 EC 程序（外置 BIOS）</td>
+<td>EC BIOS 通信&#x2F;读取</td>
+<td>—</td>
+<td>520～550左右</td>
+</tr>
+<tr>
+<td>ALW_ON</td>
+<td>系统供电 5V 开启信号</td>
+<td>3.3V</td>
+<td>500左右</td>
+</tr>
+</tbody></table>
+<p>EC 正常工作后，才能进一步产生相应的 <strong>ALW_ON、SUS_ON、RUN_ON</strong> 等控制信号，推动后续电源时序。</p>
+<h2 id="四、5V-ALW-系统待机供电"><a href="#四、5V-ALW-系统待机供电" class="headerlink" title="四、5V_ALW 系统待机供电"></a>四、5V_ALW 系统待机供电</h2><p>另外一路采用 <strong>TPS51225C</strong> 产生 5V_ALW。</p>
+<table>
+<thead>
+<tr>
+<th>电压&#x2F;信号</th>
+<th>功能说明</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EN1（ALW_ON）</td>
+<td>5V_ALW 开启信号</td>
+<td>3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>VBST1</td>
+<td>高端 MOS 驱动自举电压</td>
+<td>10V</td>
+<td>600左右</td>
+</tr>
+<tr>
+<td>DRVH1</td>
+<td>高端 MOS 驱动</td>
+<td>5V&#x2F;5.3V</td>
+<td>800左右</td>
+</tr>
+<tr>
+<td>DRVL1</td>
+<td>低端 MOS 驱动</td>
+<td>0V&#x2F;0.5V</td>
+<td>400左右</td>
+</tr>
+<tr>
+<td>SW1（5V_ALW）</td>
+<td>5V 系统待机供电</td>
+<td>5V</td>
+<td>300左右</td>
+</tr>
+<tr>
+<td>CS1</td>
+<td>电流检测</td>
+<td>0.37V</td>
+<td>550左右</td>
+</tr>
+<tr>
+<td>VFB1</td>
+<td>反馈检测</td>
+<td>2V</td>
+<td>570左右</td>
+</tr>
+<tr>
+<td>VCLK</td>
+<td>时钟&#x2F;振荡相关信号</td>
+<td>2.5V</td>
+<td>400左右</td>
+</tr>
+<tr>
+<td>15V_ALW</td>
+<td>系统升压供电</td>
+<td>14V～15V</td>
+<td>1200左右</td>
+</tr>
+</tbody></table>
+<h3 id="待机阶段重点"><a href="#待机阶段重点" class="headerlink" title="待机阶段重点"></a>待机阶段重点</h3><p><strong>3.3V_ALW、5V_ALW、15V_ALW</strong> 等电压以及相应的开启条件，是主板进入后续触发阶段的基础。</p>
+<p>以上待机电压或控制信号出现异常，都可能导致：</p>
+<blockquote>
+<p><strong>不触发 &#x2F; 不充电</strong></p>
+</blockquote>
+<h2 id="五、3-3V-ALW-→-3-3V-SUS"><a href="#五、3-3V-ALW-→-3-3V-SUS" class="headerlink" title="五、3.3V_ALW → 3.3V_SUS"></a>五、3.3V_ALW → 3.3V_SUS</h2><p>按下开机键后，EC&#x2F;PCH 开始进入后续工作状态。</p>
+<table>
+<thead>
+<tr>
+<th>电压&#x2F;信号</th>
+<th>功能说明</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SYS_PWR_SW#</td>
+<td>开机按钮输入</td>
+<td>3.3V → 0V → 3.3V</td>
+<td>620左右</td>
+</tr>
+<tr>
+<td>SUS_ON</td>
+<td>开启 PCH VCCPRIM 供电</td>
+<td>3.3V</td>
+<td>520左右</td>
+</tr>
+<tr>
+<td>3.3V_SUS（VCCPRIM_3P3）</td>
+<td>PCH 3.3V 供电</td>
+<td>3.3V</td>
+<td>300左右</td>
+</tr>
+</tbody></table>
+<p>这里可以把 <strong>SYS_PWR_SW# → SUS_ON → 3.3V_SUS</strong> 看作由按下开机键向 PCH 上电推进的重要节点。</p>
+<h2 id="六、VCCPRIM-1P0-供电"><a href="#六、VCCPRIM-1P0-供电" class="headerlink" title="六、VCCPRIM_1P0 供电"></a>六、VCCPRIM_1P0 供电</h2><p>VCCPRIM_1P0 采用 <strong>NB681</strong> 等电源芯片进行转换。</p>
+<table>
+<thead>
+<tr>
+<th>电压&#x2F;信号</th>
+<th>功能说明</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VIN</td>
+<td>公共点电压</td>
+<td>19V</td>
+<td>400左右</td>
+</tr>
+<tr>
+<td>3V3</td>
+<td>3.3V_ALW 供电</td>
+<td>3.3V</td>
+<td>400左右</td>
+</tr>
+<tr>
+<td>C0&#x2F;C1</td>
+<td>VID 电压身份识别</td>
+<td>0V&#x2F;3.3V</td>
+<td>550左右</td>
+</tr>
+<tr>
+<td>MODE</td>
+<td>工作模式控制</td>
+<td>0V</td>
+<td>600左右</td>
+</tr>
+<tr>
+<td>LP</td>
+<td>芯片控制</td>
+<td>3.3V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>EN（SUS_ON）</td>
+<td>开启信号</td>
+<td>3.3V</td>
+<td>520左右</td>
+</tr>
+<tr>
+<td>BST</td>
+<td>自举电压</td>
+<td>4.2V</td>
+<td>550左右</td>
+</tr>
+<tr>
+<td>SW（+VCC_1.00 &#x2F; VCCPRIM_1P0）</td>
+<td>PCH 核心待机供电</td>
+<td>1V&#x2F;1.05V</td>
+<td>5～30左右</td>
+</tr>
+<tr>
+<td>VOUT</td>
+<td>输出反馈</td>
+<td>1.0V&#x2F;1.05V</td>
+<td>5～30左右</td>
+</tr>
+<tr>
+<td>PG</td>
+<td>电源良好信号</td>
+<td>3.3V</td>
+<td>400左右</td>
+</tr>
+</tbody></table>
+<p>其中：</p>
+<blockquote>
+<p><strong>VCCPRIM_1P0 &#x2F; +VCC_1.00</strong></p>
+</blockquote>
+<p>是 PCH 重要的核心供电之一。</p>
+<h1 id="七、PCH-待机条件"><a href="#七、PCH-待机条件" class="headerlink" title="七、PCH 待机条件"></a>七、PCH 待机条件</h1><h2 id="7-1-G3-状态"><a href="#7-1-G3-状态" class="headerlink" title="7.1 G3 状态"></a>7.1 G3 状态</h2><p>G3 可以理解为平台处于机械关机&#x2F;未进入正常工作状态时的 PCH RTC 基础条件。</p>
+<table>
+<thead>
+<tr>
+<th>电压&#x2F;信号</th>
+<th>功能说明</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VCCRTC</td>
+<td>RTC 供电</td>
+<td>2.8V～3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>RTCRST</td>
+<td>RTC 复位</td>
+<td>2.8V～3.3V</td>
+<td>780左右</td>
+</tr>
+<tr>
+<td>SRTCRST</td>
+<td>RTC 复位相关信号</td>
+<td>2.8V～3.3V</td>
+<td>780左右</td>
+</tr>
+<tr>
+<td>RTCX1&#x2F;RTCX2</td>
+<td>RTC 晶振</td>
+<td>0.15V～1.7V</td>
+<td>790左右</td>
+</tr>
+</tbody></table>
+<h2 id="7-2-DEEP-状态"><a href="#7-2-DEEP-状态" class="headerlink" title="7.2 DEEP 状态"></a>7.2 DEEP 状态</h2><table>
+<thead>
+<tr>
+<th>电压&#x2F;信号</th>
+<th>功能说明</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VCCDSW_3P3（+3.3V_SUS）</td>
+<td>PCH DSW 供电</td>
+<td>3.3V</td>
+<td>310左右</td>
+</tr>
+<tr>
+<td>DCPDSW_1P0</td>
+<td>DSW 1V 供电</td>
+<td>1V&#x2F;1.05V</td>
+<td>300左右</td>
+</tr>
+<tr>
+<td>DSW_PWROK → RSMRST</td>
+<td>电源良好&#x2F;复位时序</td>
+<td>3.3V</td>
+<td>550左右</td>
+</tr>
+<tr>
+<td>SUSWARN#</td>
+<td>SUS 状态控制</td>
+<td>3.3V</td>
+<td>530左右</td>
+</tr>
+<tr>
+<td>SUSACK#</td>
+<td>SUS 应答信号</td>
+<td>未采用</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SLP_SUS</td>
+<td>睡眠状态信号</td>
+<td>未采用</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<h1 id="八、PCH-S5-状态"><a href="#八、PCH-S5-状态" class="headerlink" title="八、PCH S5 状态"></a>八、PCH S5 状态</h1><p>PCH 进入 S5 后，需要建立更多的待机供电以及 BIOS、复位、睡眠状态相关条件。</p>
+<table>
+<thead>
+<tr>
+<th>电压&#x2F;信号</th>
+<th>功能说明</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VCCPRIM_3P3（+3.3V_SUS）</td>
+<td>PCH 3.3V 供电</td>
+<td>3.3V</td>
+<td>310左右</td>
+</tr>
+<tr>
+<td>VCCPRIM_1P0（+VCC_1.00）</td>
+<td>PCH 核心供电</td>
+<td>1V&#x2F;1.05V</td>
+<td>5～30左右</td>
+</tr>
+<tr>
+<td>DCPRTC &#x2F; VCCRTCEXT（VOUT）</td>
+<td>RTC 相关供电</td>
+<td>1.5V～1.6V</td>
+<td>590左右</td>
+</tr>
+<tr>
+<td>RSMRST</td>
+<td>PCH 复位</td>
+<td>3.3V</td>
+<td>550左右</td>
+</tr>
+<tr>
+<td>BATLOW</td>
+<td>电池状态检测</td>
+<td>3.3V</td>
+<td>750左右</td>
+</tr>
+<tr>
+<td>读取 BIOS 资料</td>
+<td>BIOS SPI 通信</td>
+<td>—</td>
+<td>1&#x2F;2&#x2F;5&#x2F;6脚：650&#x2F;500左右</td>
+</tr>
+<tr>
+<td>SUSCLK</td>
+<td>系统时钟</td>
+<td>未采用</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SLP_A</td>
+<td>睡眠信号</td>
+<td>未采用</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SLP_LAN</td>
+<td>LAN 睡眠信号</td>
+<td>未采用</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<h1 id="九、PWRBTN-与-SLP-睡眠信号"><a href="#九、PWRBTN-与-SLP-睡眠信号" class="headerlink" title="九、PWRBTN 与 SLP 睡眠信号"></a>九、PWRBTN 与 SLP 睡眠信号</h1><p>PCH 进入 S5 后，开机按钮及各级 SLP 信号是判断平台是否继续向 S0 工作状态推进的重要依据。</p>
+<table>
+<thead>
+<tr>
+<th>电压&#x2F;信号</th>
+<th>功能说明</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PWRBTN#</td>
+<td>开机按钮</td>
+<td>0V → 3.3V → 0.8V</td>
+<td>750左右</td>
+</tr>
+<tr>
+<td>SLP_S5</td>
+<td>S5 睡眠控制</td>
+<td>0V → 3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>SLP_S4</td>
+<td>S4 睡眠控制</td>
+<td>0V → 3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>SLP_S3</td>
+<td>S3 睡眠控制</td>
+<td>0V → 3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>SLP_S0</td>
+<td>S0 工作状态控制</td>
+<td>0V → 3.3V</td>
+<td>500左右</td>
+</tr>
+</tbody></table>
+<p>如果这一阶段相关电压或信号出现异常，通常会表现为：</p>
+<blockquote>
+<p><strong>按下开机键后不触发，或者触发后无法继续进入正常工作状态。</strong></p>
+</blockquote>
+<h1 id="十、SLP-S5：开启内存供电"><a href="#十、SLP-S5：开启内存供电" class="headerlink" title="十、SLP_S5：开启内存供电"></a>十、SLP_S5：开启内存供电</h1><p>平台继续上电后，首先建立内存相关供电。</p>
+<table>
+<thead>
+<tr>
+<th>电压&#x2F;信号</th>
+<th>功能说明</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SIO_SLP_S5#</td>
+<td>内存供电开启控制</td>
+<td>3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>VPP &#x2F; +V_VDDQ → 76Pin</td>
+<td>内存供电</td>
+<td>1.35V&#x2F;1.5V</td>
+<td>100左右</td>
+</tr>
+<tr>
+<td>DDR_PWRGD</td>
+<td>内存电源良好</td>
+<td>3.3V</td>
+<td>420左右</td>
+</tr>
+<tr>
+<td>VCCPLL_OC → CPU G11</td>
+<td>CPU 内存&#x2F;PLL 相关供电</td>
+<td>1.35V&#x2F;1.5V</td>
+<td>100左右</td>
+</tr>
+</tbody></table>
+<h1 id="十一、SLP-S4-SLP-S3：二级供电及-CPU-辅助供电"><a href="#十一、SLP-S4-SLP-S3：二级供电及-CPU-辅助供电" class="headerlink" title="十一、SLP_S4 &#x2F; SLP_S3：二级供电及 CPU 辅助供电"></a>十一、SLP_S4 &#x2F; SLP_S3：二级供电及 CPU 辅助供电</h1><p>进入 SLP_S4 &#x2F; SLP_S3 阶段后，主板开始开启二级 3V&#x2F;5V 以及 CPU 辅助电源。</p>
+<table>
+<thead>
+<tr>
+<th>电压&#x2F;信号</th>
+<th>功能说明</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SIO_SLP_S4#</td>
+<td>S4 状态控制</td>
+<td>3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>SIO_SLP_S3#</td>
+<td>S3 状态控制</td>
+<td>3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>VCCST_PWRGD → CPU H13</td>
+<td>CPU 辅助供电 PG</td>
+<td>1V&#x2F;1.05V</td>
+<td>5～30左右</td>
+</tr>
+<tr>
+<td>VCCSTG → CPU H29</td>
+<td>CPU 辅助供电</td>
+<td>1V&#x2F;1.05V</td>
+<td>5～30左右</td>
+</tr>
+<tr>
+<td>VCCPLL → CPU H28</td>
+<td>CPU PLL 供电</td>
+<td>1V&#x2F;1.05V</td>
+<td>5～30左右</td>
+</tr>
+<tr>
+<td>RUN_ON</td>
+<td>RUN 电源开启信号</td>
+<td>3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>3.3V_RUN</td>
+<td>运行状态 3.3V</td>
+<td>3.3V</td>
+<td>360左右</td>
+</tr>
+<tr>
+<td>5V_RUN</td>
+<td>运行状态 5V</td>
+<td>5V</td>
+<td>450左右</td>
+</tr>
+<tr>
+<td>1.35V_RUN</td>
+<td>运行状态内存相关供电</td>
+<td>1.35V</td>
+<td>300左右</td>
+</tr>
+<tr>
+<td>VCCIO → CPU AG12</td>
+<td>CPU I&#x2F;O 供电</td>
+<td>1.0V&#x2F;1.05V</td>
+<td>30左右</td>
+</tr>
+<tr>
+<td>HWPG</td>
+<td>硬件电源良好</td>
+<td>3.3V</td>
+<td>450左右</td>
+</tr>
+</tbody></table>
+<h1 id="十二、CPU-VCCSA-供电"><a href="#十二、CPU-VCCSA-供电" class="headerlink" title="十二、CPU VCCSA 供电"></a>十二、CPU VCCSA 供电</h1><p>VCCSA 是 CPU 的系统代理供电之一，通常由独立 VRM 电路产生。</p>
+<table>
+<thead>
+<tr>
+<th>电压&#x2F;信号</th>
+<th>功能说明</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VCC</td>
+<td>VRM 输入供电</td>
+<td>5V</td>
+<td>450左右</td>
+</tr>
+<tr>
+<td>VRMP</td>
+<td>VRM 驱动&#x2F;泵电压</td>
+<td>18V</td>
+<td>650左右</td>
+</tr>
+<tr>
+<td>IMVP_VR_ON</td>
+<td>VRM 开启信号</td>
+<td>3.3V</td>
+<td>550左右</td>
+</tr>
+<tr>
+<td>PWM_1PH</td>
+<td>PWM 驱动信号</td>
+<td>0.3V</td>
+<td>530左右</td>
+</tr>
+<tr>
+<td>VCCSA</td>
+<td>CPU System Agent 供电</td>
+<td>0.9V～1.05V</td>
+<td>10左右</td>
+</tr>
+<tr>
+<td>IMVP_PWRGD</td>
+<td>VRM 电源良好</td>
+<td>3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>VCCCORE（VBOOT）</td>
+<td>CPU 核心预设电压</td>
+<td>1V左右</td>
+<td>0～1左右</td>
+</tr>
+</tbody></table>
+<h1 id="十三、PCH-时钟电路"><a href="#十三、PCH-时钟电路" class="headerlink" title="十三、PCH 时钟电路"></a>十三、PCH 时钟电路</h1><p>时钟是 CPU、PCH 以及 PCIe 等高速接口正常工作的基础。</p>
+<table>
+<thead>
+<tr>
+<th>电压&#x2F;信号</th>
+<th>功能说明</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IMVP_PWRGD</td>
+<td>VRM 电源良好</td>
+<td>3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>PCH_PWROK</td>
+<td>PCH 电源良好</td>
+<td>3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>XCLK_BIASREF</td>
+<td>时钟偏置参考</td>
+<td>1V&#x2F;1.05V</td>
+<td>700左右</td>
+</tr>
+<tr>
+<td>XTAL24_IN &#x2F; XTAL24_OUT</td>
+<td>24MHz 晶振</td>
+<td>0.15V～1.7V</td>
+<td>530&#x2F;560左右</td>
+</tr>
+<tr>
+<td>PCH 读取 BIOS</td>
+<td>PCH BIOS SPI 通信</td>
+<td>—</td>
+<td>630&#x2F;490&#x2F;490&#x2F;500左右</td>
+</tr>
+<tr>
+<td>CLOCK_OUT</td>
+<td>时钟输出</td>
+<td>0.3V～0.45V</td>
+<td>400左右</td>
+</tr>
+<tr>
+<td>BCLKP&#x2F;BCLKN → CPU B31&#x2F;A32</td>
+<td>CPU 基准时钟</td>
+<td>0.3V～0.45V</td>
+<td>400左右</td>
+</tr>
+<tr>
+<td>CLKREQ#（WLAN_CLKREQ#）</td>
+<td>WLAN 时钟请求</td>
+<td>3.3V → 0V</td>
+<td>700左右</td>
+</tr>
+<tr>
+<td>REFCLKP → 39Pin &#x2F; REFCLKN → 41Pin</td>
+<td>PCIe 参考时钟</td>
+<td>0.3V～0.45V</td>
+<td>400左右</td>
+</tr>
+</tbody></table>
+<h3 id="时钟故障的典型表现"><a href="#时钟故障的典型表现" class="headerlink" title="时钟故障的典型表现"></a>时钟故障的典型表现</h3><p>如果供电基本正常，但出现：</p>
+<ul>
+<li>CPU 不工作</li>
+<li>PCH 不工作</li>
+<li>BIOS 可以读取但无法继续启动</li>
+<li>PCIe 设备无法识别</li>
+<li>开机后立即掉电</li>
+</ul>
+<p>就需要进一步检查 <strong>24MHz、BCLK、PCIe REFCLK</strong> 等时钟信号。</p>
+<h1 id="十四、PCH-CPU-复位电路"><a href="#十四、PCH-CPU-复位电路" class="headerlink" title="十四、PCH + CPU 复位电路"></a>十四、PCH + CPU 复位电路</h1><p>供电、时钟正常之后，还需要完成完整的复位释放。</p>
+<table>
+<thead>
+<tr>
+<th>电压&#x2F;信号</th>
+<th>功能说明</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EC_PWROK</td>
+<td>EC 电源良好</td>
+<td>3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>SYS_PWROK</td>
+<td>系统电源良好</td>
+<td>3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>PROCPWRGD → CPU BT31</td>
+<td>CPU 电源良好</td>
+<td>1.0V&#x2F;1.05V</td>
+<td>400左右</td>
+</tr>
+<tr>
+<td>VCCST_PWRGD → CPU H13</td>
+<td>CPU 辅助电源良好</td>
+<td>1.0V&#x2F;1.05V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>BCLKP&#x2F;BCLKN → CPU B31&#x2F;A32</td>
+<td>CPU 基准时钟</td>
+<td>0.3V～0.45V</td>
+<td>400左右</td>
+</tr>
+<tr>
+<td>PCI_BCLKP&#x2F;PCI_BCLKN → CPU D35&#x2F;C36</td>
+<td>PCI 时钟</td>
+<td>0.3V～0.45V</td>
+<td>400左右</td>
+</tr>
+<tr>
+<td>CLK24P&#x2F;CLK24N → CPU E31&#x2F;D31</td>
+<td>24MHz 时钟</td>
+<td>0.3V～0.45V</td>
+<td>400左右</td>
+</tr>
+<tr>
+<td>PLTRST → PCH BB27</td>
+<td>PCH 平台复位</td>
+<td>3.3V</td>
+<td>500左右</td>
+</tr>
+<tr>
+<td>PLTRST_PROC# &#x2F; RESET# → CPU BP35</td>
+<td>CPU 复位</td>
+<td>1.0V&#x2F;1.05V</td>
+<td>400左右</td>
+</tr>
+</tbody></table>
+<p>这里可以按照：</p>
+<p><strong>EC_PWROK → SYS_PWROK → PROCPWRGD → VCCST_PWRGD → 时钟 → PLTRST → PLTRST_PROC#</strong></p>
+<p>的思路检查。</p>
+<h1 id="十五、CPU-核心供电及-SVID"><a href="#十五、CPU-核心供电及-SVID" class="headerlink" title="十五、CPU 核心供电及 SVID"></a>十五、CPU 核心供电及 SVID</h1><p>CPU 最终需要建立 VCCCORE 核心电压，并通过 SVID 与 VRM 进行通信和动态调压。</p>
+<table>
+<thead>
+<tr>
+<th>电压&#x2F;信号</th>
+<th>功能说明</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PLTRST_PROC# &#x2F; RESET# → CPU BP35</td>
+<td>CPU 复位</td>
+<td>1.0V&#x2F;1.05V</td>
+<td>400左右</td>
+</tr>
+<tr>
+<td>DMI 总线</td>
+<td>PCH ↔ CPU 高速通信，4组 TX + 4组 RX</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>CPU 读取 BIOS</td>
+<td>CPU BIOS SPI 通信</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VIDALERT# → CPU BH31</td>
+<td>SVID 告警</td>
+<td>1.0V&#x2F;1.05V</td>
+<td>80～100左右</td>
+</tr>
+<tr>
+<td>VIDSCK → CPU BH32</td>
+<td>SVID 时钟</td>
+<td>1.0V&#x2F;1.05V</td>
+<td>80～100左右</td>
+</tr>
+<tr>
+<td>VIDSOUT → CPU BH29</td>
+<td>SVID 数据</td>
+<td>1.0V&#x2F;1.05V</td>
+<td>80～100左右</td>
+</tr>
+<tr>
+<td>VCCCORE</td>
+<td>CPU 核心供电</td>
+<td>1V左右</td>
+<td>0～1左右</td>
+</tr>
+</tbody></table>
+<h1 id="十六、整体上电时序梳理"><a href="#十六、整体上电时序梳理" class="headerlink" title="十六、整体上电时序梳理"></a>十六、整体上电时序梳理</h1><p>将上述信号串起来，可以把 Intel 6&#x2F;7 代 BGA1440 移动平台的主要上电过程简化为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">DC_IN</span><br><span class="line">  ↓</span><br><span class="line">BQ24780S</span><br><span class="line">  ↓</span><br><span class="line">PWR_SRC</span><br><span class="line">  ↓</span><br><span class="line">3.3V_ALW / 5V_ALW</span><br><span class="line">  ↓</span><br><span class="line">EC 待机</span><br><span class="line">  ↓</span><br><span class="line">EC_PWROK / ALW_ON</span><br><span class="line">  ↓</span><br><span class="line">3.3V_SUS / 5V_SUS</span><br><span class="line">  ↓</span><br><span class="line">SUS_ON</span><br><span class="line">  ↓</span><br><span class="line">VCCPRIM_3P3</span><br><span class="line">  ↓</span><br><span class="line">VCCPRIM_1P0</span><br><span class="line">  ↓</span><br><span class="line">PCH 待机条件</span><br><span class="line">  ↓</span><br><span class="line">RSMRST</span><br><span class="line">  ↓</span><br><span class="line">PWRBTN#</span><br><span class="line">  ↓</span><br><span class="line">SLP_S5</span><br><span class="line">  ↓</span><br><span class="line">DDR3L 内存供电</span><br><span class="line">  ↓</span><br><span class="line">SLP_S4 / SLP_S3</span><br><span class="line">  ↓</span><br><span class="line">3.3V_RUN / 5V_RUN / 1.35V_RUN</span><br><span class="line">  ↓</span><br><span class="line">VCCIO / VCCSA / CPU辅助供电</span><br><span class="line">  ↓</span><br><span class="line">PCH_PWROK</span><br><span class="line">  ↓</span><br><span class="line">24MHz / BCLK / PCIe REFCLK</span><br><span class="line">  ↓</span><br><span class="line">SYS_PWROK</span><br><span class="line">  ↓</span><br><span class="line">PROCPWRGD / VCCST_PWRGD</span><br><span class="line">  ↓</span><br><span class="line">PLTRST</span><br><span class="line">  ↓</span><br><span class="line">PLTRST_PROC#</span><br><span class="line">  ↓</span><br><span class="line">CPU核心供电 VCCCORE</span><br><span class="line">  ↓</span><br><span class="line">SVID</span><br><span class="line">  ↓</span><br><span class="line">CPU ↔ PCH DMI</span><br><span class="line">  ↓</span><br><span class="line">正常启动</span><br></pre></td></tr></table></figure>
+
+<h1 id="十七、维修排查思路"><a href="#十七、维修排查思路" class="headerlink" title="十七、维修排查思路"></a>十七、维修排查思路</h1><p>对于这类 Intel 6&#x2F;7 代 BGA1440 笔记本主板，实际维修时不建议一上来就测 CPU 核心供电，而是按照上电时序逐级确认。</p>
+<h3 id="1-不充电-无待机"><a href="#1-不充电-无待机" class="headerlink" title="1. 不充电 &#x2F; 无待机"></a>1. 不充电 &#x2F; 无待机</h3><p>优先检查：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">DC_IN</span><br><span class="line">↓</span><br><span class="line">VCC</span><br><span class="line">↓</span><br><span class="line">ACDET</span><br><span class="line">↓</span><br><span class="line">REGN</span><br><span class="line">↓</span><br><span class="line">ACOK</span><br><span class="line">↓</span><br><span class="line">ACDRV</span><br><span class="line">↓</span><br><span class="line">PWR_SRC</span><br><span class="line">↓</span><br><span class="line">3.3V_ALW / 5V_ALW</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-有待机但按开机键无反应"><a href="#2-有待机但按开机键无反应" class="headerlink" title="2. 有待机但按开机键无反应"></a>2. 有待机但按开机键无反应</h3><p>重点检查：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">3.3V_EC</span><br><span class="line">↓</span><br><span class="line">EC BIOS</span><br><span class="line">↓</span><br><span class="line">ACOK</span><br><span class="line">↓</span><br><span class="line">WRST#</span><br><span class="line">↓</span><br><span class="line">ALW_ON</span><br><span class="line">↓</span><br><span class="line">SUS_ON</span><br><span class="line">↓</span><br><span class="line">3.3V_SUS</span><br><span class="line">↓</span><br><span class="line">VCCPRIM_1P0</span><br><span class="line">↓</span><br><span class="line">PCH待机条件</span><br><span class="line">↓</span><br><span class="line">RSMRST</span><br><span class="line">↓</span><br><span class="line">PWRBTN#</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-按开机键后完全不触发"><a href="#3-按开机键后完全不触发" class="headerlink" title="3. 按开机键后完全不触发"></a>3. 按开机键后完全不触发</h3><p>重点检查：</p>
+<ul>
+<li>PWRBTN#</li>
+<li>SLP_S5</li>
+<li>SLP_S4</li>
+<li>SLP_S3</li>
+<li>3.3V_RUN</li>
+<li>5V_RUN</li>
+<li>1.35V_RUN</li>
+<li>VCCIO</li>
+<li>VCCSA</li>
+<li>PCH_PWROK</li>
+<li>SYS_PWROK</li>
+</ul>
+<h3 id="4-触发后掉电"><a href="#4-触发后掉电" class="headerlink" title="4. 触发后掉电"></a>4. 触发后掉电</h3><p>如果主板能够触发，但随后掉电，应重点检查：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">CPU辅助供电</span><br><span class="line">↓</span><br><span class="line">VCCSA</span><br><span class="line">↓</span><br><span class="line">VCCIO</span><br><span class="line">↓</span><br><span class="line">PCH_PWROK</span><br><span class="line">↓</span><br><span class="line">24MHz</span><br><span class="line">↓</span><br><span class="line">BCLK</span><br><span class="line">↓</span><br><span class="line">PCIe REFCLK</span><br><span class="line">↓</span><br><span class="line">PROCPWRGD</span><br><span class="line">↓</span><br><span class="line">VCCST_PWRGD</span><br><span class="line">↓</span><br><span class="line">PLTRST</span><br><span class="line">↓</span><br><span class="line">PLTRST_PROC#</span><br><span class="line">↓</span><br><span class="line">VCCCORE</span><br><span class="line">↓</span><br><span class="line">SVID</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-有-CPU-核心电压但无法启动"><a href="#5-有-CPU-核心电压但无法启动" class="headerlink" title="5. 有 CPU 核心电压但无法启动"></a>5. 有 CPU 核心电压但无法启动</h3><p>此时可以进一步检查：</p>
+<ul>
+<li>CPU 是否正常工作</li>
+<li>VCCCORE 是否正常</li>
+<li>SVID 三组信号</li>
+<li>BCLKP&#x2F;BCLKN</li>
+<li>PCI_BCLKP&#x2F;PCI_BCLKN</li>
+<li>CLK24P&#x2F;CLK24N</li>
+<li>PLTRST_PROC#</li>
+<li>DMI 总线</li>
+<li>CPU 读取 BIOS</li>
+<li>PCH 读取 BIOS</li>
+</ul>
+<h1 id="十八、关键故障现象与排查方向"><a href="#十八、关键故障现象与排查方向" class="headerlink" title="十八、关键故障现象与排查方向"></a>十八、关键故障现象与排查方向</h1><table>
+<thead>
+<tr>
+<th>故障现象</th>
+<th>优先检查区域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>不充电</td>
+<td>DC_IN、ACDET、REGN、ACOK、ACDRV</td>
+</tr>
+<tr>
+<td>无待机电压</td>
+<td>PWR_SRC、3.3V_ALW、5V_ALW</td>
+</tr>
+<tr>
+<td>EC 不工作</td>
+<td>3.3V_EC、EC BIOS、WRST#、ACOK</td>
+</tr>
+<tr>
+<td>按开机键无反应</td>
+<td>PWRBTN#、SUS_ON、RSMRST</td>
+</tr>
+<tr>
+<td>触发后无内存供电</td>
+<td>SLP_S5、DDR3L 供电、DDR_PWRGD</td>
+</tr>
+<tr>
+<td>有内存供电但不继续上电</td>
+<td>SLP_S4、SLP_S3、RUN_ON</td>
+</tr>
+<tr>
+<td>缺 CPU 辅助供电</td>
+<td>VCCST、VCCPLL、VCCIO、VCCSA</td>
+</tr>
+<tr>
+<td>缺时钟</td>
+<td>24MHz、BCLK、PCIe REFCLK</td>
+</tr>
+<tr>
+<td>缺复位</td>
+<td>PCH_PWROK、SYS_PWROK、PLTRST、PLTRST_PROC#</td>
+</tr>
+<tr>
+<td>有时钟、有复位但不启动</td>
+<td>VCCCORE、SVID、DMI、BIOS</td>
+</tr>
+<tr>
+<td>开机后掉电</td>
+<td>PWROK、时钟、复位、VRM、CPU&#x2F;PCH</td>
+</tr>
+</tbody></table>
+<h2 id="十九、说明"><a href="#十九、说明" class="headerlink" title="十九、说明"></a>十九、说明</h2><p>本文中的<strong>正常对地值参考</strong>来源于维修实测资料，单位和测试方法应结合具体主板以及万用表档位理解。</p>
+<p>由于不同厂家的笔记本主板在：</p>
+<ul>
+<li>PCH 型号</li>
+<li>CPU 型号</li>
+<li>EC 型号</li>
+<li>电源芯片型号</li>
+<li>BIOS 电路</li>
+<li>电阻分压</li>
+<li>上拉&#x2F;下拉电阻</li>
+<li>供电架构</li>
+</ul>
+<p>方面存在差异，因此即使采用相同 Intel 平台，对地阻值也可能有所不同。</p>
+<p>因此维修时更重要的是判断：</p>
+<blockquote>
+<p><strong>某一级供电是否产生 → 开启条件是否满足 → PG 是否产生 → 时钟是否存在 → 复位是否释放 → 下一阶段供电是否开启。</strong></p>
+</blockquote>
+<p>而不是单纯追求某个测试点必须等于某一个阻值。</p>
+<h2 id="二十、总结"><a href="#二十、总结" class="headerlink" title="二十、总结"></a>二十、总结</h2><p>Intel 6&#x2F;7 代 BGA1440 平台的维修，可以将整个上电过程理解成几个主要阶段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">输入及充电管理</span><br><span class="line">      ↓</span><br><span class="line">3.3V_ALW / 5V_ALW</span><br><span class="line">      ↓</span><br><span class="line">EC待机</span><br><span class="line">      ↓</span><br><span class="line">PCH待机</span><br><span class="line">      ↓</span><br><span class="line">PWRBTN#</span><br><span class="line">      ↓</span><br><span class="line">SLP_S5 / SLP_S4 / SLP_S3</span><br><span class="line">      ↓</span><br><span class="line">内存及二级供电</span><br><span class="line">      ↓</span><br><span class="line">CPU辅助供电</span><br><span class="line">      ↓</span><br><span class="line">VCCSA / VCCIO</span><br><span class="line">      ↓</span><br><span class="line">时钟</span><br><span class="line">      ↓</span><br><span class="line">PWROK</span><br><span class="line">      ↓</span><br><span class="line">复位</span><br><span class="line">      ↓</span><br><span class="line">VCCCORE</span><br><span class="line">      ↓</span><br><span class="line">SVID</span><br><span class="line">      ↓</span><br><span class="line">CPU ↔ PCH</span><br><span class="line">      ↓</span><br><span class="line">启动</span><br></pre></td></tr></table></figure>
+
+<p>因此，在实际维修过程中，可以根据<strong>“缺哪一级电压，就向前追开启条件；电压正常但不能继续，就检查 PG、时钟和复位”</strong>的思路进行排查。</p>
+<p><strong>以上电压或信号出现异常，可能导致不触发、缺电压、缺时钟、缺复位、掉电等故障。</strong></p>
+<blockquote>
+<p><strong>数据来源：</strong> 广达代工的DELL Lnspiron 7559笔记本   板号：AM9A</p>
+<p><strong>说明：</strong> 表中对地值为维修参考值，不同主板实际测量结果可能存在差异。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Power-on-sequence/" rel="tag"># Power-on sequence</a>
+              <a href="/tags/Mainboard/" rel="tag"># Mainboard</a>
+              <a href="/tags/Intel/" rel="tag"># Intel</a>
+              <a href="/tags/Notebook/" rel="tag"># Notebook</a>
+              <a href="/tags/BGA1440/" rel="tag"># BGA1440</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ssh-login-random-5s-10s-delay-troubleshooting.html" rel="prev" title="一次 SSH 登录随机卡顿（5 秒 / 10 秒）的排查记录">
+                  <i class="fa fa-angle-left"></i> 一次 SSH 登录随机卡顿（5 秒 / 10 秒）的排查记录
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">heiok.com</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
