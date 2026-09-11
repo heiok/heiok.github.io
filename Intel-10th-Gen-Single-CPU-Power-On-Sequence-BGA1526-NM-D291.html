@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"heiok.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4157401344064000" crossorigin="anonymous"></script>
+
+    <meta name="description" content="本文整理自联宝（Compal）代工的联想笔记本主板 NM-D291 维修资料，主要记录 Intel 10代单U BGA1526 平台的待机、TYPE-C&#x2F;PD、EC、内存供电、CPU辅助供电、VRM、时钟、复位及 CPU 核心供电相关信号。  一、主板及平台信息 代工厂： 联宝（Compal） 品牌： 联想 主板板号： NM-D291 CPU平台： Intel 10代单U CPU封装：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Intel 10代单U上电时序汇总及关键信号（BGA1526）--NM-D291">
+<meta property="og:url" content="https://heiok.com/Intel-10th-Gen-Single-CPU-Power-On-Sequence-BGA1526-NM-D291.html">
+<meta property="og:site_name" content="网络蝙蝠侠部落">
+<meta property="og:description" content="本文整理自联宝（Compal）代工的联想笔记本主板 NM-D291 维修资料，主要记录 Intel 10代单U BGA1526 平台的待机、TYPE-C&#x2F;PD、EC、内存供电、CPU辅助供电、VRM、时钟、复位及 CPU 核心供电相关信号。  一、主板及平台信息 代工厂： 联宝（Compal） 品牌： 联想 主板板号： NM-D291 CPU平台： Intel 10代单U CPU封装：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-09-11T01:01:49.000Z">
+<meta property="article:modified_time" content="2026-09-11T01:04:11.406Z">
+<meta property="article:author" content="heiok.com">
+<meta property="article:tag" content="Power-on sequence">
+<meta property="article:tag" content="Mainboard">
+<meta property="article:tag" content="Intel">
+<meta property="article:tag" content="BGA1526">
+<meta property="article:tag" content="NM-D291">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://heiok.com/Intel-10th-Gen-Single-CPU-Power-On-Sequence-BGA1526-NM-D291.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://heiok.com/Intel-10th-Gen-Single-CPU-Power-On-Sequence-BGA1526-NM-D291.html","path":"Intel-10th-Gen-Single-CPU-Power-On-Sequence-BGA1526-NM-D291.html","title":"Intel 10代单U上电时序汇总及关键信号（BGA1526）--NM-D291"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Intel 10代单U上电时序汇总及关键信号（BGA1526）--NM-D291 | 网络蝙蝠侠部落</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-90W6VHZRMP"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-90W6VHZRMP","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">网络蝙蝠侠部落</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%B8%BB%E6%9D%BF%E5%8F%8A%E5%B9%B3%E5%8F%B0%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">一、主板及平台信息</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%BE%85%E6%9C%BA%E6%97%B6%E5%BA%8F%E2%80%94%E2%80%94TYPE-C-PD-%E7%B3%BB%E7%BB%9F%E4%BE%9B%E7%94%B5-EC"><span class="nav-number"></span> <span class="nav-text">二、待机时序——TYPE-C &#x2F; PD &#x2F; 系统供电 &#x2F; EC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%99%E4%B8%80%E9%98%B6%E6%AE%B5%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">0.1.</span> <span class="nav-text">这一阶段的结构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81SLP-S4%E7%8A%B6%E6%80%81%E2%80%94%E2%80%94%E5%BC%80%E5%90%AF%E5%86%85%E5%AD%98%E4%BE%9B%E7%94%B5"><span class="nav-number"></span> <span class="nav-text">三、SLP_S4状态——开启内存供电</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81SLP-S3%E7%8A%B6%E6%80%81%E2%80%94%E2%80%94%E5%BC%80%E5%90%AF%E4%BA%8C%E7%BA%A73V-5V%E5%8F%8ACPU%E8%BE%85%E5%8A%A9%E4%BE%9B%E7%94%B5"><span class="nav-number"></span> <span class="nav-text">四、SLP_S3状态——开启二级3V&#x2F;5V及CPU辅助供电</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81CPU%E5%86%85%E9%83%A8%E7%94%B5%E6%BA%90%E8%BD%A8"><span class="nav-number"></span> <span class="nav-text">五、CPU内部电源轨</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AD%E3%80%81VRM%E6%A8%A1%E5%9D%97%E2%80%94%E2%80%94VR-READY"><span class="nav-number"></span> <span class="nav-text">六、VRM模块——VR_READY</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VRM%E5%90%AF%E5%8A%A8%E9%80%BB%E8%BE%91"><span class="nav-number">0.1.</span> <span class="nav-text">VRM启动逻辑</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%83%E3%80%81CLOCK%E2%80%94%E2%80%94PCH%E6%97%B6%E9%92%9F%E7%94%B5%E8%B7%AF"><span class="nav-number"></span> <span class="nav-text">七、CLOCK——PCH时钟电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%92%9F%E9%83%A8%E5%88%86%E7%BB%B4%E4%BF%AE%E9%87%8D%E7%82%B9"><span class="nav-number">0.1.</span> <span class="nav-text">时钟部分维修重点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AB%E3%80%81RESET%E2%80%94%E2%80%94PCH-CPU%E5%A4%8D%E4%BD%8D%E7%94%B5%E8%B7%AF"><span class="nav-number"></span> <span class="nav-text">八、RESET——PCH + CPU复位电路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E4%BD%8D%E6%97%B6%E5%BA%8F"><span class="nav-number">0.1.</span> <span class="nav-text">复位时序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B9%9D%E3%80%81CPU%E6%A0%B8%E5%BF%83%E4%BE%9B%E7%94%B5%E2%80%94%E2%80%94VRM-SVID"><span class="nav-number"></span> <span class="nav-text">九、CPU核心供电——VRM + SVID</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E3%80%81NM-D291-BGA1526%E4%B8%8A%E7%94%B5%E6%97%B6%E5%BA%8F%E6%B1%87%E6%80%BB"><span class="nav-number"></span> <span class="nav-text">十、NM-D291 BGA1526上电时序汇总</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E7%BB%B4%E4%BF%AE%E5%BF%AB%E9%80%9F%E6%8E%92%E6%9F%A5"><span class="nav-number"></span> <span class="nav-text">十一、维修快速排查</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%8F%92%E7%94%B5%E5%90%8E%E5%AE%8C%E5%85%A8%E6%B2%A1%E6%9C%89%E5%BE%85%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">1. 插电后完全没有待机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%9C%89%E5%BE%85%E6%9C%BA%E4%BD%86EC%E4%B8%8D%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">2. 有待机但EC不工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%83%BD%E8%A7%A6%E5%8F%91%E4%BD%86%E5%86%85%E5%AD%98%E6%B2%A1%E6%9C%89%E4%BE%9B%E7%94%B5"><span class="nav-number">3.</span> <span class="nav-text">3. 能触发但内存没有供电</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%BA%8C%E7%BA%A73V-5V%E6%B2%A1%E6%9C%89"><span class="nav-number">4.</span> <span class="nav-text">4. 二级3V&#x2F;5V没有</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-CPU%E6%A0%B8%E5%BF%83%E4%BE%9B%E7%94%B5%E6%B2%A1%E6%9C%89"><span class="nav-number">5.</span> <span class="nav-text">5. CPU核心供电没有</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%94%B5%E5%8E%8B%E5%9F%BA%E6%9C%AC%E6%AD%A3%E5%B8%B8%E4%BD%86%E4%BB%8D%E4%B8%8D%E5%BC%80%E6%9C%BA"><span class="nav-number">6.</span> <span class="nav-text">6. 电压基本正常但仍不开机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E4%B8%8E%E5%8F%A6%E4%B8%80%E5%9D%97BGA1526%E4%B8%BB%E6%9D%BF%E8%B5%84%E6%96%99%E5%AF%B9%E6%AF%94"><span class="nav-number"></span> <span class="nav-text">十二、与另一块BGA1526主板资料对比</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99"><span class="nav-number"></span> <span class="nav-text">十三、相关资料</span></a></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">heiok.com</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">155</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://heiok.com/Intel-10th-Gen-Single-CPU-Power-On-Sequence-BGA1526-NM-D291.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="heiok.com">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Intel 10代单U上电时序汇总及关键信号（BGA1526）--NM-D291 | 网络蝙蝠侠部落">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Intel 10代单U上电时序汇总及关键信号（BGA1526）--NM-D291
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-09-11 09:01:49 / 修改时间：09:04:11" itemprop="dateCreated datePublished" datetime="2026-09-11T09:01:49+08:00">2026-09-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hardware/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>本文整理自联宝（Compal）代工的联想笔记本主板 <strong>NM-D291</strong> 维修资料，主要记录 Intel 10代单U BGA1526 平台的待机、TYPE-C&#x2F;PD、EC、内存供电、CPU辅助供电、VRM、时钟、复位及 CPU 核心供电相关信号。</p>
+</blockquote>
+<h2 id="一、主板及平台信息"><a href="#一、主板及平台信息" class="headerlink" title="一、主板及平台信息"></a>一、主板及平台信息</h2><ul>
+<li><strong>代工厂：</strong> 联宝（Compal）</li>
+<li><strong>品牌：</strong> 联想</li>
+<li><strong>主板板号：</strong> NM-D291</li>
+<li><strong>CPU平台：</strong> Intel 10代单U</li>
+<li><strong>CPU封装：</strong> BGA1526</li>
+</ul>
+<blockquote>
+<p>原始资料中的“4代-5代单U”工作表与本文无关，本文仅整理 <strong>10代单U BGA1526</strong> 工作表。</p>
+</blockquote>
+<hr>
+<h1 id="二、待机时序——TYPE-C-PD-系统供电-EC"><a href="#二、待机时序——TYPE-C-PD-系统供电-EC" class="headerlink" title="二、待机时序——TYPE-C &#x2F; PD &#x2F; 系统供电 &#x2F; EC"></a>二、待机时序——TYPE-C &#x2F; PD &#x2F; 系统供电 &#x2F; EC</h1><p>NM-D291的待机部分首先涉及 TYPE-C、PD、系统供电以及 EC。</p>
+<p>原始表格列出了以下测试点，但该部分原表<strong>没有填写正常工作电压及正常对地值</strong>，因此以下仅保留原始信号名称，不自行补充数值。</p>
+<table>
+<thead>
+<tr>
+<th>信号&#x2F;测试点</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VBUS_CONN_L</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VBUS_CONN</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>5V_IN</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VMON</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>LD0_3V3</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SNK_PS_ACK</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SNK_PS_EN#</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VSYSTEM2</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VBUS</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ACP</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ACN</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>CHRG_OK</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>PQ102</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>HIDRV1</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>PQ101</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>HIDRV2</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>LODRV1</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>LODRV1</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>B+</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>(IN)SYX198B</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>(EN2)SYX198B</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>LDO（+3VL）</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VSTBY</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>WRST#</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ACIN_EC</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>LID_SW#</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>EC读取程序</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>INT#_TYPEC</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>EC_SMB_DA2</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>EC_SMB_CK2</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>USBC_CC1</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>USBC_CC2</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>USBC_CC1_CONN</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>USBC_CC2_CONN</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VBUS_CONN</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<h3 id="这一阶段的结构"><a href="#这一阶段的结构" class="headerlink" title="这一阶段的结构"></a>这一阶段的结构</h3><p>从原始信号名称来看，该主板的待机链路可以概括为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">TYPE-C / PD</span><br><span class="line">    ↓</span><br><span class="line">VBUS / VSYSTEM</span><br><span class="line">    ↓</span><br><span class="line">B+</span><br><span class="line">    ↓</span><br><span class="line">系统供电</span><br><span class="line">    ↓</span><br><span class="line">+3VL / VSTBY</span><br><span class="line">    ↓</span><br><span class="line">EC</span><br><span class="line">    ↓</span><br><span class="line">ACIN_EC / LID_SW#</span><br><span class="line">    ↓</span><br><span class="line">EC读取程序</span><br></pre></td></tr></table></figure>
+
+<p>同时 EC 与 TYPE-C&#x2F;PD 控制部分之间存在 SMBus、CC 以及中断信号。</p>
+<hr>
+<h1 id="三、SLP-S4状态——开启内存供电"><a href="#三、SLP-S4状态——开启内存供电" class="headerlink" title="三、SLP_S4状态——开启内存供电"></a>三、SLP_S4状态——开启内存供电</h1><p>进入 SLP_S4 后，开始建立 DDR4 内存相关供电。</p>
+<table>
+<thead>
+<tr>
+<th>信号&#x2F;电压</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DDR4</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>PCH_SLP_S4</td>
+<td>3.3V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>A_ON</td>
+<td>3.3V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VPP &#x2F; VCC2R5A → DIMM 259Pin</td>
+<td>2.5V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VDD &#x2F; VCC1R2AP → DIMM 148Pin</td>
+<td>1.2V</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p>这里可以重点关注：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PCH_SLP_S4</span><br><span class="line">      ↓</span><br><span class="line">A_ON</span><br><span class="line">      ↓</span><br><span class="line">VPP / 2.5V</span><br><span class="line">      ↓</span><br><span class="line">VDD / 1.2V</span><br><span class="line">      ↓</span><br><span class="line">DDR4</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="四、SLP-S3状态——开启二级3V-5V及CPU辅助供电"><a href="#四、SLP-S3状态——开启二级3V-5V及CPU辅助供电" class="headerlink" title="四、SLP_S3状态——开启二级3V&#x2F;5V及CPU辅助供电"></a>四、SLP_S3状态——开启二级3V&#x2F;5V及CPU辅助供电</h1><p>SLP_S3阶段开始开启二级3V&#x2F;5V以及 CPU 辅助供电。</p>
+<table>
+<thead>
+<tr>
+<th>信号&#x2F;电压</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PM_SLP_S3#</td>
+<td>3.3V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>PM_SLP_S3# &#x2F; VCCST_OVERRIDE_Q &#x2F; VCCIN_AUX_VALID</td>
+<td>3.3V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VCCST → CPU CB1</td>
+<td>1.05V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>B_ON</td>
+<td>3.3V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>二级3V（VCC3B）</td>
+<td>3.3V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>二级5V（VCC5B）</td>
+<td>5V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>-B_ON</td>
+<td>0V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VCC5B_HDMI</td>
+<td>5V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>CPU_C10_GATE</td>
+<td>3.3V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VCC1P8A → CPU BG9</td>
+<td>1.8V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VCCSTG → CPU BY1</td>
+<td>1.05V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VCCPLL_OC → CPU CG38</td>
+<td>1.2V</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="五、CPU内部电源轨"><a href="#五、CPU内部电源轨" class="headerlink" title="五、CPU内部电源轨"></a>五、CPU内部电源轨</h1><p>原始资料进一步列出了 CPU 内部相关电源轨。</p>
+<table>
+<thead>
+<tr>
+<th>内部电源轨</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VCCPLL〈VOUT〉 → CPU CD1</td>
+<td>1.05V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VCCSTG_OUT〈VOUT〉 → CPU F33</td>
+<td>1.05V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VCCSTG_OUT_LGC〈VOUT〉 → CPU E5</td>
+<td>1.05V</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p>这些属于 CPU 内部辅助电源相关轨道，实际维修时建议结合具体 CPU 点位图进行确认。</p>
+<hr>
+<h1 id="六、VRM模块——VR-READY"><a href="#六、VRM模块——VR-READY" class="headerlink" title="六、VRM模块——VR_READY"></a>六、VRM模块——VR_READY</h1><p>CPU辅助供电建立后，进入 VRM 模块相关工作状态。</p>
+<table>
+<thead>
+<tr>
+<th>信号&#x2F;电压</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VIN（VSYS15）</td>
+<td>19V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VCC（VCC5M）</td>
+<td>5V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VRON（CPUCORE_ON）</td>
+<td>3.3V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VREFO6</td>
+<td>0.6V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VR_READY（VGATE）</td>
+<td>3.3V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>DRVEN</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<h3 id="VRM启动逻辑"><a href="#VRM启动逻辑" class="headerlink" title="VRM启动逻辑"></a>VRM启动逻辑</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">VIN</span><br><span class="line"> ↓</span><br><span class="line">VCC</span><br><span class="line"> ↓</span><br><span class="line">VRON / CPUCORE_ON</span><br><span class="line"> ↓</span><br><span class="line">VREFO6</span><br><span class="line"> ↓</span><br><span class="line">VR_READY / VGATE</span><br><span class="line"> ↓</span><br><span class="line">CPU核心供电</span><br></pre></td></tr></table></figure>
+
+<p>如果 CPU 核心电压没有建立，可以根据这个顺序检查 VRM 的启动条件。</p>
+<hr>
+<h1 id="七、CLOCK——PCH时钟电路"><a href="#七、CLOCK——PCH时钟电路" class="headerlink" title="七、CLOCK——PCH时钟电路"></a>七、CLOCK——PCH时钟电路</h1><p>时钟部分是 Intel 10代平台启动过程中非常重要的环节。</p>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>正常工作电压&#x2F;状态</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PCH_PWROK → CPU DN47</td>
+<td>3.3V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>CLK_BIASREF → CPU DU6</td>
+<td>0V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>XTAL_IN &#x2F; XTAL_OUT（38.4MHz）</td>
+<td>0.15V～1.7V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>PCH读取BIOS</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>CLOCK_OUT</td>
+<td>0V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>CLKREQ → WLAN 53Pin</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>REFCLKP → WLAN 47Pin &#x2F; REFCLKN → WLAN 49Pin</td>
+<td>0.3V～0.5V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VCCIO_OUT〈VOUT〉 → CPU AD7</td>
+<td>1V或1.05V</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<h3 id="时钟部分维修重点"><a href="#时钟部分维修重点" class="headerlink" title="时钟部分维修重点"></a>时钟部分维修重点</h3><p>如果已经确认主板电源基本正常，但机器仍然不能继续启动，可以重点检查：</p>
+<ol>
+<li>PCH_PWROK；</li>
+<li>38.4MHz晶振；</li>
+<li>CLOCK_OUT；</li>
+<li>CLKREQ；</li>
+<li>WLAN REFCLKP &#x2F; REFCLKN；</li>
+<li>VCCIO_OUT；</li>
+<li>BIOS读取波形。</li>
+</ol>
+<hr>
+<h1 id="八、RESET——PCH-CPU复位电路"><a href="#八、RESET——PCH-CPU复位电路" class="headerlink" title="八、RESET——PCH + CPU复位电路"></a>八、RESET——PCH + CPU复位电路</h1><p>复位阶段需要检查系统 Power Good、CPU 电源良好信号以及平台复位。</p>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>正常工作电压</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SYS_PWROK → CPU DP19</td>
+<td>3.3V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>PROCPWRGD → CPU CF1</td>
+<td>1V或1.05V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VCCST_PWRGD → CPU CF2</td>
+<td>1.05V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SYS_RESET_N → CPU DK19</td>
+<td>3.3V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>PLTRST_N → CPU CM49</td>
+<td>3.3V</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<h3 id="复位时序"><a href="#复位时序" class="headerlink" title="复位时序"></a>复位时序</h3><p>可以简化为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">系统电源建立</span><br><span class="line">     ↓</span><br><span class="line">SYS_PWROK</span><br><span class="line">     ↓</span><br><span class="line">PROCPWRGD</span><br><span class="line">     ↓</span><br><span class="line">VCCST_PWRGD</span><br><span class="line">     ↓</span><br><span class="line">SYS_RESET_N</span><br><span class="line">     ↓</span><br><span class="line">PLTRST_N</span><br><span class="line">     ↓</span><br><span class="line">CPU继续启动</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="九、CPU核心供电——VRM-SVID"><a href="#九、CPU核心供电——VRM-SVID" class="headerlink" title="九、CPU核心供电——VRM + SVID"></a>九、CPU核心供电——VRM + SVID</h1><p>CPU核心供电阶段使用 SVID 与 VRM 控制器进行通信。</p>
+<table>
+<thead>
+<tr>
+<th>信号&#x2F;电压</th>
+<th>正常工作电压&#x2F;状态</th>
+<th>正常对地值参考</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PLTRST_N → CPU CM49</td>
+<td>3.3V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>CPU读取BIOS</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VIDALERT → CPU H1</td>
+<td>1.05V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VIDSCK → CPU H2</td>
+<td>1.05V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VIDSOUT → CPU H3</td>
+<td>1.05V</td>
+<td>—</td>
+</tr>
+<tr>
+<td>VCCCORE &#x2F; VCCIN</td>
+<td>1.7V</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p>SVID关系：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CPU</span><br><span class="line"> │</span><br><span class="line"> ├── VIDALERT</span><br><span class="line"> ├── VIDSCK</span><br><span class="line"> └── VIDSOUT</span><br><span class="line">       │</span><br><span class="line">       ↓</span><br><span class="line">      VRM</span><br><span class="line">       │</span><br><span class="line">       ↓</span><br><span class="line"> VCCCORE / VCCIN</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>原始资料记录的 <code>VCCCORE/VCCIN = 1.7V</code>，这里按照原表保留。实际维修时应注意 CPU 核心电压具有动态变化特性，并结合具体平台规格及实测波形判断。</p>
+</blockquote>
+<hr>
+<h1 id="十、NM-D291-BGA1526上电时序汇总"><a href="#十、NM-D291-BGA1526上电时序汇总" class="headerlink" title="十、NM-D291 BGA1526上电时序汇总"></a>十、NM-D291 BGA1526上电时序汇总</h1><p>根据原始资料，可以将该主板主要上电过程整理为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">TYPE-C / PD</span><br><span class="line">      ↓</span><br><span class="line">系统供电 / B+</span><br><span class="line">      ↓</span><br><span class="line">+3VL / VSTBY</span><br><span class="line">      ↓</span><br><span class="line">EC</span><br><span class="line">      ↓</span><br><span class="line">ACIN_EC / LID_SW#</span><br><span class="line">      ↓</span><br><span class="line">EC读取程序</span><br><span class="line">      ↓</span><br><span class="line">SLP_S4</span><br><span class="line">      ↓</span><br><span class="line">DDR4内存供电</span><br><span class="line">      ↓</span><br><span class="line">SLP_S3</span><br><span class="line">      ↓</span><br><span class="line">二级3V / 5V</span><br><span class="line">      ↓</span><br><span class="line">CPU辅助供电</span><br><span class="line">      ↓</span><br><span class="line">VRM启动</span><br><span class="line">      ↓</span><br><span class="line">PCH时钟</span><br><span class="line">      ↓</span><br><span class="line">BIOS</span><br><span class="line">      ↓</span><br><span class="line">SYS_PWROK</span><br><span class="line">      ↓</span><br><span class="line">PROCPWRGD</span><br><span class="line">      ↓</span><br><span class="line">VCCST_PWRGD</span><br><span class="line">      ↓</span><br><span class="line">SYS_RESET_N</span><br><span class="line">      ↓</span><br><span class="line">PLTRST_N</span><br><span class="line">      ↓</span><br><span class="line">SVID</span><br><span class="line">      ↓</span><br><span class="line">VCCCORE / VCCIN</span><br><span class="line">      ↓</span><br><span class="line">S0</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="十一、维修快速排查"><a href="#十一、维修快速排查" class="headerlink" title="十一、维修快速排查"></a>十一、维修快速排查</h1><h2 id="1-插电后完全没有待机"><a href="#1-插电后完全没有待机" class="headerlink" title="1. 插电后完全没有待机"></a>1. 插电后完全没有待机</h2><p>优先检查：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">TYPE-C / PD</span><br><span class="line"> ↓</span><br><span class="line">VBUS</span><br><span class="line"> ↓</span><br><span class="line">VSYSTEM2</span><br><span class="line"> ↓</span><br><span class="line">B+</span><br><span class="line"> ↓</span><br><span class="line">LDO(+3VL)</span><br><span class="line"> ↓</span><br><span class="line">VSTBY</span><br><span class="line"> ↓</span><br><span class="line">WRST#</span><br><span class="line"> ↓</span><br><span class="line">ACIN_EC</span><br></pre></td></tr></table></figure>
+
+<p>如果使用 TYPE-C 供电，还需要检查：</p>
+<ul>
+<li>USBC_CC1</li>
+<li>USBC_CC2</li>
+<li>USBC_CC1_CONN</li>
+<li>USBC_CC2_CONN</li>
+<li>INT#_TYPEC</li>
+<li>EC_SMB_DA2</li>
+<li>EC_SMB_CK2</li>
+</ul>
+<hr>
+<h2 id="2-有待机但EC不工作"><a href="#2-有待机但EC不工作" class="headerlink" title="2. 有待机但EC不工作"></a>2. 有待机但EC不工作</h2><p>重点检查：</p>
+<ul>
+<li>VSTBY</li>
+<li>WRST#</li>
+<li>ACIN_EC</li>
+<li>LID_SW#</li>
+<li>EC读取程序</li>
+<li>EC与TYPE-C&#x2F;PD相关通信</li>
+</ul>
+<hr>
+<h2 id="3-能触发但内存没有供电"><a href="#3-能触发但内存没有供电" class="headerlink" title="3. 能触发但内存没有供电"></a>3. 能触发但内存没有供电</h2><p>重点检查：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PCH_SLP_S4</span><br><span class="line"> ↓</span><br><span class="line">A_ON</span><br><span class="line"> ↓</span><br><span class="line">VPP / 2.5V</span><br><span class="line"> ↓</span><br><span class="line">VDD / 1.2V</span><br><span class="line"> ↓</span><br><span class="line">DDR4</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-二级3V-5V没有"><a href="#4-二级3V-5V没有" class="headerlink" title="4. 二级3V&#x2F;5V没有"></a>4. 二级3V&#x2F;5V没有</h2><p>重点检查：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PM_SLP_S3#</span><br><span class="line"> ↓</span><br><span class="line">B_ON</span><br><span class="line"> ↓</span><br><span class="line">VCC3B</span><br><span class="line">VCC5B</span><br></pre></td></tr></table></figure>
+
+<p>然后继续确认：</p>
+<ul>
+<li>VCCST</li>
+<li>VCC1P8A</li>
+<li>VCCSTG</li>
+<li>VCCPLL_OC</li>
+<li>VCC5B_HDMI</li>
+<li>VRON</li>
+</ul>
+<hr>
+<h2 id="5-CPU核心供电没有"><a href="#5-CPU核心供电没有" class="headerlink" title="5. CPU核心供电没有"></a>5. CPU核心供电没有</h2><p>检查：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">VIN</span><br><span class="line"> ↓</span><br><span class="line">VCC</span><br><span class="line"> ↓</span><br><span class="line">VRON</span><br><span class="line"> ↓</span><br><span class="line">VREFO6</span><br><span class="line"> ↓</span><br><span class="line">VR_READY</span><br><span class="line"> ↓</span><br><span class="line">SVID</span><br><span class="line"> ↓</span><br><span class="line">VCCCORE / VCCIN</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="6-电压基本正常但仍不开机"><a href="#6-电压基本正常但仍不开机" class="headerlink" title="6. 电压基本正常但仍不开机"></a>6. 电压基本正常但仍不开机</h2><p>重点检查：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">PCH_PWROK</span><br><span class="line"> ↓</span><br><span class="line">38.4MHz</span><br><span class="line"> ↓</span><br><span class="line">CLOCK_OUT</span><br><span class="line"> ↓</span><br><span class="line">BIOS</span><br><span class="line"> ↓</span><br><span class="line">SYS_PWROK</span><br><span class="line"> ↓</span><br><span class="line">PROCPWRGD</span><br><span class="line"> ↓</span><br><span class="line">VCCST_PWRGD</span><br><span class="line"> ↓</span><br><span class="line">SYS_RESET_N</span><br><span class="line"> ↓</span><br><span class="line">PLTRST_N</span><br><span class="line"> ↓</span><br><span class="line">SVID</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="十二、与另一块BGA1526主板资料对比"><a href="#十二、与另一块BGA1526主板资料对比" class="headerlink" title="十二、与另一块BGA1526主板资料对比"></a>十二、与另一块BGA1526主板资料对比</h1><p>NM-D291 与另一份 <strong>纬创19792-1</strong> 资料同属于 Intel 10代单U BGA1526 平台，但主板具体设计存在明显差异。</p>
+<p>例如 NM-D291 的资料额外记录了较多：</p>
+<ul>
+<li>TYPE-C &#x2F; PD</li>
+<li>USBC_CC</li>
+<li>EC SMBus</li>
+<li>VBUS</li>
+<li>B+</li>
+<li>VRM启动</li>
+<li>WLAN REFCLK</li>
+<li>CPU内部电源轨</li>
+</ul>
+<p>因此，<strong>BGA1526只能作为平台级分类，具体维修仍应以对应板号的原理图和时序资料为准。</strong></p>
+<hr>
+<h1 id="十三、相关资料"><a href="#十三、相关资料" class="headerlink" title="十三、相关资料"></a>十三、相关资料</h1><ul>
+<li><a href="https://heiok.com/Intel-10th-Gen-Single-CPU-Power-On-Sequence-BGA1526-19792-1.html">Intel 10代单U上电时序汇总及关键信号（BGA1526）——19792-1</a></li>
+<li><a href="https://heiok.com/Intel-10th-Gen-Single-CPU-Power-On-Sequence-BGA1526-NM-D291.html">Intel 8代-9代单U上电时序汇总及关键信号（BGA1528）</a></li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>维修参考声明：</strong> 本文数据来源于联宝 NM-D291 主板的原始维修资料。原表部分信号仅列出了测试点名称而未提供工作电压或对地值，本文对此部分保持空缺，没有自行推算。实际维修时应结合 NM-D291 对应原理图、点位图及示波器波形进行判断。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Power-on-sequence/" rel="tag"># Power-on sequence</a>
+              <a href="/tags/Mainboard/" rel="tag"># Mainboard</a>
+              <a href="/tags/Intel/" rel="tag"># Intel</a>
+              <a href="/tags/BGA1526/" rel="tag"># BGA1526</a>
+              <a href="/tags/NM-D291/" rel="tag"># NM-D291</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Intel-10th-Gen-Single-CPU-Power-On-Sequence-BGA1526-19792-1.html" rel="prev" title="Intel 10代单U上电时序汇总及关键信号（BGA1526）——19792-1">
+                  <i class="fa fa-angle-left"></i> Intel 10代单U上电时序汇总及关键信号（BGA1526）——19792-1
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">heiok.com</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.min.js","integrity":"sha256-G8ouPAnw4zzMbnAenHnVz6h9XpKbNdOkrqTh7AadyHs="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
