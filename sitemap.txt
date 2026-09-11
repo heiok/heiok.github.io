@@ -1,5 +1,5 @@
-https://heiok.com/Intel-10th-Gen-Single-CPU-Power-On-Sequence-BGA1526-NM-D291.html
 https://heiok.com/Intel-10th-Gen-Single-CPU-Power-On-Sequence-BGA1526-19792-1.html
+https://heiok.com/Intel-10th-Gen-Single-CPU-Power-On-Sequence-BGA1526-NM-D291.html
 https://heiok.com/Intel-8th-9th-Gen-Single-CPU-Power-On-Sequence-BGA1528.html
 https://heiok.com/Intel-6th-7th-gen-power-on-sequence-BGA1356.html
 https://heiok.com/Intel-6th-7th-gen-mobile-cpu-pch-power-on-sequence-key-signals-BGA1440.html
